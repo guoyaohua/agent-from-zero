@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node (for future MkDocs/tooling or scripts)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python (for future helper scripts)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# MkDocs / static site build output (future)
+site/
+.cache/
+
+# Misc
+*.log
+.env
