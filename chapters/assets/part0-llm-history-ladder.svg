@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+  <title id="title">大语言模型发展阶梯</title>
+  <desc id="desc">从统计语言模型、神经网络语言模型、Seq2Seq、Attention、Transformer、预训练大模型、指令对齐到工具调用和 Agent 的能力演化。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .step { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .step-title { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .step-year { font: 700 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #526078; }
+      .step-text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .cap { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .axis { stroke: #9aa7ba; stroke-width: 3; stroke-linecap: round; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .note-title { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .note-text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="660" />
+  <text class="title" x="56" y="58">大语言模型发展阶梯:同一个目标,不断放大的能力</text>
+  <text class="subtitle" x="56" y="86">语言模型最初只是预测下一个词;当数据、算力、架构和对齐方法叠加,它逐渐成为 Agent 的通用认知底座。</text>
+
+  <line class="axis" x1="98" y1="560" x2="1018" y2="560" />
+  <text class="step-text" x="98" y="590">更窄的语言统计</text>
+  <text class="step-text" x="885" y="590">更通用的任务能力</text>
+  <path class="arrow" d="M230 585 H845" />
+
+  <rect class="step" x="56" y="398" width="132" height="128" rx="8" />
+  <rect x="72" y="418" width="62" height="24" rx="5" fill="#355c9a" />
+  <text class="cap" x="84" y="435">统计</text>
+  <text class="step-title" x="72" y="470">N-gram</text>
+  <text class="step-year" x="72" y="493">1990s</text>
+  <text class="step-text" x="72" y="513">看前几个词</text>
+
+  <rect class="step" x="184" y="332" width="132" height="128" rx="8" />
+  <rect x="200" y="352" width="62" height="24" rx="5" fill="#617b3d" />
+  <text class="cap" x="212" y="369">向量</text>
+  <text class="step-title" x="200" y="404">神经 LM</text>
+  <text class="step-year" x="200" y="427">2000s</text>
+  <text class="step-text" x="200" y="447">词变成向量</text>
+
+  <rect class="step" x="312" y="266" width="132" height="128" rx="8" />
+  <rect x="328" y="286" width="62" height="24" rx="5" fill="#b05c37" />
+  <text class="cap" x="340" y="303">序列</text>
+  <text class="step-title" x="328" y="338">RNN/LSTM</text>
+  <text class="step-year" x="328" y="361">2010s</text>
+  <text class="step-text" x="328" y="381">记住上下文</text>
+
+  <rect class="step" x="440" y="200" width="132" height="128" rx="8" />
+  <rect x="456" y="220" width="74" height="24" rx="5" fill="#7c5aa6" />
+  <text class="cap" x="468" y="237">对齐信息</text>
+  <text class="step-title" x="456" y="272">Attention</text>
+  <text class="step-year" x="456" y="295">2014-2017</text>
+  <text class="step-text" x="456" y="315">直接关注重点</text>
+
+  <rect class="step" x="568" y="134" width="132" height="128" rx="8" />
+  <rect x="584" y="154" width="86" height="24" rx="5" fill="#2d7d80" />
+  <text class="cap" x="596" y="171">并行建模</text>
+  <text class="step-title" x="584" y="206">Transformer</text>
+  <text class="step-year" x="584" y="229">2017</text>
+  <text class="step-text" x="584" y="249">大规模训练</text>
+
+  <rect class="step" x="696" y="200" width="132" height="128" rx="8" />
+  <rect x="712" y="220" width="74" height="24" rx="5" fill="#b13c52" />
+  <text class="cap" x="724" y="237">预训练</text>
+  <text class="step-title" x="712" y="272">GPT/BERT</text>
+  <text class="step-year" x="712" y="295">2018-2020</text>
+  <text class="step-text" x="712" y="315">通用底座</text>
+
+  <rect class="step" x="824" y="266" width="132" height="128" rx="8" />
+  <rect x="840" y="286" width="74" height="24" rx="5" fill="#6b667a" />
+  <text class="cap" x="852" y="303">对齐</text>
+  <text class="step-title" x="840" y="338">指令模型</text>
+  <text class="step-year" x="840" y="361">2020s</text>
+  <text class="step-text" x="840" y="381">听懂人类任务</text>
+
+  <rect class="step" x="952" y="332" width="132" height="128" rx="8" />
+  <rect x="968" y="352" width="74" height="24" rx="5" fill="#c06f2b" />
+  <text class="cap" x="980" y="369">工具</text>
+  <text class="step-title" x="968" y="404">Agent</text>
+  <text class="step-year" x="968" y="427">2020s-</text>
+  <text class="step-text" x="968" y="447">连接外部世界</text>
+
+  <path class="arrow" d="M188 462 C205 450 205 429 184 412" />
+  <path class="arrow" d="M316 396 C333 384 333 363 312 346" />
+  <path class="arrow" d="M444 330 C461 318 461 297 440 280" />
+  <path class="arrow" d="M572 264 C589 252 589 231 568 214" />
+  <path class="arrow" d="M700 214 C717 226 717 247 696 264" />
+  <path class="arrow" d="M828 280 C845 292 845 313 824 330" />
+  <path class="arrow" d="M956 346 C973 358 973 379 952 396" />
+
+  <rect x="56" y="606" width="1008" height="32" rx="8" fill="#ffffff" stroke="#d8e0eb" />
+  <text class="note-title" x="80" y="627">核心读法</text>
+  <text class="note-text" x="158" y="627">架构让模型能学得更深,规模让能力更通用,对齐让能力更可用,工具调用让模型进入真实任务。</text>
+</svg>

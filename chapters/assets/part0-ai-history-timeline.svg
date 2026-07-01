@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">人工智能发展简史时间轴</title>
+  <desc id="desc">从符号主义、专家系统、机器学习、深度学习、大模型到 AI Agent 的主要范式变化。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .era-title { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .era-year { font: 700 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .era-text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .note-title { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .note-text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .axis { stroke: #9aa7ba; stroke-width: 4; stroke-linecap: round; }
+      .tick { stroke: #9aa7ba; stroke-width: 3; stroke-linecap: round; }
+      .card { fill: #ffffff; stroke: #d9e0ea; stroke-width: 1.2; rx: 8; }
+      .soft-card { fill: #ffffff; stroke: #d9e0ea; stroke-width: 1.2; rx: 8; }
+      .dot { stroke: #ffffff; stroke-width: 4; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1120" height="620" rx="0" />
+  <text class="title" x="56" y="58">人工智能发展简史:从“写规则”到“会行动的系统”</text>
+  <text class="subtitle" x="56" y="86">这不是一条单纯的年份线,而是一条“如何让机器表现出智能”的方法演化线。</text>
+
+  <line class="axis" x1="95" y1="285" x2="1025" y2="285" />
+  <line class="tick" x1="95" y1="272" x2="95" y2="298" />
+  <line class="tick" x1="280" y1="272" x2="280" y2="298" />
+  <line class="tick" x1="465" y1="272" x2="465" y2="298" />
+  <line class="tick" x1="650" y1="272" x2="650" y2="298" />
+  <line class="tick" x1="835" y1="272" x2="835" y2="298" />
+  <line class="tick" x1="1025" y1="272" x2="1025" y2="298" />
+
+  <circle class="dot" cx="95" cy="285" r="12" fill="#355c9a" />
+  <circle class="dot" cx="280" cy="285" r="12" fill="#617b3d" />
+  <circle class="dot" cx="465" cy="285" r="12" fill="#b05c37" />
+  <circle class="dot" cx="650" cy="285" r="12" fill="#7c5aa6" />
+  <circle class="dot" cx="835" cy="285" r="12" fill="#2d7d80" />
+  <circle class="dot" cx="1025" cy="285" r="12" fill="#b13c52" />
+
+  <rect class="card" x="36" y="130" width="150" height="116" rx="8" />
+  <rect x="52" y="148" width="74" height="24" rx="5" fill="#355c9a" />
+  <text class="tag" x="66" y="165">规则</text>
+  <text class="era-title" x="52" y="198">符号主义</text>
+  <text class="era-year" x="52" y="221">1950s-1970s</text>
+  <text class="era-text" x="52" y="241">人写逻辑与搜索</text>
+
+  <rect class="card" x="205" y="338" width="150" height="126" rx="8" />
+  <rect x="221" y="356" width="86" height="24" rx="5" fill="#617b3d" />
+  <text class="tag" x="235" y="373">知识库</text>
+  <text class="era-title" x="221" y="406">专家系统</text>
+  <text class="era-year" x="221" y="429">1970s-1980s</text>
+  <text class="era-text" x="221" y="449">把专家经验编码</text>
+
+  <rect class="card" x="390" y="130" width="150" height="126" rx="8" />
+  <rect x="406" y="148" width="74" height="24" rx="5" fill="#b05c37" />
+  <text class="tag" x="420" y="165">数据</text>
+  <text class="era-title" x="406" y="198">机器学习</text>
+  <text class="era-year" x="406" y="221">1990s-2000s</text>
+  <text class="era-text" x="406" y="241">从样本中学模式</text>
+
+  <rect class="card" x="575" y="338" width="150" height="126" rx="8" />
+  <rect x="591" y="356" width="86" height="24" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="605" y="373">表示</text>
+  <text class="era-title" x="591" y="406">深度学习</text>
+  <text class="era-year" x="591" y="429">2010s</text>
+  <text class="era-text" x="591" y="449">自动学习特征</text>
+
+  <rect class="card" x="760" y="130" width="150" height="126" rx="8" />
+  <rect x="776" y="148" width="86" height="24" rx="5" fill="#2d7d80" />
+  <text class="tag" x="790" y="165">生成</text>
+  <text class="era-title" x="776" y="198">基础模型</text>
+  <text class="era-year" x="776" y="221">2017-2020s</text>
+  <text class="era-text" x="776" y="241">预训练 + 迁移</text>
+
+  <rect class="card" x="944" y="338" width="150" height="126" rx="8" />
+  <rect x="960" y="356" width="74" height="24" rx="5" fill="#b13c52" />
+  <text class="tag" x="974" y="373">行动</text>
+  <text class="era-title" x="960" y="406">AI Agent</text>
+  <text class="era-year" x="960" y="429">2020s-</text>
+  <text class="era-text" x="960" y="449">模型连接工具</text>
+
+  <path d="M95 273 C95 250 95 250 95 246" fill="none" stroke="#355c9a" stroke-width="2" />
+  <path d="M280 297 C280 320 280 320 280 338" fill="none" stroke="#617b3d" stroke-width="2" />
+  <path d="M465 273 C465 250 465 250 465 256" fill="none" stroke="#b05c37" stroke-width="2" />
+  <path d="M650 297 C650 320 650 320 650 338" fill="none" stroke="#7c5aa6" stroke-width="2" />
+  <path d="M835 273 C835 250 835 250 835 256" fill="none" stroke="#2d7d80" stroke-width="2" />
+  <path d="M1025 297 C1025 320 1025 320 1025 338" fill="none" stroke="#b13c52" stroke-width="2" />
+
+  <rect class="soft-card" x="56" y="510" width="1008" height="70" rx="8" />
+  <text class="note-title" x="80" y="540">读图方式</text>
+  <text class="note-text" x="160" y="540">每一代方法都不是完全取代上一代,而是把“智能从哪里来”的答案往前推进了一步。</text>
+  <text class="note-text" x="160" y="562">从人写规则,到机器从数据中学习,再到大模型生成内容并连接工具,Agent 是这条线的自然延伸。</text>
+</svg>
