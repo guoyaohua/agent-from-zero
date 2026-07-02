@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt、Token 与上下文组织</title>
+  <desc id="desc">展示一个 Prompt 如何由任务、约束、背景资料、示例、工具结果和输出格式组成,并最终占用上下文窗口中的 token 预算。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .card { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.1; marker-end: url(#arrow); }
+      .token { stroke: #ffffff; stroke-width: 2; rx: 5; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="650" />
+  <text class="title" x="56" y="58">Prompt 不是咒语,而是给模型布置工作台</text>
+  <text class="subtitle" x="56" y="86">模型只能基于当前上下文里的 token 做判断;Prompt 工程的本质是组织信息、约束任务和减少歧义。</text>
+
+  <rect class="card" x="60" y="132" width="300" height="392" rx="8" />
+  <rect x="86" y="160" width="82" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="100" y="178">输入材料</text>
+  <text class="head" x="86" y="214">一个好 Prompt 常包含</text>
+  <rect class="soft" x="88" y="246" width="246" height="38" rx="8" />
+  <text class="label" x="108" y="270">任务:要完成什么</text>
+  <rect class="soft" x="88" y="296" width="246" height="38" rx="8" />
+  <text class="label" x="108" y="320">角色/边界:能做什么</text>
+  <rect class="soft" x="88" y="346" width="246" height="38" rx="8" />
+  <text class="label" x="108" y="370">背景:相关事实和资料</text>
+  <rect class="soft" x="88" y="396" width="246" height="38" rx="8" />
+  <text class="label" x="108" y="420">示例:期望风格和格式</text>
+  <rect class="soft" x="88" y="446" width="246" height="38" rx="8" />
+  <text class="label" x="108" y="470">输出格式:如何交付</text>
+
+  <path class="arrow" d="M360 328 H432" />
+
+  <rect class="card" x="432" y="132" width="256" height="392" rx="8" />
+  <rect x="458" y="160" width="82" height="26" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="472" y="178">Token 化</text>
+  <text class="head" x="458" y="214">文本会变成 token</text>
+  <text class="text" x="458" y="250">token 可以是词、字、子词、标点</text>
+  <text class="text" x="458" y="274">模型看到的是 token 序列</text>
+  <rect class="token" x="464" y="318" width="48" height="34" fill="#355c9a" rx="5" />
+  <text class="tag" x="478" y="340">请</text>
+  <rect class="token" x="518" y="318" width="62" height="34" fill="#617b3d" rx="5" />
+  <text class="tag" x="532" y="340">总结</text>
+  <rect class="token" x="586" y="318" width="48" height="34" fill="#b05c37" rx="5" />
+  <text class="tag" x="600" y="340">这</text>
+  <rect class="token" x="464" y="366" width="76" height="34" fill="#7c5aa6" rx="5" />
+  <text class="tag" x="478" y="388">份文档</text>
+  <rect class="token" x="546" y="366" width="48" height="34" fill="#2d7d80" rx="5" />
+  <text class="tag" x="560" y="388">。</text>
+  <text class="text" x="458" y="452">上下文窗口限制的是 token 数,</text>
+  <text class="text" x="458" y="476">不是“字数”或“页数”。</text>
+
+  <path class="arrow" d="M688 328 H760" />
+
+  <rect class="card" x="760" y="132" width="300" height="392" rx="8" />
+  <rect x="786" y="160" width="82" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="800" y="178">上下文预算</text>
+  <text class="head" x="786" y="214">窗口里要放什么</text>
+  <rect x="790" y="260" width="230" height="36" rx="6" fill="#355c9a" />
+  <text class="tag" x="806" y="283">系统约束</text>
+  <rect x="790" y="306" width="188" height="36" rx="6" fill="#617b3d" />
+  <text class="tag" x="806" y="329">用户问题</text>
+  <rect x="790" y="352" width="248" height="36" rx="6" fill="#b05c37" />
+  <text class="tag" x="806" y="375">检索资料</text>
+  <rect x="790" y="398" width="168" height="36" rx="6" fill="#7c5aa6" />
+  <text class="tag" x="806" y="421">工具结果</text>
+  <rect x="790" y="444" width="126" height="36" rx="6" fill="#b13c52" />
+  <text class="tag" x="806" y="467">输出预算</text>
+  <text class="text" x="786" y="508">预算有限时,选择比堆叠更重要。</text>
+
+  <rect class="soft" x="78" y="574" width="964" height="38" rx="8" />
+  <text class="text" x="102" y="598">工程直觉:Prompt 写得清楚只是第一步;更关键的是把正确的信息放进有限窗口,并把无关信息拿出去。</text>
+</svg>

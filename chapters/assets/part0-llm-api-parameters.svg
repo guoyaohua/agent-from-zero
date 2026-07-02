@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-labelledby="title desc">
+  <title id="title">LLM API 调用与常见参数</title>
+  <desc id="desc">展示一次 LLM API 请求中 messages、model、temperature、top_p、max_tokens、tools、stream 等参数如何影响输出。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .rail { stroke: #c8d2df; stroke-width: 8; stroke-linecap: round; }
+      .knob { fill: #2d7d80; stroke: #ffffff; stroke-width: 3; }
+      .bar { fill: #7c5aa6; rx: 3; }
+      .bar2 { fill: #b05c37; rx: 3; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="650" />
+  <text class="title" x="56" y="58">LLM API 像一个“带旋钮的生成器”</text>
+  <text class="subtitle" x="56" y="86">同一段 messages,会被模型、采样参数、长度限制、工具配置和返回格式共同塑形。</text>
+
+  <rect class="panel" x="56" y="130" width="318" height="398" rx="8" />
+  <rect x="82" y="158" width="82" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="176">请求体</text>
+  <text class="head" x="82" y="218">一次调用包含什么</text>
+  <rect class="soft" x="82" y="244" width="266" height="248" rx="8" />
+  <text class="mono" x="102" y="274">model: 选择能力和成本</text>
+  <text class="mono" x="102" y="306">messages: 上下文和任务</text>
+  <text class="mono" x="102" y="338">temperature: 随机性</text>
+  <text class="mono" x="102" y="370">top_p: 候选池</text>
+  <text class="mono" x="102" y="402">max_tokens: 输出预算</text>
+  <text class="mono" x="102" y="434">tools: 可调用动作</text>
+  <text class="mono" x="102" y="466">stream: 是否边生成边返回</text>
+
+  <path class="arrow" d="M374 329 H434" />
+
+  <rect class="panel" x="434" y="130" width="252" height="398" rx="8" />
+  <rect x="460" y="158" width="82" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="474" y="176">控制面板</text>
+  <text class="head" x="460" y="218">常用旋钮</text>
+
+  <text class="label" x="460" y="264">temperature</text>
+  <line class="rail" x1="462" y1="290" x2="642" y2="290" />
+  <circle class="knob" cx="506" cy="290" r="11" />
+  <text class="text" x="460" y="320">低:稳定 高:发散</text>
+
+  <text class="label" x="460" y="366">top_p</text>
+  <line class="rail" x1="462" y1="392" x2="642" y2="392" />
+  <circle class="knob" cx="584" cy="392" r="11" fill="#b05c37" />
+  <text class="text" x="460" y="422">限制候选 token 范围</text>
+
+  <text class="label" x="460" y="468">max_tokens</text>
+  <line class="rail" x1="462" y1="494" x2="642" y2="494" />
+  <circle class="knob" cx="606" cy="494" r="11" fill="#7c5aa6" />
+  <text class="text" x="460" y="524">限制这次最多生成多少</text>
+
+  <path class="arrow" d="M686 329 H746" />
+
+  <rect class="panel" x="746" y="130" width="318" height="398" rx="8" />
+  <rect x="772" y="158" width="82" height="26" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="786" y="176">输出</text>
+  <text class="head" x="772" y="218">采样如何改变结果</text>
+
+  <text class="label" x="772" y="266">低 temperature:集中</text>
+  <line x1="782" y1="354" x2="1018" y2="354" stroke="#c8d2df" stroke-width="1" />
+  <rect class="bar" x="800" y="302" width="26" height="52" rx="3">
+    <animate attributeName="height" values="52;60;52" dur="2.2s" repeatCount="indefinite" />
+    <animate attributeName="y" values="302;294;302" dur="2.2s" repeatCount="indefinite" />
+  </rect>
+  <rect class="bar" x="844" y="244" width="26" height="110" rx="3">
+    <animate attributeName="height" values="110;96;110" dur="2.2s" repeatCount="indefinite" />
+    <animate attributeName="y" values="244;258;244" dur="2.2s" repeatCount="indefinite" />
+  </rect>
+  <rect class="bar" x="888" y="324" width="26" height="30" rx="3" />
+  <rect class="bar" x="932" y="334" width="26" height="20" rx="3" />
+  <rect class="bar" x="976" y="340" width="26" height="14" rx="3" />
+
+  <text class="label" x="772" y="414">高 temperature:更分散</text>
+  <line x1="782" y1="500" x2="1018" y2="500" stroke="#c8d2df" stroke-width="1" />
+  <rect class="bar2" x="800" y="452" width="26" height="48" rx="3" />
+  <rect class="bar2" x="844" y="428" width="26" height="72" rx="3">
+    <animate attributeName="height" values="72;56;72" dur="2.6s" repeatCount="indefinite" />
+    <animate attributeName="y" values="428;444;428" dur="2.6s" repeatCount="indefinite" />
+  </rect>
+  <rect class="bar2" x="888" y="442" width="26" height="58" rx="3" />
+  <rect class="bar2" x="932" y="456" width="26" height="44" rx="3" />
+  <rect class="bar2" x="976" y="466" width="26" height="34" rx="3" />
+
+  <rect class="soft" x="78" y="574" width="964" height="38" rx="8" />
+  <text class="text" x="102" y="598">工程直觉:参数不是魔法词。越要求稳定和可复现,越要降低随机性、约束格式、记录输入输出并做重试。</text>
+</svg>

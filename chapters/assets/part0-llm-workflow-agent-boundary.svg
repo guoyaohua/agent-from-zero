@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-labelledby="title desc">
+  <title id="title">普通 LLM 应用、Workflow 与 Agent 的边界</title>
+  <desc id="desc">比较普通 LLM 应用、固定工作流和 AI Agent 在路径选择、状态、工具和自主性上的差异。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .mini { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 21px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.1; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #2d7d80; stroke-width: 2.4; stroke-dasharray: 10 8; animation: dash 1.2s linear infinite; marker-end: url(#greenArrow); }
+      .axis { stroke: #9aa7ba; stroke-width: 2; stroke-linecap: round; }
+      @keyframes dash { to { stroke-dashoffset: -18; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="650" />
+  <text class="title" x="56" y="58">普通 LLM 应用、Workflow、Agent:差别在“谁决定下一步”</text>
+  <text class="subtitle" x="56" y="86">三者都可以调用大模型,但控制权、状态管理和工具使用方式不同。</text>
+
+  <rect class="panel" x="56" y="126" width="320" height="398" rx="8" />
+  <rect x="80" y="154" width="88" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="172">一步回答</text>
+  <text class="head" x="80" y="212">普通 LLM 应用</text>
+  <rect class="mini" x="86" y="244" width="82" height="44" rx="8" />
+  <text class="label" x="109" y="271">输入</text>
+  <path class="arrow" d="M168 266 H214" />
+  <rect class="mini" x="214" y="244" width="82" height="44" rx="8" />
+  <text class="label" x="235" y="271">模型</text>
+  <path class="arrow" d="M255 288 V314" />
+  <rect class="mini" x="252" y="324" width="82" height="44" rx="8" />
+  <text class="label" x="273" y="351">回答</text>
+  <text class="label" x="80" y="418">路径</text>
+  <text class="text" x="128" y="418">通常是一进一出</text>
+  <text class="label" x="80" y="446">状态</text>
+  <text class="text" x="128" y="446">由应用额外拼接</text>
+  <text class="label" x="80" y="474">适合</text>
+  <text class="text" x="128" y="474">问答、改写、摘要、解释</text>
+
+  <rect class="panel" x="400" y="126" width="320" height="398" rx="8" />
+  <rect x="424" y="154" width="88" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="440" y="172">固定流程</text>
+  <text class="head" x="424" y="212">Workflow</text>
+  <rect class="mini" x="430" y="244" width="82" height="44" rx="8" />
+  <text class="label" x="452" y="271">步骤 1</text>
+  <path class="arrow" d="M512 266 H546" />
+  <rect class="mini" x="546" y="244" width="82" height="44" rx="8" />
+  <text class="label" x="568" y="271">步骤 2</text>
+  <path class="arrow" d="M587 288 V318" />
+  <rect class="mini" x="546" y="318" width="82" height="44" rx="8" />
+  <text class="label" x="568" y="345">步骤 3</text>
+  <path class="arrow" d="M546 340 H512" />
+  <rect class="mini" x="430" y="318" width="82" height="44" rx="8" />
+  <text class="label" x="452" y="345">输出</text>
+  <text class="label" x="424" y="418">路径</text>
+  <text class="text" x="472" y="418">代码或编排器预先定义</text>
+  <text class="label" x="424" y="446">状态</text>
+  <text class="text" x="472" y="446">流程节点间显式传递</text>
+  <text class="label" x="424" y="474">适合</text>
+  <text class="text" x="472" y="474">审批、批处理、稳定业务链路</text>
+
+  <rect class="panel" x="744" y="126" width="320" height="398" rx="8" />
+  <rect x="768" y="154" width="88" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="784" y="172">动态循环</text>
+  <text class="head" x="768" y="212">AI Agent</text>
+  <rect class="mini" x="780" y="244" width="88" height="44" rx="8" />
+  <text class="label" x="809" y="271">观察</text>
+  <rect class="mini" x="924" y="244" width="88" height="44" rx="8" />
+  <text class="label" x="953" y="271">决策</text>
+  <rect class="mini" x="924" y="334" width="88" height="44" rx="8" />
+  <text class="label" x="953" y="361">行动</text>
+  <rect class="mini" x="780" y="334" width="88" height="44" rx="8" />
+  <text class="label" x="809" y="361">反馈</text>
+  <path class="loop" d="M868 266 H924" />
+  <path class="loop" d="M968 288 V334" />
+  <path class="loop" d="M924 356 H868" />
+  <path class="loop" d="M824 334 V288" />
+  <text class="label" x="768" y="418">路径</text>
+  <text class="text" x="816" y="418">模型基于观察动态选择</text>
+  <text class="label" x="768" y="446">状态</text>
+  <text class="text" x="816" y="446">持续更新任务进度</text>
+  <text class="label" x="768" y="474">适合</text>
+  <text class="text" x="816" y="474">开放任务、工具探索、迭代修正</text>
+
+  <line class="axis" x1="112" y1="586" x2="1008" y2="586" />
+  <path class="arrow" d="M112 586 H1008" />
+  <text class="text" x="112" y="614">路径更确定、风险更低、成本更可控</text>
+  <text class="text" x="766" y="614">路径更灵活、需要更多观测和护栏</text>
+</svg>

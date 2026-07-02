@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">上下文窗口如何滑动</title>
+  <desc id="desc">一条很长的 token 序列被有限大小的上下文窗口截取,窗口外的信息不会被模型直接看到,需要摘要、检索或记忆机制重新放回上下文。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .card { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .window { fill: rgba(255,255,255,.08); stroke: #b13c52; stroke-width: 4; rx: 8; }
+      .fade { fill: #f7f8fb; opacity: .88; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <clipPath id="clip">
+      <rect x="224" y="220" width="672" height="150" rx="8" />
+    </clipPath>
+  </defs>
+
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="56" y="58">上下文窗口:模型一次只能看见窗口里的 token</text>
+  <text class="subtitle" x="56" y="86">窗口越大,能放入的信息越多;但输入、历史、工具结果和输出预算会一起占用它。</text>
+
+  <rect class="card" x="70" y="170" width="980" height="254" rx="8" />
+  <text class="label" x="96" y="206">一条很长的上下文序列</text>
+
+  <g clip-path="url(#clip)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;-220 0;-440 0;-660 0;0 0" dur="9s" repeatCount="indefinite" />
+      <rect x="104" y="250" width="104" height="58" rx="8" fill="#355c9a" />
+      <text class="tag" x="126" y="283">系统约束</text>
+      <rect x="218" y="250" width="104" height="58" rx="8" fill="#617b3d" />
+      <text class="tag" x="240" y="283">用户问题</text>
+      <rect x="332" y="250" width="104" height="58" rx="8" fill="#b05c37" />
+      <text class="tag" x="354" y="283">历史 1</text>
+      <rect x="446" y="250" width="104" height="58" rx="8" fill="#b05c37" />
+      <text class="tag" x="468" y="283">历史 2</text>
+      <rect x="560" y="250" width="104" height="58" rx="8" fill="#7c5aa6" />
+      <text class="tag" x="582" y="283">检索片段</text>
+      <rect x="674" y="250" width="104" height="58" rx="8" fill="#7c5aa6" />
+      <text class="tag" x="696" y="283">更多资料</text>
+      <rect x="788" y="250" width="104" height="58" rx="8" fill="#2d7d80" />
+      <text class="tag" x="810" y="283">工具结果</text>
+      <rect x="902" y="250" width="104" height="58" rx="8" fill="#c06f2b" />
+      <text class="tag" x="924" y="283">当前观察</text>
+      <rect x="1016" y="250" width="104" height="58" rx="8" fill="#b13c52" />
+      <text class="tag" x="1038" y="283">回答预算</text>
+      <rect x="1130" y="250" width="104" height="58" rx="8" fill="#6b667a" />
+      <text class="tag" x="1152" y="283">后续生成</text>
+    </g>
+  </g>
+
+  <rect class="fade" x="70" y="220" width="154" height="150" />
+  <rect class="fade" x="896" y="220" width="154" height="150" />
+  <rect class="window" x="224" y="220" width="672" height="150" rx="8" />
+  <text class="label" x="436" y="394">当前上下文窗口</text>
+  <path class="arrow" d="M560 404 V436" />
+
+  <rect class="soft" x="180" y="454" width="238" height="76" rx="8" />
+  <text class="label" x="206" y="484">窗口外的信息</text>
+  <text class="text" x="206" y="510">模型不能直接读取</text>
+  <rect class="soft" x="442" y="454" width="238" height="76" rx="8" />
+  <text class="label" x="468" y="484">窗口里的信息</text>
+  <text class="text" x="468" y="510">参与本轮判断和生成</text>
+  <rect class="soft" x="704" y="454" width="238" height="76" rx="8" />
+  <text class="label" x="730" y="484">重新放回窗口</text>
+  <text class="text" x="730" y="510">靠摘要、检索、记忆和工具</text>
+
+  <rect class="soft" x="78" y="560" width="964" height="38" rx="8" />
+  <text class="text" x="102" y="584">这也是上下文工程的核心:在有限窗口里,让模型看到“刚好足够”的信息。</text>
+</svg>

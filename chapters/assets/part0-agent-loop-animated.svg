@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-labelledby="title desc">
+  <title id="title">AI Agent 最小循环</title>
+  <desc id="desc">用户目标进入模型,模型决定是否调用工具,工具返回观察结果,状态和记忆被更新,模型继续循环直到完成任务。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .card { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .label { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.4; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #2d7d80; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 14 10; animation: dash 1.4s linear infinite; }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; transform-origin: center; }
+      @keyframes dash { to { stroke-dashoffset: -24; } }
+      @keyframes pulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="640" />
+  <text class="title" x="56" y="58">AI Agent 的最小循环:目标、观察、决策、行动、反馈</text>
+  <text class="subtitle" x="56" y="86">Agent 不是一次模型调用,而是把模型放进一个可以反复观察和行动的系统里。</text>
+
+  <rect class="card" x="64" y="180" width="190" height="116" rx="8" />
+  <rect x="84" y="202" width="72" height="24" rx="5" fill="#355c9a" />
+  <text class="tag" x="98" y="219">目标</text>
+  <text class="label" x="84" y="254">用户想完成什么</text>
+  <text class="small" x="84" y="278">不是只想要一句回答</text>
+
+  <rect class="card" x="366" y="150" width="260" height="176" rx="8" />
+  <rect x="386" y="174" width="84" height="24" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="400" y="191">模型</text>
+  <text class="label" x="386" y="228">理解与决策</text>
+  <text class="small" x="386" y="254">读目标、读上下文</text>
+  <text class="small" x="386" y="276">判断下一步该做什么</text>
+  <text class="small" x="386" y="298">必要时生成工具调用</text>
+
+  <rect class="card" x="782" y="150" width="260" height="176" rx="8" />
+  <rect x="802" y="174" width="84" height="24" rx="5" fill="#b05c37" />
+  <text class="tag" x="816" y="191">行动</text>
+  <text class="label" x="802" y="228">工具 / API / 环境</text>
+  <text class="small" x="802" y="254">搜索、读文件、跑代码</text>
+  <text class="small" x="802" y="276">查数据库、发请求</text>
+  <text class="small" x="802" y="298">只做被授权的动作</text>
+
+  <rect class="card" x="782" y="410" width="260" height="118" rx="8" />
+  <rect x="802" y="432" width="84" height="24" rx="5" fill="#617b3d" />
+  <text class="tag" x="816" y="449">观察</text>
+  <text class="label" x="802" y="486">工具返回结果</text>
+  <text class="small" x="802" y="510">日志、错误、事实、文件差异</text>
+
+  <rect class="card" x="366" y="410" width="260" height="118" rx="8" />
+  <rect x="386" y="432" width="84" height="24" rx="5" fill="#2d7d80" />
+  <text class="tag" x="400" y="449">状态</text>
+  <text class="label" x="386" y="486">记忆与上下文更新</text>
+  <text class="small" x="386" y="510">保留进度、约束和中间结论</text>
+
+  <rect class="soft" x="64" y="410" width="190" height="118" rx="8" />
+  <rect x="84" y="432" width="72" height="24" rx="5" fill="#b13c52" />
+  <text class="tag" x="98" y="449">完成</text>
+  <text class="label" x="84" y="486">结果交付</text>
+  <text class="small" x="84" y="510">答案、文件、报告或确认请求</text>
+
+  <path class="arrow" d="M254 238 H346" />
+  <path class="arrow" d="M626 238 H762" />
+  <path class="arrow" d="M912 326 V390" />
+  <path class="arrow" d="M782 469 H646" />
+  <path class="arrow" d="M496 410 V346" />
+  <path class="arrow" d="M366 469 H274" />
+
+  <path class="loop" d="M626 238 H762 C792 238 812 258 812 288 V386 C812 416 792 438 762 438 H646 C606 438 586 418 586 388 V350" />
+  <circle class="pulse" cx="586" cy="350" r="9" fill="#2d7d80" />
+  <circle r="7" fill="#b13c52">
+    <animateMotion dur="5.5s" repeatCount="indefinite" path="M626 238 H762 C792 238 812 258 812 288 V386 C812 416 792 438 762 438 H646 C606 438 586 418 586 388 V350" />
+  </circle>
+
+  <rect class="soft" x="84" y="566" width="952" height="38" rx="8" />
+  <text class="small" x="108" y="590">读图方式:模型每一轮都只是在当前上下文中判断下一步;可靠性来自工具权限、状态记录、错误反馈和停止条件。</text>
+</svg>
