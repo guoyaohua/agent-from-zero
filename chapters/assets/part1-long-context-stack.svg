@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">长上下文技术栈</title>
+  <desc id="desc">展示长上下文能力由位置外推、注意力优化、KV Cache 管理、训练数据、检索压缩和评估共同支撑。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .layer1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .layer2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .layer3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .layer4 { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .layer5 { fill: #ece7f3; stroke: #7c5aa6; stroke-width: 2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">长上下文不是一个开关,而是一整套技术栈</text>
+  <text class="subtitle" x="56" y="86">窗口变长只是表象;真正可用的长上下文需要模型、训练、推理和应用层共同支撑。</text>
+
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8" />
+  <rect x="82" y="156" width="116" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Long Context</text>
+  <text class="head" x="82" y="216">六个层面的共同问题</text>
+
+  <rect class="layer1" x="118" y="260" width="250" height="58" rx="8" />
+  <text class="label" x="146" y="284">位置机制</text>
+  <text class="text" x="146" y="304">RoPE scaling / ALiBi / 位置插值</text>
+  <rect class="layer2" x="430" y="260" width="250" height="58" rx="8" />
+  <text class="label" x="458" y="284">注意力计算</text>
+  <text class="text" x="458" y="304">Flash / 滑窗 / 稀疏 / 分块</text>
+  <rect class="layer3" x="742" y="260" width="250" height="58" rx="8" />
+  <text class="label" x="770" y="284">KV Cache</text>
+  <text class="text" x="770" y="304">显存、分页、连续批处理</text>
+
+  <rect class="layer4" x="118" y="370" width="250" height="58" rx="8" />
+  <text class="label" x="146" y="394">训练数据</text>
+  <text class="text" x="146" y="414">长依赖样本、继续训练、任务覆盖</text>
+  <rect class="layer5" x="430" y="370" width="250" height="58" rx="8" />
+  <text class="label" x="458" y="394">上下文工程</text>
+  <text class="text" x="458" y="414">RAG、摘要、分块、去噪</text>
+  <rect class="layer1" x="742" y="370" width="250" height="58" rx="8" />
+  <text class="label" x="770" y="394">评估</text>
+  <text class="text" x="770" y="414">needle、长文推理、真实任务</text>
+
+  <path class="arrow" d="M368 289 H430" /><path class="arrow" d="M680 289 H742" />
+  <path class="arrow" d="M368 399 H430" /><path class="arrow" d="M680 399 H742" />
+  <path class="arrow" d="M242 318 V370" /><path class="arrow" d="M554 318 V370" /><path class="arrow" d="M866 318 V370" />
+
+  <rect class="soft" x="118" y="488" width="874" height="38" rx="8" />
+  <text class="text" x="142" y="512">可用长上下文 = 能放得下 + 算得动 + 记得住 + 找得准 + 抗噪声 + 评得出来。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:长上下文模型仍然需要 RAG 和上下文管理;窗口大不等于模型会自动使用所有信息。</text>
+</svg>

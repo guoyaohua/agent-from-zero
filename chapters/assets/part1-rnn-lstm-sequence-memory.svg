@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">RNN 与 LSTM 的序列记忆</title>
+  <desc id="desc">展示 RNN 如何按时间步传递隐藏状态,LSTM 如何用遗忘门、输入门和输出门控制长期记忆,以及长距离依赖为什么困难。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .state { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .token { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.4; rx: 7; }
+      .cell { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .gate { fill: #fff4ea; stroke: #b05c37; stroke-width: 2; rx: 7; }
+      .memory { fill: none; stroke: #b13c52; stroke-width: 4; stroke-linecap: round; marker-end: url(#redArrow); }
+      .fade { stroke-dasharray: 8 8; opacity: .55; }
+      .pulse { animation: pulse 2.7s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b13c52" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">RNN 与 LSTM:按顺序阅读,用隐藏状态携带记忆</text>
+  <text class="subtitle" x="56" y="86">RNN 把过去压进一个隐藏状态;LSTM 用门控缓解遗忘,但序列化计算和长距离依赖仍然困难。</text>
+
+  <rect class="panel" x="56" y="128" width="1008" height="214" rx="8" />
+  <rect x="82" y="156" width="82" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">RNN</text>
+  <text class="head" x="82" y="216">每一步读取当前 token,并把历史压进隐藏状态</text>
+
+  <rect class="token" x="112" y="264" width="82" height="38" rx="7" />
+  <rect class="token" x="300" y="264" width="82" height="38" rx="7" />
+  <rect class="token" x="488" y="264" width="82" height="38" rx="7" />
+  <rect class="token" x="676" y="264" width="82" height="38" rx="7" />
+  <rect class="token" x="864" y="264" width="82" height="38" rx="7" />
+  <text class="label" x="134" y="288">x1</text>
+  <text class="label" x="322" y="288">x2</text>
+  <text class="label" x="510" y="288">x3</text>
+  <text class="label" x="698" y="288">x4</text>
+  <text class="label" x="886" y="288">x5</text>
+
+  <rect class="state" x="112" y="226" width="82" height="38" rx="8" />
+  <rect class="state" x="300" y="226" width="82" height="38" rx="8" />
+  <rect class="state" x="488" y="226" width="82" height="38" rx="8" />
+  <rect class="state" x="676" y="226" width="82" height="38" rx="8" />
+  <rect class="state pulse" x="864" y="226" width="82" height="38" rx="8" />
+  <text class="mono" x="132" y="250">h1</text>
+  <text class="mono" x="320" y="250">h2</text>
+  <text class="mono" x="508" y="250">h3</text>
+  <text class="mono" x="696" y="250">h4</text>
+  <text class="mono" x="884" y="250">h5</text>
+  <path class="arrow" d="M194 245 H300" />
+  <path class="arrow" d="M382 245 H488" />
+  <path class="arrow" d="M570 245 H676" />
+  <path class="arrow" d="M758 245 H864" />
+  <path class="arrow" d="M153 264 V226" />
+  <path class="arrow" d="M341 264 V226" />
+  <path class="arrow" d="M529 264 V226" />
+  <path class="arrow" d="M717 264 V226" />
+  <path class="arrow" d="M905 264 V226" />
+
+  <rect class="panel" x="56" y="374" width="496" height="184" rx="8" />
+  <rect x="82" y="402" width="92" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="96" y="420">长依赖</text>
+  <text class="head" x="82" y="462">信息要一格一格传过去</text>
+  <path class="memory fade" d="M118 520 C196 486 282 486 356 520 C408 544 452 534 506 496" />
+  <circle cx="118" cy="520" r="9" fill="#b13c52" stroke="#ffffff" stroke-width="3" />
+  <circle cx="506" cy="496" r="9" fill="#b13c52" stroke="#ffffff" stroke-width="3" />
+  <text class="text" x="92" y="494">早期信息经过很多步后容易衰减。</text>
+  <text class="mono" x="92" y="542">h_t = f(x_t, h_{t-1})</text>
+
+  <rect class="panel" x="584" y="374" width="480" height="184" rx="8" />
+  <rect x="610" y="402" width="92" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="624" y="420">LSTM</text>
+  <text class="head" x="610" y="462">用门控管理长期记忆</text>
+  <rect class="cell" x="636" y="492" width="96" height="42" rx="8" />
+  <rect class="gate" x="760" y="492" width="86" height="42" rx="7" />
+  <rect class="gate" x="868" y="492" width="86" height="42" rx="7" />
+  <text class="label" x="658" y="518">记忆 c</text>
+  <text class="label" x="778" y="518">忘记门</text>
+  <text class="label" x="886" y="518">输入门</text>
+  <path class="memory" d="M632 478 H1002" />
+  <text class="text" x="640" y="552">门决定保留、写入和输出多少信息。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:RNN/LSTM 依赖顺序传递状态;Attention 后来改成让 token 直接查看彼此,更适合并行和长距离依赖。</text>
+</svg>

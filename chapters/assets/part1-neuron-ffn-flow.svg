@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">神经元、激活函数与前馈网络</title>
+  <desc id="desc">三个面板展示单个神经元如何加权求和,激活函数如何引入非线性,多个线性层和激活函数如何组成前馈网络。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .wire { fill: none; stroke: #b7c3d3; stroke-width: 2; }
+      .node { fill: #ffffff; stroke: #355c9a; stroke-width: 2.4; }
+      .node2 { fill: #ffffff; stroke: #2d7d80; stroke-width: 2.4; }
+      .node3 { fill: #ffffff; stroke: #b05c37; stroke-width: 2.4; }
+      .accent { fill: #355c9a; }
+      .green { fill: #2d7d80; }
+      .orange { fill: #b05c37; }
+      .red { fill: #b13c52; }
+      .curve { fill: none; stroke: #b13c52; stroke-width: 4; stroke-linecap: round; }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">神经元、激活与前馈网络:从一个小判断到多层表示变换</text>
+  <text class="subtitle" x="56" y="86">神经元做加权求和,激活函数加入非线性,前馈网络把这些步骤堆成可学习的特征变换器。</text>
+
+  <rect class="panel" x="56" y="128" width="320" height="430" rx="8" />
+  <rect x="82" y="156" width="86" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">神经元</text>
+  <text class="head" x="82" y="216">加权求和后做判断</text>
+  <circle class="node" cx="128" cy="288" r="20" />
+  <circle class="node" cx="128" cy="352" r="20" />
+  <circle class="node" cx="128" cy="416" r="20" />
+  <text class="label" x="119" y="293">x1</text>
+  <text class="label" x="119" y="357">x2</text>
+  <text class="label" x="119" y="421">x3</text>
+  <circle class="node2 pulse" cx="246" cy="352" r="42" />
+  <text class="formula" x="226" y="347">w·x</text>
+  <text class="formula" x="237" y="371">+b</text>
+  <path class="wire" d="M148 288 C184 292 198 326 207 340" />
+  <path class="wire" d="M148 352 H204" />
+  <path class="wire" d="M148 416 C184 412 198 378 207 364" />
+  <path class="arrow" d="M288 352 H334" />
+  <text class="mono" x="92" y="482">z = w · x + b</text>
+  <text class="text" x="92" y="512">权重决定看哪些特征。</text>
+
+  <rect class="panel" x="400" y="128" width="320" height="430" rx="8" />
+  <rect x="426" y="156" width="86" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="440" y="174">激活</text>
+  <text class="head" x="426" y="216">把线性分数弯一下</text>
+  <line x1="452" y1="390" x2="668" y2="390" stroke="#c8d2df" stroke-width="1.5" />
+  <line x1="552" y1="260" x2="552" y2="438" stroke="#c8d2df" stroke-width="1.5" />
+  <path class="curve" d="M454 388 C492 388 504 384 524 370 C548 352 558 324 580 304 C604 282 630 276 664 274" />
+  <text class="label" x="636" y="272">σ(z)</text>
+  <text class="label" x="576" y="414">z</text>
+  <text class="mono" x="438" y="482">h = sigma(z)</text>
+  <text class="text" x="438" y="512">没有非线性,多层矩阵仍等价于一层矩阵。</text>
+
+  <rect class="panel" x="744" y="128" width="320" height="430" rx="8" />
+  <rect x="770" y="156" width="86" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="784" y="174">FFN</text>
+  <text class="head" x="770" y="216">多层特征变换器</text>
+  <circle class="node" cx="810" cy="294" r="14" />
+  <circle class="node" cx="810" cy="352" r="14" />
+  <circle class="node" cx="810" cy="410" r="14" />
+  <circle class="node2" cx="898" cy="270" r="14" />
+  <circle class="node2" cx="898" cy="326" r="14" />
+  <circle class="node2" cx="898" cy="382" r="14" />
+  <circle class="node2" cx="898" cy="438" r="14" />
+  <circle class="node3" cx="986" cy="312" r="14" />
+  <circle class="node3" cx="986" cy="390" r="14" />
+  <path class="wire" d="M824 294 L884 270 M824 294 L884 326 M824 294 L884 382 M824 294 L884 438" />
+  <path class="wire" d="M824 352 L884 270 M824 352 L884 326 M824 352 L884 382 M824 352 L884 438" />
+  <path class="wire" d="M824 410 L884 270 M824 410 L884 326 M824 410 L884 382 M824 410 L884 438" />
+  <path class="wire" d="M912 270 L972 312 M912 326 L972 312 M912 382 L972 390 M912 438 L972 390" />
+  <text class="label" x="780" y="462">输入</text>
+  <text class="label" x="866" y="462">隐藏层</text>
+  <text class="label" x="964" y="462">输出</text>
+  <text class="mono" x="782" y="512">FFN(x)=W2 sigma(W1x+b1)+b2</text>
+
+  <rect class="soft" x="76" y="600" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="626">读图方式:Transformer 的 FFN 也是这个思想,只是它对每个 token 向量独立做一次更宽再压回来的非线性变换。</text>
+</svg>

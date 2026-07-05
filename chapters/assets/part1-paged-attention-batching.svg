@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">PagedAttention 与连续批处理</title>
+  <desc id="desc">展示 PagedAttention 将 KV Cache 分块分页管理,连续批处理动态把不同请求的 decode 步骤合并提高吞吐。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">PagedAttention 与连续批处理:让服务端更会“装箱”和“调度”</text>
+  <text class="subtitle" x="56" y="86">高吞吐 LLM 服务不只靠单次计算快,还靠 KV Cache 管理和动态批处理。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8"/>
+  <rect x="82" y="156" width="128" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">PagedAttention</text>
+  <text class="head" x="82" y="216">KV Cache 像分页内存一样分块</text>
+  <rect class="box1" x="104" y="276" width="86" height="48" rx="8"/><text class="mono" x="124" y="306">req A</text>
+  <rect class="box1" x="104" y="344" width="86" height="48" rx="8"/><text class="mono" x="124" y="374">req B</text>
+  <path class="arrow" d="M190 300 H254"/><path class="arrow" d="M190 368 H254"/>
+  <rect class="box2" x="254" y="260" width="56" height="44" rx="8"/><text class="mono" x="270" y="287">p1</text>
+  <rect class="box2" x="318" y="260" width="56" height="44" rx="8"/><text class="mono" x="334" y="287">p2</text>
+  <rect class="box3" x="254" y="324" width="56" height="44" rx="8"/><text class="mono" x="270" y="351">p7</text>
+  <rect class="box3" x="318" y="324" width="56" height="44" rx="8"/><text class="mono" x="334" y="351">p9</text>
+  <rect class="box2" x="382" y="260" width="56" height="44" rx="8"/><text class="mono" x="398" y="287">p3</text>
+  <rect class="soft" x="104" y="440" width="334" height="44" rx="8"/><text class="text" x="126" y="466">减少碎片,按需分配和回收 KV Cache blocks。</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8"/>
+  <rect x="602" y="156" width="128" height="26" rx="5" fill="#b13c52"/><text class="tag" x="616" y="174">Continuous Batching</text>
+  <text class="head" x="602" y="216">请求动态进出批次</text>
+  <rect class="box4" x="626" y="266" width="86" height="44" rx="8"/><text class="mono" x="646" y="293">A step</text>
+  <rect class="box4" x="724" y="266" width="86" height="44" rx="8"/><text class="mono" x="744" y="293">B step</text>
+  <rect class="box4" x="822" y="266" width="86" height="44" rx="8"/><text class="mono" x="842" y="293">C step</text>
+  <path class="arrow" d="M670 310 V360"/><path class="arrow" d="M768 310 V360"/><path class="arrow" d="M866 310 V360"/>
+  <rect class="box2" x="626" y="360" width="282" height="54" rx="8"/><text class="label" x="704" y="392">同一 decode batch</text>
+  <rect class="soft" x="626" y="458" width="320" height="44" rx="8"/><text class="text" x="646" y="484">有请求结束就移出,新请求可加入,提高 GPU 利用率。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:单请求快不等于服务吞吐高;服务端需要像操作系统一样管理缓存和调度批次。</text>
+</svg>

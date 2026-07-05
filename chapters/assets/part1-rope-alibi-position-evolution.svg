@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">RoPE 与 ALiBi 位置编码演进</title>
+  <desc id="desc">展示绝对位置编码、RoPE 通过旋转 Query/Key 注入相对位置,以及 ALiBi 在注意力分数中加入距离偏置。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .axis { stroke: #9aa7ba; stroke-width: 2; marker-end: url(#arrow); }
+      .vec { stroke: #355c9a; stroke-width: 4; marker-end: url(#blueArrow); stroke-linecap: round; }
+      .vec2 { stroke: #b13c52; stroke-width: 4; marker-end: url(#redArrow); stroke-linecap: round; }
+      .cell { fill: #edf3f8; stroke: #d8e0eb; stroke-width: 1; rx: 4; }
+      .bias1 { fill: #f7d9df; stroke: #b13c52; stroke-width: 1; rx: 4; }
+      .bias2 { fill: #fff0e6; stroke: #b05c37; stroke-width: 1; rx: 4; }
+      .bias3 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 1; rx: 4; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#355c9a" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">位置编码演进:从绝对位置到 RoPE 旋转与 ALiBi 距离偏置</text>
+  <text class="subtitle" x="56" y="86">现代 LLM 更关注相对距离和长上下文外推,因此常使用 RoPE、ALiBi 或其变体。</text>
+
+  <rect class="panel" x="56" y="128" width="320" height="430" rx="8" />
+  <rect x="82" y="156" width="114" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Absolute</text>
+  <text class="head" x="82" y="216">绝对位置向量</text>
+  <rect class="cell" x="96" y="278" width="56" height="32" rx="4" /><rect class="cell" x="166" y="278" width="56" height="32" rx="4" /><rect class="cell" x="236" y="278" width="56" height="32" rx="4" />
+  <text class="mono" x="110" y="299">p1</text><text class="mono" x="180" y="299">p2</text><text class="mono" x="250" y="299">p3</text>
+  <text class="mono" x="92" y="372">x_i = token_i + pos_i</text>
+  <text class="text" x="92" y="420">直接告诉模型“第几个”,简单但长长度外推可能困难。</text>
+
+  <rect class="panel" x="400" y="128" width="320" height="430" rx="8" />
+  <rect x="426" y="156" width="114" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="440" y="174">RoPE</text>
+  <text class="head" x="426" y="216">按位置旋转 Q/K</text>
+  <line class="axis" x1="478" y1="390" x2="654" y2="390" />
+  <line class="axis" x1="478" y1="390" x2="478" y2="250" />
+  <path class="vec" d="M478 390 L584 324" />
+  <path class="vec2" d="M478 390 L548 286" />
+  <path d="M552 344 A72 72 0 0 1 578 306" fill="none" stroke="#9aa7ba" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="590" y="324">pos i</text>
+  <text class="label" x="552" y="282">pos j</text>
+  <text class="mono" x="432" y="452">dot(R_i q, R_j k)</text>
+  <text class="text" x="432" y="488">点积自然携带相对位置 i-j。</text>
+
+  <rect class="panel" x="744" y="128" width="320" height="430" rx="8" />
+  <rect x="770" y="156" width="114" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="784" y="174">ALiBi</text>
+  <text class="head" x="770" y="216">在分数中加入距离偏置</text>
+  <g transform="translate(802 270)">
+    <rect class="bias3" x="0" y="0" width="44" height="28" rx="4" /><rect class="bias2" x="50" y="0" width="44" height="28" rx="4" /><rect class="bias1" x="100" y="0" width="44" height="28" rx="4" /><rect class="bias1" x="150" y="0" width="44" height="28" rx="4" />
+    <rect class="bias3" x="0" y="36" width="44" height="28" rx="4" /><rect class="bias3" x="50" y="36" width="44" height="28" rx="4" /><rect class="bias2" x="100" y="36" width="44" height="28" rx="4" /><rect class="bias1" x="150" y="36" width="44" height="28" rx="4" />
+    <rect class="bias3" x="0" y="72" width="44" height="28" rx="4" /><rect class="bias3" x="50" y="72" width="44" height="28" rx="4" /><rect class="bias3" x="100" y="72" width="44" height="28" rx="4" /><rect class="bias2" x="150" y="72" width="44" height="28" rx="4" />
+  </g>
+  <text class="mono" x="788" y="424">score = qk + m · distance</text>
+  <text class="text" x="788" y="466">距离越远,分数偏置越低;不同 head 可有不同斜率。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:RoPE 把位置变成 Q/K 的旋转关系,ALiBi 把距离变成注意力分数偏置;二者都更重视相对位置。</text>
+</svg>

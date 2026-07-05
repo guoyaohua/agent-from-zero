@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">多头注意力数据流</title>
+  <desc id="desc">展示输入向量被拆到多个注意力头,每个头在不同子空间计算注意力,随后拼接并通过输出投影回到模型维度。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .headText { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .x { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.5; rx: 8; }
+      .h1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .h2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .h3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .h4 { fill: #ece7f3; stroke: #7c5aa6; stroke-width: 2; rx: 8; }
+      .concat { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .out { fill: #eef3f8; stroke: #596579; stroke-width: 2; rx: 8; }
+      .stripe1 { fill: #355c9a; opacity: .82; }
+      .stripe2 { fill: #2d7d80; opacity: .82; }
+      .stripe3 { fill: #b05c37; opacity: .82; }
+      .stripe4 { fill: #7c5aa6; opacity: .82; }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .62; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">多头注意力:让模型从多个子空间同时观察上下文</text>
+  <text class="subtitle" x="56" y="86">每个 head 有自己的 Q/K/V 投影,学习不同关注模式;拼接后再投影回模型主干维度。</text>
+
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8" />
+  <rect x="82" y="156" width="108" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">并行视角</text>
+  <text class="headText" x="82" y="216">同一段序列,多个注意力头各自学习一套信息路由</text>
+
+  <rect class="x" x="92" y="300" width="110" height="62" rx="8" />
+  <text class="mono" x="128" y="335">X</text>
+  <text class="text" x="104" y="386">token 表示</text>
+  <path class="arrow" d="M202 331 H258" />
+
+  <rect class="h1" x="276" y="238" width="132" height="48" rx="8" />
+  <rect class="h2" x="276" y="300" width="132" height="48" rx="8" />
+  <rect class="h3" x="276" y="362" width="132" height="48" rx="8" />
+  <rect class="h4" x="276" y="424" width="132" height="48" rx="8" />
+  <text class="label" x="306" y="267">Head 1</text>
+  <text class="label" x="306" y="329">Head 2</text>
+  <text class="label" x="306" y="391">Head 3</text>
+  <text class="label" x="306" y="453">Head 4</text>
+  <text class="mono" x="426" y="266">Q1 K1 V1</text>
+  <text class="mono" x="426" y="328">Q2 K2 V2</text>
+  <text class="mono" x="426" y="390">Q3 K3 V3</text>
+  <text class="mono" x="426" y="452">Q4 K4 V4</text>
+
+  <path class="arrow" d="M408 262 C480 262 504 310 548 324" />
+  <path class="arrow" d="M408 324 H548" />
+  <path class="arrow" d="M408 386 C480 386 504 338 548 324" />
+  <path class="arrow" d="M408 448 C500 448 522 354 548 338" />
+
+  <rect class="concat pulse" x="566" y="286" width="150" height="86" rx="8" />
+  <text class="label" x="604" y="318">Concat</text>
+  <rect class="stripe1" x="590" y="336" width="24" height="22" rx="3" />
+  <rect class="stripe2" x="620" y="336" width="24" height="22" rx="3" />
+  <rect class="stripe3" x="650" y="336" width="24" height="22" rx="3" />
+  <rect class="stripe4" x="680" y="336" width="24" height="22" rx="3" />
+  <text class="text" x="574" y="398">把各头输出拼起来</text>
+
+  <path class="arrow" d="M716 329 H780" />
+  <rect class="out" x="798" y="292" width="132" height="74" rx="8" />
+  <text class="mono" x="840" y="322">W_O</text>
+  <text class="text" x="814" y="346">输出投影</text>
+  <path class="arrow" d="M930 329 H1000" />
+  <rect class="x" x="1000" y="300" width="38" height="58" rx="8" />
+  <text class="mono" x="1010" y="334">Y</text>
+
+  <rect class="soft" x="92" y="498" width="430" height="34" rx="8" />
+  <text class="text" x="112" y="520">多个 head 不是简单投票,而是在不同投影子空间里并行读取信息。</text>
+  <rect class="soft" x="590" y="498" width="414" height="34" rx="8" />
+  <text class="text" x="610" y="520">输出投影负责把多头结果重新混合回模型主干表示。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:如果单头像一束视线,多头注意力就是多束不同颜色的视线同时扫描上下文,最后融合成一个更新后的表示。</text>
+</svg>

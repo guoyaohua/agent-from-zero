@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">RMSNorm 与 SwiGLU</title>
+  <desc id="desc">展示 LayerNorm 到 RMSNorm 的简化,以及 FFN 从普通激活到 SwiGLU 门控激活的演进。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .norm { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .rms { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .ffn { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .gate { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .mul { fill: #ece7f3; stroke: #7c5aa6; stroke-width: 2; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">归一化与激活改良:RMSNorm 简化尺度控制,SwiGLU 增强 FFN 门控</text>
+  <text class="subtitle" x="56" y="86">现代 LLM 的能力不只来自 Attention,也来自这些让训练更稳、表达更强的小结构。</text>
+
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8" />
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Norm</text>
+  <text class="head" x="82" y="216">LayerNorm 到 RMSNorm</text>
+  <rect class="norm" x="104" y="278" width="150" height="72" rx="8" />
+  <text class="label" x="138" y="308">LayerNorm</text>
+  <text class="mono" x="122" y="332">mean + variance</text>
+  <path class="arrow" d="M254 314 H336" />
+  <rect class="rms" x="336" y="278" width="150" height="72" rx="8" />
+  <text class="label" x="374" y="308">RMSNorm</text>
+  <text class="mono" x="360" y="332">root mean square</text>
+  <rect class="soft" x="106" y="416" width="378" height="58" rx="8" />
+  <text class="text" x="126" y="442">RMSNorm 不减均值,主要控制向量 RMS 尺度。</text>
+  <text class="text" x="126" y="464">更简单,常用于现代 Decoder-only LLM。</text>
+
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8" />
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="616" y="174">Activation</text>
+  <text class="head" x="602" y="216">普通 FFN 到 SwiGLU</text>
+  <rect class="ffn" x="626" y="260" width="96" height="52" rx="8" />
+  <text class="mono" x="648" y="292">xW_a</text>
+  <rect class="gate" x="626" y="342" width="96" height="52" rx="8" />
+  <text class="mono" x="638" y="374">SiLU(xW_b)</text>
+  <path class="arrow" d="M722 286 H782" />
+  <path class="arrow" d="M722 368 H782" />
+  <circle class="mul" cx="806" cy="328" r="24" />
+  <text class="label" x="800" y="334">×</text>
+  <path class="arrow" d="M830 328 H894" />
+  <rect class="ffn" x="894" y="298" width="96" height="60" rx="8" />
+  <text class="mono" x="916" y="332">W_o</text>
+  <rect class="soft" x="626" y="426" width="364" height="58" rx="8" />
+  <text class="text" x="646" y="452">门控分支决定哪些特征通过多少。</text>
+  <text class="text" x="646" y="474">比普通激活更有表达力,但也要控制参数量。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:大模型架构进步常来自许多“小稳定器”和“小增益器”的组合,不是只有 Attention 一个主角。</text>
+</svg>

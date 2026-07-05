@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">Self-Attention 与 QKV 数据流</title>
+  <desc id="desc">展示输入 token 向量经过三组线性投影得到 Query、Key、Value,Query 和 Key 计算注意力分数,Softmax 得到权重,再加权汇总 Value 得到更新后的表示。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .token { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.4; rx: 7; }
+      .q { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 7; }
+      .k { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 7; }
+      .v { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 7; }
+      .score { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 7; }
+      .cell { fill: #edf3f8; stroke: #d8e0eb; stroke-width: 1; rx: 4; }
+      .hot { fill: #f7d9df; stroke: #b13c52; stroke-width: 1.4; rx: 4; }
+      .warm { fill: #e3efdf; stroke: #2d7d80; stroke-width: 1.2; rx: 4; }
+      .out { fill: #ece7f3; stroke: #7c5aa6; stroke-width: 2; rx: 8; }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .62; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">Self-Attention 与 QKV:先匹配需要什么,再读取实际内容</text>
+  <text class="subtitle" x="56" y="86">Query 表示当前位置想找什么,Key 表示每个位置能被怎样匹配,Value 表示真正被读取的信息。</text>
+
+  <rect class="panel" x="56" y="128" width="1008" height="160" rx="8" />
+  <rect x="82" y="156" width="108" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">输入投影</text>
+  <text class="head" x="82" y="216">每个 token 向量通过三组线性层得到 Q、K、V</text>
+  <rect class="token" x="110" y="238" width="76" height="34" rx="7" />
+  <text class="mono" x="132" y="260">x_i</text>
+  <path class="arrow" d="M186 255 H250" />
+  <rect class="q" x="260" y="224" width="92" height="32" rx="7" />
+  <rect class="k" x="260" y="260" width="92" height="32" rx="7" />
+  <rect class="v" x="260" y="296" width="92" height="32" rx="7" />
+  <text class="mono" x="284" y="245">q_i</text>
+  <text class="mono" x="284" y="281">k_i</text>
+  <text class="mono" x="284" y="317">v_i</text>
+  <text class="formula" x="404" y="252">Q = XW_Q</text>
+  <text class="formula" x="404" y="282">K = XW_K</text>
+  <text class="formula" x="404" y="312">V = XW_V</text>
+  <rect class="soft" x="706" y="218" width="286" height="64" rx="8" />
+  <text class="text" x="730" y="246">同一个输入向量,被投影成三个角色。</text>
+  <text class="text" x="730" y="270">这让“匹配”和“读取”分开学习。</text>
+
+  <rect class="panel" x="56" y="324" width="316" height="234" rx="8" />
+  <rect x="82" y="352" width="94" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="96" y="370">打分</text>
+  <text class="head" x="82" y="410">Q 和 K 计算相关性</text>
+  <rect class="q pulse" x="96" y="454" width="74" height="38" rx="7" />
+  <rect class="k" x="238" y="454" width="74" height="38" rx="7" />
+  <text class="mono" x="116" y="478">q_i</text>
+  <text class="mono" x="258" y="478">k_j</text>
+  <path class="arrow" d="M170 473 H238" />
+  <rect class="score" x="148" y="510" width="112" height="32" rx="7" />
+  <text class="mono" x="166" y="531">q_i · k_j</text>
+  <text class="formula" x="92" y="442">score = QK^T / sqrt(d_k)</text>
+
+  <rect class="panel" x="402" y="324" width="316" height="234" rx="8" />
+  <rect x="428" y="352" width="94" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="442" y="370">权重</text>
+  <text class="head" x="428" y="410">Softmax 得到注意力分布</text>
+  <rect class="cell" x="456" y="448" width="44" height="34" rx="4" />
+  <rect class="hot" x="510" y="448" width="44" height="34" rx="4" />
+  <rect class="warm" x="564" y="448" width="44" height="34" rx="4" />
+  <rect class="cell" x="618" y="448" width="44" height="34" rx="4" />
+  <text class="mono" x="464" y="469">.1</text>
+  <text class="mono" x="518" y="469">.6</text>
+  <text class="mono" x="572" y="469">.2</text>
+  <text class="mono" x="626" y="469">.1</text>
+  <text class="formula" x="454" y="528">A = softmax(score)</text>
+  <text class="text" x="442" y="438">每一行表示一个位置看全序列的比例。</text>
+
+  <rect class="panel" x="748" y="324" width="316" height="234" rx="8" />
+  <rect x="774" y="352" width="94" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="788" y="370">读取</text>
+  <text class="head" x="774" y="410">权重加权汇总 Value</text>
+  <rect class="v" x="798" y="448" width="54" height="32" rx="7" />
+  <rect class="v" x="866" y="448" width="54" height="32" rx="7" />
+  <rect class="v" x="934" y="448" width="54" height="32" rx="7" />
+  <text class="mono" x="812" y="469">v1</text>
+  <text class="mono" x="880" y="469">v2</text>
+  <text class="mono" x="948" y="469">v3</text>
+  <path class="arrow" d="M876 480 C862 500 856 510 846 522" />
+  <rect class="out pulse" x="830" y="520" width="126" height="34" rx="8" />
+  <text class="mono" x="852" y="542">y_i = A_i V</text>
+  <text class="formula" x="790" y="438">Attention(Q,K,V)=AV</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:Q 和 K 决定看哪里,V 决定读什么;整段序列的所有位置都可以用矩阵乘法并行完成。</text>
+</svg>

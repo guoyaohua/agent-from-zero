@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">投机解码流程</title>
+  <desc id="desc">展示小草稿模型先生成多个候选 token,大目标模型一次验证这些 token,接受匹配前缀并在不匹配处回退。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">投机解码:小模型先猜几步,大模型一次验证</text>
+  <text class="subtitle" x="56" y="86">目标是减少大模型 decode 次数;加速效果取决于草稿 token 被接受的比例。</text>
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8"/>
+  <rect x="82" y="156" width="118" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">Speculative</text>
+  <text class="head" x="82" y="216">Draft -> Verify -> Accept / Reject</text>
+  <rect class="box1" x="112" y="288" width="140" height="64" rx="8"/><text class="label" x="144" y="316">上下文</text><text class="mono" x="136" y="338">prefix</text>
+  <path class="arrow" d="M252 320 H326"/>
+  <rect class="box2" x="326" y="276" width="160" height="88" rx="8"/><text class="label" x="368" y="306">草稿模型</text><text class="mono" x="356" y="332">猜: a b c d</text>
+  <path class="arrow" d="M486 320 H560"/>
+  <rect class="box3" x="560" y="276" width="180" height="88" rx="8"/><text class="label" x="606" y="306">目标模型</text><text class="mono" x="590" y="332">并行验证多步</text>
+  <path class="arrow" d="M740 320 H814"/>
+  <rect class="box4" x="814" y="276" width="170" height="88" rx="8"/><text class="label" x="856" y="306">接受前缀</text><text class="mono" x="842" y="332">a b c ✓, d ×</text>
+  <rect class="soft" x="130" y="456" width="830" height="44" rx="8"/><text class="text" x="152" y="482">如果草稿模型猜得准,一次目标模型验证能推进多个 token;如果猜错多,收益会下降。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:投机解码不改变最终分布,它用便宜草稿换取更少的大模型串行步骤。</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">残差、LayerNorm 与 FFN</title>
+  <desc id="desc">展示 Transformer 层中 Self-Attention 子层和 FFN 子层如何通过残差连接与 LayerNorm 稳定堆叠。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .block { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .ffn { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .norm { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .add { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .skip { fill: none; stroke: #b13c52; stroke-width: 3; stroke-linecap: round; marker-end: url(#redArrow); }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .62; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b13c52" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">残差、LayerNorm 与 FFN:让 Transformer 层既能改写表示,又能稳定堆深</text>
+  <text class="subtitle" x="56" y="86">Attention 负责跨 token 取信息,FFN 负责每个 token 内部加工,残差和归一化让深层训练更稳定。</text>
+
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8" />
+  <rect x="82" y="156" width="128" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Transformer Layer</text>
+  <text class="head" x="82" y="216">一个常见 Pre-LN Transformer 层</text>
+
+  <text class="mono" x="102" y="344">x</text>
+  <path class="arrow" d="M126 340 H184" />
+  <rect class="norm" x="184" y="304" width="104" height="72" rx="8" />
+  <text class="label" x="202" y="334">LayerNorm</text>
+  <text class="mono" x="220" y="358">LN(x)</text>
+  <path class="arrow" d="M288 340 H344" />
+  <rect class="block" x="344" y="304" width="126" height="72" rx="8" />
+  <text class="label" x="366" y="334">Self-Attn</text>
+  <text class="mono" x="374" y="358">SA(...)</text>
+  <path class="arrow" d="M470 340 H524" />
+  <circle class="add pulse" cx="548" cy="340" r="22" />
+  <text class="label" x="542" y="346">+</text>
+  <path class="skip" d="M126 340 C184 252 470 250 548 318" />
+  <path class="arrow" d="M570 340 H624" />
+
+  <rect class="norm" x="624" y="304" width="104" height="72" rx="8" />
+  <text class="label" x="642" y="334">LayerNorm</text>
+  <text class="mono" x="664" y="358">LN</text>
+  <path class="arrow" d="M728 340 H784" />
+  <rect class="ffn" x="784" y="304" width="104" height="72" rx="8" />
+  <text class="label" x="818" y="334">FFN</text>
+  <text class="mono" x="804" y="358">W2 σ W1</text>
+  <path class="arrow" d="M888 340 H942" />
+  <circle class="add pulse" cx="966" cy="340" r="22" />
+  <text class="label" x="960" y="346">+</text>
+  <path class="skip" d="M570 340 C632 424 888 424 966 362" />
+  <path class="arrow" d="M988 340 H1032" />
+  <text class="mono" x="1038" y="344">y</text>
+
+  <rect class="soft" x="102" y="456" width="278" height="46" rx="8" />
+  <text class="text" x="122" y="483">残差:保留原信息,学习增量修改。</text>
+  <rect class="soft" x="420" y="456" width="278" height="46" rx="8" />
+  <text class="text" x="440" y="483">LayerNorm:控制尺度,稳定深层训练。</text>
+  <rect class="soft" x="738" y="456" width="278" height="46" rx="8" />
+  <text class="text" x="758" y="483">FFN:对每个 token 做非线性加工。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:Transformer 层不是只有 Attention;没有残差、归一化和 FFN,深层模型很难稳定训练和表达复杂变换。</text>
+</svg>

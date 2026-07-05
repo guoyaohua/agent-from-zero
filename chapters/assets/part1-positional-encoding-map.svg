@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">位置编码的作用</title>
+  <desc id="desc">展示 Self-Attention 需要额外位置信息,token embedding 与 position embedding 相加后,模型才能区分相同 token 在不同位置的意义。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .token { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.4; rx: 7; }
+      .tokEmb { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .posEmb { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .sum { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .wave1 { fill: none; stroke: #355c9a; stroke-width: 3; stroke-linecap: round; }
+      .wave2 { fill: none; stroke: #b13c52; stroke-width: 3; stroke-linecap: round; }
+      .grid { stroke: #d8e0eb; stroke-width: 1; }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .62; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">位置编码:给 Attention 加上“第几个”和“隔多远”的线索</text>
+  <text class="subtitle" x="56" y="86">Self-Attention 负责比较 token 内容,位置编码负责告诉模型顺序和距离。</text>
+
+  <rect class="panel" x="56" y="128" width="316" height="430" rx="8" />
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="96" y="174">没有位置</text>
+  <text class="head" x="82" y="216">同一组 token 难分顺序</text>
+  <rect class="token" x="94" y="270" width="74" height="36" rx="7" />
+  <rect class="token" x="184" y="270" width="74" height="36" rx="7" />
+  <rect class="token" x="274" y="270" width="74" height="36" rx="7" />
+  <text class="label" x="111" y="294">狗</text>
+  <text class="label" x="201" y="294">咬</text>
+  <text class="label" x="291" y="294">人</text>
+  <rect class="token" x="94" y="350" width="74" height="36" rx="7" />
+  <rect class="token" x="184" y="350" width="74" height="36" rx="7" />
+  <rect class="token" x="274" y="350" width="74" height="36" rx="7" />
+  <text class="label" x="111" y="374">人</text>
+  <text class="label" x="201" y="374">咬</text>
+  <text class="label" x="291" y="374">狗</text>
+  <text class="text" x="92" y="452">如果模型只看 token 集合,这两句会很难区分。</text>
+  <text class="mono" x="92" y="492">Attention(X) 不天然编码顺序</text>
+
+  <rect class="panel" x="402" y="128" width="316" height="430" rx="8" />
+  <rect x="428" y="156" width="112" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="442" y="174">相加注入</text>
+  <text class="head" x="428" y="216">token 表示 + 位置表示</text>
+  <rect class="tokEmb" x="444" y="270" width="92" height="42" rx="8" />
+  <rect class="posEmb" x="444" y="340" width="92" height="42" rx="8" />
+  <rect class="sum pulse" x="580" y="306" width="92" height="42" rx="8" />
+  <text class="mono" x="466" y="296">E_tok</text>
+  <text class="mono" x="466" y="366">E_pos</text>
+  <text class="mono" x="602" y="332">x_i</text>
+  <path class="arrow" d="M536 292 C556 294 566 306 580 318" />
+  <path class="arrow" d="M536 362 C556 358 566 344 580 334" />
+  <text class="formula" x="444" y="448">x_i = token_i + position_i</text>
+  <text class="text" x="444" y="486">同一个 token 出现在不同位置,输入向量会不同。</text>
+
+  <rect class="panel" x="748" y="128" width="316" height="430" rx="8" />
+  <rect x="774" y="156" width="112" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="788" y="174">正弦编码</text>
+  <text class="head" x="774" y="216">用多频率波形表示位置</text>
+  <line class="grid" x1="798" y1="380" x2="1018" y2="380" />
+  <line class="grid" x1="798" y1="270" x2="798" y2="430" />
+  <path class="wave1" d="M798 350 C826 300 854 300 882 350 C910 400 938 400 966 350 C990 306 1008 310 1018 326" />
+  <path class="wave2" d="M798 320 C836 376 874 376 912 320 C950 264 986 270 1018 322" />
+  <text class="label" x="820" y="462">低频:长距离</text>
+  <text class="label" x="820" y="488">高频:细粒度</text>
+  <text class="mono" x="788" y="528">sin(pos / 10000^(2i/d))</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:位置编码不是替代 Attention,而是给 Attention 的输入向量补上顺序线索,让模型能区分相同 token 的不同位置。</text>
+</svg>

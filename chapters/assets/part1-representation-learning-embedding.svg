@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">表示学习与嵌入</title>
+  <desc id="desc">展示 token ID 经过嵌入表变成向量,相似语义在向量空间中靠近,下游任务复用这些表示。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .cell { fill: #edf3f8; stroke: #d8e0eb; stroke-width: 1; rx: 4; }
+      .cellHot { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 4; }
+      .vec { fill: #355c9a; rx: 4; }
+      .vec2 { fill: #2d7d80; rx: 4; }
+      .vec3 { fill: #b05c37; rx: 4; }
+      .dot { stroke: #ffffff; stroke-width: 3; }
+      .axis { stroke: #9aa7ba; stroke-width: 2; stroke-linecap: round; marker-end: url(#arrow); }
+      .cluster { fill: none; stroke: #d8e0eb; stroke-width: 2; stroke-dasharray: 8 7; }
+      .pulse { animation: pulse 2.7s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">表示学习与嵌入:让离散符号进入连续语义空间</text>
+  <text class="subtitle" x="56" y="86">Embedding 表把 token ID 映射成向量;训练让有用关系在空间中变得可计算。</text>
+
+  <rect class="panel" x="56" y="128" width="316" height="430" rx="8" />
+  <rect x="82" y="156" width="94" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">离散 ID</text>
+  <text class="head" x="82" y="216">token 先只是编号</text>
+  <rect class="cell" x="96" y="264" width="72" height="36" rx="4" />
+  <rect class="cellHot pulse" x="96" y="314" width="72" height="36" rx="4" />
+  <rect class="cell" x="96" y="364" width="72" height="36" rx="4" />
+  <rect class="cell" x="96" y="414" width="72" height="36" rx="4" />
+  <text class="mono" x="113" y="287">128</text>
+  <text class="mono" x="113" y="337">2047</text>
+  <text class="mono" x="113" y="387">9312</text>
+  <text class="mono" x="113" y="437">...</text>
+  <text class="label" x="202" y="338">“咖啡”</text>
+  <path class="arrow" d="M170 332 H196" />
+  <text class="text" x="92" y="498">编号本身没有大小和语义。</text>
+  <text class="text" x="92" y="522">2047 不代表比 128 更“高级”。</text>
+
+  <path class="arrow" d="M372 342 H418" />
+
+  <rect class="panel" x="418" y="128" width="316" height="430" rx="8" />
+  <rect x="444" y="156" width="104" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="458" y="174">嵌入表</text>
+  <text class="head" x="444" y="216">查表得到向量</text>
+  <rect class="cell" x="462" y="260" width="216" height="34" rx="4" />
+  <rect class="cellHot" x="462" y="304" width="216" height="34" rx="4" />
+  <rect class="cell" x="462" y="348" width="216" height="34" rx="4" />
+  <rect class="cell" x="462" y="392" width="216" height="34" rx="4" />
+  <rect class="vec" x="486" y="312" width="28" height="18" rx="4" />
+  <rect class="vec2" x="526" y="312" width="44" height="18" rx="4" />
+  <rect class="vec3" x="582" y="312" width="24" height="18" rx="4" />
+  <rect class="vec" x="618" y="312" width="36" height="18" rx="4" />
+  <text class="mono" x="474" y="464">E[2047] = [0.12, -0.43, ...]</text>
+  <text class="text" x="474" y="494">嵌入表是可学习参数矩阵。</text>
+  <text class="text" x="474" y="518">训练会移动每个 token 的向量位置。</text>
+
+  <path class="arrow" d="M734 342 H780" />
+
+  <rect class="panel" x="780" y="128" width="284" height="430" rx="8" />
+  <rect x="806" y="156" width="104" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="820" y="174">语义空间</text>
+  <text class="head" x="806" y="216">关系变得可计算</text>
+  <line class="axis" x1="820" y1="438" x2="1028" y2="438" />
+  <line class="axis" x1="820" y1="438" x2="820" y2="254" />
+  <ellipse class="cluster" cx="888" cy="328" rx="58" ry="46" />
+  <ellipse class="cluster" cx="980" cy="374" rx="48" ry="40" />
+  <circle class="dot" cx="866" cy="318" r="9" fill="#355c9a" />
+  <circle class="dot" cx="902" cy="338" r="9" fill="#355c9a" />
+  <circle class="dot" cx="890" cy="300" r="9" fill="#2d7d80" />
+  <circle class="dot" cx="970" cy="356" r="9" fill="#b05c37" />
+  <circle class="dot" cx="1000" cy="390" r="9" fill="#b05c37" />
+  <text class="label" x="846" y="296">茶</text>
+  <text class="label" x="910" y="342">咖啡</text>
+  <text class="label" x="954" y="348">汽车</text>
+  <text class="label" x="990" y="412">火车</text>
+  <text class="text" x="814" y="494">相似不等于完全相同,但能支持检索、分类和生成。</text>
+
+  <rect class="soft" x="76" y="600" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="626">读图方式:表示学习的目标不是记住编号,而是学出一个空间,让任务需要的关系更容易被简单计算读出来。</text>
+</svg>

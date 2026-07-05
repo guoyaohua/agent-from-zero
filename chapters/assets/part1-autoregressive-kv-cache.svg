@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">自回归瓶颈与 KV Cache</title>
+  <desc id="desc">展示自回归生成逐 token 执行,KV Cache 缓存历史 token 的 Key 和 Value,新 token 只需计算自己的 QKV 并读取缓存。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}.loop{fill:none;stroke:#7c5aa6;stroke-width:3;stroke-dasharray:8 7;marker-end:url(#purpleArrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker><marker id="purpleArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c5aa6"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">自回归瓶颈与 KV Cache:生成仍要一步一步来,但历史不用反复重算</text>
+  <text class="subtitle" x="56" y="86">KV Cache 缓存历史 token 的 Key/Value,显著减少重复计算,但会占用随上下文增长的显存。</text>
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8"/>
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">Inference</text>
+  <text class="head" x="82" y="216">每生成一个新 token,追加一次上下文</text>
+  <rect class="box1" x="116" y="286" width="130" height="64" rx="8"/><text class="label" x="146" y="314">上下文</text><text class="mono" x="138" y="336">t tokens</text>
+  <path class="arrow" d="M246 318 H324"/>
+  <rect class="box2" x="324" y="286" width="150" height="64" rx="8"/><text class="label" x="360" y="314">新 token</text><text class="mono" x="350" y="336">compute QKV</text>
+  <path class="arrow" d="M474 318 H552"/>
+  <rect class="box3" x="552" y="260" width="180" height="116" rx="8"/><text class="label" x="604" y="290">KV Cache</text><text class="mono" x="584" y="318">K[1:t], V[1:t]</text><text class="text" x="586" y="344">每层每头保存</text>
+  <path class="arrow" d="M732 318 H810"/>
+  <rect class="box4" x="810" y="286" width="130" height="64" rx="8"/><text class="label" x="846" y="314">下一个</text><text class="mono" x="840" y="336">token</text>
+  <path class="loop" d="M875 350 C790 450 270 450 180 350"/>
+  <rect class="soft" x="126" y="470" width="842" height="44" rx="8"/><text class="text" x="148" y="496">KV Cache 解决“重复计算历史 K/V”,不解决“生成必须逐 token 串行”和“缓存随长度增长”。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:训练可以并行看完整序列,推理生成未来 token 时必须一个一个产出。</text>
+</svg>

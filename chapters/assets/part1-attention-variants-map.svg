@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">注意力变体地图</title>
+  <desc id="desc">对比全量注意力、滑窗注意力、稀疏注意力和线性注意力在可见范围与计算复杂度上的取舍。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .grid { fill: #edf3f8; stroke: #ffffff; stroke-width: 1; }
+      .hot { fill: #b13c52; stroke: #ffffff; stroke-width: 1; }
+      .warm { fill: #2d7d80; stroke: #ffffff; stroke-width: 1; }
+      .blue { fill: #355c9a; stroke: #ffffff; stroke-width: 1; }
+      .orange { fill: #b05c37; stroke: #ffffff; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">注意力变体:在全局可见性、长上下文成本和信息质量之间取舍</text>
+  <text class="subtitle" x="56" y="86">标准 Attention 看得最全,但成本是 T²;各种变体试图减少需要计算的 token 对。</text>
+
+  <rect class="panel" x="56" y="128" width="236" height="430" rx="8" />
+  <rect x="82" y="156" width="104" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Full</text>
+  <text class="head" x="82" y="214">全量注意力</text>
+  <g transform="translate(92 250)">
+    <rect class="hot" x="0" y="0" width="18" height="18" /><rect class="hot" x="20" y="0" width="18" height="18" /><rect class="hot" x="40" y="0" width="18" height="18" /><rect class="hot" x="60" y="0" width="18" height="18" /><rect class="hot" x="80" y="0" width="18" height="18" /><rect class="hot" x="100" y="0" width="18" height="18" />
+    <rect class="hot" x="0" y="20" width="18" height="18" /><rect class="hot" x="20" y="20" width="18" height="18" /><rect class="hot" x="40" y="20" width="18" height="18" /><rect class="hot" x="60" y="20" width="18" height="18" /><rect class="hot" x="80" y="20" width="18" height="18" /><rect class="hot" x="100" y="20" width="18" height="18" />
+    <rect class="hot" x="0" y="40" width="18" height="18" /><rect class="hot" x="20" y="40" width="18" height="18" /><rect class="hot" x="40" y="40" width="18" height="18" /><rect class="hot" x="60" y="40" width="18" height="18" /><rect class="hot" x="80" y="40" width="18" height="18" /><rect class="hot" x="100" y="40" width="18" height="18" />
+    <rect class="hot" x="0" y="60" width="18" height="18" /><rect class="hot" x="20" y="60" width="18" height="18" /><rect class="hot" x="40" y="60" width="18" height="18" /><rect class="hot" x="60" y="60" width="18" height="18" /><rect class="hot" x="80" y="60" width="18" height="18" /><rect class="hot" x="100" y="60" width="18" height="18" />
+    <rect class="hot" x="0" y="80" width="18" height="18" /><rect class="hot" x="20" y="80" width="18" height="18" /><rect class="hot" x="40" y="80" width="18" height="18" /><rect class="hot" x="60" y="80" width="18" height="18" /><rect class="hot" x="80" y="80" width="18" height="18" /><rect class="hot" x="100" y="80" width="18" height="18" />
+    <rect class="hot" x="0" y="100" width="18" height="18" /><rect class="hot" x="20" y="100" width="18" height="18" /><rect class="hot" x="40" y="100" width="18" height="18" /><rect class="hot" x="60" y="100" width="18" height="18" /><rect class="hot" x="80" y="100" width="18" height="18" /><rect class="hot" x="100" y="100" width="18" height="18" />
+  </g>
+  <text class="mono" x="92" y="420">O(T²)</text>
+  <text class="text" x="92" y="454">任意位置都可互看,表达强但长上下文贵。</text>
+
+  <rect class="panel" x="314" y="128" width="236" height="430" rx="8" />
+  <rect x="340" y="156" width="104" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="354" y="174">Window</text>
+  <text class="head" x="340" y="214">滑窗注意力</text>
+  <g transform="translate(350 250)">
+    <rect class="warm" x="0" y="0" width="18" height="18" /><rect class="warm" x="20" y="0" width="18" height="18" /><rect class="grid" x="40" y="0" width="18" height="18" /><rect class="grid" x="60" y="0" width="18" height="18" /><rect class="grid" x="80" y="0" width="18" height="18" /><rect class="grid" x="100" y="0" width="18" height="18" />
+    <rect class="warm" x="0" y="20" width="18" height="18" /><rect class="warm" x="20" y="20" width="18" height="18" /><rect class="warm" x="40" y="20" width="18" height="18" /><rect class="grid" x="60" y="20" width="18" height="18" /><rect class="grid" x="80" y="20" width="18" height="18" /><rect class="grid" x="100" y="20" width="18" height="18" />
+    <rect class="grid" x="0" y="40" width="18" height="18" /><rect class="warm" x="20" y="40" width="18" height="18" /><rect class="warm" x="40" y="40" width="18" height="18" /><rect class="warm" x="60" y="40" width="18" height="18" /><rect class="grid" x="80" y="40" width="18" height="18" /><rect class="grid" x="100" y="40" width="18" height="18" />
+    <rect class="grid" x="0" y="60" width="18" height="18" /><rect class="grid" x="20" y="60" width="18" height="18" /><rect class="warm" x="40" y="60" width="18" height="18" /><rect class="warm" x="60" y="60" width="18" height="18" /><rect class="warm" x="80" y="60" width="18" height="18" /><rect class="grid" x="100" y="60" width="18" height="18" />
+    <rect class="grid" x="0" y="80" width="18" height="18" /><rect class="grid" x="20" y="80" width="18" height="18" /><rect class="grid" x="40" y="80" width="18" height="18" /><rect class="warm" x="60" y="80" width="18" height="18" /><rect class="warm" x="80" y="80" width="18" height="18" /><rect class="warm" x="100" y="80" width="18" height="18" />
+    <rect class="grid" x="0" y="100" width="18" height="18" /><rect class="grid" x="20" y="100" width="18" height="18" /><rect class="grid" x="40" y="100" width="18" height="18" /><rect class="grid" x="60" y="100" width="18" height="18" /><rect class="warm" x="80" y="100" width="18" height="18" /><rect class="warm" x="100" y="100" width="18" height="18" />
+  </g>
+  <text class="mono" x="350" y="420">O(T·w)</text>
+  <text class="text" x="350" y="454">只看局部窗口,适合局部依赖和长序列。</text>
+
+  <rect class="panel" x="572" y="128" width="236" height="430" rx="8" />
+  <rect x="598" y="156" width="104" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="612" y="174">Sparse</text>
+  <text class="head" x="598" y="214">稀疏/全局混合</text>
+  <g transform="translate(608 250)">
+    <rect class="orange" x="0" y="0" width="18" height="18" /><rect class="orange" x="20" y="0" width="18" height="18" /><rect class="orange" x="40" y="0" width="18" height="18" /><rect class="orange" x="60" y="0" width="18" height="18" /><rect class="orange" x="80" y="0" width="18" height="18" /><rect class="orange" x="100" y="0" width="18" height="18" />
+    <rect class="orange" x="0" y="20" width="18" height="18" /><rect class="orange" x="20" y="20" width="18" height="18" /><rect class="orange" x="40" y="20" width="18" height="18" /><rect class="grid" x="60" y="20" width="18" height="18" /><rect class="grid" x="80" y="20" width="18" height="18" /><rect class="grid" x="100" y="20" width="18" height="18" />
+    <rect class="orange" x="0" y="40" width="18" height="18" /><rect class="orange" x="20" y="40" width="18" height="18" /><rect class="orange" x="40" y="40" width="18" height="18" /><rect class="orange" x="60" y="40" width="18" height="18" /><rect class="grid" x="80" y="40" width="18" height="18" /><rect class="grid" x="100" y="40" width="18" height="18" />
+    <rect class="orange" x="0" y="60" width="18" height="18" /><rect class="grid" x="20" y="60" width="18" height="18" /><rect class="orange" x="40" y="60" width="18" height="18" /><rect class="orange" x="60" y="60" width="18" height="18" /><rect class="orange" x="80" y="60" width="18" height="18" /><rect class="grid" x="100" y="60" width="18" height="18" />
+    <rect class="orange" x="0" y="80" width="18" height="18" /><rect class="grid" x="20" y="80" width="18" height="18" /><rect class="grid" x="40" y="80" width="18" height="18" /><rect class="orange" x="60" y="80" width="18" height="18" /><rect class="orange" x="80" y="80" width="18" height="18" /><rect class="orange" x="100" y="80" width="18" height="18" />
+    <rect class="orange" x="0" y="100" width="18" height="18" /><rect class="grid" x="20" y="100" width="18" height="18" /><rect class="grid" x="40" y="100" width="18" height="18" /><rect class="grid" x="60" y="100" width="18" height="18" /><rect class="orange" x="80" y="100" width="18" height="18" /><rect class="orange" x="100" y="100" width="18" height="18" />
+  </g>
+  <text class="mono" x="608" y="420">patterned sparse</text>
+  <text class="text" x="608" y="454">局部窗口 + 少量全局/跳跃连接。</text>
+
+  <rect class="panel" x="830" y="128" width="234" height="430" rx="8" />
+  <rect x="856" y="156" width="104" height="26" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="870" y="174">Linear</text>
+  <text class="head" x="856" y="214">线性注意力</text>
+  <g transform="translate(866 250)">
+    <rect class="blue" x="0" y="0" width="18" height="18" /><rect class="grid" x="20" y="0" width="18" height="18" /><rect class="blue" x="40" y="0" width="18" height="18" /><rect class="grid" x="60" y="0" width="18" height="18" /><rect class="blue" x="80" y="0" width="18" height="18" /><rect class="grid" x="100" y="0" width="18" height="18" />
+    <rect class="grid" x="0" y="20" width="18" height="18" /><rect class="blue" x="20" y="20" width="18" height="18" /><rect class="grid" x="40" y="20" width="18" height="18" /><rect class="blue" x="60" y="20" width="18" height="18" /><rect class="grid" x="80" y="20" width="18" height="18" /><rect class="blue" x="100" y="20" width="18" height="18" />
+    <rect class="blue" x="0" y="40" width="18" height="18" /><rect class="grid" x="20" y="40" width="18" height="18" /><rect class="blue" x="40" y="40" width="18" height="18" /><rect class="grid" x="60" y="40" width="18" height="18" /><rect class="blue" x="80" y="40" width="18" height="18" /><rect class="grid" x="100" y="40" width="18" height="18" />
+    <rect class="grid" x="0" y="60" width="18" height="18" /><rect class="blue" x="20" y="60" width="18" height="18" /><rect class="grid" x="40" y="60" width="18" height="18" /><rect class="blue" x="60" y="60" width="18" height="18" /><rect class="grid" x="80" y="60" width="18" height="18" /><rect class="blue" x="100" y="60" width="18" height="18" />
+    <rect class="blue" x="0" y="80" width="18" height="18" /><rect class="grid" x="20" y="80" width="18" height="18" /><rect class="blue" x="40" y="80" width="18" height="18" /><rect class="grid" x="60" y="80" width="18" height="18" /><rect class="blue" x="80" y="80" width="18" height="18" /><rect class="grid" x="100" y="80" width="18" height="18" />
+    <rect class="grid" x="0" y="100" width="18" height="18" /><rect class="blue" x="20" y="100" width="18" height="18" /><rect class="grid" x="40" y="100" width="18" height="18" /><rect class="blue" x="60" y="100" width="18" height="18" /><rect class="grid" x="80" y="100" width="18" height="18" /><rect class="blue" x="100" y="100" width="18" height="18" />
+  </g>
+  <text class="mono" x="866" y="420">O(T)</text>
+  <text class="text" x="866" y="454">用核技巧/近似避免显式 T×T 矩阵。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:降低复杂度通常意味着限制可见范围或近似 Softmax;能省成本,但要付出表达能力、稳定性或实现复杂度的代价。</text>
+</svg>

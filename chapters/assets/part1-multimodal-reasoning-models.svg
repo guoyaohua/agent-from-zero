@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">多模态与推理型模型</title>
+  <desc id="desc">展示多模态模型将文本、图像、音频、视频等输入对齐到共享表示,以及推理型模型通过更长思考、验证和工具使用解决复杂任务。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .box1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .box2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .box3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .box4 { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">多模态与推理型模型:扩展输入输出,也扩展解题过程</text>
+  <text class="subtitle" x="56" y="86">多模态解决“看见更多世界”,推理型模型解决“更可靠地处理复杂问题”。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8" />
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Multimodal</text>
+  <text class="head" x="82" y="216">多模态:把不同输入对齐到模型表示</text>
+  <rect class="box1" x="104" y="258" width="96" height="44" rx="8" /><text class="label" x="132" y="286">文本</text>
+  <rect class="box2" x="104" y="322" width="96" height="44" rx="8" /><text class="label" x="132" y="350">图像</text>
+  <rect class="box3" x="104" y="386" width="96" height="44" rx="8" /><text class="label" x="132" y="414">音频</text>
+  <rect class="box4" x="104" y="450" width="96" height="44" rx="8" /><text class="label" x="132" y="478">视频</text>
+  <path class="arrow" d="M200 280 H286" /><path class="arrow" d="M200 344 H286" /><path class="arrow" d="M200 408 H286" /><path class="arrow" d="M200 472 H286" />
+  <rect class="soft" x="286" y="326" width="180" height="96" rx="8" />
+  <text class="label" x="336" y="360">共享表示</text>
+  <text class="mono" x="316" y="386">tokens / embeddings</text>
+  <text class="text" x="96" y="526">关键:编码、对齐、融合、生成。</text>
+
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8" />
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="616" y="174">Reasoning</text>
+  <text class="head" x="602" y="216">推理型:更长计算换更可靠答案</text>
+  <rect class="box1" x="626" y="268" width="112" height="52" rx="8" /><text class="label" x="662" y="300">分解</text>
+  <path class="arrow" d="M738 294 H788" />
+  <rect class="box2" x="788" y="268" width="112" height="52" rx="8" /><text class="label" x="824" y="300">验证</text>
+  <path class="arrow" d="M844 320 V368" />
+  <rect class="box3" x="788" y="368" width="112" height="52" rx="8" /><text class="label" x="824" y="400">修正</text>
+  <path class="arrow" d="M788 394 H738" />
+  <rect class="box4" x="626" y="368" width="112" height="52" rx="8" /><text class="label" x="662" y="400">作答</text>
+  <rect class="soft" x="626" y="468" width="320" height="46" rx="8" />
+  <text class="text" x="646" y="496">适合数学、代码、规划、复杂工具链,但更慢更贵。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:多模态扩展感知通道,推理型扩展计算深度;Agent 系统常同时需要两者。</text>
+</svg>

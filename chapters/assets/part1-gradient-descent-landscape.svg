@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">梯度下降与泛化直觉图</title>
+  <desc id="desc">展示参数在损失地形上沿梯度下降,并比较训练误差和验证误差的变化来说明泛化。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .formula { font: 600 17px Cambria, Georgia, serif; fill: #172033; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .axis { stroke: #9aa7ba; stroke-width: 2; stroke-linecap: round; marker-end: url(#arrow); }
+      .contour { fill: none; stroke-width: 2; opacity: .9; }
+      .path { fill: none; stroke: #b13c52; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 10 8; animation: dash 1.4s linear infinite; marker-end: url(#redArrow); }
+      .dot { stroke: #ffffff; stroke-width: 3; }
+      .train { fill: none; stroke: #355c9a; stroke-width: 4; stroke-linecap: round; }
+      .valid { fill: none; stroke: #b05c37; stroke-width: 4; stroke-linecap: round; }
+      @keyframes dash { to { stroke-dashoffset: -18; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b13c52" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">梯度下降与泛化:让训练误差下降,但不只记住训练集</text>
+  <text class="subtitle" x="56" y="86">梯度告诉参数往哪里改能降低损失;泛化关心模型在没见过的数据上是否仍然有效。</text>
+
+  <rect class="panel" x="56" y="132" width="496" height="430" rx="8" />
+  <rect x="82" y="160" width="86" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="96" y="178">优化</text>
+  <text class="head" x="82" y="218">在损失地形上往低处走</text>
+
+  <line class="axis" x1="120" y1="474" x2="488" y2="474" />
+  <line class="axis" x1="120" y1="474" x2="120" y2="246" />
+  <ellipse class="contour" cx="314" cy="360" rx="172" ry="100" stroke="#d2dbe8" />
+  <ellipse class="contour" cx="314" cy="360" rx="128" ry="74" stroke="#bac8da" />
+  <ellipse class="contour" cx="314" cy="360" rx="86" ry="50" stroke="#9aa7ba" />
+  <ellipse class="contour" cx="314" cy="360" rx="42" ry="24" stroke="#617b3d" />
+  <circle class="dot" cx="314" cy="360" r="10" fill="#617b3d" />
+  <path class="path" d="M460 280 C420 292 402 320 374 324 C342 330 354 354 326 358 C306 362 306 358 314 360" />
+  <circle class="dot" cx="460" cy="280" r="8" fill="#b13c52" />
+  <circle class="dot" cx="390" cy="322" r="7" fill="#b13c52" />
+  <circle class="dot" cx="340" cy="344" r="7" fill="#b13c52" />
+  <text class="label" x="334" y="362">低损失</text>
+  <text class="mono" x="100" y="520">theta = theta - eta * gradient</text>
+
+  <rect class="panel" x="584" y="132" width="480" height="430" rx="8" />
+  <rect x="610" y="160" width="86" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="624" y="178">泛化</text>
+  <text class="head" x="610" y="218">训练集变好,验证集也要稳</text>
+
+  <line class="axis" x1="650" y1="474" x2="1008" y2="474" />
+  <line class="axis" x1="650" y1="474" x2="650" y2="246" />
+  <path class="train" d="M668 292 C726 322 768 354 820 386 C874 418 928 440 986 452" />
+  <path class="valid" d="M668 298 C720 324 760 356 812 394 C856 426 900 444 944 436 C970 432 986 420 1000 400" />
+  <text class="label" x="846" y="452" fill="#355c9a">训练误差</text>
+  <text class="label" x="874" y="408" fill="#b05c37">验证误差</text>
+  <rect class="soft" x="632" y="506" width="402" height="34" rx="8" />
+  <text class="text" x="654" y="528">验证误差回升,常常意味着开始过拟合。</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:优化关注把训练损失降下来;泛化关注这条下降路径是否学到了可迁移规律。</text>
+</svg>

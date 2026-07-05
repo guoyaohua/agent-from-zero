@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">向量、矩阵与概率的直觉地图</title>
+  <desc id="desc">三个并列面板展示向量表示、矩阵变换和概率分布如何共同构成机器学习模型的基础语言。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .axis { stroke: #9aa7ba; stroke-width: 2; stroke-linecap: round; marker-end: url(#arrow); }
+      .grid { stroke: #dce3ee; stroke-width: 1; }
+      .vector { stroke: #355c9a; stroke-width: 3; marker-end: url(#blueArrow); }
+      .matrix1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .matrix2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .bar { fill: #7c5aa6; rx: 4; }
+      .bar2 { fill: #b05c37; rx: 4; }
+      .dot { stroke: #ffffff; stroke-width: 3; }
+      .pulse { animation: pulse 2.8s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#355c9a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">向量、矩阵与概率:模型内部的三种基础语言</text>
+  <text class="subtitle" x="56" y="86">向量负责表示对象,矩阵负责变换表示,概率负责表达不确定性和选择。</text>
+
+  <rect class="panel" x="56" y="128" width="320" height="430" rx="8" />
+  <rect x="82" y="156" width="76" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">向量</text>
+  <text class="head" x="82" y="216">把对象放进空间</text>
+
+  <line class="grid" x1="104" y1="294" x2="326" y2="294" />
+  <line class="grid" x1="104" y1="250" x2="326" y2="250" />
+  <line class="grid" x1="104" y1="338" x2="326" y2="338" />
+  <line class="grid" x1="154" y1="226" x2="154" y2="382" />
+  <line class="grid" x1="214" y1="226" x2="214" y2="382" />
+  <line class="grid" x1="274" y1="226" x2="274" y2="382" />
+  <line class="axis" x1="104" y1="382" x2="326" y2="382" />
+  <line class="axis" x1="104" y1="382" x2="104" y2="226" />
+  <path class="vector pulse" d="M104 382 L236 284" />
+  <circle class="dot" cx="234" cy="282" r="9" fill="#355c9a" />
+  <circle class="dot" cx="202" cy="304" r="8" fill="#617b3d" />
+  <circle class="dot" cx="292" cy="350" r="8" fill="#b05c37" />
+  <text class="label" x="246" y="286">猫</text>
+  <text class="label" x="156" y="306">狗</text>
+  <text class="label" x="250" y="356">汽车</text>
+  <text class="mono" x="92" y="438">x = [0.2, 0.7, -0.1, ...]</text>
+  <text class="text" x="92" y="468">距离和方向承载相似性。</text>
+
+  <rect class="panel" x="400" y="128" width="320" height="430" rx="8" />
+  <rect x="426" y="156" width="76" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="440" y="174">矩阵</text>
+  <text class="head" x="426" y="216">把空间重新投影</text>
+
+  <rect class="matrix1" x="460" y="266" width="86" height="86" rx="4" />
+  <polygon class="matrix2" points="584,246 668,286 640,380 556,340" />
+  <path class="axis" d="M548 310 H578" />
+  <text class="label" x="480" y="318">x</text>
+  <text class="label" x="604" y="322">Wx</text>
+  <text class="mono" x="446" y="428">y = W x + b</text>
+  <text class="text" x="446" y="458">矩阵像一组可学习旋钮。</text>
+  <text class="text" x="446" y="482">它会拉伸、旋转、混合特征。</text>
+
+  <rect class="panel" x="744" y="128" width="320" height="430" rx="8" />
+  <rect x="770" y="156" width="76" height="26" rx="5" fill="#7c5aa6" />
+  <text class="tag" x="784" y="174">概率</text>
+  <text class="head" x="770" y="216">把不确定性量化</text>
+
+  <line x1="802" y1="388" x2="1018" y2="388" stroke="#c8d2df" stroke-width="1" />
+  <rect class="bar" x="824" y="286" width="34" height="102" rx="4" />
+  <rect class="bar2" x="886" y="324" width="34" height="64" rx="4" />
+  <rect class="bar" x="948" y="350" width="34" height="38" rx="4" />
+  <text class="label" x="817" y="418">A</text>
+  <text class="label" x="879" y="418">B</text>
+  <text class="label" x="941" y="418">C</text>
+  <text class="mono" x="788" y="462">P(A)+P(B)+P(C)=1</text>
+  <text class="text" x="788" y="492">模型输出的是分布,不是确定答案。</text>
+
+  <rect class="soft" x="76" y="600" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="626">读图方式:训练就是不断调整矩阵参数,让向量表示经过变换后给出更合理的概率分布。</text>
+</svg>

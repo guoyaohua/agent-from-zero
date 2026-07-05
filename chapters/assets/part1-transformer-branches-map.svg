@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">Transformer 三大分支</title>
+  <desc id="desc">并排展示 Encoder-only、Encoder-Decoder 和 Decoder-only 三类 Transformer 架构的可见范围、训练目标和典型用途。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .enc { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .dec { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .both { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .mask { fill: #f7d9df; stroke: #b13c52; stroke-width: 1.5; rx: 5; }
+      .token { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 5; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">Transformer 三大分支:理解、转换与生成</text>
+  <text class="subtitle" x="56" y="86">Encoder-only 擅长双向理解,Encoder-Decoder 擅长输入到输出转换,Decoder-only 擅长统一自回归生成。</text>
+
+  <rect class="panel" x="56" y="128" width="320" height="430" rx="8" />
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Encoder-only</text>
+  <text class="head" x="82" y="216">双向理解</text>
+  <rect class="enc" x="108" y="258" width="216" height="82" rx="8" />
+  <text class="label" x="166" y="292">Encoder Stack</text>
+  <text class="mono" x="146" y="318">bidirectional attention</text>
+  <rect class="token" x="98" y="374" width="50" height="28" rx="5" />
+  <rect class="mask" x="156" y="374" width="50" height="28" rx="5" />
+  <rect class="token" x="214" y="374" width="50" height="28" rx="5" />
+  <rect class="token" x="272" y="374" width="50" height="28" rx="5" />
+  <text class="mono" x="166" y="393">[MASK]</text>
+  <text class="text" x="92" y="446">目标:理解整段输入,常见于分类、检索、抽取。</text>
+  <text class="mono" x="92" y="486">代表: BERT</text>
+
+  <rect class="panel" x="400" y="128" width="320" height="430" rx="8" />
+  <rect x="426" y="156" width="132" height="26" rx="5" fill="#2d7d80" />
+  <text class="tag" x="440" y="174">Encoder-Decoder</text>
+  <text class="head" x="426" y="216">输入到输出转换</text>
+  <rect class="enc" x="452" y="250" width="94" height="72" rx="8" />
+  <rect class="dec" x="574" y="250" width="94" height="72" rx="8" />
+  <text class="label" x="474" y="290">Enc</text>
+  <text class="label" x="596" y="290">Dec</text>
+  <path class="arrow" d="M546 286 H574" />
+  <text class="mono" x="462" y="350">source -> target</text>
+  <text class="text" x="436" y="446">目标:读懂输入,再生成目标序列。</text>
+  <text class="text" x="436" y="472">常见于翻译、摘要、文本改写。</text>
+  <text class="mono" x="436" y="508">代表: T5, BART</text>
+
+  <rect class="panel" x="744" y="128" width="320" height="430" rx="8" />
+  <rect x="770" y="156" width="112" height="26" rx="5" fill="#b05c37" />
+  <text class="tag" x="784" y="174">Decoder-only</text>
+  <text class="head" x="770" y="216">自回归生成</text>
+  <rect class="dec" x="796" y="258" width="216" height="82" rx="8" />
+  <text class="label" x="854" y="292">Decoder Stack</text>
+  <text class="mono" x="832" y="318">causal attention</text>
+  <rect class="token" x="794" y="374" width="50" height="28" rx="5" />
+  <rect class="token" x="852" y="374" width="50" height="28" rx="5" />
+  <rect class="token" x="910" y="374" width="50" height="28" rx="5" />
+  <path class="arrow" d="M960 388 H1008" />
+  <text class="mono" x="1012" y="392">next</text>
+  <text class="text" x="780" y="446">目标:预测下一个 token,统一生成与对话。</text>
+  <text class="mono" x="780" y="486">代表: GPT 类 LLM</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:三条分支不是强弱排序,而是训练目标和可见范围不同;通用 LLM 主流选择 Decoder-only,因为自回归生成目标最统一。</text>
+</svg>

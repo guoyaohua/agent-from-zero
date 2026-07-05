@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">PEFT 与 LoRA</title>
+  <desc id="desc">展示全量微调更新所有参数,LoRA 冻结原权重,只训练低秩增量矩阵 A 和 B。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.base{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.lora{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.delta{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">PEFT 与 LoRA:冻结大模型,只训练小的低秩增量</text>
+  <text class="subtitle" x="56" y="86">LoRA 把权重更新 ΔW 分解为两个小矩阵 BA,大幅减少可训练参数。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8"/>
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">Full FT</text>
+  <text class="head" x="82" y="216">全量微调:更新全部权重</text>
+  <rect class="base" x="168" y="280" width="220" height="150" rx="8"/><text class="label" x="230" y="342">W 全部可训练</text><text class="mono" x="218" y="372">billions params</text>
+  <text class="text" x="112" y="486">能力强,但显存、训练成本和版本管理压力大。</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8"/>
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#2d7d80"/><text class="tag" x="616" y="174">LoRA</text>
+  <text class="head" x="602" y="216">冻结 W,训练低秩旁路</text>
+  <rect class="base" x="626" y="286" width="120" height="96" rx="8"/><text class="label" x="668" y="326">W</text><text class="text" x="650" y="350">冻结</text>
+  <path class="arrow" d="M746 334 H790"/>
+  <rect class="lora" x="790" y="260" width="72" height="56" rx="8"/><text class="mono" x="814" y="292">A</text>
+  <rect class="lora" x="790" y="352" width="72" height="56" rx="8"/><text class="mono" x="814" y="384">B</text>
+  <path class="arrow" d="M862 288 H920"/><path class="arrow" d="M862 380 H920"/>
+  <rect class="delta" x="920" y="304" width="90" height="72" rx="8"/><text class="mono" x="944" y="334">ΔW</text><text class="text" x="934" y="356">低秩</text>
+  <rect class="soft" x="626" y="456" width="384" height="46" rx="8"/><text class="mono" x="646" y="484">y = Wx + (B A)x</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:LoRA 不复制整个模型,而是在关键线性层旁边训练一个小增量,部署时可合并或按需加载。</text>
+</svg>

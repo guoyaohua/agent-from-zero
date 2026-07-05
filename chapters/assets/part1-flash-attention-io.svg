@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">Flash Attention 的 IO 优化</title>
+  <desc id="desc">展示普通注意力显式写入大注意力矩阵,Flash Attention 分块计算并在线更新 Softmax,减少 HBM 读写。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.box3{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">Flash Attention:不改变公式,少搬大矩阵</text>
+  <text class="subtitle" x="56" y="86">标准 Attention 慢的不只是算术,更是显存读写;Flash Attention 用分块和在线 Softmax 降低 IO。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8"/>
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#b13c52"/><text class="tag" x="96" y="174">Standard</text>
+  <text class="head" x="82" y="216">普通实现:写出 T×T 注意力矩阵</text>
+  <rect class="box1" x="112" y="278" width="90" height="58" rx="8"/><text class="mono" x="144" y="312">QKᵀ</text>
+  <path class="arrow" d="M202 307 H268"/>
+  <rect class="box2" x="268" y="260" width="140" height="94" rx="8"/><text class="label" x="300" y="294">Attention</text><text class="mono" x="302" y="320">T × T</text>
+  <path class="arrow" d="M338 354 V410"/>
+  <rect class="box1" x="252" y="410" width="172" height="48" rx="8"/><text class="text" x="280" y="440">大量 HBM 读写</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8"/>
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#2d7d80"/><text class="tag" x="616" y="174">Flash</text>
+  <text class="head" x="602" y="216">分块计算:不落盘完整注意力矩阵</text>
+  <rect class="box3" x="626" y="272" width="120" height="58" rx="8"/><text class="label" x="666" y="306">Q block</text>
+  <path class="arrow" d="M746 301 H806"/>
+  <rect class="box3" x="806" y="244" width="144" height="112" rx="8"/><text class="label" x="842" y="278">K/V blocks</text><text class="mono" x="836" y="306">online softmax</text><text class="text" x="836" y="330">累积输出</text>
+  <path class="arrow" d="M878 356 V410"/>
+  <rect class="box3" x="792" y="410" width="172" height="48" rx="8"/><text class="text" x="822" y="440">更少 HBM IO</text>
+  <rect class="soft" x="126" y="506" width="842" height="34" rx="8"/><text class="text" x="148" y="528">结果等价于标准 Softmax Attention,但显存占用和读写更低,训练长序列更可行。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:Flash Attention 是实现优化,不是稀疏注意力,也不是近似注意力。</text>
+</svg>

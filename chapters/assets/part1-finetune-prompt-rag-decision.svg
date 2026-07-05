@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">微调、提示与 RAG 决策图</title>
+  <desc id="desc">展示根据问题类型选择 Prompt、RAG、微调、换模型或工具校验的决策路径。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.box5{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">微调 vs Prompt vs RAG:先诊断问题,再选择手段</text>
+  <text class="subtitle" x="56" y="86">不同失败原因对应不同解法:知识不足、格式不稳、行为偏差、基础能力不够,不能混为一谈。</text>
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8"/>
+  <rect x="82" y="156" width="104" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">Decision</text>
+  <text class="head" x="82" y="216">模型表现不好时,先问是哪类问题</text>
+  <rect class="box1" x="110" y="286" width="150" height="70" rx="8"/><text class="label" x="148" y="316">知识缺失</text><text class="text" x="132" y="338">最新/私有事实</text>
+  <rect class="box2" x="300" y="286" width="150" height="70" rx="8"/><text class="label" x="338" y="316">格式不稳</text><text class="text" x="326" y="338">输出结构/风格</text>
+  <rect class="box3" x="490" y="286" width="150" height="70" rx="8"/><text class="label" x="528" y="316">行为偏差</text><text class="text" x="516" y="338">重复稳定任务</text>
+  <rect class="box4" x="680" y="286" width="150" height="70" rx="8"/><text class="label" x="718" y="316">能力不足</text><text class="text" x="704" y="338">推理/代码太难</text>
+  <rect class="box5" x="870" y="286" width="150" height="70" rx="8"/><text class="label" x="908" y="316">需验证</text><text class="text" x="894" y="338">事实/执行结果</text>
+  <path class="arrow" d="M185 356 V416"/><path class="arrow" d="M375 356 V416"/><path class="arrow" d="M565 356 V416"/><path class="arrow" d="M755 356 V416"/><path class="arrow" d="M945 356 V416"/>
+  <rect class="box1" x="110" y="416" width="150" height="58" rx="8"/><text class="label" x="168" y="450">RAG</text>
+  <rect class="box2" x="300" y="416" width="150" height="58" rx="8"/><text class="label" x="352" y="450">Prompt</text>
+  <rect class="box3" x="490" y="416" width="150" height="58" rx="8"/><text class="label" x="546" y="450">微调</text>
+  <rect class="box4" x="680" y="416" width="150" height="58" rx="8"/><text class="label" x="722" y="450">换模型</text>
+  <rect class="box5" x="870" y="416" width="150" height="58" rx="8"/><text class="label" x="914" y="450">工具</text>
+  <rect class="soft" x="124" y="512" width="872" height="32" rx="8"/><text class="text" x="146" y="533">真实系统常组合使用:Prompt 约束行为,RAG 提供事实,微调稳定协议,工具负责验证。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:不要把所有问题都交给微调;先定位失败原因,再选成本最低、风险最小的解法。</text>
+</svg>

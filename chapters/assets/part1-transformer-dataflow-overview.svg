@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="720" viewBox="0 0 1120 720" role="img" aria-labelledby="title desc">
+  <title id="title">Transformer 完整架构与数据流</title>
+  <desc id="desc">展示文本经过 tokenizer、embedding、位置编码、多层 Transformer block、输出投影、Softmax 和采样生成下一个 token 的完整数据流。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .step { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .block { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .out { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .prob { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #7c5aa6; stroke-width: 3; stroke-dasharray: 9 7; marker-end: url(#purpleArrow); }
+      .bar { fill: #b13c52; rx: 3; }
+      .bar2 { fill: #2d7d80; rx: 3; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="purpleArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7c5aa6" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="720" />
+  <text class="title" x="56" y="58">Transformer 完整数据流:从文本到下一个 token 概率</text>
+  <text class="subtitle" x="56" y="86">把前面章节的组件串起来:token、embedding、位置、Attention、FFN、logits、Softmax、采样。</text>
+
+  <rect class="panel" x="56" y="126" width="1008" height="466" rx="8" />
+  <rect x="82" y="154" width="92" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="172">主路径</text>
+
+  <rect class="step" x="92" y="238" width="118" height="64" rx="8" />
+  <text class="label" x="126" y="264">文本</text>
+  <text class="mono" x="106" y="286">我 喜欢</text>
+  <path class="arrow" d="M210 270 H254" />
+
+  <rect class="step" x="254" y="238" width="118" height="64" rx="8" />
+  <text class="label" x="286" y="264">Token ID</text>
+  <text class="mono" x="278" y="286">[31, 72]</text>
+  <path class="arrow" d="M372 270 H416" />
+
+  <rect class="step" x="416" y="238" width="130" height="64" rx="8" />
+  <text class="label" x="444" y="264">Embedding</text>
+  <text class="mono" x="438" y="286">X0 + Pos</text>
+  <path class="arrow" d="M546 270 H590" />
+
+  <rect class="block" x="590" y="194" width="168" height="152" rx="8" />
+  <text class="label" x="626" y="222">Transformer</text>
+  <text class="label" x="646" y="244">Block × L</text>
+  <rect class="soft" x="616" y="260" width="116" height="26" rx="6" />
+  <text class="text" x="636" y="278">Self-Attn</text>
+  <rect class="soft" x="616" y="296" width="116" height="26" rx="6" />
+  <text class="text" x="656" y="314">FFN</text>
+  <path class="arrow" d="M758 270 H802" />
+
+  <rect class="out" x="802" y="238" width="118" height="64" rx="8" />
+  <text class="label" x="836" y="264">Logits</text>
+  <text class="mono" x="820" y="286">W_vocab h</text>
+  <path class="arrow" d="M920 270 H964" />
+
+  <rect class="prob" x="964" y="238" width="74" height="64" rx="8" />
+  <text class="label" x="974" y="264">Softmax</text>
+  <rect class="bar" x="984" y="278" width="10" height="18" rx="3" />
+  <rect class="bar2" x="1000" y="270" width="10" height="26" rx="3" />
+  <rect class="bar" x="1016" y="286" width="10" height="10" rx="3" />
+
+  <rect class="out" x="452" y="420" width="210" height="58" rx="8" />
+  <text class="label" x="494" y="444">采样/选择下一个 token</text>
+  <text class="mono" x="526" y="466">咖啡</text>
+  <path class="arrow" d="M1002 302 C968 386 760 448 662 448" />
+  <path class="loop" d="M452 448 C282 448 164 396 136 304" />
+  <text class="text" x="112" y="426">自回归生成:选出新 token 后追加到上下文,再跑下一步。</text>
+
+  <rect class="soft" x="94" y="520" width="908" height="42" rx="8" />
+  <text class="text" x="118" y="546">训练时并行预测许多位置的下一个 token;推理时通常一步生成一个 token,并用 KV Cache 复用历史计算。</text>
+
+  <rect class="soft" x="76" y="632" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="658">读图方式:Transformer 不是单个模块,而是一条从离散文本到概率分布的可微分流水线。</text>
+</svg>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">为什么需要 Attention</title>
+  <desc id="desc">对比 RNN 把历史压进单一状态和 Attention 让当前位置直接查看相关 token,展示长距离依赖、动态对齐和并行计算的动机。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .token { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.4; rx: 7; }
+      .state { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .attn { fill: none; stroke: #b13c52; stroke-width: 3.2; stroke-linecap: round; marker-end: url(#redArrow); opacity: .9; }
+      .attn2 { fill: none; stroke: #2d7d80; stroke-width: 2.6; stroke-linecap: round; marker-end: url(#greenArrow); opacity: .85; }
+      .weak { opacity: .35; }
+      .heat1 { fill: #f7d9df; stroke: #b13c52; stroke-width: 1; rx: 5; }
+      .heat2 { fill: #e3efdf; stroke: #2d7d80; stroke-width: 1; rx: 5; }
+      .heat3 { fill: #edf3f8; stroke: #d8e0eb; stroke-width: 1; rx: 5; }
+      .pulse { animation: pulse 2.7s ease-in-out infinite; transform-origin: center; }
+      @keyframes pulse { 0%, 100% { opacity: .62; } 50% { opacity: 1; } }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" />
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b13c52" />
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">为什么需要 Attention:不要只压缩历史,让 token 直接查看相关信息</text>
+  <text class="subtitle" x="56" y="86">Attention 把“记住全部历史”的问题,改写成“当前需要关注哪些位置”。</text>
+
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8" />
+  <rect x="82" y="156" width="118" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">递归状态瓶颈</text>
+  <text class="head" x="82" y="216">RNN 把历史压进一个状态</text>
+  <rect class="token" x="96" y="276" width="66" height="36" rx="7" />
+  <rect class="token" x="184" y="276" width="66" height="36" rx="7" />
+  <rect class="token" x="272" y="276" width="66" height="36" rx="7" />
+  <rect class="token" x="360" y="276" width="66" height="36" rx="7" />
+  <text class="label" x="111" y="300">x1</text>
+  <text class="label" x="199" y="300">x2</text>
+  <text class="label" x="287" y="300">...</text>
+  <text class="label" x="375" y="300">xt</text>
+  <rect class="state" x="360" y="218" width="66" height="36" rx="8" />
+  <text class="mono" x="377" y="241">h_t</text>
+  <path class="arrow weak" d="M162 294 H184" />
+  <path class="arrow weak" d="M250 294 H272" />
+  <path class="arrow weak" d="M338 294 H360" />
+  <path class="arrow" d="M393 276 V254" />
+  <path class="arrow weak" d="M128 276 C156 230 260 216 360 230" />
+  <text class="text" x="92" y="374">早期信息要经过很多步才能影响当前位置。</text>
+  <text class="text" x="92" y="402">隐藏状态容量有限,长文本中容易丢细节。</text>
+  <text class="mono" x="92" y="452">h_t = f(x_t, h_{t-1})</text>
+
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8" />
+  <rect x="602" y="156" width="118" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="616" y="174">注意力视角</text>
+  <text class="head" x="602" y="216">当前位置直接查看相关 token</text>
+  <rect class="token" x="616" y="322" width="66" height="36" rx="7" />
+  <rect class="token" x="704" y="322" width="66" height="36" rx="7" />
+  <rect class="token" x="792" y="322" width="66" height="36" rx="7" />
+  <rect class="token pulse" x="880" y="322" width="66" height="36" rx="7" />
+  <rect class="token" x="968" y="322" width="66" height="36" rx="7" />
+  <text class="label" x="631" y="346">那本</text>
+  <text class="label" x="719" y="346">书</text>
+  <text class="label" x="807" y="346">...</text>
+  <text class="label" x="895" y="346">读完</text>
+  <text class="label" x="983" y="346">了</text>
+  <path class="attn" d="M913 322 C850 248 754 248 738 322" />
+  <path class="attn2" d="M913 322 C846 284 680 284 650 322" />
+  <text class="text" x="612" y="402">生成“读完”时,可以直接关注“书”等相关位置。</text>
+  <text class="text" x="612" y="430">不同位置可以有不同关注权重。</text>
+
+  <rect class="soft" x="612" y="462" width="390" height="58" rx="8" />
+  <rect class="heat2" x="634" y="480" width="56" height="22" rx="5" />
+  <rect class="heat1" x="702" y="480" width="56" height="22" rx="5" />
+  <rect class="heat3" x="770" y="480" width="56" height="22" rx="5" />
+  <rect class="heat3" x="838" y="480" width="56" height="22" rx="5" />
+  <text class="mono" x="642" y="496">0.2</text>
+  <text class="mono" x="710" y="496">0.6</text>
+  <text class="mono" x="778" y="496">0.1</text>
+  <text class="mono" x="846" y="496">0.1</text>
+
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:Attention 不是让模型“更努力记忆”,而是让模型在每个位置动态选择要读取哪些上下文信息。</text>
+</svg>

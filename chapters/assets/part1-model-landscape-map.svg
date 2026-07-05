@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">主流大模型全景</title>
+  <desc id="desc">从闭源 API、开源权重、专用模型、多模态与推理型模型几个维度展示大模型生态。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .box1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .box2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .box3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .box4 { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; rx: 8; }
+      .box5 { fill: #ece7f3; stroke: #7c5aa6; stroke-width: 2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">主流大模型全景:不是只选“最强”,而是选适合任务约束的模型</text>
+  <text class="subtitle" x="56" y="86">模型生态可以按交付方式、能力侧重、模态、部署约束和成本延迟来理解。</text>
+  <rect class="panel" x="56" y="128" width="1008" height="430" rx="8" />
+  <rect x="82" y="156" width="118" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Model Landscape</text>
+  <text class="head" x="82" y="216">五个选型维度</text>
+  <rect class="box1" x="104" y="262" width="178" height="96" rx="8" />
+  <text class="label" x="132" y="292">闭源 API</text>
+  <text class="text" x="128" y="318">能力强、上线快</text>
+  <text class="text" x="128" y="340">受限于成本与数据边界</text>
+  <rect class="box2" x="324" y="262" width="178" height="96" rx="8" />
+  <text class="label" x="352" y="292">开源权重</text>
+  <text class="text" x="348" y="318">可私有化、可微调</text>
+  <text class="text" x="348" y="340">需要部署与运维能力</text>
+  <rect class="box3" x="544" y="262" width="178" height="96" rx="8" />
+  <text class="label" x="572" y="292">专用模型</text>
+  <text class="text" x="568" y="318">代码、Embedding、Rerank</text>
+  <text class="text" x="568" y="340">小而准、低延迟</text>
+  <rect class="box4" x="764" y="262" width="178" height="96" rx="8" />
+  <text class="label" x="792" y="292">多模态</text>
+  <text class="text" x="788" y="318">图像、音频、视频、文档</text>
+  <text class="text" x="788" y="340">输入输出链路更复杂</text>
+  <rect class="box5" x="324" y="402" width="398" height="72" rx="8" />
+  <text class="label" x="464" y="430">推理型模型</text>
+  <text class="text" x="374" y="454">更擅长复杂问题分解、验证和长链路思考,但延迟与成本通常更高。</text>
+  <path class="arrow" d="M282 310 H324" /><path class="arrow" d="M502 310 H544" /><path class="arrow" d="M722 310 H764" />
+  <path class="arrow" d="M523 358 V402" />
+  <rect class="soft" x="104" y="504" width="838" height="34" rx="8" />
+  <text class="text" x="126" y="526">选型核心:质量、延迟、成本、上下文、工具调用、数据合规、部署控制、生态成熟度。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:生产系统常常是多模型组合,不是一个模型包打天下。</text>
+</svg>

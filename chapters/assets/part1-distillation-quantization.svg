@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">蒸馏与量化</title>
+  <desc id="desc">展示蒸馏将教师模型输出用于训练学生模型,量化将高精度权重压缩为低精度表示以降低部署成本。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">蒸馏与量化:把模型变小、变便宜,但要守住质量底线</text>
+  <text class="subtitle" x="56" y="86">蒸馏迁移行为,量化压缩数值;二者常用于降低推理成本和部署门槛。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8"/>
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">Distillation</text>
+  <text class="head" x="82" y="216">教师模型教学生模型</text>
+  <rect class="box1" x="110" y="284" width="140" height="76" rx="8"/><text class="label" x="146" y="316">教师模型</text><text class="text" x="134" y="340">强但贵</text>
+  <path class="arrow" d="M250 322 H334"/>
+  <rect class="box2" x="334" y="284" width="140" height="76" rx="8"/><text class="label" x="370" y="316">学生模型</text><text class="text" x="358" y="340">小而快</text>
+  <rect class="soft" x="112" y="426" width="360" height="48" rx="8"/><text class="text" x="132" y="454">学习教师回答、概率分布、推理轨迹或工具调用轨迹。</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8"/>
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#b13c52"/><text class="tag" x="616" y="174">Quantization</text>
+  <text class="head" x="602" y="216">降低权重和激活精度</text>
+  <rect class="box3" x="650" y="282" width="120" height="80" rx="8"/><text class="label" x="690" y="314">FP16</text><text class="mono" x="672" y="340">16-bit</text>
+  <path class="arrow" d="M770 322 H850"/>
+  <rect class="box4" x="850" y="282" width="120" height="80" rx="8"/><text class="label" x="890" y="314">INT4</text><text class="mono" x="874" y="340">4-bit</text>
+  <rect class="soft" x="650" y="426" width="320" height="48" rx="8"/><text class="text" x="670" y="454">显存更低、吞吐更高,但可能损失质量。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:压缩不是免费午餐,必须用真实任务评估速度、成本和质量的平衡点。</text>
+</svg>

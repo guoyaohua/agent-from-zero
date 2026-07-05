@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">RLHF 与 DPO 流程</title>
+  <desc id="desc">展示 RLHF 通过偏好数据训练奖励模型再强化学习优化,以及 DPO 直接用偏好对优化策略模型。</desc>
+  <defs><style>
+    .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.subtitle{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2;rx:8}.soft{fill:#eef3f8;stroke:#d8e0eb;stroke-width:1.1;rx:8}.box1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.box2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.box3{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.box4{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.head{font:700 20px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.label{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#435066}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}.arrow{fill:none;stroke:#9aa7ba;stroke-width:2.2;marker-end:url(#arrow)}
+  </style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">偏好对齐:RLHF 用奖励模型,DPO 直接学习偏好</text>
+  <text class="subtitle" x="56" y="86">SFT 教模型怎么答,偏好对齐进一步教模型哪些回答更好。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8"/>
+  <rect x="82" y="156" width="94" height="26" rx="5" fill="#355c9a"/><text class="tag" x="96" y="174">RLHF</text>
+  <text class="head" x="82" y="216">偏好 -> 奖励模型 -> 强化学习</text>
+  <rect class="box1" x="104" y="260" width="110" height="58" rx="8"/><text class="label" x="136" y="292">回答 A/B</text>
+  <path class="arrow" d="M214 289 H268"/>
+  <rect class="box2" x="268" y="260" width="110" height="58" rx="8"/><text class="label" x="300" y="292">人类偏好</text>
+  <path class="arrow" d="M323 318 V366"/>
+  <rect class="box3" x="240" y="366" width="166" height="58" rx="8"/><text class="label" x="286" y="398">奖励模型</text>
+  <path class="arrow" d="M406 395 H456"/>
+  <rect class="box4" x="456" y="366" width="60" height="58" rx="8"/><text class="label" x="474" y="398">PPO</text>
+  <text class="text" x="104" y="486">优点:灵活;难点:训练复杂、奖励黑客、稳定性。</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8"/>
+  <rect x="602" y="156" width="94" height="26" rx="5" fill="#b13c52"/><text class="tag" x="616" y="174">DPO</text>
+  <text class="head" x="602" y="216">直接用偏好对优化模型</text>
+  <rect class="box1" x="626" y="286" width="120" height="64" rx="8"/><text class="label" x="658" y="314">Prompt</text><text class="mono" x="646" y="336">chosen/rejected</text>
+  <path class="arrow" d="M746 318 H820"/>
+  <rect class="box4" x="820" y="286" width="150" height="64" rx="8"/><text class="label" x="860" y="314">DPO Loss</text><text class="text" x="848" y="336">偏好直接训练</text>
+  <rect class="soft" x="626" y="430" width="344" height="46" rx="8"/><text class="text" x="646" y="458">优点:流程简单、无需显式奖励模型和 PPO。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8"/><text class="text" x="100" y="630">读图方式:偏好对齐不是增加知识,而是调整模型在多个可行回答之间的选择倾向。</text>
+</svg>

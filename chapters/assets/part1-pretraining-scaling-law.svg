@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">预训练与 Scaling Law</title>
+  <desc id="desc">展示大语言模型预训练由数据、参数和计算共同驱动,损失随规模增长呈规律下降,但受数据质量和计算最优配比影响。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; rx: 8; }
+      .soft { fill: #eef3f8; stroke: #d8e0eb; stroke-width: 1.1; rx: 8; }
+      .box1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; rx: 8; }
+      .box2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; rx: 8; }
+      .box3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; rx: 8; }
+      .head { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .tag { font: 700 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .arrow { fill: none; stroke: #9aa7ba; stroke-width: 2.2; marker-end: url(#arrow); }
+      .axis { stroke: #9aa7ba; stroke-width: 2; marker-end: url(#arrow); }
+      .curve { fill: none; stroke: #b13c52; stroke-width: 4; stroke-linecap: round; }
+      .dot { fill: #b13c52; stroke: #ffffff; stroke-width: 3; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9aa7ba" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="680" />
+  <text class="title" x="56" y="58">预训练与 Scaling Law:用数据、参数和计算把下一个 token 预测做到极致</text>
+  <text class="subtitle" x="56" y="86">预训练不是教模型一个任务,而是在海量文本上学习可迁移的世界表示和生成能力。</text>
+  <rect class="panel" x="56" y="128" width="488" height="430" rx="8" />
+  <rect x="82" y="156" width="112" height="26" rx="5" fill="#355c9a" />
+  <text class="tag" x="96" y="174">Pretraining</text>
+  <text class="head" x="82" y="216">三种资源共同决定能力上限</text>
+  <rect class="box1" x="112" y="268" width="116" height="64" rx="8" /><text class="label" x="150" y="296">数据</text><text class="text" x="132" y="318">tokens</text>
+  <rect class="box2" x="302" y="268" width="116" height="64" rx="8" /><text class="label" x="340" y="296">参数</text><text class="text" x="322" y="318">weights</text>
+  <rect class="box3" x="206" y="392" width="116" height="64" rx="8" /><text class="label" x="244" y="420">计算</text><text class="text" x="222" y="442">FLOPs</text>
+  <path class="arrow" d="M228 302 C256 318 270 352 264 392" /><path class="arrow" d="M302 302 C276 322 264 356 264 392" />
+  <rect class="soft" x="102" y="498" width="336" height="34" rx="8" />
+  <text class="mono" x="124" y="520">loss = next_token_cross_entropy</text>
+  <rect class="panel" x="576" y="128" width="488" height="430" rx="8" />
+  <rect x="602" y="156" width="112" height="26" rx="5" fill="#b13c52" />
+  <text class="tag" x="616" y="174">Scaling Law</text>
+  <text class="head" x="602" y="216">规模增加,损失按规律下降</text>
+  <line class="axis" x1="642" y1="456" x2="1002" y2="456" />
+  <line class="axis" x1="642" y1="456" x2="642" y2="260" />
+  <path class="curve" d="M664 292 C722 330 766 362 820 390 C878 420 928 438 984 448" />
+  <circle class="dot" cx="714" cy="326" r="7" /><circle class="dot" cx="820" cy="390" r="7" /><circle class="dot" cx="930" cy="438" r="7" />
+  <text class="label" x="770" y="492">计算/数据/参数规模增加</text>
+  <text class="label" x="594" y="284" transform="rotate(-90 594 284)">损失下降</text>
+  <rect class="soft" x="664" y="516" width="300" height="34" rx="8" />
+  <text class="text" x="686" y="538">关键不是只变大,而是数据与参数配比合适。</text>
+  <rect class="soft" x="76" y="604" width="968" height="42" rx="8" />
+  <text class="text" x="100" y="630">读图方式:Scaling Law 给出可预测趋势,但数据质量、训练配方和评估分布决定这些趋势能否转化为真实能力。</text>
+</svg>
