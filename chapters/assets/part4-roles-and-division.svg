@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">角色分工与职责设计</title>
+  <desc id="desc">展示多 Agent 角色设计中的职责边界、输入输出契约、权限和评估指标。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">角色设计: 先定义责任,再定义 Agent</text><text class="sub" x="56" y="86">一个角色应有清晰目标、输入、输出、工具权限、失败边界和评估标准。</text>
+  <rect class="panel" x="80" y="138" width="960" height="382" rx="8"/><text class="head" x="118" y="176">角色契约</text>
+  <rect class="blue" x="126" y="224" width="172" height="78" rx="8"/><text class="head" x="179" y="254">Goal</text><text class="small" x="154" y="278">这个角色负责什么结果</text>
+  <rect class="green" x="354" y="224" width="172" height="78" rx="8"/><text class="head" x="411" y="254">Input</text><text class="small" x="383" y="278">接收哪些状态和证据</text>
+  <rect class="orange" x="582" y="224" width="172" height="78" rx="8"/><text class="head" x="643" y="254">Tools</text><text class="small" x="611" y="278">可用工具和权限范围</text>
+  <rect class="purple" x="810" y="224" width="172" height="78" rx="8"/><text class="head" x="864" y="254">Output</text><text class="small" x="836" y="278">结构化交付物和置信度</text>
+  <path class="arrow" d="M298 263 H354"/><path class="arrow" d="M526 263 H582"/><path class="arrow" d="M754 263 H810"/>
+  <rect class="panel" x="126" y="372" width="244" height="82" rx="8"/><text class="head" x="164" y="404">Boundaries</text><text class="small" x="154" y="430">不能做什么,何时升级给人或上级</text>
+  <rect class="panel" x="438" y="372" width="244" height="82" rx="8"/><text class="head" x="496" y="404">Metrics</text><text class="small" x="466" y="430">如何判断这个角色做得好</text>
+  <rect class="panel" x="750" y="372" width="244" height="82" rx="8"/><text class="head" x="812" y="404">Trace</text><text class="small" x="778" y="430">保存判断依据和交接上下文</text>
+  <text class="small" x="92" y="588">反模式: 用“研究员”“工程师”“经理”这种名字替代职责契约。名字像角色,不代表边界清楚。</text>
+</svg>
+
