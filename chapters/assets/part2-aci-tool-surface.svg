@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+  <title id="title">ACI 工具界面设计</title>
+  <desc id="desc">展示底层 API 需要被包装成面向 Agent 的窄工具,并按只读、草稿、确认和执行分层。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3;rx:8}.head{font:700 18px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.2;marker-end:url(#arrow)}.api{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.aci{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.read{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.draft{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.confirm{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2;rx:8}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="660"/><text class="title" x="56" y="58">ACI: 不是暴露全部 API,而是设计 Agent 能安全使用的动作</text><text class="sub" x="56" y="86">好的工具界面窄、语义清晰、返回可验证,并把写操作拆成草稿、确认和执行。</text>
+  <rect class="api" x="72" y="164" width="236" height="128" rx="8"/><text class="head" x="116" y="204">底层 API</text><text class="mono" x="100" y="238">/internal/v3/action</text><text class="text" x="100" y="264">op, flags, payload...</text>
+  <path class="arrow" d="M308 228 H398"/>
+  <rect class="aci" x="398" y="128" width="322" height="200" rx="8"/><text class="head" x="492" y="166">ACI Wrapper</text><text class="text" x="434" y="202">语义化工具名</text><text class="text" x="434" y="228">少量明确参数</text><text class="text" x="434" y="254">结构化返回和错误码</text><text class="text" x="434" y="280">权限、审计、最小数据暴露</text>
+  <path class="arrow" d="M720 228 H808"/>
+  <rect class="panel" x="808" y="128" width="240" height="200" rx="8"/><text class="head" x="862" y="166">Agent Tools</text><rect class="read" x="834" y="190" width="188" height="34" rx="8"/><text class="text" x="876" y="212">get_ticket</text><rect class="draft" x="834" y="236" width="188" height="34" rx="8"/><text class="text" x="856" y="258">create_reply_draft</text><rect class="confirm" x="834" y="282" width="188" height="34" rx="8"/><text class="text" x="870" y="304">submit_after_confirm</text>
+  <rect class="panel" x="72" y="386" width="976" height="154" rx="8"/><text class="head" x="104" y="426">风险分层</text>
+  <rect class="read" x="108" y="458" width="206" height="48" rx="8"/><text class="head" x="160" y="486">只读</text>
+  <rect class="draft" x="340" y="458" width="206" height="48" rx="8"/><text class="head" x="394" y="486">草稿/预览</text>
+  <rect class="confirm" x="572" y="458" width="206" height="48" rx="8"/><text class="head" x="626" y="486">用户确认</text>
+  <rect class="api" x="804" y="458" width="206" height="48" rx="8"/><text class="head" x="858" y="486">真实写入</text>
+  <path class="arrow" d="M314 482 H340"/><path class="arrow" d="M546 482 H572"/><path class="arrow" d="M778 482 H804"/>
+  <text class="text" x="104" y="570">越靠右副作用越强,越需要权限、确认、幂等性、审计和回滚路径。</text>
+</svg>

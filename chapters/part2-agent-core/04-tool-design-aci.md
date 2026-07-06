@@ -10,6 +10,8 @@
 
 ACI 是 Agent-Computer Interface,可以理解为“Agent 与计算环境交互的界面”。类似人类需要 GUI/CLI/API,Agent 也需要适合自己理解和行动的接口。
 
+![ACI 工具界面设计](../assets/part2-aci-tool-surface.svg)
+
 本章会讲:
 
 - ACI 和 API、UI 有什么区别。
@@ -123,6 +125,35 @@ query: General query endpoint.
 
 写操作要分级、确认、审计,最好优先生成草稿而不是直接执行不可逆动作。
 
+## 一个反直觉原则:工具不是越通用越好
+
+人类开发者喜欢通用 API,因为人能读文档、写代码、调试状态。Agent 更适合“窄但语义明确”的动作。
+
+例如给 Agent 一个通用 SQL 工具看起来很强:
+
+```text
+run_sql(query)
+```
+
+但它带来巨大风险:
+
+- 模型可能写错查询。
+- 可能读取超出权限的数据。
+- 可能执行昂贵查询。
+- 如果允许写入,风险更高。
+- 审计时难以判断意图。
+
+更安全的 ACI 是把常见任务包装成窄工具:
+
+```text
+get_customer_orders(customer_id)
+get_order_status(order_id)
+search_policy_docs(query)
+create_refund_draft(order_id, reason, amount)
+```
+
+底层仍然可以是 SQL,但 Agent 接触的是业务动作。窄工具牺牲一点灵活性,换来更高可靠性和可控性。
+
 ## 工具描述怎么写
 
 工具 description 不是给人看的普通文档,而是给模型做决策的上下文。它应该包含:
@@ -144,6 +175,19 @@ Requires an order_id exactly as shown in the user's message or retrieved from cu
 ```
 
 “不要用于什么”很重要。它能减少工具误选。
+
+工具描述还应该避免营销式语言。不要写“强大的订单管理工具”,要写清楚输入、输出和边界。
+
+更好的描述通常很朴素:
+
+```text
+Use this tool only to read the current shipping status of one order.
+It does not determine refund eligibility.
+It does not modify the order.
+If order_id is unknown, ask the user or call find_orders_by_customer first.
+```
+
+这种描述让模型知道该工具“能做什么”和“不能做什么”。后者常常更重要。
 
 ## 参数设计原则
 
@@ -218,6 +262,28 @@ Done.
 ```
 
 `Done` 没有告诉模型做成了什么、依据是什么、下一步是否还需要操作。
+
+返回格式还应避免让模型解析人类 UI 文案。例如:
+
+```text
+订单已进入异常流程,请稍后查看。
+```
+
+这句话对人可能够用,但模型不知道异常类型、是否可重试、下一步该查什么。
+
+更好的返回:
+
+```json
+{
+  "ok": true,
+  "status": "exception",
+  "exception_type": "warehouse_delay",
+  "retry_after": null,
+  "recommended_next_tool": "search_policy_docs"
+}
+```
+
+不是所有字段都必须有,但工具返回应尽量让下一步可计算。
 
 ## 错误协议
 
