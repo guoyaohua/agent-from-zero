@@ -8,6 +8,8 @@ Part 0 已经给过一个定义:
 
 很多 Agent 失败,不是因为模型不会回答,而是因为循环设计得不好:目标不清、状态混乱、工具结果没被正确吸收、没有停止条件、错误后只会重复尝试。Agent 工程的第一原则是:不要把模型调用误认为 Agent。真正的 Agent 是一个会在每轮观察后更新状态,再决定下一步的系统。
 
+![Agent 循环与状态机](../assets/part2-agent-loop-state-machine.svg)
+
 本章会讲:
 
 - Agent 循环由哪些阶段组成。
@@ -91,6 +93,33 @@ Agent 是:
 | `status` | 当前进度 | running、needs_user、done、failed |
 
 状态设计得越清楚,Agent 越不容易迷路。
+
+## 两种循环:认知循环和控制循环
+
+很多人讲 Agent loop 时只讲模型的“观察-思考-行动”。这还不够。生产 Agent 至少有两层循环。
+
+第一层是**认知循环**:
+
+```text
+模型阅读状态 -> 判断下一步 -> 生成动作请求
+```
+
+第二层是**控制循环**:
+
+```text
+runtime 校验动作 -> 执行工具 -> 记录结果 -> 更新状态 -> 判断是否继续
+```
+
+二者的职责不同:
+
+| 循环 | 谁负责 | 关注点 |
+| --- | --- | --- |
+| 认知循环 | 模型 | 目标理解、假设、下一步选择 |
+| 控制循环 | 系统 runtime | 权限、预算、执行、审计、停止 |
+
+一个常见失败是把控制循环也交给模型。例如模型说“我已经确认风险可接受,继续删除文件”,系统就直接执行。这是不安全的。模型可以给建议,但风险判断、权限和副作用执行必须由系统控制。
+
+这就是 Agent loop 的真正边界:模型负责提出可能的下一步,系统负责决定这一步是否允许发生。
 
 ## 为什么不能只把全部历史塞给模型
 
@@ -311,6 +340,45 @@ Agent 每多一轮,就会消耗更多成本:
 | 写操作失败 | 不要假装成功,报告状态 |
 
 一个不可靠的 Agent 常见表现是:工具失败后仍然给出像成功一样的答案。可靠系统必须让工具观察约束后续回答。
+
+## Trace:让循环可复现
+
+Agent loop 必须留下 trace。没有 trace,你只能看到最终答案,却不知道系统为什么走到那里。
+
+一个最小 trace 应该包含:
+
+```json
+{
+  "turn": 3,
+  "state_summary_hash": "...",
+  "model": "model-version",
+  "prompt_version": "agent-loop-v4",
+  "decision": {
+    "type": "tool_call",
+    "tool": "run_tests",
+    "arguments": {"command": "npm test -- UserService"}
+  },
+  "validation": {
+    "schema_ok": true,
+    "permission_ok": true,
+    "budget_ok": true
+  },
+  "observation": {
+    "ok": false,
+    "summary": "1 test failed: active expected true but got undefined"
+  }
+}
+```
+
+trace 的价值有三点。
+
+第一,调试。你能看到是哪一轮选错工具、哪一个观察被误读。
+
+第二,评估。你能统计无效调用、重复循环、错误恢复率。
+
+第三,审计。高风险任务需要说明系统做过什么、谁确认过、影响范围是什么。
+
+没有 trace 的 Agent,很难从 demo 走向生产。
 
 ## 最小伪代码
 
