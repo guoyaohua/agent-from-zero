@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="700" viewBox="0 0 1120 700" role="img" aria-labelledby="title desc">
+  <title id="title">上下文工程分层</title>
+  <desc id="desc">展示 Agent 上下文从稳定规则、任务目标、状态、工具、记忆、RAG 证据到输出契约的分层结构,以及 context builder 的选择、压缩和排序职责。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.layer1{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.layer2{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.layer3{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.layer4{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.layer5{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}.gate{fill:none;stroke:#355c9a;stroke-width:2.2;stroke-dasharray:7 5}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="700"/>
+  <text class="title" x="56" y="58">上下文工程: 在有限窗口里组织决策所需信息</text>
+  <text class="sub" x="56" y="86">核心不是把所有内容塞给模型,而是按优先级、来源、可信度和预算构建当前调用的工作内存。</text>
+
+  <rect class="panel" x="70" y="128" width="390" height="504" rx="8"/>
+  <text class="head" x="102" y="164">Context Builder 输入</text>
+  <rect class="layer1" x="108" y="198" width="314" height="46" rx="8"/><text class="text" x="136" y="226">系统规则 / 安全边界</text>
+  <rect class="layer2" x="108" y="260" width="314" height="46" rx="8"/><text class="text" x="136" y="288">当前任务目标 / 用户约束</text>
+  <rect class="layer3" x="108" y="322" width="314" height="46" rx="8"/><text class="text" x="136" y="350">短期状态 / 计划 / 观察</text>
+  <rect class="layer4" x="108" y="384" width="314" height="46" rx="8"/><text class="text" x="136" y="412">相关长期记忆</text>
+  <rect class="layer4" x="108" y="446" width="314" height="46" rx="8"/><text class="text" x="136" y="474">RAG 证据 / 来源 / 权限</text>
+  <rect class="layer5" x="108" y="508" width="314" height="46" rx="8"/><text class="text" x="136" y="536">任务相关工具 schema</text>
+  <rect class="layer3" x="108" y="570" width="314" height="46" rx="8"/><text class="text" x="136" y="598">输出契约 / 成功标准</text>
+
+  <rect class="panel" x="530" y="176" width="210" height="332" rx="8"/>
+  <text class="head" x="572" y="212">Context Builder</text>
+  <text class="text" x="568" y="250">选择</text>
+  <text class="text" x="568" y="282">压缩</text>
+  <text class="text" x="568" y="314">排序</text>
+  <text class="text" x="568" y="346">标注来源</text>
+  <text class="text" x="568" y="378">控制 token 预算</text>
+  <text class="text" x="568" y="410">隔离指令与资料</text>
+  <text class="text" x="568" y="442">按需注入工具</text>
+  <path class="gate" d="M548 470 H722"/>
+  <text class="small" x="562" y="490">不可信内容不能变成指令</text>
+
+  <path class="arrow" d="M460 380 H530"/>
+  <path class="arrow" d="M740 342 H812"/>
+  <rect class="panel" x="812" y="128" width="238" height="504" rx="8"/>
+  <text class="head" x="856" y="164">本次模型调用上下文</text>
+  <rect class="layer1" x="844" y="198" width="174" height="44" rx="8"/><text class="small" x="876" y="224">Priority 1: 规则</text>
+  <rect class="layer2" x="844" y="254" width="174" height="44" rx="8"/><text class="small" x="868" y="280">Priority 2: 目标</text>
+  <rect class="layer3" x="844" y="310" width="174" height="44" rx="8"/><text class="small" x="866" y="336">Priority 3: 状态</text>
+  <rect class="layer4" x="844" y="366" width="174" height="44" rx="8"/><text class="small" x="866" y="392">Priority 4: 证据</text>
+  <rect class="layer5" x="844" y="422" width="174" height="44" rx="8"/><text class="small" x="870" y="448">Priority 5: 工具</text>
+  <rect class="layer3" x="844" y="478" width="174" height="44" rx="8"/><text class="small" x="862" y="504">Priority 6: 输出格式</text>
+  <text class="small" x="844" y="562">目标: 当前步骤需要什么就给什么,</text>
+  <text class="small" x="844" y="586">并让模型知道每类信息的身份。</text>
+</svg>
+
