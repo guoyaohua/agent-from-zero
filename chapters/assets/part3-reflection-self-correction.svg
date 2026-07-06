@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">反思与自我修正闭环</title>
+  <desc id="desc">展示从生成、外部验证、诊断、修正、再验证到经验回流的自我修正闭环,强调外部信号和停止条件。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.2;marker-end:url(#arrow)}.loop{fill:none;stroke:#7c5aa6;stroke-width:2.3;marker-end:url(#arrow-purple)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c5aa6"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">自我修正: 不是多想一遍,而是生成-验证-修正闭环</text>
+  <text class="sub" x="56" y="86">反思只有接入测试、规则、证据、工具和人类反馈,才会从自言自语变成工程机制。</text>
+
+  <rect class="panel" x="72" y="132" width="976" height="330" rx="8"/>
+  <rect class="blue" x="118" y="238" width="144" height="72" rx="8"/><text class="head" x="158" y="268">Generate</text><text class="small" x="143" y="290">答案 / 计划 / 调用</text>
+  <rect class="green" x="330" y="238" width="144" height="72" rx="8"/><text class="head" x="366" y="268">Verify</text><text class="small" x="352" y="290">测试 / schema / 证据</text>
+  <rect class="orange" x="542" y="238" width="144" height="72" rx="8"/><text class="head" x="575" y="268">Diagnose</text><text class="small" x="564" y="290">定位错误类型</text>
+  <rect class="purple" x="754" y="238" width="144" height="72" rx="8"/><text class="head" x="790" y="268">Revise</text><text class="small" x="776" y="290">改输出或改策略</text>
+  <path class="arrow" d="M262 274 H330"/><path class="arrow" d="M474 274 H542"/><path class="arrow" d="M686 274 H754"/>
+  <path class="loop" d="M826 310 C826 400 190 400 190 310"/>
+  <text class="small" x="424" y="392">只有验证结果变化,循环才算取得进展</text>
+
+  <rect class="red" x="414" y="158" width="292" height="48" rx="8"/><text class="head" x="500" y="188">Stop Conditions</text>
+  <path class="arrow" d="M560 206 V238"/>
+  <text class="small" x="430" y="222">最大迭代、预算、同错无进展、人类介入</text>
+
+  <rect class="panel" x="72" y="504" width="300" height="116" rx="8"/>
+  <text class="head" x="104" y="540">外部信号优先</text>
+  <text class="text" x="104" y="570">单元测试、类型检查、引用校验</text>
+  <text class="text" x="104" y="594">规则引擎、用户反馈、评审 rubric</text>
+
+  <rect class="panel" x="410" y="504" width="300" height="116" rx="8"/>
+  <text class="head" x="442" y="540">经验回流</text>
+  <text class="text" x="442" y="570">Prompt、schema、评估集、workflow</text>
+  <text class="text" x="442" y="594">长期记忆只保存稳定可复用经验</text>
+
+  <rect class="panel" x="748" y="504" width="300" height="116" rx="8"/>
+  <text class="head" x="780" y="540">风险</text>
+  <text class="text" x="780" y="570">纯自评、无限循环、奖励黑客</text>
+  <text class="text" x="780" y="594">修正引入新错误或掩盖失败</text>
+</svg>
+
