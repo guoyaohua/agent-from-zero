@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow 与 Agent 选型矩阵</title>
+  <desc id="desc">展示按路径确定性、风险、副作用和可评估性选择 Workflow、Agent 或混合架构。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3;rx:8}.head{font:700 18px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.workflow{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.agent{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.hybrid{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="660"/><text class="title" x="56" y="58">Workflow vs Agent: 选的是控制方式,不是高级程度</text><text class="sub" x="56" y="86">路径越确定、风险越高,越偏 Workflow;路径越不确定、反馈越可验证,越适合 Agent。</text>
+  <rect class="panel" x="90" y="136" width="940" height="324" rx="8"/>
+  <text class="head" x="116" y="176">决策矩阵</text>
+  <line x1="180" y1="404" x2="940" y2="404" stroke="#94a3b8" stroke-width="2"/><line x1="180" y1="404" x2="180" y2="202" stroke="#94a3b8" stroke-width="2"/>
+  <text class="text" x="452" y="436">路径不确定性: 低 -> 高</text>
+  <text class="text" x="98" y="306" transform="rotate(-90 98 306)">风险/副作用: 低 -> 高</text>
+  <rect class="workflow" x="224" y="304" width="230" height="72" rx="8"/><text class="head" x="292" y="334">Workflow</text><text class="text" x="256" y="358">固定流程、规则校验</text>
+  <rect class="agent" x="666" y="304" width="230" height="72" rx="8"/><text class="head" x="734" y="334">Agent</text><text class="text" x="698" y="358">探索、调试、研究</text>
+  <rect class="hybrid" x="666" y="218" width="230" height="72" rx="8"/><text class="head" x="726" y="248">Hybrid</text><text class="text" x="694" y="272">Workflow 管边界</text>
+  <rect class="risk" x="224" y="218" width="230" height="72" rx="8"/><text class="head" x="280" y="248">Workflow + Human</text><text class="text" x="252" y="272">高风险需确认和审计</text>
+  <rect class="panel" x="90" y="496" width="940" height="94" rx="8"/><text class="head" x="122" y="532">从评估倒推自主性</text><text class="mono" x="122" y="562">高可评估 + 低风险 -> 可自动迭代    低可评估 + 高风险 -> 人类决策</text>
+  <text class="text" x="122" y="584">系统能判断 Agent 做对了吗? 这个问题通常比“模型够不够聪明”更关键。</text>
+</svg>
