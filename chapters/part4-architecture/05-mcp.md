@@ -1,0 +1,531 @@
+# MCP 模型上下文协议 `[主线]` ★
+
+Agent 要真正有用,就必须连接外部世界。
+
+它要读文件、查数据库、搜索文档、调用业务 API、访问项目上下文、执行工具、获取用户环境中的资源。问题是,如果每个应用、每个工具、每个数据源都用一套私有接入方式,Agent 系统会很快变成一堆胶水代码。
+
+MCP,Model Context Protocol,模型上下文协议,就是为了解决这个接入层问题而出现的一类标准化协议思路。
+
+它的核心不是“让模型更聪明”,而是:
+
+**用统一协议把外部工具、资源和提示能力暴露给模型应用,让 Host 能发现、调用和管理这些能力。**
+
+![MCP 模型上下文协议](../assets/part4-mcp-context-protocol.svg)
+
+本章会讲:
+
+- MCP 解决什么问题。
+- Host、Client、Server 分别是什么。
+- Tools、Resources、Prompts 的区别。
+- MCP 和 Function Calling、RAG、ACI、多 Agent 的关系。
+- MCP 的安全边界和常见误解。
+- 设计 MCP Server 时要注意什么。
+
+## 为什么需要 MCP
+
+没有标准协议时,每接一个外部能力都要写定制集成。
+
+例如一个 IDE Agent 需要:
+
+- 读取当前仓库文件。
+- 搜索符号。
+- 运行测试。
+- 查询 issue 系统。
+- 读取设计文档。
+- 调用部署平台。
+
+如果每种能力都直接写进 Agent 应用,问题会很多:
+
+- 集成成本高。
+- 工具描述格式不统一。
+- 权限和确认逻辑分散。
+- 不同 Host 之间难复用。
+- 工具升级会影响 Agent 主程序。
+- 数据源和模型应用强耦合。
+
+MCP 的思路是把能力提供方封装成 Server,Host 通过 Client 按协议发现和使用这些能力。
+
+## MCP 的基本结构
+
+MCP 通常包含三个角色。
+
+| 角色 | 作用 |
+| --- | --- |
+| Host | 模型应用本体,例如 IDE、桌面助手、Agent 平台 |
+| Client | Host 内部用于连接某个 MCP Server 的协议客户端 |
+| Server | 暴露工具、资源、提示模板等能力的外部能力提供者 |
+
+可以简单理解为:
+
+```text
+Host 管用户体验和模型会话。
+Client 管协议连接。
+Server 管某个外部系统的能力暴露。
+```
+
+一个 Host 可以连接多个 Server。每个 Server 可以封装一个数据源、一组工具或一个领域系统。
+
+## 从能力发现到上下文注入的四道门
+
+MCP Server 声明能力之后,这些能力不应该自动进入模型上下文。Host 至少要经过四道门:
+
+| 闸门 | 问题 |
+| --- | --- |
+| 发现门 | Server 暴露了哪些 tools/resources/prompts? |
+| 选择门 | 当前任务真的需要哪些能力? |
+| 权限门 | 当前用户、项目、角色是否允许使用? |
+| 注入门 | 哪些描述、schema 或资源片段应该进入本次上下文? |
+
+这四道门可以防止两个常见问题:一是把所有工具都暴露给模型,导致选择噪声和风险上升;二是把所有可读资源都塞进上下文,导致隐私和 token 问题。
+
+MCP 提供能力发现和调用机制,但“是否给模型看、是否允许调用、结果如何进入上下文”仍是 Host 的责任。
+
+## Host
+
+Host 是用户直接使用的模型应用。
+
+例如:
+
+- IDE 中的编码助手。
+- 桌面 Agent。
+- 企业知识助手。
+- 自研 Agent 平台。
+- 多 Agent 编排系统。
+
+Host 负责:
+
+- 管理用户会话。
+- 调用模型。
+- 构建上下文。
+- 展示工具调用和结果。
+- 做用户确认。
+- 管理 MCP Client 连接。
+- 执行权限和安全策略。
+
+MCP Server 暴露能力,但 Host 决定如何把这些能力放进模型上下文、何时允许调用、如何展示给用户。
+
+## Client
+
+Client 是 Host 和某个 Server 之间的协议连接。
+
+它负责:
+
+- 初始化连接。
+- 发现 Server 提供的能力。
+- 发送工具调用请求。
+- 读取资源。
+- 获取提示模板。
+- 处理协议消息。
+- 管理连接生命周期。
+
+通常一个 Host 会为每个 Server 建立一个 Client 会话。
+
+## Server
+
+Server 是能力提供方。
+
+它可以封装:
+
+- 文件系统。
+- Git 仓库。
+- 数据库。
+- 搜索服务。
+- 文档库。
+- 业务 API。
+- 内部平台。
+- 专用计算工具。
+
+Server 的职责不是替模型思考,而是把外部能力以协议能理解的方式描述和执行。
+
+一个好的 Server 应该提供清晰的能力描述、输入 schema、输出结构、错误类型和安全约束。
+
+## Tools
+
+Tools 是模型应用可以请求执行的动作。
+
+例如:
+
+- `search_docs(query)`
+- `read_file(path)`
+- `run_tests(target)`
+- `create_ticket(title, body)`
+- `query_database(sql)`
+
+Tool 通常有:
+
+- 名称。
+- 描述。
+- 输入 schema。
+- 输出结果。
+- 错误返回。
+- 权限要求。
+
+这和 Part 2 的 Function Calling 很像。区别在于 Function Calling 更偏模型 API 层的工具调用格式,MCP 更偏模型应用连接外部能力的协议层。
+
+## Resources
+
+Resources 是可读取的上下文或数据。
+
+例如:
+
+- 文件内容。
+- 文档页面。
+- 数据库 schema。
+- 当前项目配置。
+- 日志片段。
+- 业务对象详情。
+
+Resources 更像“可取回的资料”,不一定是动作。
+
+例如一个文件系统 Server 可以暴露:
+
+```text
+resource: file:///workspace/README.md
+resource: file:///workspace/src/app.ts
+```
+
+Host 可以读取这些 resource,再决定是否放入模型上下文。
+
+## Prompts
+
+Prompts 是 Server 提供的可复用提示模板或工作流入口。
+
+例如:
+
+- “总结这个仓库”。
+- “根据错误日志生成排查计划”。
+- “用团队模板创建 PR 描述”。
+
+Prompts 的价值是让领域系统提供自己知道的上下文组织方式。
+
+但 Prompt 不是最高优先级指令。Host 仍要维护系统规则、用户目标和安全边界。
+
+## Tools、Resources、Prompts 的区别
+
+可以这样理解:
+
+| 能力 | 问题 | 例子 |
+| --- | --- | --- |
+| Tool | 要执行什么动作? | 运行测试、查询数据库、创建工单 |
+| Resource | 要读取什么上下文? | 文件、文档、schema、日志 |
+| Prompt | 要使用什么任务模板? | 生成 PR 描述、排查故障 |
+
+这三者共同服务于上下文工程和工具使用。
+
+## MCP 和 Function Calling
+
+Function Calling 解决的是模型如何结构化表达工具调用。
+
+MCP 解决的是模型应用如何发现和连接外部工具/资源。
+
+二者关系可以是:
+
+```text
+MCP Server 暴露 tool schema
+Host 把相关 tool schema 提供给模型
+模型通过 function/tool call 请求调用
+Host/Client 转发到 MCP Server 执行
+Server 返回结构化结果
+Host 决定如何注入上下文
+```
+
+也就是说,MCP 不是替代 Function Calling,而是可以成为工具能力的来源和传输层。
+
+## MCP 和 ACI
+
+ACI,Agent-Computer Interface,强调工具面要适合 Agent 使用。
+
+MCP 提供连接协议,但不会自动让工具变好用。
+
+一个 MCP Tool 仍然需要满足 ACI 原则:
+
+- 名称清晰。
+- 参数少而明确。
+- schema 可验证。
+- 返回结构化。
+- 错误可恢复。
+- 副作用明确。
+- 高风险动作需要确认。
+- 权限最小化。
+
+如果把一个混乱 API 原样包成 MCP Tool,它仍然混乱。MCP 标准化的是接入方式,不是自动优化工具设计。
+
+## MCP 和 RAG
+
+MCP Server 可以暴露文档资源或搜索工具,从而成为 RAG 的数据入口。
+
+例如:
+
+- 文档库 Server 提供 `search_docs` tool。
+- 文件系统 Server 提供文档 resource。
+- 数据库 Server 提供 schema 和查询 tool。
+
+但 MCP 不等于 RAG。RAG 还需要:
+
+- 文档清洗。
+- 切块。
+- embedding。
+- 索引。
+- 重排。
+- 证据包。
+- 引用校验。
+
+MCP 可以提供取数和工具接口,RAG 系统负责证据链质量。
+
+## MCP 和上下文工程
+
+MCP 扩大了 Host 可访问的上下文来源。
+
+但“能访问”不等于“都要放进 prompt”。
+
+Host 的 context builder 仍要决定:
+
+- 哪些 Server 与当前任务相关。
+- 哪些 Tools 暴露给模型。
+- 哪些 Resources 读取。
+- 读取结果如何摘要和标注来源。
+- 不可信内容如何隔离。
+- token 预算如何控制。
+- 权限和敏感数据如何处理。
+
+MCP 给上下文工程提供材料,不是替代上下文工程。
+
+## MCP 和多 Agent
+
+多 Agent 系统可以让不同角色访问不同 MCP Server 或不同能力子集。
+
+例如:
+
+| Agent | MCP 能力 |
+| --- | --- |
+| Researcher | 文档搜索、只读资源 |
+| Code Agent | 文件读取、符号搜索、测试运行 |
+| Ops Agent | 日志查询、监控指标 |
+| Critic | trace 读取、证据读取 |
+| Publisher | 发布工具,需要用户确认 |
+
+这可以帮助实现工具权限隔离。
+
+但要注意:不同 Agent 通过消息传递数据时,仍要遵守数据流策略。不能因为工具来自 MCP 就忽略权限边界。
+
+## MCP 的安全边界
+
+MCP 本身不是完整安全系统。
+
+安全仍需要 Host、runtime 和 Server 共同承担。
+
+关键点包括:
+
+### 1. 能力发现不等于允许调用
+
+Server 可以声明自己有某个 tool,但 Host 可以决定不暴露给模型,或只在用户确认后调用。
+
+### 2. 模型请求不等于执行授权
+
+模型生成工具调用后,runtime 仍应检查权限、参数、风险和确认状态。
+
+### 3. Resource 内容不是指令
+
+资源可能包含不可信文本。Host 应标明其为外部资料,不能让它覆盖系统规则。
+
+### 4. Server 不应过度授权
+
+Server 应遵守最小权限,不要因为方便就暴露过大的文件系统、数据库或管理 API 权限。
+
+### 5. 敏感数据要最小化
+
+Host 不应把无关敏感 resource 读入上下文。Server 也应做访问控制和审计。
+
+## 一个 MCP 调用链
+
+可以把一次工具调用理解成:
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant H as Host
+    participant M as Model
+    participant C as MCP Client
+    participant S as MCP Server
+    U->>H: 提出任务
+    H->>C: 获取可用 tools/resources
+    H->>M: 注入相关工具描述和上下文
+    M->>H: 请求调用 tool
+    H->>H: 权限、风险、确认校验
+    H->>C: 转发工具调用
+    C->>S: protocol request
+    S-->>C: tool result
+    C-->>H: structured observation
+    H->>M: 注入观察
+    M-->>H: 生成下一步或最终回答
+```
+
+注意中间的 Host 校验步骤。不要把模型请求直接等同于 Server 执行。
+
+## 设计 MCP Server 的原则
+
+如果你要设计一个 MCP Server,可以遵循这些原则。
+
+### 1. 能力要窄
+
+宁可提供几个清晰工具,也不要提供一个万能 `execute(command)`。
+
+### 2. schema 要严
+
+输入参数要有类型、描述、枚举、默认值和限制。
+
+### 3. 输出要结构化
+
+返回状态、数据、警告、artifact 和错误码,不要只返回一段文本。
+
+### 4. 错误要可恢复
+
+区分参数错误、权限错误、对象不存在、超时、状态冲突。
+
+### 5. 副作用要显式
+
+写工具要说明会改变什么,最好支持 preview、confirm、idempotency 和 verify。
+
+### 6. 权限要最小化
+
+Server 自身应限制可访问范围,不要只依赖 Host。
+
+### 7. 资源要可追溯
+
+Resource 应有 URI、版本、更新时间、来源和权限元数据。
+
+## 好 Tool 和坏 Tool
+
+坏工具:
+
+```text
+tool: run_any_sql
+description: Run SQL.
+input: string
+output: string
+```
+
+问题:
+
+- 权限太大。
+- 参数无结构。
+- 副作用不清。
+- 错误不可分类。
+- 难以审计。
+
+更好的工具:
+
+```json
+{
+  "name": "get_customer_orders",
+  "description": "Read-only lookup of orders for a customer within an authorized tenant.",
+  "input_schema": {
+    "customer_id": "string",
+    "date_range": {"from": "date", "to": "date"},
+    "status": "optional enum"
+  },
+  "side_effect": "none",
+  "requires_user_confirmation": false
+}
+```
+
+工具越贴近任务语义,Agent 越容易正确使用。
+
+## 传输和部署
+
+MCP 可以运行在不同传输方式和部署形态上,具体取决于实现和生态。
+
+常见思路包括:
+
+- 本地进程:Host 启动本地 Server,适合 IDE、文件系统、命令行工具。
+- 远程服务:Server 运行在网络服务中,适合企业系统和共享能力。
+- HTTP/流式连接:适合远程通信和长连接场景。
+
+选择时要考虑:
+
+- 延迟。
+- 认证。
+- 网络边界。
+- 用户确认体验。
+- 日志审计。
+- 部署和升级方式。
+
+本地 Server 更容易访问用户环境,也更要控制权限。远程 Server 更容易集中治理,但需要严肃处理认证和数据传输。
+
+## MCP 不是万能标准
+
+MCP 解决接入标准化问题,但还有很多事情要你自己设计:
+
+- Agent 循环。
+- 任务规划。
+- RAG 检索质量。
+- 工具 ACI。
+- 权限策略。
+- 用户确认。
+- 多 Agent 编排。
+- 评估和观测。
+- 成本和延迟控制。
+
+把系统接上 MCP,不等于系统就可靠了。它只是让外部能力接入更统一。
+
+## 什么时候适合用 MCP
+
+适合:
+
+- 一个能力要被多个 Host 或 Agent 复用。
+- 外部系统复杂,需要封装成标准工具和资源。
+- 希望工具发现、调用和资源读取有统一协议。
+- 希望把集成逻辑从 Agent 主程序中解耦。
+- 需要给不同 Agent 暴露不同能力子集。
+
+不一定需要:
+
+- 只有一个非常简单的内部函数。
+- 原型阶段只需快速验证。
+- 工具不会复用,也不需要标准发现。
+- 现有 SDK 集成已经足够简单。
+
+## MCP 评估
+
+评估 MCP Server,可以看:
+
+- 能力描述是否清晰。
+- Tool schema 是否能让模型正确填参。
+- Resource 是否有来源和权限元数据。
+- 错误是否可分类、可恢复。
+- 权限是否最小化。
+- 高风险工具是否需要确认。
+- 调用 trace 是否完整。
+- Host 是否能按任务动态选择能力。
+- Server 升级是否向后兼容。
+- 是否通过实际任务评估改善效果。
+
+不要只评估“能不能调用成功”。要评估 Agent 是否能安全、准确、低成本地使用这些能力。
+
+## 常见误解
+
+### 误解一:MCP 是 Agent 框架
+
+不是。MCP 是能力接入协议。Agent 框架还要负责循环、状态、规划、评估和编排。
+
+### 误解二:有了 MCP 就不用 Function Calling
+
+不对。MCP 可以提供工具来源,Function Calling 仍常用于模型表达工具调用。
+
+### 误解三:MCP Server 暴露的工具都应该给模型
+
+不一定。Host 应按任务、权限和风险动态暴露工具。
+
+### 误解四:MCP 能自动解决安全
+
+不能。权限、确认、数据流、资源隔离和审计仍要设计。
+
+### 误解五:把任意 API 包成 MCP Tool 就够了
+
+不够。工具还要符合 ACI,让 Agent 易懂、可校验、可恢复、可审计。
+
+## 本章小结
+
+MCP 的价值在于标准化模型应用和外部能力之间的连接。Host 管用户体验、模型会话和安全边界,Client 管协议连接,Server 暴露 Tools、Resources 和 Prompts。MCP 可以和 Function Calling、RAG、上下文工程、多 Agent 编排配合,但不替代它们。设计 MCP Server 时,关键是窄工具、严 schema、结构化输出、清晰错误、最小权限、可追溯资源和副作用控制。MCP 让能力接入更统一,可靠性仍来自完整的 Agent 工程体系。
+
+到这里,Part 4 完成了架构进阶主线:为什么需要多 Agent、如何设计角色、如何编排、如何通信,以及如何用 MCP 标准化接入外部能力。下一篇 Part 5 会进入工程实践:可观测、评估、成本、延迟、安全、护栏和 Prompt Injection 防御。
