@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+  <title id="title">Function Calling 的执行边界</title>
+  <desc id="desc">展示模型只生成工具调用请求,运行时负责 schema 校验、权限、幂等性和真实执行。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3;rx:8}.head{font:700 18px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.2;marker-end:url(#arrow)}.model{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2;rx:8}.runtime{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.guard{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.tool{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.danger{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="660"/><text class="title" x="56" y="58">Function Calling: 模型提出请求,系统负责执行</text><text class="sub" x="56" y="86">安全边界在 runtime,不是在模型的自觉里。schema 只是第一道门,后面还有权限、业务规则和幂等性。</text>
+  <rect class="model" x="74" y="184" width="210" height="96" rx="8"/><text class="head" x="126" y="222">Model</text><text class="text" x="104" y="248">生成 tool_call</text><text class="mono" x="104" y="268">name + arguments</text>
+  <path class="arrow" d="M284 232 H374"/>
+  <rect class="runtime" x="374" y="128" width="316" height="268" rx="8"/><text class="head" x="478" y="166">Agent Runtime</text>
+  <rect class="guard" x="414" y="190" width="236" height="38" rx="8"/><text class="text" x="448" y="214">1. schema/type validation</text>
+  <rect class="guard" x="414" y="240" width="236" height="38" rx="8"/><text class="text" x="454" y="264">2. permission check</text>
+  <rect class="guard" x="414" y="290" width="236" height="38" rx="8"/><text class="text" x="454" y="314">3. policy/risk gate</text>
+  <rect class="guard" x="414" y="340" width="236" height="38" rx="8"/><text class="text" x="448" y="364">4. idempotency/transaction</text>
+  <path class="arrow" d="M690 232 H780"/>
+  <rect class="tool" x="780" y="184" width="266" height="96" rx="8"/><text class="head" x="858" y="222">Tool/API</text><text class="text" x="824" y="248">真实外部系统</text><text class="mono" x="824" y="268">db / search / file / code</text>
+  <path class="arrow" d="M913 280 C913 448 530 448 530 396"/>
+  <rect class="panel" x="74" y="452" width="972" height="112" rx="8"/><text class="head" x="106" y="492">工具结果返回为 Observation</text><text class="mono" x="106" y="526">{ ok, data|error, source, timestamp, operation_id }</text><text class="text" x="106" y="548">模型只能基于 runtime 返回的观察继续推理,不能伪造工具成功。</text>
+  <rect class="danger" x="780" y="324" width="266" height="72" rx="8"/><text class="head" x="822" y="354">高风险写操作</text><text class="text" x="814" y="378">preview -> confirm -> execute</text>
+</svg>

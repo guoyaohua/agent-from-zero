@@ -18,6 +18,8 @@ Function Calling 的目标就是把这件事变清楚:
 
 **模型不直接执行工具,而是生成一个符合 schema 的函数调用请求;系统验证后执行,再把结果作为观察返回给模型。**
 
+![Function Calling 的执行边界](../assets/part2-function-calling-boundary.svg)
+
 本章会讲:
 
 - Function Calling 解决了什么问题。
@@ -130,6 +132,39 @@ Function Calling 的核心是 tool schema。它告诉模型:
 
 对模型来说,它是行动说明书。对系统来说,它是验证规则。
 
+## Schema 里最重要的是语义,不只是类型
+
+很多 schema 只写类型:
+
+```json
+{
+  "order_id": {"type": "string"}
+}
+```
+
+这只能告诉模型“这里要字符串”,不能告诉它字符串从哪里来、格式是什么、是否允许猜。
+
+更好的 schema 会写语义约束:
+
+```json
+{
+  "order_id": {
+    "type": "string",
+    "description": "Exact order identifier from the user message or customer record. Do not invent an order_id."
+  }
+}
+```
+
+对 Agent 来说,很多错误不是类型错,而是语义错。比如模型生成了一个格式看似合法但不存在的订单号。Schema 要尽量减少这种自由猜测空间。
+
+可以在 description 中明确:
+
+- 参数来源。
+- 是否允许推断。
+- 格式示例。
+- 不确定时该怎么做。
+- 和其他字段的关系。
+
 ## 一次工具调用生命周期
 
 一次可靠工具调用通常经历这些阶段。
@@ -181,6 +216,44 @@ Function Calling 的核心是 tool schema。它告诉模型:
 ### 7. 后续决策
 
 模型根据观察继续回答、再调用工具或请求用户。
+
+## 工具调用的两类失败
+
+工具调用失败可以分成两类。
+
+### 结构失败
+
+调用请求不符合接口要求。
+
+例子:
+
+- 工具名不存在。
+- 缺少必填字段。
+- 类型错误。
+- 枚举值不合法。
+
+这类失败通常可以用 schema 校验、重试和更清晰工具描述解决。
+
+### 语义失败
+
+调用结构合法,但业务上错了。
+
+例子:
+
+- 查了错误订单。
+- 把用户提到的“上个月”理解成当前月。
+- 在不该退款时创建退款草稿。
+- 把搜索 query 写得太宽,召回一堆噪声。
+
+语义失败更难,需要:
+
+- 更好的工具描述。
+- 状态中提供必要上下文。
+- 业务校验。
+- 评估集覆盖真实案例。
+- 必要时请求用户确认。
+
+很多系统只统计“参数合法率”,会高估工具调用质量。真正应该关心的是“这个调用是否推进了任务”。
 
 ## 工具返回也要结构化
 
@@ -349,6 +422,31 @@ Tool result from get_order, timestamp=...
 第三,长结果要摘要或分页。不要把 10 万行日志直接塞给模型。
 
 工具结果是观察,不是新的最高优先级命令。
+
+## Tool result summarization
+
+工具返回很长时,需要摘要。但摘要不能丢掉可验证性。
+
+一个好的工具结果摘要应包含:
+
+- 原始结果引用或 ID。
+- 成功/失败状态。
+- 与当前任务相关的关键字段。
+- 可能影响下一步的错误或警告。
+- 时间戳和来源。
+
+例如读取日志时,不要只总结“测试失败了”,而要保留定位线索:
+
+```text
+Observation #12 summary:
+- source: test output, command `npm test -- UserService`
+- status: failed
+- key failure: expected user.active to equal true, received undefined
+- location: test/UserService.test.ts:42, src/user-service.ts:18
+- full log: artifact://tool-results/12
+```
+
+这样模型下一轮既有短上下文,也能在需要时回源。
 
 ## 多工具调用
 
