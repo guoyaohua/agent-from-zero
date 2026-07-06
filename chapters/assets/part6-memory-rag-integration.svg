@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">个人研究助手记忆与 RAG 集成</title>
+  <desc id="desc">展示研究助手如何区分短期状态、长期记忆、资料库 RAG、笔记和最终上下文。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">记忆 + RAG: 偏好、状态、证据不要混在一起</text><text class="sub" x="56" y="86">个人研究助手要把用户偏好、研究状态、外部文献和沉淀笔记分开治理。</text>
+  <rect class="blue" x="92" y="174" width="210" height="92" rx="8"/><text class="head" x="144" y="210">Short-term State</text><text class="text" x="124" y="236">当前问题、缺口、证据包</text>
+  <rect class="green" x="92" y="332" width="210" height="92" rx="8"/><text class="head" x="146" y="368">Long Memory</text><text class="text" x="124" y="394">偏好、研究主题、项目约定</text>
+  <rect class="orange" x="452" y="174" width="210" height="92" rx="8"/><text class="head" x="510" y="210">RAG Corpus</text><text class="text" x="484" y="236">论文、网页、笔记、PDF</text>
+  <rect class="purple" x="452" y="332" width="210" height="92" rx="8"/><text class="head" x="520" y="368">Notes</text><text class="text" x="484" y="394">人工确认后的研究沉淀</text>
+  <rect class="panel" x="802" y="236" width="210" height="126" rx="8"/><text class="head" x="850" y="274">Context Builder</text><text class="text" x="834" y="304">选择、压缩、标注来源</text><text class="text" x="834" y="330">构造本次模型输入</text>
+  <path class="arrow" d="M302 220 H452"/><path class="arrow" d="M302 378 H452"/><path class="arrow" d="M662 220 L802 274"/><path class="arrow" d="M662 378 L802 324"/>
+</svg>
+
