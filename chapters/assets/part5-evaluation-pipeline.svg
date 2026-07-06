@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 评估流水线</title>
+  <desc id="desc">展示从任务样本、基准集、运行 trace、评分器、失败归因到回归门禁的 Agent 评估流水线。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.node{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.node2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.node3{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.node4{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">评估: 把“感觉变好”变成可回归的证据</text><text class="sub" x="56" y="86">Agent 评估要覆盖任务结果、过程轨迹、工具使用、安全、成本和失败归因。</text>
+  <rect class="node" x="88" y="230" width="132" height="66" rx="8"/><text class="head" x="126" y="258">Samples</text><text class="small" x="114" y="280">真实任务/反例</text>
+  <rect class="node2" x="272" y="230" width="132" height="66" rx="8"/><text class="head" x="306" y="258">Runner</text><text class="small" x="302" y="280">固定环境运行</text>
+  <rect class="node3" x="456" y="230" width="132" height="66" rx="8"/><text class="head" x="500" y="258">Trace</text><text class="small" x="486" y="280">过程和产物</text>
+  <rect class="node4" x="640" y="230" width="132" height="66" rx="8"/><text class="head" x="680" y="258">Scorer</text><text class="small" x="666" y="280">规则/Judge/人工</text>
+  <rect class="bad" x="824" y="230" width="132" height="66" rx="8"/><text class="head" x="858" y="258">Analysis</text><text class="small" x="856" y="280">失败归因</text>
+  <path class="arrow" d="M220 263 H272"/><path class="arrow" d="M404 263 H456"/><path class="arrow" d="M588 263 H640"/><path class="arrow" d="M772 263 H824"/>
+  <rect class="panel" x="118" y="392" width="884" height="128" rx="8"/><text class="head" x="154" y="430">Regression Gate</text><text class="text" x="154" y="462">上线前比较 baseline vs candidate: 成功率、引用准确率、工具误用率、安全拒绝、平均成本、P95 延迟。</text><text class="text" x="154" y="492">失败样本回流到 eval set,而不是只写在复盘文档里。</text>
+</svg>
+
