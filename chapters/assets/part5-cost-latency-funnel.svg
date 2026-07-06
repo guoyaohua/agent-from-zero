@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">成本与延迟漏斗</title>
+  <desc id="desc">展示 Agent 请求中的检索、上下文、模型、工具、并发、缓存和输出长度对成本延迟的影响。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">成本与延迟: 先分解瓶颈,再优化</text><text class="sub" x="56" y="86">Agent 慢和贵通常来自多轮、长上下文、工具等待、无效检索、重复调用和输出过长。</text>
+  <rect class="panel" x="118" y="142" width="884" height="364" rx="8"/><text class="head" x="156" y="180">Request Timeline</text>
+  <rect class="blue" x="164" y="238" width="118" height="58" rx="8"/><text class="text" x="198" y="272">Route</text>
+  <rect class="green" x="318" y="238" width="118" height="58" rx="8"/><text class="text" x="344" y="272">Retrieve</text>
+  <rect class="orange" x="472" y="238" width="118" height="58" rx="8"/><text class="text" x="500" y="272">Context</text>
+  <rect class="purple" x="626" y="238" width="118" height="58" rx="8"/><text class="text" x="660" y="272">Model</text>
+  <rect class="green" x="780" y="238" width="118" height="58" rx="8"/><text class="text" x="816" y="272">Tools</text>
+  <path class="arrow" d="M282 267 H318"/><path class="arrow" d="M436 267 H472"/><path class="arrow" d="M590 267 H626"/><path class="arrow" d="M744 267 H780"/>
+  <text class="text" x="164" y="362">优化杠杆: 缓存、路由小模型、top-k 控制、并行只读工具、上下文压缩、流式输出、预算停止。</text>
+  <rect class="panel" x="172" y="542" width="776" height="76" rx="8"/><text class="head" x="216" y="576">核心指标</text><text class="text" x="216" y="602">cost/task、tokens/task、model calls/task、tool wait、P50/P95 latency、success per dollar。</text>
+</svg>
+
