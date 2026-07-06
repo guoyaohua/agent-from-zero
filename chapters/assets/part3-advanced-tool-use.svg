@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">工具使用进阶</title>
+  <desc id="desc">展示高级工具使用从任务意图、工具选择、参数填充、验证执行到观察解释、恢复和审计的闭环,并标出副作用和数据流边界。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.mono{font:600 12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}.dash{fill:none;stroke:#b13c52;stroke-width:2;stroke-dasharray:6 5;marker-end:url(#arrow-red)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="680"/>
+  <text class="title" x="56" y="58">高级工具使用: 把调用函数变成可控执行系统</text>
+  <text class="sub" x="56" y="86">可靠 Agent 不只是会调工具,还要管理选择、参数来源、权限、失败恢复、副作用、数据流和审计。</text>
+
+  <rect class="panel" x="56" y="124" width="1008" height="294" rx="8"/>
+  <text class="head" x="88" y="162">一次工具调用的闭环</text>
+  <rect class="blue" x="92" y="204" width="134" height="66" rx="8"/><text class="head" x="134" y="232">Select</text><text class="small" x="111" y="254">按任务和权限缩小工具集</text>
+  <rect class="blue" x="268" y="204" width="134" height="66" rx="8"/><text class="head" x="311" y="232">Fill</text><text class="small" x="287" y="254">填参数并记录来源</text>
+  <rect class="orange" x="444" y="204" width="134" height="66" rx="8"/><text class="head" x="475" y="232">Validate</text><text class="small" x="462" y="254">schema、权限、风险校验</text>
+  <rect class="green" x="620" y="204" width="134" height="66" rx="8"/><text class="head" x="651" y="232">Execute</text><text class="small" x="644" y="254">执行、超时、幂等</text>
+  <rect class="purple" x="796" y="204" width="134" height="66" rx="8"/><text class="head" x="828" y="232">Interpret</text><text class="small" x="814" y="254">把观察转为任务进展</text>
+  <path class="arrow" d="M226 237 H268"/><path class="arrow" d="M402 237 H444"/><path class="arrow" d="M578 237 H620"/><path class="arrow" d="M754 237 H796"/>
+
+  <rect class="red" x="444" y="318" width="134" height="58" rx="8"/><text class="head" x="474" y="343">Recover</text><text class="small" x="462" y="364">分类错误,有限重试或询问</text>
+  <path class="arrow" d="M862 270 C862 342 622 346 578 346"/><path class="arrow" d="M444 346 C352 346 336 304 336 270"/>
+  <text class="small" x="653" y="342">失败不是异常,而是闭环的一部分</text>
+
+  <rect class="panel" x="56" y="454" width="308" height="154" rx="8"/>
+  <text class="head" x="88" y="490">参数来源追踪</text>
+  <text class="mono" x="88" y="522">order_id: user_turn_3</text>
+  <text class="mono" x="88" y="548">amount: tool:get_order</text>
+  <text class="mono" x="88" y="574">reason: model_inferred?</text>
+  <text class="small" x="88" y="596">高风险字段不能只来自模型推断。</text>
+
+  <rect class="panel" x="406" y="454" width="308" height="154" rx="8"/>
+  <text class="head" x="438" y="490">副作用闸门</text>
+  <text class="text" x="438" y="522">prepare -> preview -> confirm</text>
+  <text class="text" x="438" y="550">execute -> verify -> audit</text>
+  <text class="small" x="438" y="582">写工具需要确认、幂等 key、回滚或补偿。</text>
+
+  <rect class="panel" x="756" y="454" width="308" height="154" rx="8"/>
+  <text class="head" x="788" y="490">数据流策略</text>
+  <text class="text" x="788" y="522">敏感内部数据</text>
+  <path class="dash" d="M908 520 H1008"/>
+  <text class="text" x="788" y="550">外部搜索 / 邮件 / 写工具</text>
+  <text class="small" x="788" y="582">工具组合可能突破单工具安全假设。</text>
+</svg>
+
