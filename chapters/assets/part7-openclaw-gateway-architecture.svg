@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw Gateway 架构</title>
+  <desc id="desc">展示聊天渠道、OpenClaw Gateway、Agent runtime、workspace、skills、tools、nodes 和控制界面之间的关系。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.t{font:700 30px system-ui;fill:#172033}.s{font:400 15px system-ui;fill:#596579}.h{font:700 16px system-ui;fill:#172033}.x{font:400 12.5px system-ui;fill:#435066}.m{font:400 11.5px system-ui;fill:#5c6878}.c1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.c2{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.c3{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.c4{fill:#f3e8f6;stroke:#7c4d9b;stroke-width:2}.n{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.a{fill:none;stroke:#7a8aa0;stroke-width:2.2;marker-end:url(#a)}.sec{fill:none;stroke:#b05c37;stroke-width:2;stroke-dasharray:7 6}
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="t" x="56" y="54">OpenClaw: 多渠道个人 Agent Gateway</text>
+  <text class="s" x="56" y="80">消息入口、会话路由、工具边界和本地工作区</text>
+  <text class="s" x="56" y="102">被放进一个长期运行的 Gateway 控制面。</text>
+
+  <rect class="c1" x="60" y="142" width="232" height="268" rx="10"/>
+  <text class="h" x="126" y="174">Chat Channels</text>
+  <rect class="n" x="88" y="204" width="176" height="34" rx="6"/><text class="x" x="128" y="226">Telegram</text>
+  <rect class="n" x="88" y="248" width="176" height="34" rx="6"/><text class="x" x="124" y="270">WhatsApp</text>
+  <rect class="n" x="88" y="292" width="176" height="34" rx="6"/><text class="x" x="126" y="314">Slack / Discord</text>
+  <rect class="n" x="88" y="336" width="176" height="34" rx="6"/><text class="x" x="128" y="358">iMessage / Signal</text>
+
+  <rect class="c2" x="376" y="118" width="352" height="324" rx="12"/>
+  <text class="h" x="498" y="150">Gateway Control Plane</text>
+  <rect class="n" x="416" y="184" width="272" height="40" rx="7"/><text class="x" x="448" y="209">auth / pairing / allowlist</text>
+  <rect class="n" x="416" y="236" width="272" height="40" rx="7"/><text class="x" x="452" y="261">session routing</text>
+  <rect class="n" x="416" y="288" width="272" height="40" rx="7"/><text class="x" x="448" y="313">typed WS API + JSON schema</text>
+  <rect class="n" x="416" y="340" width="272" height="40" rx="7"/><text class="x" x="448" y="365">events / health / idempotency</text>
+
+  <rect class="c3" x="812" y="122" width="246" height="132" rx="10"/>
+  <text class="h" x="878" y="154">Agent Runtime</text>
+  <text class="x" x="844" y="184">Prompt + Context</text>
+  <text class="x" x="844" y="208">Loop + tool decisions</text>
+  <text class="m" x="844" y="232">runs in user boundary</text>
+
+  <rect class="c4" x="812" y="296" width="246" height="132" rx="10"/>
+  <text class="h" x="874" y="328">Local Surfaces</text>
+  <text class="x" x="844" y="358">workspace / skills</text>
+  <text class="x" x="844" y="382">tools / sandbox</text>
+  <text class="x" x="844" y="406">nodes / canvas / apps</text>
+
+  <rect class="n" x="376" y="472" width="352" height="46" rx="8"/>
+  <text class="h" x="426" y="501">Control UI / CLI / companion apps</text>
+
+  <path class="a" d="M292 276H376"/>
+  <path class="a" d="M728 214H812"/>
+  <path class="a" d="M935 254V296"/>
+  <path class="a" d="M812 394C726 452 654 472 580 472"/>
+  <path class="a" d="M552 472V442"/>
+  <path class="sec" d="M354 104H750V456H354z"/>
+  <text class="m" x="390" y="106">身份、权限、路由、审计集中在 Gateway 边界内</text>
+</svg>

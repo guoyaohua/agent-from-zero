@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw 消息循环</title>
+  <desc id="desc">动画展示一条渠道消息如何经过 Gateway、会话路由、Agent runtime、Harness、工具或节点,再返回到原渠道。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.t{font:700 30px system-ui;fill:#172033}.s{font:400 15px system-ui;fill:#596579}.h{font:700 15.5px system-ui;fill:#172033}.x{font:400 12px system-ui;fill:#435066}.b1{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.b2{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.b3{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.b4{fill:#f3e8f6;stroke:#7c4d9b;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:3;stroke-linecap:round}.ret{fill:none;stroke:#2d7d80;stroke-width:3;stroke-linecap:round;stroke-dasharray:8 7}.dot{fill:#172033}.dot2{fill:#2d7d80}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="t" x="56" y="54">一条消息如何变成可控的 Agent 动作</text>
+  <text class="s" x="56" y="80">黑点是用户消息,绿色点是 observation/response。</text>
+  <text class="s" x="56" y="102">每一步都经过 Gateway 边界,不是模型直连外部世界。</text>
+
+  <rect class="b1" x="70" y="214" width="170" height="86" rx="10"/>
+  <text class="h" x="118" y="246">Channel</text>
+  <text class="x" x="104" y="272">Telegram / Slack</text>
+
+  <rect class="b2" x="300" y="120" width="210" height="86" rx="10"/>
+  <text class="h" x="346" y="152">Auth Gate</text>
+  <text class="x" x="330" y="178">pairing / allowlist</text>
+
+  <rect class="b2" x="300" y="310" width="210" height="86" rx="10"/>
+  <text class="h" x="346" y="342">Session Route</text>
+  <text class="x" x="330" y="368">channel + peer + agent</text>
+
+  <rect class="b3" x="585" y="120" width="210" height="86" rx="10"/>
+  <text class="h" x="630" y="152">Agent Runtime</text>
+  <text class="x" x="622" y="178">build context, decide</text>
+
+  <rect class="b3" x="585" y="310" width="210" height="86" rx="10"/>
+  <text class="h" x="642" y="342">Harness</text>
+  <text class="x" x="622" y="368">schema / policy / sandbox</text>
+
+  <rect class="b4" x="875" y="214" width="180" height="86" rx="10"/>
+  <text class="h" x="924" y="246">Tools / Nodes</text>
+  <text class="x" x="910" y="272">workspace, browser</text>
+
+  <path class="line" d="M240 257C272 220 288 178 300 163H585M690 206V310M795 353C838 330 860 292 875 257"/>
+  <path class="ret" d="M875 257C814 432 506 448 405 396M300 353C248 344 218 306 240 257"/>
+  <circle class="dot" r="7"><animateMotion dur="5.2s" repeatCount="indefinite" path="M155 257C272 220 288 178 405 163H690V353C838 330 860 292 965 257"/></circle>
+  <circle class="dot2" r="7"><animateMotion dur="5.2s" begin="1.2s" repeatCount="indefinite" path="M965 257C814 432 506 448 405 353C248 344 218 306 155 257"/></circle>
+
+  <rect class="b2" x="186" y="444" width="748" height="38" rx="8"/>
+  <text class="h" x="214" y="469">关键不变量</text>
+  <text class="x" x="330" y="469">身份先过门,动作再执行;观察写回状态,再决定是否继续。</text>
+</svg>
