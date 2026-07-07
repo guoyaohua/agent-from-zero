@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">记忆使用优先级阶梯</title>
+  <desc id="desc">展示长期记忆在上下文中应低于当前请求、系统规则和权威工具观察。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.box{fill:#fff;stroke:#cbd5e1;stroke-width:1.2}.rule{fill:#fee2e2;stroke:#dc2626}.goal{fill:#dbeafe;stroke:#2563eb}.tool{fill:#dcfce7;stroke:#16a34a}.evidence{fill:#fef3c7;stroke:#d97706}.memory{fill:#ede9fe;stroke:#7c3aed}.assume{fill:#f1f5f9;stroke:#64748b}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="540"/>
+  <text class="title" x="48" y="48">记忆是 helpful prior,不是最终裁判</text>
+  <text class="sub" x="48" y="74">当记忆与当前请求、工具观察或权威证据冲突时,记忆应被降权、更新或等待确认。</text>
+
+  <rect class="rule" x="72" y="112" width="420" height="56" rx="8"/><text class="h" x="102" y="136">1. System safety and policy</text><text class="t" x="102" y="154">不可被用户偏好、记忆或外部资料覆盖</text>
+  <rect class="goal" x="116" y="188" width="420" height="56" rx="8"/><text class="h" x="146" y="212">2. Current user request</text><text class="t" x="146" y="230">本轮明确要求优先于长期默认偏好</text>
+  <rect class="tool" x="160" y="264" width="420" height="56" rx="8"/><text class="h" x="190" y="288">3. Verified tool observation</text><text class="t" x="190" y="306">当前文件、数据库、测试结果优先于旧记忆</text>
+  <rect class="evidence" x="204" y="340" width="420" height="56" rx="8"/><text class="h" x="234" y="364">4. Authoritative RAG evidence</text><text class="t" x="234" y="382">有版本和来源的证据优先于经验线索</text>
+  <rect class="memory" x="248" y="416" width="420" height="56" rx="8"/><text class="h" x="278" y="440">5. Scoped long-term memory</text><text class="t" x="278" y="458">只作为默认值、线索和候选约束</text>
+
+  <rect class="box" x="724" y="122" width="328" height="322" rx="10"/>
+  <text class="h" x="754" y="154">冲突时的动作</text>
+  <text class="t" x="754" y="190">当前请求覆盖偏好: 本轮按用户说的做</text>
+  <text class="t" x="754" y="224">工具观察覆盖项目记忆: 标记待更新</text>
+  <text class="t" x="754" y="258">证据覆盖经验记忆: 降权旧经验</text>
+  <text class="t" x="754" y="292">scope 不匹配: 不注入上下文</text>
+  <text class="t" x="754" y="326">来源不明: 只作为低置信线索</text>
+  <text class="t" x="754" y="360">高风险影响: 请求用户确认</text>
+  <text class="t" x="754" y="394">反复冲突: 删除或重写记忆</text>
+</svg>

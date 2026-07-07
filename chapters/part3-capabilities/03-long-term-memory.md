@@ -290,6 +290,37 @@ Instruction: Treat memory as a helpful prior. If current files contradict it, pr
 
 冲突不要交给模型在一大堆文本里自行猜。系统可以在上下文中显式说明优先级。
 
+![长期记忆冲突处理](../assets/part3-long-term-memory-conflict-resolution.svg)
+
+冲突处理最好由系统先完成一轮归因,再把结果交给模型。不要把两条互相矛盾的记忆原样塞进上下文,然后希望模型“理解哪个更可信”。系统应先判断冲突类型:
+
+| 冲突类型 | 例子 | 默认处理 |
+| --- | --- | --- |
+| 当前请求 vs 长期偏好 | 旧偏好“简洁”,本轮要求“详细” | 当前请求覆盖长期偏好 |
+| 工具观察 vs 历史经验 | 记忆说 npm,仓库显示 pnpm | 工具观察覆盖,旧记忆降权或待确认 |
+| 新记忆 vs 旧记忆 | 用户改为英文回复偏好 | 生成新版本,旧版本失效 |
+| 同源不同版本 | 旧政策和新政策都命中 | 按发布时间、版本号和权威性选择 |
+| 跨 scope 冲突 | A 项目用 Java,B 项目用 Go | 不合并,按 scope 隔离 |
+
+冲突处理的输出不一定是“删除旧记忆”。很多时候更好的动作是降权、缩小 scope、设置 TTL、标记待验证,或要求用户确认。比如“这个项目现在用 pnpm”可能只适用于当前仓库,不应该覆盖用户其他项目的构建习惯。
+
+可以把冲突处理写成一个小型状态机:
+
+```text
+detect_conflict -> classify_conflict -> choose_authority -> update_memory_state -> emit_context_note
+```
+
+最终进入上下文的不是冲突原文,而是可执行说明:
+
+```text
+长期记忆冲突说明:
+- 旧记忆 mem_17: project uses npm, confidence=0.62, updated_at=2025-11-12
+- 当前工具观察: packageManager=pnpm@9.0.0, source=package.json, observed_at=2026-07-07
+- 决策: 本轮使用工具观察; mem_17 标记 stale_pending_review
+```
+
+这类说明让模型知道该信什么,也让工程系统知道事后该如何清理。长期记忆的冲突如果只靠 prompt 解决,最后会变成“看起来模型偶尔犯错”;如果有冲突状态和决策记录,它就变成可治理的数据问题。
+
 ## 遗忘和删除
 
 长期记忆必须支持遗忘。
@@ -311,6 +342,35 @@ Instruction: Treat memory as a helpful prior. If current files contradict it, pr
 - 备份和审计策略。
 
 如果系统不能删除记忆,就不要轻易承诺“我会记住”。
+
+![长期记忆删除血缘](../assets/part3-long-term-memory-deletion-lineage.svg)
+
+“删除”之所以复杂,是因为长期记忆经常会产生派生物。一条记忆可能被写入主表,生成 embedding,进入向量索引,被压缩进用户画像摘要,进入 prompt cache,还可能被下游评估样本或审计日志引用。如果只删主表,系统仍可能从摘要或缓存里把它带回来。
+
+因此删除需要血缘追踪。每条长期记忆至少要知道自己生成了哪些派生对象:
+
+| 对象 | 删除动作 | 注意点 |
+| --- | --- | --- |
+| 主记录 | 软删除或硬删除 | 保留必要 tombstone,避免重新导入 |
+| 向量索引项 | 删除向量和倒排引用 | ANN 索引可能需要异步 compact |
+| 摘要画像 | 重新生成或局部编辑 | 防止被删除事实残留在摘要里 |
+| 缓存 | 失效相关 prompt/context cache | 防止短期内继续注入 |
+| 派生记忆 | 级联检查 | 不是全部删除,而是判断是否依赖原记忆 |
+| 审计记录 | 保留最小合规信息 | 不保留被删除内容本身,只保留删除事件 |
+
+这里的 tombstone 很重要。它不是“偷偷保存一份原文”,而是一个最小删除标记,用于阻止旧数据从备份、同步任务或重新索引流程里复活。例如:
+
+```json
+{
+  "memory_id": "mem_17",
+  "deleted_at": "2026-07-07T09:30:00Z",
+  "delete_reason": "user_request",
+  "content_hash": "sha256:...",
+  "content_removed": true
+}
+```
+
+真正可靠的删除流程还要有验证步骤:删除完成后,用原始实体、近义表达和历史 query 去检索,确认主索引、向量索引、摘要和缓存都不会再返回该内容。没有验证,删除只是一次数据库操作;有了血缘和验证,遗忘才成为系统能力。
 
 ## 隐私和安全
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 失败定位矩阵</title>
+  <desc id="desc">展示 RAG 答案错误时如何区分覆盖、权限、查询、召回、重排、证据包、生成和引用校验问题。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.head{fill:#e0f2fe;stroke:#0284c7}.cell{fill:#fff;stroke:#cbd5e1}.bad{fill:#fee2e2;stroke:#dc2626}.ok{fill:#dcfce7;stroke:#16a34a}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">RAG 答错时,先定位哪一层坏了,再决定怎么修</text>
+  <text class="sub" x="48" y="74">同一个错误答案,可能来自数据缺失、权限过滤、检索失败、证据不足或模型不忠实。</text>
+  <rect class="head" x="48" y="112" width="1024" height="40" rx="8"/>
+  <text class="h" x="76" y="137">层</text><text class="h" x="186" y="137">症状</text><text class="h" x="498" y="137">trace 证据</text><text class="h" x="780" y="137">优先修复</text>
+  <rect class="cell" x="48" y="152" width="1024" height="46"/><text class="h" x="76" y="180">Coverage</text><text class="t" x="186" y="180">知识库里根本没有正确答案或版本</text><text class="t" x="498" y="180">source list / doc version / sync lag</text><text class="t" x="780" y="180">补数据、修同步、标版本</text>
+  <rect class="cell" x="48" y="198" width="1024" height="46"/><text class="h" x="76" y="226">Permission</text><text class="t" x="186" y="226">正确文档存在但用户不可见</text><text class="t" x="498" y="226">ACL filter / tenant / visibility</text><text class="t" x="780" y="226">修权限过滤和租户隔离</text>
+  <rect class="cell" x="48" y="244" width="1024" height="46"/><text class="h" x="76" y="272">Query</text><text class="t" x="186" y="272">问题改写漏实体或改错意图</text><text class="t" x="498" y="272">rewritten query / subqueries</text><text class="t" x="780" y="272">改写规则、实体补全、拆子问题</text>
+  <rect class="cell" x="48" y="290" width="1024" height="46"/><text class="h" x="76" y="318">Recall</text><text class="t" x="186" y="318">正确 chunk 没进候选集</text><text class="t" x="498" y="318">top-k candidates / scores / index</text><text class="t" x="780" y="318">切块、embedding、BM25、ANN 参数</text>
+  <rect class="cell" x="48" y="336" width="1024" height="46"/><text class="h" x="76" y="364">Rerank</text><text class="t" x="186" y="364">正确候选被噪声压下去</text><text class="t" x="498" y="364">rank before/after / hard negatives</text><text class="t" x="780" y="364">训练重排、融合策略、去重</text>
+  <rect class="cell" x="48" y="382" width="1024" height="46"/><text class="h" x="76" y="410">Evidence</text><text class="t" x="186" y="410">缺条件、例外、版本或冲突解释</text><text class="t" x="498" y="410">evidence pack / sufficiency check</text><text class="t" x="780" y="410">邻接扩展、压缩、证据充分性检查</text>
+  <rect class="cell" x="48" y="428" width="1024" height="46"/><text class="h" x="76" y="456">Generation</text><text class="t" x="186" y="456">证据在上下文里,答案仍然补常识</text><text class="t" x="498" y="456">claims vs cited evidence</text><text class="t" x="780" y="456">生成约束、拒答策略、claim check</text>
+  <rect class="cell" x="48" y="474" width="1024" height="46"/><text class="h" x="76" y="502">Citation</text><text class="t" x="186" y="502">引用存在但不支持结论</text><text class="t" x="498" y="502">citation verifier / unsupported claims</text><text class="t" x="780" y="502">引用校验、人工抽检、回归样本</text>
+</svg>

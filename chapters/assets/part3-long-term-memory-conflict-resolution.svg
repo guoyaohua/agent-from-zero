@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">长期记忆冲突处理</title>
+  <desc id="desc">展示长期记忆与当前请求、工具观察或权威证据冲突时的决策路径。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.q{fill:#fff7ed;stroke:#ea580c;stroke-width:1.4}.ok{fill:#dcfce7;stroke:#16a34a}.bad{fill:#fee2e2;stroke:#dc2626}.mid{fill:#dbeafe;stroke:#2563eb}.hold{fill:#ede9fe;stroke:#7c3aed}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">长期记忆冲突不要交给模型猜,要由系统显式仲裁</text>
+  <text class="sub" x="48" y="74">冲突处理的目标是: 当前任务不被旧记忆误导,同时把旧记忆转化为可更新资产。</text>
+
+  <rect class="q" x="432" y="112" width="256" height="68" rx="8"/><text class="h" x="496" y="141">记忆与当前材料冲突?</text><text class="t" x="480" y="162">memory vs request/tool/evidence</text>
+  <rect class="bad" x="116" y="230" width="220" height="74" rx="8"/><text class="h" x="160" y="260">scope 不匹配</text><text class="t" x="148" y="282">隐藏记忆,记录误召回</text>
+  <rect class="mid" x="450" y="230" width="220" height="74" rx="8"/><text class="h" x="500" y="260">当前请求更具体</text><text class="t" x="482" y="282">本轮覆盖长期默认</text>
+  <rect class="ok" x="784" y="230" width="220" height="74" rx="8"/><text class="h" x="818" y="260">工具/证据更权威</text><text class="t" x="814" y="282">使用新证据并标记更新</text>
+  <rect class="hold" x="278" y="390" width="220" height="74" rx="8"/><text class="h" x="326" y="420">不确定或高风险</text><text class="t" x="318" y="442">请求确认或降级使用</text>
+  <rect class="ok" x="622" y="390" width="220" height="74" rx="8"/><text class="h" x="668" y="420">确认新事实</text><text class="t" x="656" y="442">更新、降权或删除旧记忆</text>
+  <path class="arrow" d="M480 180 C390 210 312 218 260 230"/>
+  <path class="arrow" d="M560 180 V230"/>
+  <path class="arrow" d="M640 180 C730 210 808 218 860 230"/>
+  <path class="arrow" d="M560 304 C505 344 455 362 408 390"/>
+  <path class="arrow" d="M894 304 C846 348 790 368 746 390"/>
+  <rect x="96" y="504" width="928" height="34" rx="8" fill="#111827"/>
+  <text x="156" y="526" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">处理原则: 先保护当前任务正确性,再把冲突写回治理队列,让长期记忆持续变干净。</text>
+</svg>

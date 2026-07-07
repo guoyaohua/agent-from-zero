@@ -426,6 +426,29 @@ Agentic RAG 的关键不是“让模型自由多搜几次”,而是让每一轮�
 
 没有停止条件的 Agentic RAG 会变成“越搜越乱”。好的循环应记录每轮 query、命中、证据缺口和下一轮目的,并在预算耗尽或无进展时停下来。
 
+![Agentic RAG 循环账本](../assets/part3-agentic-rag-loop-ledger.svg)
+
+Agentic RAG 的每一轮都应该回答五个问题:
+
+1. 本轮想补哪个证据缺口。
+2. query 为什么这样写,是否由上轮结果触发。
+3. 命中的证据支持、反驳还是只相关。
+4. 下一步是扩展、收窄、验证、对比还是停止。
+5. 停止时是否已经足以回答,或应该拒答。
+
+可以把循环账本设计成这样:
+
+| round | purpose | query | evidence_gap_before | result | next_action |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 找新政策 | `2026 travel approval Hong Kong policy` | 不知道新政策条款 | 命中新政策摘要 | verify |
+| 2 | 找旧政策 | `2025 travel approval Hong Kong old policy` | 缺少对比基线 | 命中旧版本 | compare |
+| 3 | 查本地补充 | `Hong Kong team travel local addendum` | 不知道是否有地区例外 | 未命中 | broaden 或 refuse |
+| 4 | 验证结论 | `policy change effective date HK travel approval` | 生效日期不确定 | 命中发布通知 | stop |
+
+这个账本的价值是把“Agent 在查资料”变成“Agent 在关闭证据缺口”。如果某轮检索没有减少缺口,下一轮不应该机械继续。常见停止条件包括:关键 claim 都有引用、冲突来源已解释、预算耗尽且缺口可陈述、连续两轮没有新增有效证据、或用户问题本身需要澄清。
+
+真正上线时,还要限制 Agentic RAG 的搜索空间。允许它在已授权知识源中多轮检索,不等于允许它无限扩展到任意外部网页。每轮 query 都应继承权限过滤、来源白名单和预算约束,否则多轮检索会放大信息泄露和 prompt injection 风险。
+
 ## RAG 评估
 
 RAG 评估要拆成多个层次。
@@ -454,6 +477,38 @@ RAG 评估要拆成多个层次。
 8. 引用是否支持结论?
 
 这个流程能快速定位问题在数据、检索、排序、上下文还是生成。
+
+![RAG 失败定位矩阵](../assets/part3-rag-failure-localization.svg)
+
+更系统的做法是把 RAG 失败定位成矩阵,不要只看最终答案。一个端到端错误可能来自八个不同位置:
+
+| 位置 | 失败信号 | 主要修复手段 |
+| --- | --- | --- |
+| 覆盖 | 正确文档根本不在知识库 | 补数据源、同步策略、版本治理 |
+| 权限 | 文档存在但用户无权访问或过滤错误 | ACL 测试、租户隔离、权限 trace |
+| 清洗切块 | 正确内容被切碎、丢标题、丢表格关系 | 结构化解析、标题继承、表格保真 |
+| 查询改写 | query 丢实体、时间或约束 | 改写评估、实体补全、保留原问 |
+| 初召回 | 正确 chunk 没进候选 | 混合检索、embedding 选择、ANN 参数 |
+| 重排 | 正确 chunk 召回了但排太后 | reranker、hard negative、特征融合 |
+| 证据包 | 关键例外、版本或邻接段没进入上下文 | 邻接扩展、去重压缩、证据充分性检查 |
+| 生成校验 | 证据在上下文里但答案不忠实 | 引用约束、claim-check、拒答策略 |
+
+排查顺序应该从上游到下游。比如正确文档不在知识库时,换生成模型没有意义;正确 chunk 已经进入证据包但答案仍然编造时,继续调 embedding 也没有意义。RAG 工程的一个基本纪律是:先证明正确证据在哪里断掉,再改对应层。
+
+一次失败复盘可以写成这样的归因记录:
+
+```json
+{
+  "question_id": "travel_policy_hk_017",
+  "expected_evidence": ["policy_2026_hk_addendum#section-3"],
+  "failure_stage": "evidence_pack",
+  "observed": "correct chunk was ranked #3 but dropped by context compressor",
+  "fix": "pin exception clauses during evidence compression",
+  "regression_test": "rag_pack_keeps_regional_exception"
+}
+```
+
+这类记录会让 RAG 迭代更像软件工程:每个 bug 都有失败阶段、修复动作和回归用例。没有这一步,RAG 很容易陷入“今天多加 top-k,明天换 embedding,后天换模型”的循环。
 
 ## RAG Trace:每次回答都要能复盘证据链
 

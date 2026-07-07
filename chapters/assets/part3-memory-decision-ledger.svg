@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">记忆决策账本</title>
+  <desc id="desc">展示 Agent 记忆从候选捕获、写入、检索到使用时应记录的决策字段。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.cell{fill:#fff;stroke:#cbd5e1;stroke-width:1.2}.blue{fill:#dbeafe;stroke:#2563eb}.green{fill:#dcfce7;stroke:#16a34a}.amber{fill:#fef3c7;stroke:#d97706}.red{fill:#fee2e2;stroke:#dc2626}.purple{fill:#ede9fe;stroke:#7c3aed}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">记忆系统不是“存下来”,而是每一步都要留下决策账本</text>
+  <text class="sub" x="48" y="74">候选为何产生、为何写入、为何召回、为何进入上下文,都应可复盘。</text>
+
+  <rect class="blue" x="54" y="116" width="170" height="76" rx="8"/>
+  <text class="h" x="104" y="146">Event</text><text class="t" x="82" y="170">对话 / 工具 / 反馈</text>
+  <rect class="amber" x="270" y="116" width="170" height="76" rx="8"/>
+  <text class="h" x="318" y="146">Candidate</text><text class="t" x="296" y="170">候选记忆与来源</text>
+  <rect class="red" x="486" y="116" width="170" height="76" rx="8"/>
+  <text class="h" x="532" y="146">Write gate</text><text class="t" x="516" y="170">稳定 / 复用 / 风险</text>
+  <rect class="green" x="702" y="116" width="170" height="76" rx="8"/>
+  <text class="h" x="746" y="146">Memory</text><text class="t" x="730" y="170">结构化记录</text>
+  <rect class="purple" x="918" y="116" width="150" height="76" rx="8"/>
+  <text class="h" x="958" y="146">Use gate</text><text class="t" x="946" y="170">注入或拒绝</text>
+  <path class="arrow" d="M224 154 H270 M440 154 H486 M656 154 H702 M872 154 H918"/>
+
+  <rect class="cell" x="54" y="246" width="1014" height="42" rx="8"/>
+  <text class="h" x="82" y="272">Ledger field</text><text class="h" x="318" y="272">写入时回答</text><text class="h" x="676" y="272">使用时回答</text>
+  <rect class="cell" x="54" y="288" width="1014" height="46"/>
+  <text class="t" x="82" y="316">source / evidence_id</text><text class="t" x="318" y="316">这条信息来自用户明确要求、工具观察,还是模型推断?</text><text class="t" x="676" y="316">能否回源验证,是否被摘要或转写过?</text>
+  <rect class="cell" x="54" y="334" width="1014" height="46"/>
+  <text class="t" x="82" y="362">scope / owner</text><text class="t" x="318" y="362">只属于 task、user、project 还是 organization?</text><text class="t" x="676" y="362">当前用户、项目和权限是否匹配?</text>
+  <rect class="cell" x="54" y="380" width="1014" height="46"/>
+  <text class="t" x="82" y="408">confidence / ttl</text><text class="t" x="318" y="408">是高置信事实、低置信经验,还是即将过期?</text><text class="t" x="676" y="408">是否需要降权、复查或请求确认?</text>
+  <rect class="cell" x="54" y="426" width="1014" height="46"/>
+  <text class="t" x="82" y="454">data_class / risk</text><text class="t" x="318" y="454">是否含 PII、secret、内部资料或注入风险?</text><text class="t" x="676" y="454">能否进入模型上下文,是否需要脱敏?</text>
+  <rect class="cell" x="54" y="472" width="1014" height="46"/>
+  <text class="t" x="82" y="500">decision / reason</text><text class="t" x="318" y="500">为什么写入、拒绝、降级或待确认?</text><text class="t" x="676" y="500">为什么注入、隐藏、更新或删除?</text>
+</svg>

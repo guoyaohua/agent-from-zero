@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">长期记忆删除血缘</title>
+  <desc id="desc">展示删除长期记忆时需要处理主记录、向量索引、摘要、缓存、派生记忆和审计 tombstone。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.src{fill:#fee2e2;stroke:#dc2626}.node{fill:#fff;stroke:#94a3b8;stroke-width:1.3}.idx{fill:#dbeafe;stroke:#2563eb}.cache{fill:#fef3c7;stroke:#d97706}.sum{fill:#ede9fe;stroke:#7c3aed}.ok{fill:#dcfce7;stroke:#16a34a}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="540"/>
+  <text class="title" x="48" y="48">“删除记忆”不是删一行文本,而是清理整条派生链</text>
+  <text class="sub" x="48" y="74">长期记忆可能出现在主库、向量索引、摘要、缓存、上下文快照和派生记忆中。</text>
+
+  <rect class="src" x="56" y="126" width="196" height="80" rx="8"/><text class="h" x="96" y="157">Delete request</text><text class="t" x="86" y="181">用户撤回 / 过期 / 错误</text>
+  <rect class="node" x="318" y="126" width="196" height="80" rx="8"/><text class="h" x="364" y="157">Primary record</text><text class="t" x="350" y="181">mem_id + metadata</text>
+  <rect class="idx" x="580" y="96" width="196" height="70" rx="8"/><text class="h" x="636" y="126">Vector index</text><text class="t" x="618" y="148">embedding rows</text>
+  <rect class="sum" x="580" y="186" width="196" height="70" rx="8"/><text class="h" x="628" y="216">Summaries</text><text class="t" x="614" y="238">derived notes</text>
+  <rect class="cache" x="842" y="96" width="196" height="70" rx="8"/><text class="h" x="902" y="126">Caches</text><text class="t" x="884" y="148">retrieval/context</text>
+  <rect class="node" x="842" y="186" width="196" height="70" rx="8"/><text class="h" x="894" y="216">Backups</text><text class="t" x="876" y="238">retention policy</text>
+  <rect class="ok" x="318" y="342" width="720" height="84" rx="10"/><text class="h" x="348" y="374">Tombstone and audit</text><text class="t" x="348" y="398">保留删除原因、时间、操作者、影响范围和不可逆清理状态,但不保留原始敏感内容。</text>
+  <path class="arrow" d="M252 166 H318"/>
+  <path class="arrow" d="M514 166 C548 132 548 132 580 132"/>
+  <path class="arrow" d="M514 166 C548 220 548 220 580 220"/>
+  <path class="arrow" d="M776 132 H842"/>
+  <path class="arrow" d="M776 220 H842"/>
+  <path class="arrow" d="M416 206 V342"/>
+  <path class="arrow" d="M678 256 V342"/>
+  <path class="arrow" d="M940 256 V342"/>
+</svg>

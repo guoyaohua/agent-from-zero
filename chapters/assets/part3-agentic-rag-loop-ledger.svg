@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic RAG 循环账本</title>
+  <desc id="desc">展示多轮检索中每一轮应记录目的、查询、证据缺口、动作和停止条件。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.cell{fill:#fff;stroke:#cbd5e1}.blue{fill:#dbeafe;stroke:#2563eb}.amber{fill:#fef3c7;stroke:#d97706}.green{fill:#dcfce7;stroke:#16a34a}.red{fill:#fee2e2;stroke:#dc2626}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">Agentic RAG 不是多搜几次,而是每轮都带着证据缺口前进</text>
+  <text class="sub" x="48" y="74">循环要记录目的、query、结果、缺口和停止条件,否则会越搜越乱。</text>
+
+  <rect class="blue" x="76" y="120" width="190" height="78" rx="8"/><text class="h" x="122" y="150">Question</text><text class="t" x="108" y="174">用户问题 + 约束</text>
+  <rect class="amber" x="326" y="120" width="190" height="78" rx="8"/><text class="h" x="372" y="150">Gap</text><text class="t" x="354" y="174">缺事实 / 条件 / 版本</text>
+  <rect class="green" x="576" y="120" width="190" height="78" rx="8"/><text class="h" x="622" y="150">Retrieve</text><text class="t" x="604" y="174">broaden / narrow / verify</text>
+  <rect class="red" x="826" y="120" width="190" height="78" rx="8"/><text class="h" x="878" y="150">Stop?</text><text class="t" x="858" y="174">可回答 / 拒答 / 预算</text>
+  <path class="arrow" d="M266 159 H326 M516 159 H576 M766 159 H826"/>
+  <path class="arrow" d="M921 198 C900 258 610 258 421 198"/>
+
+  <rect class="cell" x="76" y="292" width="940" height="42" rx="8"/>
+  <text class="h" x="106" y="318">Loop ledger</text><text class="h" x="290" y="318">记录内容</text><text class="h" x="720" y="318">为什么重要</text>
+  <rect class="cell" x="76" y="334" width="940" height="42"/>
+  <text class="t" x="106" y="360">purpose</text><text class="t" x="290" y="360">broaden / narrow / verify / compare / refuse</text><text class="t" x="720" y="360">防止无目的搜索</text>
+  <rect class="cell" x="76" y="376" width="940" height="42"/>
+  <text class="t" x="106" y="402">query</text><text class="t" x="290" y="402">原始问题、改写、子查询和实体补全</text><text class="t" x="720" y="402">定位 query drift</text>
+  <rect class="cell" x="76" y="418" width="940" height="42"/>
+  <text class="t" x="106" y="444">evidence_delta</text><text class="t" x="290" y="444">新增证据、冲突证据、仍缺什么</text><text class="t" x="720" y="444">判断是否有进展</text>
+  <rect class="cell" x="76" y="460" width="940" height="42"/>
+  <text class="t" x="106" y="486">stop_rule</text><text class="t" x="290" y="486">can_answer、need_more、ask_user、refuse、budget_exhausted</text><text class="t" x="720" y="486">避免无限检索</text>
+</svg>

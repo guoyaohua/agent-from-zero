@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Context Pack 装配账本</title>
+  <desc id="desc">展示 context builder 如何为每个上下文片段记录来源、层级、预算、信任和可回源信息。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.box{fill:#fff;stroke:#94a3b8;stroke-width:1.3}.blue{fill:#dbeafe;stroke:#2563eb}.green{fill:#dcfce7;stroke:#16a34a}.amber{fill:#fef3c7;stroke:#d97706}.purple{fill:#ede9fe;stroke:#7c3aed}.red{fill:#fee2e2;stroke:#dc2626}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">Context Pack 应该像接口数据一样有装配账本</text>
+  <text class="sub" x="48" y="74">每个片段都要说明为什么进入上下文、属于哪一层、占多少预算、能否回源。</text>
+
+  <rect class="blue" x="58" y="118" width="160" height="72" rx="8"/><text class="h" x="94" y="148">State</text><text class="t" x="84" y="172">goal / progress</text>
+  <rect class="green" x="264" y="118" width="160" height="72" rx="8"/><text class="h" x="300" y="148">Memory</text><text class="t" x="292" y="172">scope / source</text>
+  <rect class="amber" x="470" y="118" width="160" height="72" rx="8"/><text class="h" x="512" y="148">Evidence</text><text class="t" x="500" y="172">S1 / S2 / version</text>
+  <rect class="purple" x="676" y="118" width="160" height="72" rx="8"/><text class="h" x="718" y="148">Tools</text><text class="t" x="704" y="172">selected schema</text>
+  <rect class="red" x="882" y="118" width="160" height="72" rx="8"/><text class="h" x="922" y="148">Policy</text><text class="t" x="914" y="172">priority / safety</text>
+  <path class="arrow" d="M218 154 H264 M424 154 H470 M630 154 H676 M836 154 H882"/>
+
+  <rect class="box" x="58" y="244" width="984" height="234" rx="10"/>
+  <text class="h" x="88" y="278">装配账本字段</text>
+  <text class="t" x="88" y="316">section: system | task | state | memory | evidence | tools | observations | output_contract</text>
+  <text class="t" x="88" y="348">source: user_turn_18 | mem_42 | rag:S3 | tool_result_7 | policy_v4</text>
+  <text class="t" x="88" y="380">priority: hard_rule | current_goal | verified_observation | helpful_prior | low_trust_evidence</text>
+  <text class="t" x="88" y="412">budget: tokens=184 / max=600, compression=extractive, dropped_items=[...]</text>
+  <text class="t" x="88" y="444">trust: trusted_instruction | verified_tool | scoped_memory | untrusted_external</text>
+  <text class="t" x="88" y="466">trace: why_included, why_ordered_here, how_to_verify, removal_reason_if_dropped</text>
+</svg>

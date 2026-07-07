@@ -212,6 +212,41 @@ Context builder 负责:
 
 Context pack 测试最好同时保存快照和评分。快照让人能 review 本次模型到底看见了什么;评分让系统能自动比较两个 context builder 版本。没有这层测试,上下文工程会退化成“感觉这个 prompt 更好”。
 
+![Context Pack 装配账本](../assets/part3-context-pack-assembly-ledger.svg)
+
+Context pack 不是一段字符串,而是一批片段按规则装配后的结果。每个片段都应该带上装配账本,记录它为什么进入、放在哪一层、用了多少预算、是否可信、能否回源。否则出了问题时,你只能看见最终 prompt,看不见构建过程。
+
+一个 context item 可以这样建模:
+
+```json
+{
+  "id": "ctx_42",
+  "layer": "rag_evidence",
+  "content_ref": "policy_2026_hk_addendum#section-3",
+  "source": "enterprise_search",
+  "trust_level": "trusted_evidence",
+  "instruction_role": "data_not_instruction",
+  "token_cost": 312,
+  "priority": 0.86,
+  "included_reason": "supports_required_claim",
+  "fallback_ref": "doc://policy_2026_hk_addendum"
+}
+```
+
+这几个字段分别解决不同问题:
+
+| 字段 | 防止的问题 |
+| --- | --- |
+| `layer` | 指令、证据、记忆和观察混在一起 |
+| `source` | 答案无法追溯来源 |
+| `trust_level` | 外部网页内容被当成系统指令 |
+| `token_cost` | 上下文预算被隐形耗尽 |
+| `priority` | 低价值材料挤掉关键约束 |
+| `included_reason` | 无法解释为什么某段进入上下文 |
+| `fallback_ref` | 压缩后不能回到原文核验 |
+
+装配账本还能支持自动化测试。测试不只检查字符串里是否包含某句话,还可以检查“高优先级系统规则必须在 instruction 层”“外部文档必须标成 evidence”“敏感工具结果不得进入模型”“区域例外条款不能被压缩器删掉”。这才是上下文工程从 prompt 手艺变成工程系统的关键一步。
+
 ## 上下文压缩
 
 压缩不是简单摘要。
@@ -394,6 +429,30 @@ Priority:
 不要只凭感觉判断上下文“看起来更完整”。
 
 评估时要记录 context diff。一个版本变好或变差时,你需要知道差异来自哪里:少注入了某条旧记忆、RAG 证据顺序变化、工具 schema 被裁掉、还是输出契约位置改变。没有 context diff,上下文工程的迭代很难稳定复现。
+
+![上下文 Diff 回归](../assets/part3-context-diff-regression.svg)
+
+Context diff 不能只做普通文本 diff。因为两个 context pack 文本看起来差不多,但结构意义可能完全不同:同一段政策从 evidence 层跑到 instruction 层,风险会大幅上升;同一条工具 schema 位置变化,可能影响模型是否选择工具;同样减少 300 token,可能是删了噪声,也可能删了关键例外。
+
+更有用的 diff 至少比较五类变化:
+
+| Diff 类型 | 例子 | 可能影响 |
+| --- | --- | --- |
+| 层级变化 | evidence 被放进 instruction 区 | 注入风险、规则混淆 |
+| 内容变化 | 缺少地区例外条款 | 答案错误、过度泛化 |
+| 顺序变化 | 输出格式约束被放到很前面 | 生成时遗忘约束 |
+| 预算变化 | 工具 schema 占比从 15% 到 45% | 成本升高、状态被挤掉 |
+| 来源变化 | 权威文档换成旧摘要 | 引用不可靠、版本回退 |
+
+一次上下文回归评估可以保留三份产物:
+
+1. `context_pack_before.json`:旧版本装配结果。
+2. `context_pack_after.json`:新版本装配结果。
+3. `context_diff_report.json`:结构化差异、任务结果变化和失败归因。
+
+当任务结果变差时,不要只问“模型为什么又错了”,而要看 diff:是记忆检索多了一条旧偏好,还是 RAG 压缩删掉了例外,还是工具观察被放在了证据之后。很多 Agent 问题表面是推理失败,底层其实是 context pack 退化。
+
+这也是为什么上下文工程需要回归集。每次修改 context builder,都应该跑一组典型任务:需要长期记忆的、必须拒答的、需要工具观察覆盖旧记忆的、需要 RAG 引用的、包含不可信网页指令的。只有当 diff 可解释、指标不退化,新的上下文构建策略才应该发布。
 
 ## 常见失败模式
 
