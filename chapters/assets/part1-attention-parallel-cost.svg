@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Attention 的并行优势与平方成本</title>
+  <desc id="desc">展示 RNN 需要按时间步串行计算,Self-Attention 可以矩阵化并行计算所有位置关系,但注意力矩阵随序列长度平方增长。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .cell { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1; }
+      .hot { fill: #dfe8f5; stroke: #355c9a; stroke-width: 1; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">Self-Attention 适合并行,但注意力矩阵会随长度平方变大</text>
+  <text class="sub" x="48" y="68">这就是 Transformer 能扩展训练,同时长上下文又昂贵的根本原因。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="92" y="132" width="430" height="228" rx="8" />
+  <text class="label" x="248" y="164">RNN 串行链</text>
+  <g transform="translate(128 218)">
+    <rect class="panel" x="0" y="0" width="54" height="38" rx="8" /><text class="small" x="16" y="24">h1</text>
+    <rect class="panel" x="86" y="0" width="54" height="38" rx="8" /><text class="small" x="16" y="24">h2</text>
+    <rect class="panel" x="172" y="0" width="54" height="38" rx="8" /><text class="small" x="16" y="24">h3</text>
+    <rect class="panel" x="258" y="0" width="54" height="38" rx="8" /><text class="small" x="16" y="24">h4</text>
+    <path class="arrow" d="M54 19 H86" /><path class="arrow" d="M140 19 H172" /><path class="arrow" d="M226 19 H258" />
+  </g>
+  <rect class="red" x="164" y="302" width="286" height="34" rx="8" />
+  <text class="small" x="192" y="324">第 t 步必须等第 t-1 步完成</text>
+
+  <rect class="green" x="598" y="132" width="430" height="228" rx="8" />
+  <text class="label" x="728" y="164">Attention 矩阵化</text>
+  <g transform="translate(660 194)">
+    <g>
+      <rect class="hot" x="0" y="0" width="26" height="26" /><rect class="cell" x="28" y="0" width="26" height="26" /><rect class="cell" x="56" y="0" width="26" height="26" /><rect class="cell" x="84" y="0" width="26" height="26" />
+      <rect class="hot" x="0" y="28" width="26" height="26" /><rect class="hot" x="28" y="28" width="26" height="26" /><rect class="cell" x="56" y="28" width="26" height="26" /><rect class="cell" x="84" y="28" width="26" height="26" />
+      <rect class="hot" x="0" y="56" width="26" height="26" /><rect class="hot" x="28" y="56" width="26" height="26" /><rect class="hot" x="56" y="56" width="26" height="26" /><rect class="cell" x="84" y="56" width="26" height="26" />
+      <rect class="hot" x="0" y="84" width="26" height="26" /><rect class="hot" x="28" y="84" width="26" height="26" /><rect class="hot" x="56" y="84" width="26" height="26" /><rect class="hot" x="84" y="84" width="26" height="26" />
+    </g>
+    <text class="small" x="140" y="22">QK^T 一次得到</text>
+    <text class="small" x="140" y="48">所有位置关系</text>
+    <text class="small" x="140" y="88">causal mask 只屏蔽未来,</text>
+    <text class="small" x="140" y="108">不破坏矩阵并行</text>
+  </g>
+  <rect class="orange" x="672" y="302" width="286" height="34" rx="8" />
+  <text class="small" x="704" y="324">长度 T -> 注意力矩阵 T x T</text>
+
+  <rect class="panel" x="108" y="392" width="896" height="28" rx="8" />
+  <text class="text" x="136" y="412">读图方式: Transformer 用平方级位置交互换来并行训练和直接路由。</text>
+  <text class="text" x="136" y="456">工程含义: 长上下文需要 Flash Attention、稀疏窗口、KV Cache、分页管理等优化共同支撑。</text>
+</svg>

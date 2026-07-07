@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Attention 把压缩记忆改成按需路由</title>
+  <desc id="desc">对比 RNN 将历史压入一个隐藏状态与 Attention 让当前位置直接对多个相关位置分配权重并读取信息。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .attn { fill: none; stroke: #2d7d80; stroke-width: 3; marker-end: url(#greenArrow); }
+      .weak { fill: none; stroke: #b13c52; stroke-width: 2; stroke-dasharray: 5 5; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">Attention 的核心转变: 不再只依赖一个压缩状态</text>
+  <text class="sub" x="48" y="68">当前位置可以直接给多个位置打分,按相关性读取信息。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="88" y="126" width="450" height="250" rx="8" />
+  <text class="label" x="250" y="156">RNN: 链式传递</text>
+  <g transform="translate(124 210)">
+    <rect class="panel" x="0" y="0" width="62" height="42" rx="8" /><text class="small" x="17" y="27">书</text>
+    <rect class="panel" x="92" y="0" width="62" height="42" rx="8" /><text class="small" x="18" y="27">修饰</text>
+    <rect class="panel" x="184" y="0" width="62" height="42" rx="8" /><text class="small" x="18" y="27">很多</text>
+    <rect class="panel" x="276" y="0" width="62" height="42" rx="8" /><text class="small" x="17" y="27">读完</text>
+    <path class="arrow" d="M62 21 H92" /><path class="arrow" d="M154 21 H184" /><path class="arrow" d="M246 21 H276" />
+  </g>
+  <rect class="red" x="184" y="298" width="258" height="44" rx="8" />
+  <text class="small" x="216" y="324">早期信息必须穿过多个状态更新</text>
+
+  <rect class="green" x="582" y="126" width="450" height="250" rx="8" />
+  <text class="label" x="738" y="156">Attention: 直接路由</text>
+  <g transform="translate(620 210)">
+    <rect class="panel" x="0" y="0" width="62" height="42" rx="8" /><text class="small" x="17" y="27">书</text>
+    <rect class="panel" x="92" y="0" width="62" height="42" rx="8" /><text class="small" x="18" y="27">修饰</text>
+    <rect class="panel" x="184" y="0" width="62" height="42" rx="8" /><text class="small" x="18" y="27">很多</text>
+    <rect class="orange" x="276" y="0" width="62" height="42" rx="8" /><text class="small" x="17" y="27">读完</text>
+    <path class="attn" d="M307 0 C280 -64 66 -64 31 0" />
+    <path class="weak" d="M307 42 C292 86 206 86 215 42" />
+    <text class="small" x="68" y="-52">高权重读取相关对象</text>
+  </g>
+  <rect class="blue" x="688" y="298" width="258" height="44" rx="8" />
+  <text class="small" x="714" y="324">当前位置直接访问相关 token 的 Value</text>
+
+  <rect class="panel" x="108" y="392" width="896" height="28" rx="8" />
+  <text class="text" x="136" y="412">读图方式: Attention 不是记忆更大,而是把“全部压缩”改成“按需读取”。</text>
+  <text class="text" x="136" y="456">Agent 类比: 不要把所有历史压进摘要;需要时检索原始证据,再让模型基于证据决策。</text>
+</svg>

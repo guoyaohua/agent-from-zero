@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从静态 token embedding 到上下文表示</title>
+  <desc id="desc">展示同一个 token 的初始 embedding 相同,但经过不同上下文和多层 Transformer 加工后会形成不同含义的隐藏表示。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .layer { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.1; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">同一个 token 的起点相同,最终含义由上下文重写</text>
+  <text class="sub" x="48" y="68">Embedding 是查表起点;真正用于预测的是经过多层 Attention 与 FFN 后的上下文隐藏表示。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="88" y="138" width="180" height="82" rx="8" />
+  <text class="label" x="134" y="170">token: 苹果</text>
+  <text class="small" x="126" y="196">同一个 ID,同一行 embedding</text>
+  <path class="arrow" d="M268 178 H340" />
+
+  <g transform="translate(340 120)">
+    <rect class="layer" x="0" y="0" width="110" height="220" rx="8" />
+    <text class="label" x="25" y="34">Embedding</text>
+    <rect class="blue" x="24" y="60" width="62" height="22" rx="4" />
+    <rect class="blue" x="24" y="96" width="62" height="22" rx="4" />
+    <rect class="blue" x="24" y="132" width="62" height="22" rx="4" />
+    <text class="small" x="17" y="190">静态起点</text>
+  </g>
+  <path class="arrow" d="M450 230 H520" />
+
+  <g transform="translate(520 120)">
+    <rect class="layer" x="0" y="0" width="170" height="220" rx="8" />
+    <text class="label" x="39" y="34">Transformer 层</text>
+    <rect class="orange" x="24" y="58" width="122" height="34" rx="6" />
+    <text class="small" x="42" y="80">Attention 混入上下文</text>
+    <rect class="green" x="24" y="112" width="122" height="34" rx="6" />
+    <text class="small" x="48" y="134">FFN 加工特征</text>
+    <rect class="orange" x="24" y="166" width="122" height="34" rx="6" />
+    <text class="small" x="44" y="188">多层反复重写</text>
+  </g>
+  <path class="arrow" d="M690 230 H762" />
+
+  <rect class="green" x="762" y="120" width="260" height="96" rx="8" />
+  <text class="label" x="794" y="150">我买了一个苹果</text>
+  <text class="small" x="794" y="176">隐藏表示偏向: 水果、可食用、购买</text>
+  <rect class="red" x="762" y="244" width="260" height="96" rx="8" />
+  <text class="label" x="794" y="274">苹果发布了芯片</text>
+  <text class="small" x="794" y="300">隐藏表示偏向: 公司、产品、科技</text>
+
+  <rect class="panel" x="88" y="360" width="934" height="38" rx="8" />
+  <text class="text" x="116" y="383">读图方式: 初始 embedding 只提供 token 的基础坐标;上下文层把它改写成适合当前句子和任务的动态表示。</text>
+  <text class="text" x="116" y="456">工程含义: RAG、Prompt、工具结果都会改变后续隐藏表示,进而改变 logits 与生成路径。</text>
+</svg>

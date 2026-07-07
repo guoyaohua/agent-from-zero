@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Self-Attention 矩阵与 causal mask</title>
+  <desc id="desc">展示 QK 转置得到 T 乘 T 分数矩阵,缩放和 mask 后经过 Softmax 形成权重,再乘 V 得到输出。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .cell { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1; }
+      .allow { fill: #dfe8f5; stroke: #355c9a; stroke-width: 1; }
+      .block { fill: #f7d9df; stroke: #b13c52; stroke-width: 1; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">Self-Attention 的核心是一张“谁看谁”的权重矩阵</text>
+  <text class="sub" x="48" y="68">Decoder-only 模型用 causal mask 把未来位置权重变成 0,避免训练时偷看答案。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="88" y="150" width="120" height="70" rx="8" />
+  <text class="label" x="136" y="178">Q</text><text class="small" x="112" y="202">T x d_k</text>
+  <path class="arrow" d="M208 184 H278" />
+  <rect class="green" x="278" y="150" width="120" height="70" rx="8" />
+  <text class="label" x="324" y="178">K^T</text><text class="small" x="302" y="202">d_k x T</text>
+  <path class="arrow" d="M398 184 H468" />
+
+  <g transform="translate(468 126)">
+    <rect class="orange" x="0" y="0" width="168" height="118" rx="8" />
+    <text class="label" x="48" y="28">Scores</text>
+    <g transform="translate(42 42)">
+      <rect class="cell" x="0" y="0" width="20" height="20" /><rect class="cell" x="22" y="0" width="20" height="20" /><rect class="cell" x="44" y="0" width="20" height="20" /><rect class="cell" x="66" y="0" width="20" height="20" />
+      <rect class="cell" x="0" y="22" width="20" height="20" /><rect class="cell" x="22" y="22" width="20" height="20" /><rect class="cell" x="44" y="22" width="20" height="20" /><rect class="cell" x="66" y="22" width="20" height="20" />
+      <rect class="cell" x="0" y="44" width="20" height="20" /><rect class="cell" x="22" y="44" width="20" height="20" /><rect class="cell" x="44" y="44" width="20" height="20" /><rect class="cell" x="66" y="44" width="20" height="20" />
+    </g>
+  </g>
+  <path class="arrow" d="M636 184 H706" />
+
+  <g transform="translate(706 126)">
+    <rect class="red" x="0" y="0" width="168" height="118" rx="8" />
+    <text class="label" x="34" y="28">Mask + Softmax</text>
+    <g transform="translate(42 42)">
+      <rect class="allow" x="0" y="0" width="20" height="20" /><rect class="block" x="22" y="0" width="20" height="20" /><rect class="block" x="44" y="0" width="20" height="20" /><rect class="block" x="66" y="0" width="20" height="20" />
+      <rect class="allow" x="0" y="22" width="20" height="20" /><rect class="allow" x="22" y="22" width="20" height="20" /><rect class="block" x="44" y="22" width="20" height="20" /><rect class="block" x="66" y="22" width="20" height="20" />
+      <rect class="allow" x="0" y="44" width="20" height="20" /><rect class="allow" x="22" y="44" width="20" height="20" /><rect class="allow" x="44" y="44" width="20" height="20" /><rect class="block" x="66" y="44" width="20" height="20" />
+    </g>
+  </g>
+  <path class="arrow" d="M874 184 H944" />
+  <rect class="green" x="944" y="150" width="88" height="70" rx="8" />
+  <text class="label" x="982" y="178">V</text><text class="small" x="956" y="202">T x d_v</text>
+
+  <path class="arrow" d="M790 244 C800 300 890 318 956 244" />
+  <rect class="blue" x="802" y="300" width="180" height="54" rx="8" />
+  <text class="label" x="852" y="324">Y = A V</text>
+  <text class="small" x="832" y="344">每行是一个 token 的新表示</text>
+
+  <rect class="panel" x="108" y="372" width="896" height="34" rx="8" />
+  <text class="text" x="136" y="393">读图方式: 每一行是“当前位置能看哪些位置”;红色未来格在 Softmax 后权重为 0。</text>
+  <text class="text" x="136" y="456">公式: Attention(Q,K,V)=softmax((QK^T / sqrt(d_k)) + mask) V。</text>
+</svg>

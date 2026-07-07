@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">QKV 三投影把匹配和读取解耦</title>
+  <desc id="desc">展示同一个 token 隐藏向量通过 WQ、WK、WV 投影成 Query、Key、Value,分别表示寻找需求、匹配索引和实际内容。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .match { fill: none; stroke: #2d7d80; stroke-width: 3; marker-end: url(#greenArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">Q、K、V 不是三份重复信息,而是三种可学习角色</text>
+  <text class="sub" x="48" y="68">Query 用来找,Key 用来被找,Value 用来被读取。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="88" y="202" width="160" height="72" rx="8" />
+  <text class="label" x="124" y="232">隐藏向量 x</text>
+  <text class="small" x="118" y="254">同一个 token 状态</text>
+  <path class="arrow" d="M248 238 H324" />
+
+  <g transform="translate(324 132)">
+    <rect class="orange" x="0" y="0" width="146" height="58" rx="8" /><text class="label" x="49" y="25">W_Q</text><text class="small" x="32" y="44">生成 Query</text>
+    <rect class="green" x="0" y="88" width="146" height="58" rx="8" /><text class="label" x="49" y="113">W_K</text><text class="small" x="36" y="132">生成 Key</text>
+    <rect class="red" x="0" y="176" width="146" height="58" rx="8" /><text class="label" x="49" y="201">W_V</text><text class="small" x="34" y="220">生成 Value</text>
+  </g>
+  <path class="arrow" d="M470 160 H550" /><path class="arrow" d="M470 248 H550" /><path class="arrow" d="M470 336 H550" />
+
+  <g transform="translate(550 132)">
+    <rect class="orange" x="0" y="0" width="190" height="58" rx="8" /><text class="label" x="38" y="25">Query: 找什么</text><text class="small" x="46" y="44">例如寻找被读对象</text>
+    <rect class="green" x="0" y="88" width="190" height="58" rx="8" /><text class="label" x="38" y="113">Key: 怎样匹配</text><text class="small" x="44" y="132">例如“书”匹配动作</text>
+    <rect class="red" x="0" y="176" width="190" height="58" rx="8" /><text class="label" x="38" y="201">Value: 给什么</text><text class="small" x="42" y="220">被读取后写入表示</text>
+  </g>
+
+  <path class="match" d="M742 160 C820 134 848 134 916 182" />
+  <rect class="panel" x="858" y="178" width="158" height="50" rx="8" />
+  <text class="small" x="884" y="200">Q . K 得分</text>
+  <text class="small" x="880" y="218">决定读取权重</text>
+  <path class="arrow" d="M740 336 C830 336 842 256 916 228" />
+  <rect class="blue" x="858" y="276" width="158" height="50" rx="8" />
+  <text class="small" x="884" y="298">权重 x Value</text>
+  <text class="small" x="878" y="316">形成输出表示</text>
+
+  <rect class="panel" x="108" y="392" width="896" height="28" rx="8" />
+  <text class="text" x="136" y="412">读图方式: 匹配用 Q/K,读取用 V;解耦后模型可以用不同子空间分别表达索引和内容。</text>
+  <text class="text" x="136" y="456">工程含义: 上下文格式会影响 token 的 Key/Value 角色,清晰分段能降低错误匹配。</text>
+</svg>

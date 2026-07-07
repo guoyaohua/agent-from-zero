@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">LSTM 用门控保护长期记忆通道</title>
+  <desc id="desc">展示 LSTM 的细胞状态如何通过遗忘门、输入门和输出门控制旧记忆保留、新信息写入以及当前隐藏状态输出。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .cell { fill: none; stroke: #172033; stroke-width: 4; stroke-linecap: round; marker-end: url(#darkArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="darkArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#172033" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">LSTM 的关键不是“记得更多”,而是学会何时保留、写入和输出</text>
+  <text class="sub" x="48" y="68">细胞状态提供较稳定的记忆通道,门控负责控制信息流的比例。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <path class="cell" d="M108 190 H1010" />
+  <text class="label" x="108" y="168">cell state: c<tspan baseline-shift="sub">t-1</tspan> -> c<tspan baseline-shift="sub">t</tspan></text>
+
+  <rect class="red" x="164" y="230" width="180" height="72" rx="8" />
+  <text class="label" x="222" y="258">遗忘门 f</text>
+  <text class="small" x="196" y="282">旧记忆保留多少</text>
+  <path class="arrow" d="M254 230 V198" />
+
+  <rect class="green" x="430" y="230" width="180" height="72" rx="8" />
+  <text class="label" x="488" y="258">输入门 i</text>
+  <text class="small" x="462" y="282">新信息写入多少</text>
+  <path class="arrow" d="M520 230 V198" />
+
+  <rect class="orange" x="696" y="230" width="180" height="72" rx="8" />
+  <text class="label" x="754" y="258">输出门 o</text>
+  <text class="small" x="728" y="282">暴露多少给 h<tspan baseline-shift="sub">t</tspan></text>
+  <path class="arrow" d="M786 198 V230" />
+  <path class="arrow" d="M876 266 H946 V162" />
+  <rect class="blue" x="930" y="116" width="96" height="46" rx="8" />
+  <text class="label" x="958" y="145">h<tspan baseline-shift="sub">t</tspan></text>
+
+  <rect class="blue" x="164" y="332" width="712" height="42" rx="8" />
+  <text class="small" x="194" y="358">门值来自 sigmoid(Wx + Uh + b),范围在 0 到 1 之间,表示每个维度的信息通过比例。</text>
+
+  <rect class="panel" x="108" y="390" width="896" height="28" rx="8" />
+  <text class="text" x="136" y="410">读图方式: LSTM 缓解长依赖,是因为 c 通道可以少受每步非线性重写的破坏。</text>
+  <text class="text" x="136" y="456">局限: 它仍然按时间递归计算,仍然要把历史压进状态,无法像 Attention 那样直接访问所有位置。</text>
+</svg>

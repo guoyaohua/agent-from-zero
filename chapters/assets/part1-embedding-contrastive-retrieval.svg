@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">对比学习如何塑造检索 embedding 空间</title>
+  <desc id="desc">展示查询向量与正样本文档被拉近,与负样本文档被推远,并说明向量检索只提供相关性候选而不保证事实完整。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .axis { stroke: #cbd5e1; stroke-width: 1.2; }
+      .pull { fill: none; stroke: #2d7d80; stroke-width: 3; marker-end: url(#greenArrow); }
+      .push { fill: none; stroke: #b13c52; stroke-width: 3; stroke-dasharray: 6 5; marker-end: url(#redArrow); }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">检索 embedding 的训练目标: 拉近相关,推远无关</text>
+  <text class="sub" x="48" y="68">对比学习不是给文本贴标签,而是在向量空间里塑造可检索的相对距离。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="panel" x="88" y="126" width="560" height="260" rx="8" />
+  <line class="axis" x1="128" y1="334" x2="604" y2="334" />
+  <line class="axis" x1="128" y1="334" x2="128" y2="154" />
+  <circle class="blue" cx="292" cy="238" r="30" />
+  <text class="label" x="277" y="243">q</text>
+  <circle class="green" cx="398" cy="202" r="30" />
+  <text class="label" x="384" y="207">d+</text>
+  <circle class="red" cx="518" cy="310" r="30" />
+  <text class="label" x="505" y="315">d-</text>
+  <path class="pull" d="M368 212 C340 218 320 226 302 236" />
+  <path class="push" d="M324 250 C392 274 442 296 488 306" />
+  <text class="small" x="176" y="174">sim(q,d+) 上升</text>
+  <text class="small" x="420" y="174">sim(q,d-) 下降</text>
+  <text class="small" x="206" y="366">训练后的空间更适合最近邻召回</text>
+
+  <g transform="translate(690 132)">
+    <rect class="blue" x="0" y="0" width="300" height="58" rx="8" />
+    <text class="label" x="24" y="26">查询: 降低 LLM 推理延迟</text>
+    <text class="small" x="24" y="46">query embedding</text>
+    <path class="arrow" d="M150 58 V90" />
+    <rect class="green" x="0" y="90" width="300" height="58" rx="8" />
+    <text class="label" x="24" y="116">正样本: KV Cache / batching</text>
+    <text class="small" x="24" y="136">应该靠近并被召回</text>
+    <rect class="red" x="0" y="176" width="300" height="58" rx="8" />
+    <text class="label" x="24" y="202">负样本: 咖啡烘焙酸度</text>
+    <text class="small" x="24" y="222">应该远离并降权</text>
+  </g>
+
+  <rect class="panel" x="88" y="442" width="934" height="44" rx="8" />
+  <text class="text" x="116" y="462">读图方式: embedding 检索优化的是“相关候选排序”,不是事实证明。</text>
+  <text class="text" x="116" y="480">工程含义: 生产 RAG 还需要切块、重排、关键词混合、引用和答案校验。</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">RNN 的长距离依赖和状态瓶颈</title>
+  <desc id="desc">展示早期 token 信息和梯度都必须沿时间链逐步传递,序列越长越容易被覆盖、衰减或放大。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .grad { fill: none; stroke: #b13c52; stroke-width: 3; stroke-dasharray: 7 5; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">RNN 的困难: 信息和梯度都要穿过同一条长链</text>
+  <text class="sub" x="48" y="68">隐藏状态是压缩历史的窄通道;时间步越长,早期信息越难稳定影响后续输出。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <g transform="translate(92 152)">
+    <rect class="blue" x="0" y="96" width="74" height="44" rx="8" /><text class="label" x="21" y="123">x1</text>
+    <rect class="green" x="0" y="0" width="74" height="54" rx="8" /><text class="label" x="21" y="33">h1</text>
+    <path class="arrow" d="M37 96 V54" />
+  </g>
+  <g transform="translate(236 152)">
+    <rect class="blue" x="0" y="96" width="74" height="44" rx="8" /><text class="label" x="21" y="123">x2</text>
+    <rect class="green" x="0" y="0" width="74" height="54" rx="8" /><text class="label" x="21" y="33">h2</text>
+    <path class="arrow" d="M37 96 V54" />
+  </g>
+  <g transform="translate(380 152)">
+    <rect class="blue" x="0" y="96" width="74" height="44" rx="8" /><text class="label" x="21" y="123">x3</text>
+    <rect class="green" x="0" y="0" width="74" height="54" rx="8" /><text class="label" x="21" y="33">h3</text>
+    <path class="arrow" d="M37 96 V54" />
+  </g>
+  <text class="label" x="530" y="186">...</text>
+  <g transform="translate(636 152)">
+    <rect class="blue" x="0" y="96" width="74" height="44" rx="8" /><text class="label" x="21" y="123">xt</text>
+    <rect class="green" x="0" y="0" width="74" height="54" rx="8" /><text class="label" x="21" y="33">ht</text>
+    <path class="arrow" d="M37 96 V54" />
+  </g>
+  <path class="arrow" d="M166 180 H236" />
+  <path class="arrow" d="M310 180 H380" />
+  <path class="arrow" d="M454 180 H636" />
+  <rect class="orange" x="792" y="132" width="210" height="86" rx="8" />
+  <text class="label" x="832" y="162">固定大小状态</text>
+  <text class="small" x="824" y="188">长历史被反复压缩/覆盖</text>
+  <path class="arrow" d="M710 180 H792" />
+  <path class="grad" d="M892 244 C730 300 520 304 130 210" />
+  <text class="small" x="548" y="322">反向传播穿过许多时间步: 可能消失或爆炸</text>
+
+  <rect class="panel" x="108" y="360" width="896" height="38" rx="8" />
+  <text class="text" x="136" y="383">读图方式: RNN 的压缩状态让短序列很自然,但长依赖需要信息和梯度都跨越很多步。</text>
+  <text class="text" x="136" y="456">工程含义: 对话摘要、长期记忆压缩也有类似瓶颈,摘要越短越需要保留可验证关键事实。</text>
+</svg>
