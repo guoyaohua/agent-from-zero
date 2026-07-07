@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">上下文窗口是一块有限预算的工作台</title>
+  <desc id="desc">展示系统约束、用户目标、历史摘要、检索证据、工具观察和输出预算如何共同争夺有限 token 窗口。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">上下文窗口不是记忆仓库,而是当前回合的工作台</text>
+  <text class="sub" x="48" y="68">每放入一段历史、证据或工具结果,都会挤占输出和其他关键信息的预算。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="panel" x="112" y="150" width="896" height="84" rx="8" />
+  <rect class="blue" x="126" y="164" width="118" height="56" rx="7" /><text class="small" x="148" y="194">系统约束</text>
+  <rect class="green" x="252" y="164" width="126" height="56" rx="7" /><text class="small" x="274" y="194">用户目标</text>
+  <rect class="orange" x="386" y="164" width="150" height="56" rx="7" /><text class="small" x="414" y="194">历史摘要</text>
+  <rect class="red" x="544" y="164" width="182" height="56" rx="7" /><text class="small" x="584" y="194">检索证据</text>
+  <rect class="blue" x="734" y="164" width="150" height="56" rx="7" /><text class="small" x="764" y="194">工具观察</text>
+  <rect class="green" x="892" y="164" width="102" height="56" rx="7" /><text class="small" x="916" y="194">输出</text>
+  <text class="label" x="112" y="132">一次调用的 token 预算</text>
+
+  <g transform="translate(154 270)">
+    <rect class="red" x="0" y="0" width="250" height="58" rx="8" />
+    <text class="label" x="60" y="24">错误做法</text>
+    <text class="small" x="28" y="44">全量历史 + 全量工具日志 + 无关资料</text>
+    <rect class="green" x="318" y="0" width="492" height="58" rx="8" />
+    <text class="label" x="512" y="24">更稳做法</text>
+    <text class="small" x="354" y="44">稳定约束 + 当前目标 + 精选证据 + 关键观察 + 足够输出空间</text>
+  </g>
+  <rect class="panel" x="154" y="360" width="812" height="34" rx="8" />
+  <text class="text" x="182" y="382">读图方式: 上下文工程就是预算分配。不是放得越多越好,而是让当前决策需要的信息更容易被读到。</text>
+  <text class="text" x="116" y="456">工程含义: Agent 每一轮都应重建“当前最有用”的上下文,而不是无限追加历史。</text>
+</svg>

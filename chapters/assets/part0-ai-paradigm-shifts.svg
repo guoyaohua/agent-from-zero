@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">AI 范式从规则到 Agent 的迁移</title>
+  <desc id="desc">展示 AI 的智能来源如何从人写规则,转向数据学习、表示学习、基础模型,最后进入模型与工具协同的 Agent 系统。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">AI 发展不是单一路线,而是“智能来源”的迁移</text>
+  <text class="sub" x="48" y="68">每一代方法都在回答: 规则、特征、表示、能力和行动到底从哪里来?</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <g transform="translate(84 150)">
+    <rect class="blue" x="0" y="0" width="160" height="94" rx="8" />
+    <text class="label" x="45" y="28">符号规则</text>
+    <text class="small" x="28" y="54">人写逻辑</text>
+    <text class="small" x="28" y="76">适合清晰流程</text>
+    <path class="arrow" d="M160 47 H206" />
+    <rect class="green" x="206" y="0" width="160" height="94" rx="8" />
+    <text class="label" x="251" y="28">机器学习</text>
+    <text class="small" x="234" y="54">从数据归纳</text>
+    <text class="small" x="234" y="76">依赖特征工程</text>
+    <path class="arrow" d="M366 47 H412" />
+    <rect class="orange" x="412" y="0" width="160" height="94" rx="8" />
+    <text class="label" x="457" y="28">深度学习</text>
+    <text class="small" x="440" y="54">自动学习表示</text>
+    <text class="small" x="440" y="76">需要数据算力</text>
+    <path class="arrow" d="M572 47 H618" />
+    <rect class="red" x="618" y="0" width="160" height="94" rx="8" />
+    <text class="label" x="663" y="28">基础模型</text>
+    <text class="small" x="646" y="54">通用预训练</text>
+    <text class="small" x="646" y="76">多任务迁移</text>
+    <path class="arrow" d="M778 47 H824" />
+    <rect class="blue" x="824" y="0" width="150" height="94" rx="8" />
+    <text class="label" x="875" y="28">Agent</text>
+    <text class="small" x="846" y="54">模型接入工具</text>
+    <text class="small" x="846" y="76">在反馈中行动</text>
+  </g>
+
+  <g transform="translate(110 300)">
+    <rect class="panel" x="0" y="0" width="900" height="54" rx="8" />
+    <text class="text" x="28" y="23">读图方式: 每次跃迁都减少了人工显式编码,但增加了数据、训练、评估和系统边界的重要性。</text>
+    <text class="text" x="28" y="43">Agent 不是替代前面所有方法,而是把模型、规则、工具、检索和反馈组合成任务系统。</text>
+  </g>
+  <text class="text" x="116" y="456">工程含义: 可靠 Agent 往往是混合系统,不是把所有问题都交给一个大模型。</text>
+</svg>

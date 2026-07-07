@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">下一个 token 预测如何逼出多种能力</title>
+  <desc id="desc">展示语言模型为了降低下一个 token 损失,必须学习语法、事实、代码、推理模式、格式和任务结构。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">“预测下一个 token”很窄,但训练压力很宽</text>
+  <text class="sub" x="48" y="68">为了在海量文本上降低损失,模型必须压缩许多隐藏结构。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="86" y="200" width="210" height="80" rx="8" />
+  <text class="label" x="130" y="230">上下文 token</text>
+  <text class="small" x="118" y="254">法国的首都是 ...</text>
+  <path class="arrow" d="M296 240 H406" />
+  <rect class="orange" x="406" y="178" width="260" height="124" rx="8" />
+  <text class="label" x="478" y="210">预测目标</text>
+  <text class="small" x="450" y="236">提高真实 token 概率</text>
+  <text class="small" x="450" y="260">降低交叉熵损失</text>
+  <path class="arrow" d="M666 240 H776" />
+  <rect class="green" x="776" y="200" width="230" height="80" rx="8" />
+  <text class="label" x="846" y="230">能力外显</text>
+  <text class="small" x="820" y="254">问答、代码、翻译、总结</text>
+
+  <g transform="translate(132 324)">
+    <rect class="panel" x="0" y="0" width="856" height="48" rx="8" />
+    <text class="small" x="28" y="20">为了预测得好,模型会学习: 语法结构、事实关联、代码模式、推理模板、格式约定、任务示例。</text>
+    <text class="small" x="28" y="38">这些能力不是直接写进目标函数,而是在海量数据和规模化训练中被间接压出来。</text>
+  </g>
+  <text class="text" x="116" y="456">读图方式: 训练目标是单一的概率任务,但数据分布足够丰富时,模型必须学习许多可迁移结构。</text>
+</svg>

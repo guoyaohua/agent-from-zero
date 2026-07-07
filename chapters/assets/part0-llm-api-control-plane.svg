@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">一次 LLM API 调用的控制面</title>
+  <desc id="desc">展示 messages、model、sampling、tools、response format 和 logging 如何共同决定一次 LLM 调用的能力、稳定性和可调试性。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">LLM API 不是一个黑盒按钮,而是一组可控旋钮</text>
+  <text class="sub" x="48" y="68">Agent 稳不稳,取决于每轮调用的上下文、参数、工具和日志是否可控。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="420" y="186" width="280" height="86" rx="8" />
+  <text class="label" x="502" y="218">LLM 调用</text>
+  <text class="small" x="466" y="244">生成文本、结构化输出或工具调用</text>
+  <rect class="green" x="92" y="132" width="230" height="58" rx="8" />
+  <text class="label" x="172" y="158">messages</text><text class="small" x="128" y="178">任务、历史、工具观察、约束</text>
+  <path class="arrow" d="M322 162 H420" />
+  <rect class="orange" x="92" y="254" width="230" height="58" rx="8" />
+  <text class="label" x="180" y="280">model</text><text class="small" x="128" y="300">能力、成本、窗口、延迟</text>
+  <path class="arrow" d="M322 284 H420" />
+  <rect class="red" x="798" y="132" width="230" height="58" rx="8" />
+  <text class="label" x="872" y="158">sampling</text><text class="small" x="834" y="178">temperature、top_p、seed</text>
+  <path class="arrow" d="M700 162 H798" />
+  <rect class="green" x="798" y="254" width="230" height="58" rx="8" />
+  <text class="label" x="884" y="280">tools/schema</text><text class="small" x="834" y="300">可执行动作和可解析输出</text>
+  <path class="arrow" d="M700 284 H798" />
+  <rect class="panel" x="244" y="344" width="632" height="42" rx="8" />
+  <text class="text" x="272" y="370">日志记录完整请求、参数、工具调用和响应,才能复现和评估 Agent 行为。</text>
+  <text class="text" x="116" y="456">读图方式: Prompt 只是控制面的一部分;模型选择、采样、工具和 schema 同样影响系统行为。</text>
+</svg>

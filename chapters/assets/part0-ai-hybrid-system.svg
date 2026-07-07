@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">现代 AI 系统是混合系统</title>
+  <desc id="desc">展示规则、传统机器学习、检索、LLM、工具和评估如何共同组成可靠的 Agent 工程系统。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">可靠系统不会只靠模型,而是让不同机制各司其职</text>
+  <text class="sub" x="48" y="68">LLM 擅长语言和开放判断;规则、检索、工具和评估负责事实、边界和可验证行动。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="440" y="145" width="240" height="88" rx="8" />
+  <text class="label" x="518" y="176">LLM 决策核心</text>
+  <text class="small" x="480" y="202">理解目标、组织语言、选择下一步</text>
+
+  <rect class="green" x="96" y="132" width="230" height="62" rx="8" />
+  <text class="label" x="174" y="158">规则/权限</text>
+  <text class="small" x="132" y="178">确定性边界和高风险动作控制</text>
+  <path class="arrow" d="M326 164 H440" />
+
+  <rect class="orange" x="96" y="230" width="230" height="62" rx="8" />
+  <text class="label" x="174" y="256">检索/RAG</text>
+  <text class="small" x="132" y="276">外部事实、私有知识和引用来源</text>
+  <path class="arrow" d="M326 262 H440" />
+
+  <rect class="red" x="794" y="132" width="230" height="62" rx="8" />
+  <text class="label" x="884" y="158">工具/API</text>
+  <text class="small" x="832" y="178">读取、搜索、运行、写入和操作系统</text>
+  <path class="arrow" d="M680 164 H794" />
+
+  <rect class="green" x="794" y="230" width="230" height="62" rx="8" />
+  <text class="label" x="876" y="256">评估/日志</text>
+  <text class="small" x="832" y="276">验证结果、记录轨迹、发现退化</text>
+  <path class="arrow" d="M794 262 H680" />
+
+  <rect class="panel" x="222" y="334" width="676" height="46" rx="8" />
+  <text class="text" x="250" y="356">读图方式: LLM 负责模糊语言和开放决策,但不能替代权限、事实来源和执行事务。</text>
+  <text class="text" x="250" y="374">Agent 工程的关键是把强项组合起来,同时限制每个组件的风险。</text>
+  <text class="text" x="116" y="456">工程含义: 先明确哪个环节必须确定,哪个环节可以交给模型判断。</text>
+</svg>

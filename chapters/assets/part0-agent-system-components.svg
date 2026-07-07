@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">AI Agent 的系统组件</title>
+  <desc id="desc">展示 AI Agent 由目标、模型、工具、状态、反馈、权限和停止条件共同构成,模型只是其中的决策组件之一。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">Agent 不是模型本身,而是一套带边界的任务系统</text>
+  <text class="sub" x="48" y="68">模型负责判断下一步,系统负责提供状态、执行工具、检查权限和决定何时停止。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="438" y="174" width="244" height="94" rx="8" />
+  <text class="label" x="512" y="208">模型决策</text>
+  <text class="small" x="470" y="232">读上下文,选择回答/工具/询问</text>
+  <rect class="green" x="90" y="130" width="208" height="58" rx="8" />
+  <text class="label" x="168" y="156">目标</text><text class="small" x="122" y="176">用户要系统推进到什么状态</text>
+  <path class="arrow" d="M298 160 H438" />
+  <rect class="orange" x="90" y="252" width="208" height="58" rx="8" />
+  <text class="label" x="168" y="278">状态</text><text class="small" x="122" y="298">进度、记忆、约束和观察</text>
+  <path class="arrow" d="M298 282 H438" />
+  <rect class="red" x="822" y="130" width="208" height="58" rx="8" />
+  <text class="label" x="900" y="156">工具</text><text class="small" x="856" y="176">搜索、代码、数据库、业务 API</text>
+  <path class="arrow" d="M682 160 H822" />
+  <rect class="green" x="822" y="252" width="208" height="58" rx="8" />
+  <text class="label" x="892" y="278">反馈</text><text class="small" x="856" y="298">工具结果、错误、用户确认</text>
+  <path class="arrow" d="M822 282 H682" />
+  <rect class="panel" x="330" y="338" width="460" height="44" rx="8" />
+  <text class="small" x="366" y="358">权限和停止条件包住整个循环:</text>
+  <text class="small" x="366" y="376">预算、风险、完成标准、人工确认、审计日志。</text>
+  <text class="text" x="116" y="456">读图方式: 模型给出意图,系统执行和约束意图。Agent 的可靠性来自两者分工。</text>
+</svg>

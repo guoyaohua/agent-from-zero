@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从预训练到 Agent 能力的对齐栈</title>
+  <desc id="desc">展示 LLM 从预训练文本续写器,经过指令微调、偏好对齐、工具调用和系统护栏,逐步成为 Agent 的决策组件。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">LLM 变成 Agent 决策组件,靠的是一整层对齐和系统包装</text>
+  <text class="sub" x="48" y="68">预训练给能力,指令微调给任务格式,偏好对齐给行为边界,工具协议给行动接口。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <g transform="translate(110 132)">
+    <rect class="blue" x="0" y="0" width="180" height="62" rx="8" />
+    <text class="label" x="62" y="26">预训练</text><text class="small" x="34" y="46">学语言、知识和代码模式</text>
+    <path class="arrow" d="M180 31 H220" />
+    <rect class="green" x="220" y="0" width="180" height="62" rx="8" />
+    <text class="label" x="282" y="26">SFT</text><text class="small" x="252" y="46">学按指令完成任务</text>
+    <path class="arrow" d="M400 31 H440" />
+    <rect class="orange" x="440" y="0" width="180" height="62" rx="8" />
+    <text class="label" x="502" y="26">偏好对齐</text><text class="small" x="472" y="46">更有帮助、更安全</text>
+    <path class="arrow" d="M620 31 H660" />
+    <rect class="red" x="660" y="0" width="180" height="62" rx="8" />
+    <text class="label" x="722" y="26">工具协议</text><text class="small" x="692" y="46">结构化调用外部系统</text>
+  </g>
+  <g transform="translate(160 244)">
+    <rect class="panel" x="0" y="0" width="800" height="74" rx="8" />
+    <text class="small" x="34" y="24">没有 SFT: 模型更像文本续写器,未必按助手格式回答。</text>
+    <text class="small" x="34" y="44">没有工具协议: 模型只能说建议,不能进入可执行行动链。</text>
+    <text class="small" x="34" y="64">没有护栏和评估: 工具调用可能越权、幻觉和不可审计。</text>
+  </g>
+  <text class="text" x="116" y="456">读图方式: Agent 能力不是只靠模型规模,而是模型训练阶段和外部系统协议共同形成。</text>
+</svg>

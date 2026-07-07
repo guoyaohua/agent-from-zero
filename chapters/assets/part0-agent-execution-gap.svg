@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 要跨过语言答案和真实执行之间的缺口</title>
+  <desc id="desc">展示普通 LLM 给建议与 Agent 通过观察、工具、状态和验证推进任务之间的区别。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #fff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .gap { fill: none; stroke: #b13c52; stroke-width: 2.5; stroke-dasharray: 7 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520" />
+  <text class="title" x="48" y="44">很多任务需要的不是“建议”,而是被推进到可验证状态</text>
+  <text class="sub" x="48" y="68">Agent 的价值在于把语言理解接到工具、状态和验证循环上。</text>
+  <rect class="panel" x="48" y="92" width="1024" height="330" rx="8" />
+
+  <rect class="blue" x="84" y="142" width="210" height="70" rx="8" />
+  <text class="label" x="138" y="170">用户目标</text>
+  <text class="small" x="112" y="194">修复测试失败</text>
+  <path class="arrow" d="M294 176 H390" />
+  <rect class="orange" x="390" y="132" width="218" height="90" rx="8" />
+  <text class="label" x="452" y="164">普通 LLM</text>
+  <text class="small" x="424" y="188">给排查建议</text>
+  <text class="small" x="424" y="206">行动仍回到用户</text>
+  <path class="gap" d="M642 110 V384" />
+  <text class="small" x="620" y="104">执行缺口</text>
+  <rect class="green" x="710" y="126" width="310" height="72" rx="8" />
+  <text class="label" x="804" y="154">Agent 循环</text>
+  <text class="small" x="742" y="178">读日志 -> 查代码 -> 运行测试 -> 修改 -> 验证</text>
+  <rect class="red" x="710" y="246" width="310" height="72" rx="8" />
+  <text class="label" x="800" y="274">交付结果</text>
+  <text class="small" x="742" y="298">变更、证据、验证结果、剩余风险</text>
+  <path class="arrow" d="M865 198 V246" />
+  <rect class="panel" x="144" y="332" width="832" height="48" rx="8" />
+  <text class="text" x="172" y="354">读图方式: LLM 可以解释怎么做;Agent 在权限边界内实际观察和行动,并用反馈修正下一步。</text>
+  <text class="text" x="172" y="372">判断标准: 下一步是否依赖中间结果? 是否需要工具? 是否需要验证? 是的话就接近 Agent。</text>
+  <text class="text" x="116" y="456">工程含义: Agent 的复杂度只在需要跨越执行缺口时才值得引入。</text>
+</svg>
