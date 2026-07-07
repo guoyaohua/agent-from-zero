@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">ReAct 中的指令和观察隔离</title>
+  <desc id="desc">展示系统指令、用户目标、工具观察和外部不可信内容在 ReAct 循环中的信任边界。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.7px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.8px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.trusted{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.user{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.obs{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.runtime{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}.block{fill:none;stroke:#b13c52;stroke-width:2.4;stroke-linecap:round}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">ReAct 读外部世界越多,越要隔离“资料”和“指令”</text>
+  <text class="sub" x="56" y="82">网页、文档、邮件和工具结果只能作为观察,不能覆盖系统规则或权限策略。</text>
+  <rect class="trusted" x="76" y="130" width="220" height="92" rx="8"/>
+  <text class="head" x="116" y="164">系统和开发者规则</text>
+  <text class="text" x="116" y="194">最高优先级约束</text>
+  <rect class="user" x="76" y="260" width="220" height="92" rx="8"/>
+  <text class="head" x="124" y="294">用户目标</text>
+  <text class="text" x="116" y="324">任务意图和偏好</text>
+  <rect class="obs" x="394" y="130" width="250" height="222" rx="8"/>
+  <text class="head" x="454" y="164">Observation Pack</text>
+  <text class="text" x="430" y="200">工具名和时间戳</text>
+  <text class="text" x="430" y="230">成功或失败状态</text>
+  <text class="text" x="430" y="260">关键事实摘要</text>
+  <text class="text" x="430" y="290">来源引用或 artifact</text>
+  <text class="small" x="430" y="326">标记为 untrusted data</text>
+  <rect class="risk" x="394" y="388" width="250" height="58" rx="8"/>
+  <text class="text" x="430" y="423">外部文本中的“忽略指令”被当作内容,不是命令</text>
+  <path class="block" d="M612 398 L634 438 M634 398 L612 438"/>
+  <rect class="runtime" x="750" y="168" width="290" height="198" rx="8"/>
+  <text class="head" x="816" y="202">Runtime Gate</text>
+  <text class="text" x="790" y="238">策略检查</text>
+  <text class="text" x="790" y="268">工具权限</text>
+  <text class="text" x="790" y="298">敏感数据最小化</text>
+  <text class="text" x="790" y="328">高风险动作确认</text>
+  <path class="arrow" d="M296 176 H394"/>
+  <path class="arrow" d="M296 306 H394"/>
+  <path class="arrow" d="M644 242 H750"/>
+  <rect x="120" y="464" width="880" height="34" rx="8" fill="#172033"/>
+  <text x="154" y="486" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">工程规则: 观察可以改变事实判断,不能改变权限、身份、工具边界和安全策略。</text>
+</svg>

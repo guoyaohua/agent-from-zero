@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 状态到工作上下文的压缩</title>
+  <desc id="desc">展示 Agent 如何把原始日志、观察、假设、计划和约束整理成下一轮模型需要的工作上下文。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.mono{font:600 12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.raw{fill:#eef3f8;stroke:#5b7caa;stroke-width:1.6}.state{fill:#e9f3ee;stroke:#2d7d80;stroke-width:1.8}.ctx{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.drop{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2.2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">状态不是聊天记录,而是下一轮决策的工作视图</text>
+  <text class="sub" x="56" y="82">完整记录要可追溯,但模型每轮只应该看到会改变下一步决策的材料。</text>
+  <rect class="raw" x="62" y="128" width="260" height="270" rx="8"/>
+  <text class="head" x="94" y="162">原始材料</text>
+  <text class="text" x="94" y="198">工具完整输出</text>
+  <text class="text" x="94" y="226">历史对话</text>
+  <text class="text" x="94" y="254">失败日志</text>
+  <text class="text" x="94" y="282">检索片段</text>
+  <text class="text" x="94" y="310">中间草稿</text>
+  <text class="small" x="94" y="352">保存为 trace 或 artifact</text>
+  <path class="arrow" d="M322 263 H410"/>
+  <rect class="state" x="410" y="110" width="300" height="308" rx="8"/>
+  <text class="head" x="444" y="144">结构化任务状态</text>
+  <text class="mono" x="444" y="184">goal</text><text class="text" x="548" y="184">用户目标和完成标准</text>
+  <text class="mono" x="444" y="214">constraints</text><text class="text" x="548" y="214">权限、风险、预算</text>
+  <text class="mono" x="444" y="244">observations</text><text class="text" x="548" y="244">关键事实和来源</text>
+  <text class="mono" x="444" y="274">hypotheses</text><text class="text" x="548" y="274">待验证判断</text>
+  <text class="mono" x="444" y="304">actions</text><text class="text" x="548" y="304">已尝试和结果</text>
+  <text class="mono" x="444" y="334">plan</text><text class="text" x="548" y="334">下一步和检查点</text>
+  <text class="small" x="444" y="382">状态可被更新、评估、恢复和审计</text>
+  <path class="arrow" d="M710 263 H798"/>
+  <rect class="ctx" x="798" y="128" width="260" height="270" rx="8"/>
+  <text class="head" x="830" y="162">下一轮工作上下文</text>
+  <text class="text" x="830" y="198">当前目标</text>
+  <text class="text" x="830" y="226">最小必要证据</text>
+  <text class="text" x="830" y="254">可用工具和限制</text>
+  <text class="text" x="830" y="282">已失败路线</text>
+  <text class="text" x="830" y="310">下一步决策空间</text>
+  <text class="small" x="830" y="352">面向模型,短而清晰</text>
+  <rect class="drop" x="228" y="420" width="664" height="54" rx="8"/>
+  <text class="head" x="262" y="452">裁剪原则</text>
+  <text class="text" x="376" y="452">保留会改变下一步的事实;长日志保留引用;过期假设标记废弃,不要反复污染上下文。</text>
+</svg>

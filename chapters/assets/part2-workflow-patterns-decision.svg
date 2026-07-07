@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">五大工作流模式选择图</title>
+  <desc id="desc">用任务特征把链式、路由、并行、编排者工作者和评估优化五种 LLM 工作流模式对应起来。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.p1{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.p2{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.p3{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.p4{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.p5{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">不要先问“用不用 Agent”,先问任务结构长什么样</text>
+  <text class="sub" x="56" y="82">工作流模式把不确定性局部化,让每个节点有输入、输出和校验。</text>
+  <rect class="p1" x="64" y="136" width="192" height="120" rx="8"/>
+  <text class="head" x="102" y="170">Prompt Chaining</text>
+  <text class="text" x="100" y="204">步骤线性</text><text class="text" x="100" y="230">前一步喂后一步</text>
+  <rect class="p2" x="284" y="136" width="192" height="120" rx="8"/>
+  <text class="head" x="350" y="170">Routing</text>
+  <text class="text" x="320" y="204">输入类型不同</text><text class="text" x="320" y="230">需要分流路径</text>
+  <rect class="p3" x="504" y="136" width="192" height="120" rx="8"/>
+  <text class="head" x="546" y="170">Parallelization</text>
+  <text class="text" x="540" y="204">子任务独立</text><text class="text" x="540" y="230">可并发处理</text>
+  <rect class="p4" x="724" y="136" width="192" height="120" rx="8"/>
+  <text class="head" x="752" y="170">Orchestrator</text>
+  <text class="text" x="760" y="204">子任务动态拆分</text><text class="text" x="760" y="230">需要汇总协调</text>
+  <rect class="p5" x="394" y="318" width="332" height="120" rx="8"/>
+  <text class="head" x="474" y="352">Evaluator-Optimizer</text>
+  <text class="text" x="444" y="386">有明确检查标准,可以生成、评估、修正</text>
+  <rect class="box" x="944" y="136" width="112" height="302" rx="8"/>
+  <text class="head" x="970" y="170">组合</text>
+  <text class="text" x="966" y="206">路由后链式</text>
+  <text class="text" x="966" y="236">并行后评估</text>
+  <text class="text" x="966" y="266">编排中嵌入</text>
+  <text class="text" x="966" y="296">Agent loop</text>
+  <text class="text" x="966" y="350">真实系统常是</text>
+  <text class="text" x="966" y="376">多模式混合</text>
+  <rect x="138" y="462" width="844" height="36" rx="8" fill="#172033"/>
+  <text x="172" y="485" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">选择模式的依据是依赖、并行性、分流需求和是否可验证,不是哪个名字更新。</text>
+</svg>

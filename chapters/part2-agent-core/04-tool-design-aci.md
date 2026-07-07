@@ -80,6 +80,12 @@ ACI 的核心问题是:
 
 底层可以仍然调用 `/v2/order/mutate`,但 ACI 应该把它包装成模型容易理解、系统容易校验的动作。
 
+![从后端 API 包装成 Agent ACI](../assets/part2-aci-api-wrapper.svg)
+
+这张图体现了 ACI 的核心取舍:底层 API 可以通用,但暴露给 Agent 的动作最好窄而语义清晰。模型不擅长在一堆 `op`、`flag`、内部枚举和隐藏副作用里推断业务意图;它更适合在 `get_order_status`、`search_policy_docs`、`create_refund_draft` 这样的动作空间中选择。
+
+包装层不是多余胶水,它是可靠性的来源。它可以把系统已知字段自动注入,把无关参数从模型面前拿走,把写操作改成草稿或预览,把底层错误翻译成可恢复错误,并把每个动作记录成审计日志。很多时候,提升 Agent 稳定性最有效的办法不是换模型,而是重设计这层 ACI。
+
 ## 好工具的六个标准
 
 ### 1. 语义清晰
@@ -334,6 +340,12 @@ Done.
 - 是否有审计记录。
 - 是否支持 dry-run。
 - 是否能先创建草稿。
+
+![ACI 副作用分级](../assets/part2-aci-side-effect-ladder.svg)
+
+副作用分级应该体现在工具接口本身,而不只是写在 prompt 里。只读工具可以在权限校验后自动执行;可恢复写入要返回操作 ID 和回滚路径;高风险写入默认应该提供 preview 或 draft;越权、泄密和破坏性操作应该没有可调用工具,而不是暴露工具后要求模型“不要乱用”。
+
+这个分级还能帮助你决定哪些能力什么时候开放。一个系统还没有审计、幂等 key、回滚和用户确认时,就不应该把 `submit_refund`、`send_email`、`delete_user` 直接给模型。先给 `create_refund_draft`、`create_email_draft`、`preview_permission_change`,通常更符合生产安全边界。
 
 一个安全设计是优先提供“草稿工具”:
 

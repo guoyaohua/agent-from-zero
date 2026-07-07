@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Tool Schema 的语义约束</title>
+  <desc id="desc">对比只写类型的 schema 和包含来源、格式、边界、风险的语义化 schema。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.mid{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">Schema 不只告诉模型“填什么类型”,还要告诉它“不能怎么猜”</text>
+  <text class="sub" x="56" y="82">很多工具错误是语义错误:字段合法,但来源、对象、时间或业务含义错了。</text>
+  <rect class="bad" x="78" y="142" width="282" height="214" rx="8"/>
+  <text class="head" x="112" y="176">薄 schema</text>
+  <text class="mono" x="112" y="214">order_id: string</text>
+  <text class="mono" x="112" y="244">amount: number</text>
+  <text class="mono" x="112" y="274">reason: string</text>
+  <text class="text" x="112" y="320">类型正确,但仍可能查错订单</text>
+  <path class="arrow" d="M360 250 H442"/>
+  <rect class="mid" x="442" y="124" width="236" height="250" rx="8"/>
+  <text class="head" x="486" y="158">缺失语义</text>
+  <text class="text" x="480" y="196">参数从哪里来?</text>
+  <text class="text" x="480" y="226">允许推断吗?</text>
+  <text class="text" x="480" y="256">格式示例是什么?</text>
+  <text class="text" x="480" y="286">风险等级是什么?</text>
+  <text class="text" x="480" y="316">不确定时怎么办?</text>
+  <path class="arrow" d="M678 250 H760"/>
+  <rect class="good" x="760" y="112" width="292" height="274" rx="8"/>
+  <text class="head" x="796" y="146">语义化 schema</text>
+  <text class="text" x="796" y="184">Exact order_id from user or record</text>
+  <text class="text" x="796" y="214">Do not invent missing IDs</text>
+  <text class="text" x="796" y="244">Use enum for refund_reason</text>
+  <text class="text" x="796" y="274">Amount must not exceed paid total</text>
+  <text class="text" x="796" y="304">If unsure, ask user or read record</text>
+  <text class="text" x="796" y="334">High risk: create draft first</text>
+  <rect x="148" y="426" width="824" height="40" rx="8" fill="#172033"/>
+  <text x="184" y="451" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">好 schema 会缩小模型的自由猜测空间,并把业务校验留给 runtime。</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow 与 Agent 自主性阶梯</title>
+  <desc id="desc">展示从纯文本生成到高风险动作执行的五级自主性,以及各级推荐控制方式。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.l0{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.l1{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.l2{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.l3{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.l4{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">自主性不是开关,而是一段可调的工程阶梯</text>
+  <text class="sub" x="56" y="82">风险越高、验证越弱,越应该把控制权留给 Workflow 和人类确认。</text>
+  <rect class="l0" x="58" y="194" width="184" height="120" rx="8"/><text class="head" x="122" y="228">L0</text><text class="text" x="98" y="258">只生成文本</text><text class="small" x="90" y="286">总结、改写</text>
+  <rect class="l1" x="270" y="174" width="184" height="140" rx="8"/><text class="head" x="334" y="208">L1</text><text class="text" x="306" y="238">固定节点判断</text><text class="small" x="304" y="266">分类、抽取</text>
+  <rect class="l2" x="482" y="154" width="184" height="160" rx="8"/><text class="head" x="546" y="188">L2</text><text class="text" x="520" y="218">只读工具</text><text class="small" x="518" y="246">搜索、查询</text><text class="small" x="518" y="274">权限和日志</text>
+  <rect class="l3" x="694" y="134" width="184" height="180" rx="8"/><text class="head" x="758" y="168">L3</text><text class="text" x="730" y="198">草稿或低风险写</text><text class="small" x="730" y="226">preview / rollback</text><text class="small" x="730" y="254">测试和审计</text>
+  <rect class="l4" x="906" y="114" width="184" height="200" rx="8"/><text class="head" x="970" y="148">L4</text><text class="text" x="940" y="178">高风险动作</text><text class="small" x="940" y="206">确认、审批</text><text class="small" x="940" y="234">幂等、回滚</text><text class="small" x="940" y="262">强审计</text>
+  <path class="arrow" d="M242 254 H270M454 244H482M666 234H694M878 224H906"/>
+  <rect x="154" y="414" width="812" height="42" rx="8" fill="#172033"/>
+  <text x="254" y="440" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">生产系统多停在 L1-L3; L4 需要组织能控制后果。</text>
+</svg>

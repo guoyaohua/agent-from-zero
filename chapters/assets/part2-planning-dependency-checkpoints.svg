@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Planning 的依赖和检查点</title>
+  <desc id="desc">展示计划如何把子任务、依赖关系、风险确认和验证检查点组织成可执行路线。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.step{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.check{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.risk{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}.dash{fill:none;stroke:#b05c37;stroke-width:2;stroke-dasharray:5 5;marker-end:url(#arrow2)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b05c37"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">好计划不是待办清单,而是依赖图加检查点</text>
+  <text class="sub" x="56" y="82">每个子任务都要说明产出、前置依赖和如何证明自己完成。</text>
+  <rect class="step" x="66" y="182" width="150" height="82" rx="8"/><text class="head" x="102" y="214">收集约束</text><text class="small" x="94" y="240">用户目标 / 风险</text>
+  <rect class="step" x="284" y="124" width="150" height="82" rx="8"/><text class="head" x="328" y="156">查资料</text><text class="small" x="316" y="182">多来源证据</text>
+  <rect class="step" x="284" y="260" width="150" height="82" rx="8"/><text class="head" x="318" y="292">读现状</text><text class="small" x="316" y="318">代码 / 数据 / 日志</text>
+  <rect class="step" x="502" y="182" width="150" height="82" rx="8"/><text class="head" x="538" y="214">形成方案</text><text class="small" x="532" y="240">取舍和边界</text>
+  <rect class="risk" x="720" y="124" width="150" height="82" rx="8"/><text class="head" x="758" y="156">确认风险</text><text class="small" x="752" y="182">副作用 / 成本</text>
+  <rect class="check" x="720" y="260" width="150" height="82" rx="8"/><text class="head" x="760" y="292">验证结果</text><text class="small" x="746" y="318">测试 / 引用 / 规则</text>
+  <rect class="check" x="938" y="182" width="150" height="82" rx="8"/><text class="head" x="978" y="214">交付结论</text><text class="small" x="974" y="240">证据和剩余风险</text>
+  <path class="arrow" d="M216 222 C248 180 252 166 284 166"/>
+  <path class="arrow" d="M216 222 C248 264 252 302 284 302"/>
+  <path class="arrow" d="M434 166 C466 176 470 194 502 206"/>
+  <path class="arrow" d="M434 302 C466 292 470 250 502 230"/>
+  <path class="dash" d="M652 206 C684 176 688 166 720 166"/>
+  <path class="arrow" d="M652 230 C684 260 688 302 720 302"/>
+  <path class="arrow" d="M870 302 C904 286 908 246 938 230"/>
+  <path class="arrow" d="M870 166 C904 176 908 194 938 206"/>
+  <rect x="148" y="420" width="824" height="42" rx="8" fill="#172033"/>
+  <text x="250" y="446" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">计划边表达依赖: 缺证据、缺确认、缺验证时不进入下一阶段。</text>
+</svg>

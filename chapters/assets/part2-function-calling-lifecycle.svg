@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Function Calling 生命周期</title>
+  <desc id="desc">展示工具选择、参数生成、schema 校验、权限检查、执行、观察返回和后续决策的完整生命周期。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.model{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.tool{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.obs{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">工具调用的关键不是“会调用”,而是每一步都可验证</text>
+  <text class="sub" x="56" y="82">Function Calling 把自然语言行动意图变成 runtime 可以检查和审计的对象。</text>
+  <rect class="model" x="54" y="170" width="130" height="94" rx="8"/><text class="head" x="85" y="202">1 选工具</text><text class="text" x="82" y="230">基于目标和状态</text>
+  <rect class="model" x="220" y="170" width="130" height="94" rx="8"/><text class="head" x="250" y="202">2 填参数</text><text class="text" x="250" y="230">生成 JSON</text>
+  <rect class="gate" x="386" y="170" width="130" height="94" rx="8"/><text class="head" x="414" y="202">3 校验</text><text class="text" x="414" y="230">类型和枚举</text>
+  <rect class="gate" x="552" y="170" width="130" height="94" rx="8"/><text class="head" x="579" y="202">4 授权</text><text class="text" x="576" y="230">权限和风险</text>
+  <rect class="tool" x="718" y="170" width="130" height="94" rx="8"/><text class="head" x="746" y="202">5 执行</text><text class="text" x="746" y="230">真实工具</text>
+  <rect class="obs" x="884" y="170" width="166" height="94" rx="8"/><text class="head" x="926" y="202">6 观察</text><text class="text" x="918" y="230">结构化结果返回</text>
+  <path class="arrow" d="M184 217 H220M350 217H386M516 217H552M682 217H718M848 217H884"/>
+  <rect class="bad" x="386" y="322" width="296" height="80" rx="8"/>
+  <text class="head" x="422" y="354">失败也要结构化</text>
+  <text class="text" x="422" y="380">INVALID_ARGUMENT / PERMISSION_DENIED / NOT_FOUND</text>
+  <path class="arrow" d="M534 322 C534 292 452 292 452 264"/>
+  <path class="arrow" d="M682 362 C820 362 970 324 970 264"/>
+  <rect x="150" y="440" width="820" height="38" rx="8" fill="#172033"/>
+  <text x="224" y="464" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">模型提出 tool_call; runtime 校验存在性、参数、权限和执行结果。</text>
+</svg>

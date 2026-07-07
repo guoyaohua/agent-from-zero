@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">计划作为状态对象</title>
+  <desc id="desc">展示计划如何从散文清单变成可更新、可检查、可展示的结构化状态对象。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.mid{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">计划要能被系统更新,而不只是被模型写出来</text>
+  <text class="sub" x="56" y="82">结构化计划让进度检查、重规划、UI 展示和评估都变得可操作。</text>
+  <rect class="bad" x="82" y="136" width="278" height="244" rx="8"/>
+  <text class="head" x="120" y="170">散文计划</text>
+  <text class="text" x="118" y="210">1. 分析问题</text>
+  <text class="text" x="118" y="240">2. 解决问题</text>
+  <text class="text" x="118" y="270">3. 总结结果</text>
+  <text class="text" x="118" y="328">看似清楚,但无法判断</text>
+  <text class="text" x="118" y="352">依赖、状态、完成标准</text>
+  <path class="arrow" d="M360 258 H444"/>
+  <rect class="good" x="444" y="110" width="330" height="296" rx="8"/>
+  <text class="head" x="488" y="144">结构化 Plan State</text>
+  <text class="mono" x="486" y="184">id: run_tests</text>
+  <text class="mono" x="486" y="214">status: done</text>
+  <text class="mono" x="486" y="244">output: failure summary</text>
+  <text class="mono" x="486" y="274">depends_on: []</text>
+  <text class="mono" x="486" y="304">done_when: failing log captured</text>
+  <text class="mono" x="486" y="334">risk: read_only</text>
+  <text class="mono" x="486" y="364">evidence: observation #3</text>
+  <path class="arrow" d="M774 258 H858"/>
+  <rect class="mid" x="858" y="136" width="198" height="244" rx="8"/>
+  <text class="head" x="902" y="170">系统能力</text>
+  <text class="text" x="896" y="210">进度条</text>
+  <text class="text" x="896" y="240">阻塞检测</text>
+  <text class="text" x="896" y="270">重规划触发</text>
+  <text class="text" x="896" y="300">完成标准校验</text>
+  <text class="text" x="896" y="330">审计和复盘</text>
+  <rect x="156" y="438" width="808" height="40" rx="8" fill="#172033"/>
+  <text x="252" y="463" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">计划成为状态对象后,进度、阻塞和重规划才可检查。</text>
+</svg>

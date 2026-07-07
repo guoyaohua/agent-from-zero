@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">ReAct 证据链</title>
+  <desc id="desc">展示 ReAct 如何把假设、工具动作、观察和结论串成可追溯证据链。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.8px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.hyp{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.act{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.obs{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.ans{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}.dash{fill:none;stroke:#b05c37;stroke-width:1.8;stroke-dasharray:5 5;marker-end:url(#arrow2)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b05c37"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">ReAct 的价值是让结论落到观察,而不是落到猜测</text>
+  <text class="sub" x="56" y="82">每个动作都应该验证一个假设;每个最终结论都应该能回指到具体观察。</text>
+  <rect class="hyp" x="66" y="154" width="180" height="104" rx="8"/>
+  <text class="head" x="96" y="188">Hypothesis</text>
+  <text class="text" x="96" y="218">可能是依赖版本</text>
+  <text class="small" x="96" y="240">尚未验证</text>
+  <path class="arrow" d="M246 206 H316"/>
+  <rect class="act" x="316" y="154" width="180" height="104" rx="8"/>
+  <text class="head" x="366" y="188">Action</text>
+  <text class="text" x="348" y="218">读取 package.json</text>
+  <text class="small" x="348" y="240">最低成本验证</text>
+  <path class="arrow" d="M496 206 H566"/>
+  <rect class="obs" x="566" y="154" width="180" height="104" rx="8"/>
+  <text class="head" x="606" y="188">Observation</text>
+  <text class="text" x="598" y="218">版本与日志匹配</text>
+  <text class="small" x="598" y="240">证据 #3</text>
+  <path class="arrow" d="M746 206 H816"/>
+  <rect class="hyp" x="816" y="154" width="238" height="104" rx="8"/>
+  <text class="head" x="858" y="188">Updated Hypothesis</text>
+  <text class="text" x="850" y="218">根因更可能是兼容性</text>
+  <text class="small" x="850" y="240">继续验证或修复</text>
+  <path class="arrow" d="M930 258 C930 324 688 328 628 292"/>
+  <rect class="obs" x="456" y="320" width="250" height="96" rx="8"/>
+  <text class="head" x="506" y="354">Verification</text>
+  <text class="text" x="490" y="382">修复后测试通过</text>
+  <text class="small" x="490" y="404">证据 #8, 未跑全量测试需说明</text>
+  <path class="dash" d="M706 368 H800"/>
+  <rect class="ans" x="800" y="320" width="254" height="96" rx="8"/>
+  <text class="head" x="858" y="354">Final Answer</text>
+  <text class="text" x="832" y="382">区分已观察事实、推断</text>
+  <text class="small" x="832" y="404">和未验证剩余风险</text>
+  <rect x="96" y="442" width="928" height="38" rx="8" fill="#172033"/>
+  <text x="240" y="466" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">检查句: 动作验证什么? 结论引用哪个 observation?</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从 Workflow 渐进演化到混合 Agent</title>
+  <desc id="desc">展示从普通 LLM 节点到结构化输出、只读工具、固定工作流、不确定节点 Agent 化和低风险写入的演化路线。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 11.8px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.step{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.agent{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.guard{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">成熟系统通常不是一步到 Agent,而是逐步开放自主性</text>
+  <text class="sub" x="56" y="82">先让输出可检查,再让模型读事实,最后只在不确定节点引入循环和写入能力。</text>
+  <rect class="step" x="64" y="182" width="130" height="92" rx="8"/><text class="head" x="92" y="214">LLM 节点</text><text class="text" x="90" y="240">文本生成</text>
+  <rect class="guard" x="236" y="182" width="130" height="92" rx="8"/><text class="head" x="264" y="214">结构化</text><text class="text" x="262" y="240">schema 校验</text>
+  <rect class="guard" x="408" y="182" width="130" height="92" rx="8"/><text class="head" x="438" y="214">只读工具</text><text class="text" x="434" y="240">基于事实</text>
+  <rect class="step" x="580" y="182" width="130" height="92" rx="8"/><text class="head" x="610" y="214">Workflow</text><text class="text" x="612" y="240">固定主路径</text>
+  <rect class="agent" x="752" y="136" width="150" height="136" rx="8"/><text class="head" x="792" y="168">Agent 节点</text><text class="text" x="786" y="196">处理异常</text><text class="text" x="786" y="222">多轮探索</text><text class="text" x="786" y="248">带预算停止</text>
+  <rect class="guard" x="944" y="182" width="130" height="92" rx="8"/><text class="head" x="970" y="214">低风险写</text><text class="text" x="970" y="240">草稿/验证</text>
+  <path class="arrow" d="M194 228H236M366 228H408M538 228H580M710 228H752M902 228H944"/>
+  <rect class="box" x="224" y="342" width="672" height="72" rx="8"/>
+  <text class="head" x="260" y="374">每一步都要补上的工程能力</text>
+  <text class="text" x="260" y="398">日志 trace、评估集、权限、预算、错误恢复、人工确认、版本管理和回滚路径。</text>
+  <rect x="158" y="456" width="804" height="34" rx="8" fill="#172033"/>
+  <text x="192" y="478" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">让确定路径留在 Workflow,把不确定和异常路径逐步 Agent 化,通常最稳。</text>
+</svg>

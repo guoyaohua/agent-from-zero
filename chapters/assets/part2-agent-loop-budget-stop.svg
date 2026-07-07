@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 循环的预算和停止条件</title>
+  <desc id="desc">展示预算、风险、进展和验证如何共同决定 Agent 是继续执行、请求确认还是停止。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.arrow{fill:none;stroke:#8796aa;stroke-width:2.2;marker-end:url(#arrow)}.line{stroke:#d8e0eb;stroke-width:1.4}.tag{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#fff}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">停止不是失败,失控循环才是失败</text>
+  <text class="sub" x="56" y="82">每轮结束时都要同时检查进展、预算、风险和验证状态,再决定是否继续。</text>
+  <rect class="box" x="70" y="126" width="272" height="286" rx="8"/>
+  <text class="head" x="102" y="160">每轮检查</text>
+  <line class="line" x1="102" y1="182" x2="310" y2="182"/>
+  <text class="text" x="102" y="214">是否产生新信息?</text>
+  <text class="text" x="102" y="248">是否缩小问题空间?</text>
+  <text class="text" x="102" y="282">是否接近完成标准?</text>
+  <text class="text" x="102" y="316">是否重复无效动作?</text>
+  <text class="text" x="102" y="350">是否触达风险门?</text>
+  <path class="arrow" d="M342 270 H430"/>
+  <rect class="warn" x="430" y="126" width="260" height="286" rx="8"/>
+  <text class="head" x="462" y="160">预算账本</text>
+  <text class="text" x="462" y="208">轮数: 3 / 8</text>
+  <text class="text" x="462" y="240">工具调用: 7 / 20</text>
+  <text class="text" x="462" y="272">时间: 54s / 180s</text>
+  <text class="text" x="462" y="304">写操作: 0 / 1</text>
+  <text class="text" x="462" y="336">上下文: 接近裁剪阈值</text>
+  <path class="arrow" d="M690 270 H778"/>
+  <rect class="box" x="778" y="108" width="270" height="324" rx="8"/>
+  <text class="head" x="810" y="142">下一步决策</text>
+  <rect class="good" x="812" y="174" width="202" height="42" rx="7"/><text class="text" x="854" y="201">继续探索</text>
+  <rect class="good" x="812" y="232" width="202" height="42" rx="7"/><text class="text" x="854" y="259">交付结果</text>
+  <rect class="warn" x="812" y="290" width="202" height="42" rx="7"/><text class="text" x="854" y="317">请求确认</text>
+  <rect class="bad" x="812" y="348" width="202" height="42" rx="7"/><text class="text" x="854" y="375">停止并说明阻塞</text>
+  <rect x="164" y="444" width="792" height="42" rx="8" fill="#172033"/>
+  <text class="tag" x="268" y="470">继续条件: 新信息来源、明确收益、可接受成本。</text>
+</svg>

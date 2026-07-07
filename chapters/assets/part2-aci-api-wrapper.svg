@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从后端 API 包装成 Agent ACI</title>
+  <desc id="desc">展示底层通用 API 如何被包装成面向 Agent 的语义化、窄作用域、安全工具。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.api{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.wrap{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.tool{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">API 面向程序员,ACI 面向模型决策和安全执行</text>
+  <text class="sub" x="56" y="82">不要直接暴露底层万能接口;把它包装成窄、清晰、可验证、可审计的业务动作。</text>
+  <rect class="api" x="76" y="146" width="270" height="214" rx="8"/>
+  <text class="head" x="118" y="180">底层 API</text>
+  <text class="mono" x="112" y="218">POST /internal/action</text>
+  <text class="mono" x="112" y="248">op: 17</text>
+  <text class="mono" x="112" y="278">flags: 12</text>
+  <text class="text" x="112" y="322">灵活,但模型难以理解边界</text>
+  <path class="arrow" d="M346 254 H430"/>
+  <rect class="wrap" x="430" y="118" width="260" height="270" rx="8"/>
+  <text class="head" x="480" y="152">ACI Wrapper</text>
+  <text class="text" x="468" y="192">语义命名</text>
+  <text class="text" x="468" y="222">参数裁剪和默认值</text>
+  <text class="text" x="468" y="252">权限和风险分级</text>
+  <text class="text" x="468" y="282">dry-run / draft</text>
+  <text class="text" x="468" y="312">结构化错误和审计</text>
+  <path class="arrow" d="M690 254 H774"/>
+  <rect class="tool" x="774" y="108" width="282" height="290" rx="8"/>
+  <text class="head" x="830" y="142">Agent Tools</text>
+  <text class="mono" x="810" y="182">get_order_status</text>
+  <text class="mono" x="810" y="212">search_policy_docs</text>
+  <text class="mono" x="810" y="242">create_refund_draft</text>
+  <text class="mono" x="810" y="272">submit_refund_after_confirm</text>
+  <text class="text" x="810" y="326">动作少而清楚,系统更可控</text>
+  <rect x="130" y="430" width="860" height="40" rx="8" fill="#172033"/>
+  <text x="256" y="455" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">ACI 不是暴露全部能力,而是提供窄而可靠的动作空间。</text>
+</svg>

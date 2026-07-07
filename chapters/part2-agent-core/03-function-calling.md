@@ -157,6 +157,12 @@ Function Calling 的核心是 tool schema。它告诉模型:
 
 对 Agent 来说,很多错误不是类型错,而是语义错。比如模型生成了一个格式看似合法但不存在的订单号。Schema 要尽量减少这种自由猜测空间。
 
+![Tool Schema 的语义约束](../assets/part2-function-schema-semantics.svg)
+
+这张图说明了 schema 的关键价值:不是只让 JSON 长得合法,而是让模型知道参数的来源、边界和不确定时的处理方式。`order_id: string` 只能阻止类型错误,不能阻止模型编造订单号;`Exact order identifier from user message or retrieved customer record. Do not invent.` 才能把自由猜测空间压小。
+
+语义化 schema 还应该告诉 runtime 哪些规则不能交给模型判断。例如金额是否超过已支付总额、当前用户是否能访问订单、写操作是否需要确认,这些都应该由业务校验执行。模型负责提出候选调用,系统负责判断候选调用能不能进入真实世界。
+
 可以在 description 中明确:
 
 - 参数来源。
@@ -168,6 +174,12 @@ Function Calling 的核心是 tool schema。它告诉模型:
 ## 一次工具调用生命周期
 
 一次可靠工具调用通常经历这些阶段。
+
+![Function Calling 生命周期](../assets/part2-function-calling-lifecycle.svg)
+
+这个生命周期里最容易被低估的是中间三步:校验、授权和错误反馈。模型生成的 tool call 只是一个提案,即使 JSON 完全符合 schema,也不代表它有权限执行,更不代表业务上正确。runtime 必须检查工具是否存在、参数是否合法、当前用户是否有权、风险是否需要确认,再决定是否执行。
+
+失败路径也要设计成一等公民。如果参数错了,返回 `INVALID_ARGUMENT` 和具体字段;如果权限不足,返回 `PERMISSION_DENIED`;如果对象不存在,返回 `NOT_FOUND`。结构化错误会变成下一轮 ReAct 的 observation,让模型有机会修正、询问用户或停止,而不是把失败当作成功继续编故事。
 
 ### 1. 工具选择
 

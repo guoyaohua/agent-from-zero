@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">ACI 副作用分级</title>
+  <desc id="desc">展示从只读工具到高风险写操作的副作用等级,以及对应的控制策略。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.7px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.8px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.l1{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.l2{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.l3{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.l4{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">工具越接近真实副作用,越不能只靠一句“谨慎使用”</text>
+  <text class="sub" x="56" y="82">ACI 应把风险等级编码进工具设计:权限、确认、dry-run、审计和回滚。</text>
+  <rect class="l1" x="70" y="166" width="220" height="140" rx="8"/>
+  <text class="head" x="116" y="200">只读观察</text>
+  <text class="text" x="106" y="232">搜索、查询、读取</text>
+  <text class="small" x="106" y="262">权限校验 + 日志</text>
+  <path class="arrow" d="M290 236 H342"/>
+  <rect class="l2" x="342" y="146" width="220" height="180" rx="8"/>
+  <text class="head" x="392" y="180">可恢复写入</text>
+  <text class="text" x="378" y="212">创建草稿、临时分支</text>
+  <text class="small" x="378" y="242">可撤销 + 操作 ID</text>
+  <text class="small" x="378" y="270">必要时轻确认</text>
+  <path class="arrow" d="M562 236 H614"/>
+  <rect class="l3" x="614" y="126" width="220" height="220" rx="8"/>
+  <text class="head" x="670" y="160">高风险写入</text>
+  <text class="text" x="650" y="192">发送、退款、改权限</text>
+  <text class="small" x="650" y="224">preview + 用户确认</text>
+  <text class="small" x="650" y="252">幂等 key + 审计</text>
+  <text class="small" x="650" y="280">回滚或人工路径</text>
+  <path class="arrow" d="M834 236 H886"/>
+  <rect class="l4" x="886" y="166" width="180" height="140" rx="8"/>
+  <text class="head" x="936" y="200">禁止动作</text>
+  <text class="text" x="922" y="232">越权、泄密</text>
+  <text class="small" x="922" y="262">直接拒绝</text>
+  <rect x="156" y="418" width="808" height="42" rx="8" fill="#172033"/>
+  <text x="272" y="444" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">高风险工具默认先 preview 或 draft,再确认执行。</text>
+</svg>

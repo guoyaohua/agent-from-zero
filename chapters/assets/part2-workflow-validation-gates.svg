@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">工作流校验门</title>
+  <desc id="desc">展示 LLM 工作流如何在节点之间加入 schema、证据、策略、安全、预算和测试校验门。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.node{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.pass{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.fail{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2.1;marker-end:url(#arrow)}.reject{fill:none;stroke:#b13c52;stroke-width:2;stroke-dasharray:5 5;marker-end:url(#arrow2)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">Workflow 的可靠性来自节点之间的校验门</text>
+  <text class="sub" x="56" y="82">模型输出只是候选结果,能不能进入下一步由工作流判断。</text>
+  <rect class="node" x="70" y="178" width="150" height="82" rx="8"/><text class="head" x="112" y="210">LLM 节点</text><text class="text" x="104" y="236">生成候选</text>
+  <rect class="gate" x="278" y="128" width="150" height="82" rx="8"/><text class="head" x="316" y="160">Schema</text><text class="text" x="314" y="186">字段和类型</text>
+  <rect class="gate" x="278" y="246" width="150" height="82" rx="8"/><text class="head" x="320" y="278">Evidence</text><text class="text" x="314" y="304">引用和来源</text>
+  <rect class="gate" x="486" y="128" width="150" height="82" rx="8"/><text class="head" x="528" y="160">Policy</text><text class="text" x="520" y="186">业务规则</text>
+  <rect class="gate" x="486" y="246" width="150" height="82" rx="8"/><text class="head" x="528" y="278">Safety</text><text class="text" x="520" y="304">权限和敏感</text>
+  <rect class="gate" x="694" y="178" width="150" height="82" rx="8"/><text class="head" x="734" y="210">Test</text><text class="text" x="728" y="236">可执行验证</text>
+  <rect class="pass" x="902" y="178" width="150" height="82" rx="8"/><text class="head" x="946" y="210">Next</text><text class="text" x="930" y="236">进入下一节点</text>
+  <path class="arrow" d="M220 219 H278"/><path class="arrow" d="M428 169 H486"/><path class="arrow" d="M428 287 H486"/><path class="arrow" d="M636 169 C666 178 670 198 694 206"/><path class="arrow" d="M636 287 C666 278 670 240 694 232"/><path class="arrow" d="M844 219 H902"/>
+  <rect class="fail" x="430" y="388" width="260" height="60" rx="8"/><text class="head" x="492" y="414">失败路径</text><text class="text" x="466" y="438">重试、降级、人工、停止</text>
+  <path class="reject" d="M352 328 C376 386 410 408 430 416"/>
+  <path class="reject" d="M562 328 C560 358 560 376 560 388"/>
+  <rect x="150" y="468" width="820" height="32" rx="8" fill="#172033"/>
+  <text x="184" y="489" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">校验门让系统不必完全相信模型,也让失败可以被定位到具体节点。</text>
+</svg>
