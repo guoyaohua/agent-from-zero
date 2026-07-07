@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">RoPE 频率缩放与局部分辨率取舍</title>
+  <desc id="desc">展示 RoPE 通过多频率旋转表达相对位置,长上下文缩放把更长距离压进熟悉区间时,可能改善外推但牺牲局部位置分辨率。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .axis { stroke: #8b98aa; stroke-width: 1.6; }
+      .wave1 { fill: none; stroke: #355c9a; stroke-width: 2.4; }
+      .wave2 { fill: none; stroke: #b05c37; stroke-width: 2.4; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">RoPE 缩放的核心取舍: 外推更稳,局部分辨率可能变粗</text>
+  <text class="sub" x="48" y="74">多频率旋转让模型感知相对距离;把长位置压缩进熟悉范围时,短距离差异也可能被压近。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="90" y="142" width="438" height="210" rx="8" />
+  <text class="label" x="226" y="174">训练长度内: 多频率提供细粒度位置线索</text>
+  <line class="axis" x1="132" y1="278" x2="486" y2="278" />
+  <path class="wave1" d="M132 278 C150 236 168 236 186 278 S222 320 240 278 S276 236 294 278 S330 320 348 278 S384 236 402 278 S438 320 456 278 S474 236 486 260" />
+  <path class="wave2" d="M132 278 C182 230 238 230 288 278 S394 326 444 278 C462 260 474 250 486 246" />
+  <text class="small" x="154" y="318">高频: 分辨近邻顺序</text>
+  <text class="small" x="332" y="318">低频: 捕捉远距离趋势</text>
+
+  <path class="arrow" d="M528 247 H592" />
+
+  <rect class="orange" x="592" y="142" width="438" height="210" rx="8" />
+  <text class="label" x="720" y="174">缩放后: 更长范围进入熟悉角度区间</text>
+  <line class="axis" x1="634" y1="278" x2="988" y2="278" />
+  <path class="wave1" d="M634 278 C674 242 714 242 754 278 S834 314 874 278 S954 242 988 264" />
+  <path class="wave2" d="M634 278 C710 240 806 240 882 278 C930 302 960 298 988 286" />
+  <text class="small" x="656" y="318">远距离外推更温和</text>
+  <text class="small" x="826" y="318">局部差异可能变钝</text>
+
+  <rect class="red" x="226" y="374" width="668" height="44" rx="8" />
+  <text class="text" x="254" y="401">因此长上下文扩展必须看真实任务: 代码局部顺序、表格行列、引用定位都可能暴露分辨率损失。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: RoPE scaling 调的是位置几何,不是直接给模型增加“理解长文档”的能力。</text>
+</svg>

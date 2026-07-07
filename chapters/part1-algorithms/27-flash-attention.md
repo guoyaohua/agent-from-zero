@@ -100,6 +100,8 @@ Flash Attention 尽量把小块数据放在更快的 SRAM 中处理,避免完整
 
 Flash Attention 把 Q、K、V 分成块。
 
+![Flash Attention 分块扫描](../assets/part1-flash-attention-tile-scan.svg)
+
 它一次处理一块 Query 和一块 Key/Value。
 
 对每个 Query block,逐块扫描 K/V,计算局部注意力贡献,并在线更新输出。
@@ -118,6 +120,8 @@ for Q_block in Q:
 ```
 
 真正实现要处理数值稳定、mask、反向传播等细节。
+
+这个图里最关键的是:完整的 $T \times T$ 注意力矩阵并没有作为中间结果落到 HBM。每个 tile 在片上存储里完成局部计算,只把必要统计量和输出块累积起来。也就是说,Flash Attention 优化的是“数据怎么在硬件里流动”,而不是“注意力公式换了一个近似版本”。
 
 ## 在线 Softmax
 
@@ -142,6 +146,8 @@ Flash Attention 使用在线 Softmax 技巧,在扫描块时维护每行的最大
 
 当新块分数到来时,如果新最大值变了,旧的指数和要按比例缩放到新的基准下。这个过程类似“边读边重新标尺”。
 
+![Flash Attention 的在线 Softmax 合并](../assets/part1-flash-online-softmax.svg)
+
 设旧统计量为 $m_{old}, l_{old}$,新块最大值为 $m_{block}$,新全局最大值为:
 
 $$
@@ -155,6 +161,14 @@ l_{new}=e^{m_{old}-m_{new}}l_{old}+\sum_{j \in block}e^{s_j-m_{new}}
 $$
 
 输出向量也用同样的缩放方式累积。这样最终好像真的看过整行,但过程中只需要保留小块和少量统计量。
+
+如果 $O_{old}$ 表示已经归一化过的旧输出,新块贡献为 $P_{block}V_{block}$,则可以把输出更新理解成:
+
+$$
+O_{new}=\frac{e^{m_{old}-m_{new}}l_{old}O_{old}+P_{block}V_{block}}{l_{new}}
+$$
+
+这里 $P_{block}=e^{S_{block}-m_{new}}$。这条式子说明了在线 Softmax 为什么能等价:旧输出不是简单相加,而是先按新最大值基准重新缩放,再和新块贡献合并。
 
 这就是 Flash Attention 最容易让人“恍然大悟”的地方:它不是少算了注意力,而是把 Softmax 的全局归一化拆成可合并的局部统计。
 
@@ -246,6 +260,8 @@ Flash Attention 优化实现。
 不同 GPU、不同精度、不同 mask 类型、不同 head dimension 都会影响是否能使用高效 kernel。
 
 实际部署时,要通过 benchmark 测量。
+
+还要确认用到的是哪个 kernel。很多框架会根据 dtype、head dimension、mask、dropout、GPU 架构选择不同 backend。如果某个条件不满足,代码仍然能跑,但可能回退到普通或 memory efficient kernel。生产环境里最好记录 attention backend,把它纳入性能 trace,否则一次依赖升级可能悄悄改变延迟和显存曲线。
 
 ## 对 Agent 的意义
 

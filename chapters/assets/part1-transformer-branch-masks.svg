@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">三类 Transformer 的 mask 与目标</title>
+  <desc id="desc">对比 Encoder-only、Encoder-Decoder 和 Decoder-only 的注意力可见范围、训练目标和典型任务。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .cell { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; }
+      .on { fill: #355c9a; }
+      .off { fill: #e5e7eb; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">三条分支的本质差异: 谁能看见谁,以及训练目标是什么</text>
+  <text class="sub" x="48" y="78">架构选择不是新旧之争,而是 attention mask、输入输出形态和目标函数的选择。</text>
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="blue" x="92" y="156" width="278" height="244" rx="8" />
+  <text class="label" x="178" y="188">Encoder-only</text>
+  <text class="small" x="130" y="218">双向可见,适合理解</text>
+  <g transform="translate(140 244)">
+    <rect class="cell" x="0" y="0" width="24" height="24"/><rect class="cell" x="24" y="0" width="24" height="24"/><rect class="cell" x="48" y="0" width="24" height="24"/><rect class="cell" x="72" y="0" width="24" height="24"/>
+    <rect class="on" x="3" y="3" width="18" height="18"/><rect class="on" x="27" y="3" width="18" height="18"/><rect class="on" x="51" y="3" width="18" height="18"/><rect class="on" x="75" y="3" width="18" height="18"/>
+    <rect class="cell" x="0" y="24" width="24" height="24"/><rect class="cell" x="24" y="24" width="24" height="24"/><rect class="cell" x="48" y="24" width="24" height="24"/><rect class="cell" x="72" y="24" width="24" height="24"/>
+    <rect class="on" x="3" y="27" width="18" height="18"/><rect class="on" x="27" y="27" width="18" height="18"/><rect class="on" x="51" y="27" width="18" height="18"/><rect class="on" x="75" y="27" width="18" height="18"/>
+    <rect class="cell" x="0" y="48" width="24" height="24"/><rect class="cell" x="24" y="48" width="24" height="24"/><rect class="cell" x="48" y="48" width="24" height="24"/><rect class="cell" x="72" y="48" width="24" height="24"/>
+    <rect class="on" x="3" y="51" width="18" height="18"/><rect class="on" x="27" y="51" width="18" height="18"/><rect class="on" x="51" y="51" width="18" height="18"/><rect class="on" x="75" y="51" width="18" height="18"/>
+  </g>
+  <text class="small" x="130" y="352">目标: mask token / 表示学习</text>
+  <rect class="green" x="420" y="156" width="278" height="244" rx="8" />
+  <text class="label" x="500" y="188">Encoder-Decoder</text>
+  <text class="small" x="456" y="218">读输入,因果写输出</text>
+  <rect class="cell" x="492" y="250" width="120" height="44"/><text class="small" x="512" y="278">Encoder</text>
+  <path class="arrow" d="M552 294 V322" />
+  <rect class="cell" x="492" y="322" width="120" height="44"/><text class="small" x="512" y="350">Decoder</text>
+  <text class="small" x="456" y="390">目标: 输入序列 -> 输出序列</text>
+  <rect class="orange" x="748" y="156" width="278" height="244" rx="8" />
+  <text class="label" x="834" y="188">Decoder-only</text>
+  <text class="small" x="786" y="218">因果可见,继续生成</text>
+  <g transform="translate(800 244)">
+    <rect class="cell" x="0" y="0" width="24" height="24"/><rect class="cell" x="24" y="0" width="24" height="24"/><rect class="cell" x="48" y="0" width="24" height="24"/><rect class="cell" x="72" y="0" width="24" height="24"/>
+    <rect class="on" x="3" y="3" width="18" height="18"/><rect class="off" x="27" y="3" width="18" height="18"/><rect class="off" x="51" y="3" width="18" height="18"/><rect class="off" x="75" y="3" width="18" height="18"/>
+    <rect class="cell" x="0" y="24" width="24" height="24"/><rect class="cell" x="24" y="24" width="24" height="24"/><rect class="cell" x="48" y="24" width="24" height="24"/><rect class="cell" x="72" y="24" width="24" height="24"/>
+    <rect class="on" x="3" y="27" width="18" height="18"/><rect class="on" x="27" y="27" width="18" height="18"/><rect class="off" x="51" y="27" width="18" height="18"/><rect class="off" x="75" y="27" width="18" height="18"/>
+    <rect class="cell" x="0" y="48" width="24" height="24"/><rect class="cell" x="24" y="48" width="24" height="24"/><rect class="cell" x="48" y="48" width="24" height="24"/><rect class="cell" x="72" y="48" width="24" height="24"/>
+    <rect class="on" x="3" y="51" width="18" height="18"/><rect class="on" x="27" y="51" width="18" height="18"/><rect class="on" x="51" y="51" width="18" height="18"/><rect class="off" x="75" y="51" width="18" height="18"/>
+  </g>
+  <text class="small" x="786" y="352">目标: next token prediction</text>
+  <rect class="panel" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: Agent 偏爱 Decoder-only,因为所有上下文都能变成前缀,下一步动作也能变成生成。</text>
+</svg>

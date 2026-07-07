@@ -256,6 +256,28 @@ Decoder-only 也不是没有缺点。
 
 这个表不是优劣排名。它是在说明:架构要和任务目标匹配。
 
+![三类 Transformer 的 mask 与目标](../assets/part1-transformer-branch-masks.svg)
+
+从 mask 的角度看,三条分支的差异更直观:
+
+- Encoder-only 没有因果限制,适合“读完整段再判断”。
+- Encoder-Decoder 把“读输入”和“写输出”分开,Decoder 生成时通过 Cross-Attention 读取 Encoder 表示。
+- Decoder-only 把所有内容放进同一个前缀里,只用因果注意力继续生成。
+
+这也是为什么 Agent 工程通常围绕 Decoder-only 展开:系统指令、用户目标、工具说明、RAG 证据、历史状态都能被拼成前缀,模型只需要生成下一步动作或回答。但这也把上下文组织压力推给了应用层。
+
+![任务形态决定 Transformer 分支选择](../assets/part1-architecture-task-fit.svg)
+
+更实用的判断方法不是先问“哪个架构更强”,而是先问任务的输入输出边界。
+
+如果任务是“读完一段文本,给一个标签、分数或向量”,Encoder-only 往往更自然。它可以双向读取完整输入,不需要逐 token 生成一段答案。很多检索、排序、分类和风控任务选择 Encoder 或小模型,并不是落后,而是更贴合目标和成本。
+
+如果任务是“明确输入序列变成明确输出序列”,Encoder-Decoder 仍然非常清晰。Encoder 负责压缩输入,Decoder 负责生成输出,中间 Cross-Attention 提供稳定的信息读取路径。翻译、摘要、纠错、结构化改写都属于这类任务。
+
+如果任务是“把系统指令、用户请求、工具说明、历史轨迹放在一起,继续生成下一步”,Decoder-only 的前缀建模就很有优势。Agent 的下一步动作、函数参数、代码 patch、解释文本都能被统一成生成目标。
+
+真实系统经常是混合的:Decoder-only LLM 做推理和动作生成,embedding 模型做召回,reranker 做排序,分类器做安全或路由。理解三条分支的意义,不是为了选一个模型统治所有任务,而是为了把每个子任务放到合适的位置。
+
 ## 指令微调如何改变 Decoder-only
 
 预训练的 Decoder-only 模型只是学会续写文本。

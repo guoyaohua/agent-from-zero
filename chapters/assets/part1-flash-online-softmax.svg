@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Flash Attention 的在线 Softmax 合并</title>
+  <desc id="desc">展示在线 softmax 如何把两个分块的最大值和指数和合并到同一个基准,并用相同缩放更新输出向量,从而避免保存完整注意力行。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">在线 Softmax 的关键: 换基准后,旧贡献可以重新缩放</text>
+  <text class="sub" x="48" y="74">每行只维护最大值 m、指数和 l、部分输出 y;新 tile 到来时把旧统计量搬到新的最大值基准下。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="88" y="146" width="230" height="110" rx="8" />
+  <text class="label" x="154" y="178">已扫描块</text>
+  <text class="small" x="118" y="206">m_old, l_old, y_old</text>
+  <text class="small" x="118" y="230">基准: 当前最大分数</text>
+  <path class="arrow" d="M318 201 H390" />
+
+  <rect class="orange" x="390" y="146" width="230" height="110" rx="8" />
+  <text class="label" x="456" y="178">新 tile</text>
+  <text class="small" x="420" y="206">scores_block</text>
+  <text class="small" x="420" y="230">m_block, exp sum, y_block</text>
+  <path class="arrow" d="M620 201 H692" />
+
+  <rect class="green" x="692" y="146" width="328" height="110" rx="8" />
+  <text class="label" x="794" y="178">合并统计量</text>
+  <text class="small" x="724" y="206">m_new = max(m_old, m_block)</text>
+  <text class="small" x="724" y="230">旧贡献乘 exp(m_old - m_new)</text>
+
+  <rect class="gray" x="142" y="302" width="836" height="86" rx="8" />
+  <text class="label" x="176" y="334">等价性直觉</text>
+  <text class="text" x="176" y="362">Softmax 分母可以拆块求和,只要所有块最后都换到同一个最大值基准。</text>
+  <text class="text" x="176" y="386">输出向量也按同样权重重标定,因此结果仍等价于一次性 softmax。</text>
+
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: Flash Attention 的“神奇”在于可合并统计量,不是在注意力矩阵里偷偷丢 token。</text>
+</svg>

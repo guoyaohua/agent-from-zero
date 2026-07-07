@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">KV Cache 随生成步数增长</title>
+  <desc id="desc">展示自回归推理中 prefill 先写入 prompt 的 KV Cache,decode 每生成一个 token 就读取全部历史 KV 并追加新 KV,说明上下文越长 decode 越受带宽限制。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .prompt { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .gen { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .cache { fill: #fff0e6; stroke: #b05c37; stroke-width: 1.6; }
+      .read { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #b13c52; stroke-width: 2; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">KV Cache 加速历史复用,但 decode 仍要读越来越长的历史</text>
+  <text class="sub" x="48" y="74">Prefill 写入整段 prompt 的 K/V;每个 decode step 读取历史 K/V、生成新 token、再追加新 K/V。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="prompt" x="92" y="150" width="250" height="86" rx="8" />
+  <text class="label" x="172" y="182">Prefill</text>
+  <text class="small" x="122" y="210">prompt: t1 ... tN 一次处理</text>
+  <path class="arrow" d="M342 193 H430" />
+  <rect class="cache" x="430" y="142" width="250" height="102" rx="8" />
+  <text class="label" x="512" y="174">KV Cache</text>
+  <g transform="translate(462 196)">
+    <rect class="cache" x="0" y="0" width="34" height="24" rx="4"/><rect class="cache" x="42" y="0" width="34" height="24" rx="4"/><rect class="cache" x="84" y="0" width="34" height="24" rx="4"/>
+    <rect class="cache" x="126" y="0" width="34" height="24" rx="4"/><rect class="cache" x="168" y="0" width="34" height="24" rx="4"/>
+  </g>
+  <text class="small" x="482" y="230">N 个历史 token 的 K/V</text>
+
+  <rect class="gen" x="790" y="148" width="194" height="90" rx="8" />
+  <text class="label" x="842" y="180">Decode step</text>
+  <text class="small" x="820" y="208">只输入最新 token</text>
+  <path class="dash" d="M790 208 C730 262 638 262 596 244" />
+  <text class="small" x="708" y="272">读全部历史 KV</text>
+
+  <rect class="read" x="168" y="318" width="784" height="54" rx="8" />
+  <text class="label" x="204" y="352">生成第 k 个 token 时,每层大致需要读取 prompt KV + 已生成 KV</text>
+  <path class="arrow" d="M886 238 V318" />
+  <text class="small" x="782" y="306">追加新 K/V</text>
+  <g transform="translate(364 390)">
+    <rect class="prompt" x="0" y="0" width="190" height="24" rx="4"/><text class="small" x="54" y="17">prompt KV</text>
+    <rect class="gen" x="198" y="0" width="82" height="24" rx="4"/><text class="small" x="210" y="17">gen KV</text>
+    <rect class="gen" x="288" y="0" width="42" height="24" rx="4"/><text class="small" x="299" y="17">new</text>
+  </g>
+
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: KV Cache 省掉重复计算历史 K/V,但没有省掉新 token 对历史 K/V 的读取和注意力计算。</text>
+</svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">MHA、GQA 与 MQA 的 KV Cache 差异</title>
+  <desc id="desc">对比标准多头注意力、分组查询注意力和多查询注意力中 Query head 与 KV head 的对应关系,说明减少 KV head 如何降低长上下文推理显存。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .mha { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .gqa { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .mqa { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .kv { fill: #f7d9df; stroke: #b13c52; stroke-width: 1.6; }
+      .q { fill: #eef3f8; stroke: #7b8798; stroke-width: 1.2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 1.6; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">减少 K/V 头数,就是在减少每层每个 token 必须缓存的向量</text>
+  <text class="sub" x="48" y="74">Query head 仍可很多,但 Key/Value 可以被多个 Query head 共享,从而降低 decode 阶段的显存带宽压力。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="mha" x="86" y="142" width="300" height="244" rx="8" />
+  <text class="label" x="200" y="172">MHA</text>
+  <text class="small" x="118" y="198">每个 Query head 有自己的 K/V</text>
+  <g transform="translate(116 224)">
+    <rect class="q" x="0" y="0" width="38" height="30" rx="5"/><text class="small" x="9" y="20">Q1</text>
+    <rect class="q" x="52" y="0" width="38" height="30" rx="5"/><text class="small" x="61" y="20">Q2</text>
+    <rect class="q" x="104" y="0" width="38" height="30" rx="5"/><text class="small" x="113" y="20">Q3</text>
+    <rect class="q" x="156" y="0" width="38" height="30" rx="5"/><text class="small" x="165" y="20">Q4</text>
+    <path class="arrow" d="M19 32 V58"/><path class="arrow" d="M71 32 V58"/><path class="arrow" d="M123 32 V58"/><path class="arrow" d="M175 32 V58"/>
+    <rect class="kv" x="0" y="62" width="38" height="34" rx="5"/><text class="small" x="6" y="84">KV1</text>
+    <rect class="kv" x="52" y="62" width="38" height="34" rx="5"/><text class="small" x="58" y="84">KV2</text>
+    <rect class="kv" x="104" y="62" width="38" height="34" rx="5"/><text class="small" x="110" y="84">KV3</text>
+    <rect class="kv" x="156" y="62" width="38" height="34" rx="5"/><text class="small" x="162" y="84">KV4</text>
+  </g>
+  <text class="text" x="118" y="352">KV cache: 4 份</text>
+
+  <rect class="gqa" x="410" y="142" width="300" height="244" rx="8" />
+  <text class="label" x="524" y="172">GQA</text>
+  <text class="small" x="442" y="198">一组 Query head 共享一组 K/V</text>
+  <g transform="translate(440 224)">
+    <rect class="q" x="0" y="0" width="38" height="30" rx="5"/><text class="small" x="9" y="20">Q1</text>
+    <rect class="q" x="52" y="0" width="38" height="30" rx="5"/><text class="small" x="61" y="20">Q2</text>
+    <rect class="q" x="104" y="0" width="38" height="30" rx="5"/><text class="small" x="113" y="20">Q3</text>
+    <rect class="q" x="156" y="0" width="38" height="30" rx="5"/><text class="small" x="165" y="20">Q4</text>
+    <path class="arrow" d="M19 32 C24 50 44 54 45 60"/><path class="arrow" d="M71 32 C66 50 46 54 45 60"/>
+    <path class="arrow" d="M123 32 C128 50 148 54 149 60"/><path class="arrow" d="M175 32 C170 50 150 54 149 60"/>
+    <rect class="kv" x="26" y="62" width="38" height="34" rx="5"/><text class="small" x="32" y="84">KV1</text>
+    <rect class="kv" x="130" y="62" width="38" height="34" rx="5"/><text class="small" x="136" y="84">KV2</text>
+  </g>
+  <text class="text" x="442" y="352">KV cache: 2 份</text>
+
+  <rect class="mqa" x="734" y="142" width="300" height="244" rx="8" />
+  <text class="label" x="848" y="172">MQA</text>
+  <text class="small" x="766" y="198">所有 Query head 共享一组 K/V</text>
+  <g transform="translate(764 224)">
+    <rect class="q" x="0" y="0" width="38" height="30" rx="5"/><text class="small" x="9" y="20">Q1</text>
+    <rect class="q" x="52" y="0" width="38" height="30" rx="5"/><text class="small" x="61" y="20">Q2</text>
+    <rect class="q" x="104" y="0" width="38" height="30" rx="5"/><text class="small" x="113" y="20">Q3</text>
+    <rect class="q" x="156" y="0" width="38" height="30" rx="5"/><text class="small" x="165" y="20">Q4</text>
+    <path class="arrow" d="M19 32 C44 56 82 58 97 62"/><path class="arrow" d="M71 32 C84 52 92 56 97 62"/>
+    <path class="arrow" d="M123 32 C112 52 102 56 97 62"/><path class="arrow" d="M175 32 C150 56 112 58 97 62"/>
+    <rect class="kv" x="78" y="62" width="38" height="34" rx="5"/><text class="small" x="84" y="84">KV1</text>
+  </g>
+  <text class="text" x="766" y="352">KV cache: 1 份</text>
+
+  <rect class="panel" x="72" y="462" width="976" height="58" rx="8" />
+  <text class="text" x="98" y="488">读图方式: MQA/GQA 不是减少 Query 视角,而是让多个 Query head</text>
+  <text class="text" x="98" y="506">复用更少的 K/V 表示,用质量取舍换推理效率。</text>
+</svg>

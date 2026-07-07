@@ -190,6 +190,16 @@ Pre-LN 通常更利于深层训练稳定,因为残差路径更干净,梯度传�
 
 不过不同模型会有不同变体,比如 RMSNorm、Sandwich-LN、DeepNorm 等。后面讲架构演进时会再展开。
 
+![Pre-LN 与 Post-LN 的梯度路径差异](../assets/part1-preln-postln-gradient.svg)
+
+Pre-LN 和 Post-LN 的差别不只是公式顺序不同,而是残差主干是否能更直接地跨层传递。
+
+在 Post-LN 中,每个子层输出和残差相加后立刻经过 LayerNorm。LayerNorm 会重新调整尺度和方向,这对浅层模型没问题,但层数很深时,梯度回传和信息穿过每层末尾的归一化会更敏感。训练通常更依赖学习率 warmup、初始化和残差缩放等技巧。
+
+在 Pre-LN 中,LayerNorm 放在子层输入前,残差相加后的主干不再立刻被同一个子层的 LN 改写。这样一来,跨很多层的路径更像一条连续的 residual stream,子层只在规范化后的输入上计算增量。这是现代深层 Decoder-only LLM 偏爱 Pre-LN 或 RMSNorm-before-block 的重要原因。
+
+但也不要把它理解成“Pre-LN 永远更好”。Post-LN 在某些设置下也能通过改良初始化、残差缩放或 DeepNorm 等方法稳定训练。更准确的结论是:归一化位置会改变优化几何,而不是一个可以随意移动的装饰层。
+
 ## FFN 在 Transformer 中做什么
 
 Attention 负责 token 之间的信息交互。
@@ -315,6 +325,8 @@ LayerNorm 帮助每层输入保持相对稳定。
 
 可以把 Transformer 中的残差路径想成信息主干。
 
+![Residual Stream 与 Pre-LN](../assets/part1-residual-stream-preln.svg)
+
 每一层的 Attention 和 FFN 都往这条主干里写入增量信息。
 
 如果某个子层输出有用,它会改变主干表示。如果暂时不需要,残差路径仍然保留原信息。
@@ -322,6 +334,10 @@ LayerNorm 帮助每层输入保持相对稳定。
 这种结构让模型能逐层积累信息,而不是每层都冒险覆盖全部表示。
 
 这也解释了为什么残差对深层模型如此关键。没有清晰的信息主干,几十层变换很容易把信号搅乱。
+
+Residual stream 还有一个直觉:Transformer 层并不是把 token 表示“交给 Attention 处理完再交给 FFN”,而是让 Attention 和 FFN 向同一条主干不断写入增量。Pre-LN 让子层看到归一化后的输入,同时保留一条较干净的残差通路,这就是深层 Decoder-only LLM 常采用它的重要原因之一。
+
+在工程调参里,如果模型训练早期 loss 爆炸、梯度不稳定或深层模型难以收敛,归一化位置、残差缩放、初始化和学习率常常要一起检查。它们不是互不相关的小技巧,而是在共同保护 residual stream 的数值尺度。
 
 ## 和 Agent 有什么关系
 

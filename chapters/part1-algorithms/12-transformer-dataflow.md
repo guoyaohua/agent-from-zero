@@ -237,6 +237,8 @@ flowchart LR
 
 训练和推理的数据流不完全一样。
 
+![训练、Prefill 与 Decode 数据流](../assets/part1-transformer-train-prefill-decode.svg)
+
 ### 训练时
 
 训练时,模型可以一次输入完整训练序列,并行计算每个位置的 logits。
@@ -264,6 +266,15 @@ flowchart LR
 所以推理是自回归串行的。
 
 这也是 LLM 推理延迟的重要来源。
+
+推理还可以再拆成两个阶段:
+
+| 阶段 | 输入形态 | 主要瓶颈 |
+| --- | --- | --- |
+| Prefill | 一次处理完整 prompt | 长序列 Attention、显存 IO、首 token 延迟 |
+| Decode | 每步生成 1 个或少量 token | KV Cache 读取、自回归串行、batch 调度 |
+
+很多人说“模型响应慢”,其实要分清慢在哪里。长 prompt 首 token 慢,常常是 prefill 贵;回答很长时后续 token 慢,常常是 decode 串行和 KV Cache 带宽限制。不同阶段对应的优化方法不同:Flash Attention 更常改善长序列 prefill,KV Cache 管理和连续批处理更常影响 decode 吞吐。
 
 ## Causal mask 的位置
 
@@ -293,6 +304,8 @@ $$
 
 KV Cache 会把它们缓存起来。
 
+![KV Cache 随生成步数增长](../assets/part1-transformer-kv-cache-growth.svg)
+
 下一步只需要:
 
 1. 为新 token 计算 Query、Key、Value。
@@ -303,6 +316,18 @@ KV Cache 会把它们缓存起来。
 这样可以避免重复计算历史 token 的 K/V。
 
 注意,KV Cache 主要加速推理。训练时通常仍然用矩阵并行计算整段序列。
+
+这里最容易误解的是“缓存”两个字。KV Cache 缓存的是历史 token 在每层的 Key 和 Value,不是缓存最终答案,也不是缓存整个 Attention 结果。生成新 token 时,新 Query 仍然要和历史 Key 做匹配,再从历史 Value 聚合信息。
+
+因此 decode 阶段每一步的计算不会回到常数成本。随着上下文变长,每个新 token 要读取的历史 K/V 也更长。KV Cache 省掉的是“历史 token 的 K/V 重新计算”,没有省掉“新 token 对历史上下文的关注”。这就是长上下文生成时,显存带宽和 KV Cache 管理会变成核心问题的原因。
+
+如果把 prefill 和 decode 连起来看,数据流是这样的:
+
+- Prefill:一次处理 prompt,为每层写入一整段初始 KV Cache,并从最后位置 logits 采样首 token。
+- Decode 第一步:把首 token 作为新输入,读取 prompt KV,再追加首 token 的 K/V。
+- Decode 后续步:每一步输入最新生成 token,读取更长的 KV Cache,再追加一格。
+
+这也解释了为什么服务框架要做 paged KV、prefix cache、连续批处理和 speculative decoding。它们都在围绕同一个瓶颈打转:如何让大量请求的 KV Cache 少浪费、少搬运、少等待。
 
 ## 为什么上下文越长越贵
 

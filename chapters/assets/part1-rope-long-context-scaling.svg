@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">RoPE 长上下文缩放</title>
+  <desc id="desc">展示 RoPE 在训练长度外推时可能遇到旋转频率分布偏移,以及 scaling、插值和长序列继续训练如何缓解。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">RoPE 支持长上下文,但外推需要控制旋转分布偏移</text>
+  <text class="sub" x="48" y="78">位置越远,旋转角度越可能进入训练没见过的模式;缩放和继续训练只是缓解,不是魔法。</text>
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="blue" x="88" y="170" width="230" height="110" rx="8" />
+  <text class="label" x="138" y="202">训练长度内</text>
+  <text class="small" x="118" y="230">旋转频率分布被模型见过</text>
+  <text class="small" x="118" y="254">局部与相对距离较稳定</text>
+  <path class="arrow" d="M318 225 H390" />
+  <rect class="red" x="390" y="170" width="230" height="110" rx="8" />
+  <text class="label" x="438" y="202">直接外推</text>
+  <text class="small" x="420" y="230">高频旋转超出训练分布</text>
+  <text class="small" x="420" y="254">远距离注意力不稳定</text>
+  <path class="arrow" d="M620 225 H692" />
+  <rect class="orange" x="692" y="170" width="270" height="110" rx="8" />
+  <text class="label" x="754" y="202">Scaling / Interpolation</text>
+  <text class="small" x="724" y="230">压缩位置或调整频率</text>
+  <text class="small" x="724" y="254">可能牺牲局部分辨率</text>
+  <rect class="green" x="220" y="350" width="270" height="84" rx="8" />
+  <text class="label" x="282" y="382">长序列继续训练</text>
+  <text class="small" x="252" y="406">让模型真正见过长距离任务</text>
+  <rect class="gray" x="572" y="350" width="330" height="84" rx="8" />
+  <text class="label" x="634" y="382">真实评估</text>
+  <text class="small" x="604" y="406">检索、引用、代码、表格、长程约束</text>
+  <path class="arrow" d="M827 280 C800 320 750 340 737 350" />
+  <path class="arrow" d="M490 392 H572" />
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: 最大上下文长度是接口能力;真正会不会用长上下文,要看训练分布和任务评估。</text>
+</svg>

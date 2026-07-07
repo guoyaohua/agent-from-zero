@@ -266,6 +266,8 @@ $$
 
 多头带来的表达能力可以从几个角度理解。
 
+![多头注意力的信息路由](../assets/part1-mha-head-routing.svg)
+
 ### 多种相似度空间
 
 不同 head 有不同 $W_Q$ 和 $W_K$,所以它们计算相似度的空间不同。
@@ -285,6 +287,10 @@ $$
 一个 head 看前文定义,另一个 head 看局部搭配,另一个 head 看段落结构。
 
 这些能力叠加起来,让 Transformer 能更丰富地建模上下文。
+
+一个更工程化的理解是:多头注意力把“从哪里读”和“读什么特征”拆成多条并行通道。每个 head 不是孤立专家,而是把一部分信息写回 residual stream,再交给后续层和 FFN 继续加工。某个 head 单独看可能很难解释,但多个 head 在多层中组合起来,会形成复杂的信息路由网络。
+
+这也解释了为什么不能只看 attention heatmap 就断言模型“理解了什么”。注意力权重只是某个 head 在某层的读取分布,真正影响输出的还有 $V$ 投影、$W_O$ 混合、残差流、FFN 以及后续层。
 
 ## Head 数量越多越好吗
 
@@ -321,6 +327,34 @@ Head 太多,每个 head 的维度可能太小,单个 head 表达能力下降,也
 这也是为什么后来出现 MQA/GQA 等结构:减少 K/V 头数量,在尽量保持效果的同时降低推理成本。
 
 现在先记住:多头注意力不仅影响模型能力,也直接影响部署成本。
+
+可以粗略估算每层 KV Cache 元素数量:
+
+$$
+2 \times T \times n_{kv\_heads} \times d_{head}
+$$
+
+这里的 2 分别是 Key 和 Value。标准 MHA 中 $n_{kv\_heads}$ 通常等于 query head 数;MQA/GQA 会减少 K/V head 数,从而降低长上下文和高并发服务时的显存压力。
+
+这带来一个重要取舍:训练时多 query head 能提升表达容量,推理时 K/V cache 又希望更小。现代模型的注意力设计,越来越多是在能力、显存、吞吐和硬件 kernel 之间寻找平衡。
+
+![MHA、GQA 与 MQA 的 KV Cache 差异](../assets/part1-mha-mqa-gqa-kv-cache.svg)
+
+把这个公式乘上层数、batch 和数据类型字节数,就能得到更接近部署的估算:
+
+$$
+2 \times B \times L \times T \times n_{kv\_heads} \times d_{head} \times \text{bytes}
+$$
+
+这里 $B$ 是 batch size,$L$ 是层数。这个式子解释了一个很常见的工程现象:模型参数可以被量化、可以多卡切分,但长上下文高并发时,KV Cache 会按请求数和上下文长度持续增长,很快成为服务端显存的主要压力。
+
+MHA、GQA、MQA 的差异可以这样理解:
+
+- MHA:每个 query head 都有自己的 K/V head,表达最充分,KV Cache 也最大。
+- MQA:所有 query head 共享一组 K/V,KV Cache 最小,但 K/V 表达被压缩得最狠。
+- GQA:多个 query head 共享一组 K/V,常作为质量和效率之间的折中。
+
+所以多头注意力的“头数”不能只看 query head。部署时更要看 $n_{kv\_heads}$,因为 decode 阶段每一步都会读取历史 K/V。Query head 决定当前 token 用多少视角发问,K/V head 决定历史上下文以多少份表示被缓存下来。
 
 ## 一个伪代码版本
 

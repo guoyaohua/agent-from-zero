@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Flash Attention 分块扫描</title>
+  <desc id="desc">展示 Flash Attention 如何将 Q、K、V 分块放入片上 SRAM,逐块扫描并用在线 softmax 统计量累积输出,避免完整注意力矩阵落到 HBM。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">Flash Attention 少搬数据,不是少算注意力</text>
+  <text class="sub" x="48" y="78">分块扫描 K/V,用在线 softmax 维护每行统计量,避免完整 S 和 A 矩阵写回 HBM。</text>
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="red" x="88" y="166" width="190" height="238" rx="8" />
+  <text class="label" x="140" y="198">HBM</text>
+  <text class="small" x="118" y="230">Q / K / V blocks</text>
+  <text class="small" x="118" y="258">Output Y</text>
+  <text class="small" x="118" y="286">不保存完整 S,A</text>
+  <path class="arrow" d="M278 250 H356" />
+  <rect class="blue" x="356" y="150" width="260" height="270" rx="8" />
+  <text class="label" x="454" y="182">SRAM Tile</text>
+  <rect class="green" x="396" y="212" width="86" height="52" rx="6" />
+  <text class="small" x="420" y="242">Q_i</text>
+  <rect class="orange" x="510" y="212" width="86" height="52" rx="6" />
+  <text class="small" x="530" y="242">K_j,V_j</text>
+  <text class="small" x="396" y="306">scores = Q_i K_j^T</text>
+  <text class="small" x="396" y="334">online: m, l, partial Y</text>
+  <path class="arrow" d="M616 285 H704" />
+  <rect class="green" x="704" y="190" width="260" height="190" rx="8" />
+  <text class="label" x="770" y="222">累积输出块</text>
+  <text class="small" x="736" y="252">更新 max m</text>
+  <text class="small" x="736" y="278">更新 exp sum l</text>
+  <text class="small" x="736" y="304">更新 output block</text>
+  <text class="small" x="736" y="330">扫描完所有 K/V 后写回</text>
+  <path class="dash" d="M834 380 C790 452 202 450 183 404" />
+  <rect class="gray" x="120" y="438" width="860" height="42" rx="8" />
+  <text class="text" x="150" y="464">核心: 完整注意力矩阵只在概念上存在,实现中被 tile + 统计量替代。</text>
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: IO-aware 的意思是让大矩阵少进出 HBM,把局部计算尽量留在更快的片上存储里。</text>
+</svg>

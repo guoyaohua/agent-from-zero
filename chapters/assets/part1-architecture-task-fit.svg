@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">任务形态决定 Transformer 分支选择</title>
+  <desc id="desc">用决策地图展示当任务更像理解、输入到输出转换、开放式生成或 Agent 动作循环时,通常分别对应 Encoder-only、Encoder-Decoder 或 Decoder-only。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">不是哪个分支更高级,而是哪种任务边界更匹配</text>
+  <text class="sub" x="48" y="74">看任务到底需要“读完判断”“读输入写输出”,还是“把全部上下文作为前缀继续生成”。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="red" x="430" y="132" width="260" height="66" rx="8" />
+  <text class="label" x="492" y="164">任务是什么形态?</text>
+  <text class="small" x="476" y="186">先看输入输出边界,再看生成需求</text>
+
+  <path class="arrow" d="M474 198 C380 230 318 246 266 270" />
+  <rect class="blue" x="102" y="270" width="254" height="112" rx="8" />
+  <text class="label" x="170" y="302">读完再判断</text>
+  <text class="small" x="132" y="330">分类、抽取、向量表示、rerank</text>
+  <text class="small" x="132" y="354">偏向 Encoder-only / embedding</text>
+
+  <path class="arrow" d="M560 198 V270" />
+  <rect class="green" x="430" y="270" width="254" height="112" rx="8" />
+  <text class="label" x="500" y="302">输入到输出</text>
+  <text class="small" x="460" y="330">翻译、摘要、改写、结构化转换</text>
+  <text class="small" x="460" y="354">偏向 Encoder-Decoder</text>
+
+  <path class="arrow" d="M646 198 C742 230 804 246 856 270" />
+  <rect class="orange" x="764" y="270" width="254" height="112" rx="8" />
+  <text class="label" x="842" y="302">前缀续写</text>
+  <text class="small" x="794" y="330">对话、代码、工具调用、Agent 循环</text>
+  <text class="small" x="794" y="354">偏向 Decoder-only</text>
+
+  <rect class="panel" x="156" y="396" width="808" height="44" rx="8" />
+  <text class="text" x="184" y="416">工程系统常常混合使用: Decoder-only 做决策生成,</text>
+  <text class="text" x="184" y="434">Encoder/reranker 做检索和筛选。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 架构选择首先是任务建模选择;最大模型不一定是每个子任务的最佳解。</text>
+</svg>
