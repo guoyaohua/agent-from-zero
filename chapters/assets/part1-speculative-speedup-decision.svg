@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">投机解码收益判断</title>
+  <desc id="desc">展示投机解码是否值得引入取决于 decode 是否是瓶颈、输出长度、草稿成本、接受率和系统实现复杂度。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.yes{fill:#e7f1ee}.maybe{fill:#fff0e6}.no{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">投机解码只在 decode 真是瓶颈时才值得复杂化系统</text>
+  <text class="sub" x="56" y="82">加速来自高接受率和便宜草稿,不是来自魔法并行。</text>
+  <text class="head" x="110" y="136">条件</text><text class="head" x="366" y="136">有利信号</text><text class="head" x="666" y="136">不利信号</text>
+  <g transform="translate(82 158)">
+    <rect class="cell" x="0" y="0" width="220" height="56"/><text class="text" x="24" y="34">端到端瓶颈</text>
+    <rect class="cell yes" x="250" y="0" width="260" height="56"/><text class="text" x="274" y="34">decode token 时间占大头</text>
+    <rect class="cell no" x="540" y="0" width="320" height="56"/><text class="text" x="564" y="34">prefill、工具或网络等待占大头</text>
+    <rect class="cell" x="0" y="72" width="220" height="56"/><text class="text" x="24" y="106">输出长度</text>
+    <rect class="cell yes" x="250" y="72" width="260" height="56"/><text class="text" x="274" y="106">长回答、代码、批量生成</text>
+    <rect class="cell no" x="540" y="72" width="320" height="56"/><text class="text" x="564" y="106">短分类、路由、确认卡</text>
+    <rect class="cell" x="0" y="144" width="220" height="56"/><text class="text" x="24" y="178">接受率</text>
+    <rect class="cell yes" x="250" y="144" width="260" height="56"/><text class="text" x="274" y="178">草稿模型接近目标模型</text>
+    <rect class="cell maybe" x="540" y="144" width="320" height="56"/><text class="text" x="564" y="178">高温创作、长推理路径分叉</text>
+    <rect class="cell" x="0" y="216" width="220" height="56"/><text class="text" x="24" y="250">实现成本</text>
+    <rect class="cell yes" x="250" y="216" width="260" height="56"/><text class="text" x="274" y="250">推理框架原生支持</text>
+    <rect class="cell maybe" x="540" y="216" width="320" height="56"/><text class="text" x="564" y="250">KV 回滚和双模型调度复杂</text>
+  </g>
+  <rect x="168" y="452" width="784" height="34" rx="8" fill="#172033"/><text x="252" y="474" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">先用 trace 证明 decode 是瓶颈,再谈投机解码。</text>
+</svg>

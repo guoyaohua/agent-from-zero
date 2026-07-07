@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">压缩模型部署路由</title>
+  <desc id="desc">展示蒸馏和量化后的模型应通过置信度、风险和任务类型路由,低风险常规流量走小模型,高风险或低置信回退强模型。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.5}.small{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.strong{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.gate{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">压缩模型上线不是替换强模型,而是做路由和兜底</text>
+  <text class="sub" x="56" y="82">小模型负责高频低风险,强模型处理低置信、高风险和长尾。</text>
+  <rect class="box" x="86" y="176" width="170" height="92" rx="8"/><text class="head" x="130" y="208">Request</text><text class="text" x="118" y="236">任务类型 / 风险 / 预算</text>
+  <path class="arrow" d="M256 222 H332"/>
+  <rect class="gate" x="332" y="146" width="190" height="152" rx="8"/><text class="head" x="380" y="178">Router</text><text class="text" x="366" y="208">低风险?</text><text class="text" x="366" y="232">小模型置信高?</text><text class="text" x="366" y="256">格式可校验?</text>
+  <path class="arrow" d="M522 206 H612"/><path class="arrow" d="M522 250 C570 336 608 354 654 354"/>
+  <rect class="small" x="612" y="146" width="190" height="118" rx="8"/><text class="head" x="658" y="178">Distilled / INT8</text><text class="text" x="646" y="208">路由、抽取、简单问答</text><text class="text" x="646" y="232">便宜、快、需校验</text>
+  <rect class="strong" x="654" y="320" width="220" height="92" rx="8"/><text class="head" x="708" y="352">Strong Model</text><text class="text" x="692" y="380">复杂推理 / 高风险 / 低置信</text>
+  <path class="arrow" d="M802 206 H908"/><path class="arrow" d="M874 366 H942"/>
+  <rect class="box" x="908" y="176" width="146" height="92" rx="8"/><text class="head" x="948" y="208">Verifier</text><text class="text" x="936" y="236">schema / safety</text>
+  <rect x="166" y="452" width="788" height="34" rx="8" fill="#172033"/><text x="260" y="474" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">压缩收益来自流量结构:越多可验证低风险任务,越适合小模型承担。</text>
+</svg>

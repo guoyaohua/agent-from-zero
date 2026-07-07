@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Prefill 与 Decode 延迟账本</title>
+  <desc id="desc">展示 LLM 推理延迟应拆成排队、prefill、首 token、decode 和工具等待,不同瓶颈对应不同优化策略。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.warn{fill:#fff0e6}.ok{fill:#e7f1ee}.bar{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.4}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">别只看总延迟,要拆开看 TTFT 和 TPOT</text>
+  <text class="sub" x="56" y="82">首 token 慢和后续 token 慢,根因完全不同。</text>
+  <g transform="translate(82 142)">
+    <rect class="cell" x="0" y="0" width="170" height="56"/><text class="head" x="36" y="34">Queue</text>
+    <rect class="bar" x="190" y="18" width="80" height="20"/>
+    <text class="text" x="292" y="34">排队和调度</text>
+    <rect class="cell warn" x="0" y="74" width="170" height="56"/><text class="head" x="36" y="108">Prefill</text>
+    <rect class="bar" x="190" y="92" width="260" height="20"/>
+    <text class="text" x="472" y="108">长 prompt、重复历史、系统前缀</text>
+    <rect class="cell ok" x="0" y="148" width="170" height="56"/><text class="head" x="36" y="182">First Token</text>
+    <rect class="bar" x="190" y="166" width="120" height="20"/>
+    <text class="text" x="332" y="182">TTFT 体感延迟</text>
+    <rect class="cell warn" x="0" y="222" width="170" height="56"/><text class="head" x="36" y="256">Decode</text>
+    <rect class="bar" x="190" y="240" width="330" height="20"/>
+    <text class="text" x="542" y="256">KV 读取、输出长度、TPOT</text>
+  </g>
+  <rect x="660" y="166" width="330" height="148" rx="8" fill="#fff" stroke="#d8e0eb"/><text class="head" x="694" y="198">诊断规则</text><text class="text" x="694" y="228">首 token 慢: 压缩上下文 / prefix cache</text><text class="text" x="694" y="254">后续慢: batching / PagedAttention</text><text class="text" x="694" y="280">并发 OOM: 限长 / GQA / KV 量化</text>
+  <rect x="168" y="440" width="784" height="34" rx="8" fill="#172033"/><text x="256" y="462" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">Agent 每轮都重发历史时,通常是 prefill 和 KV Cache 一起变贵。</text>
+</svg>

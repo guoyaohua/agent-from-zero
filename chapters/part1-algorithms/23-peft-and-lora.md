@@ -241,6 +241,12 @@ base-model:v2 + code-agent-lora:v1
 
 这样做方便回滚和 A/B 测试。但前提是每个组合都经过评估。基础模型升级后,旧 LoRA 不一定仍然稳定。
 
+![LoRA 版本组合与评估矩阵](../assets/part1-lora-version-eval-matrix.svg)
+
+LoRA 让“基础模型”和“任务适配器”解耦,但这不代表适配器可以无条件迁移。`base:v1 + support:v3` 通过评估,不等于 `base:v2 + support:v3` 也通过。基础模型的 tokenizer、指令遵守、拒绝边界、工具调用倾向和概率分布都可能变化,旧 LoRA 在新基础模型上可能放大奇怪行为。
+
+工程上应把每个组合当成独立候选版本:记录 base 版本、adapter 版本、训练数据版本、target modules、rank、评估结果和安全门禁。LoRA 降低的是训练和存储成本,不是评估和治理成本。
+
 ## LoRA 不适合什么
 
 LoRA 不是万能。

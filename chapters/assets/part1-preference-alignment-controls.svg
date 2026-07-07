@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">偏好对齐的控制面</title>
+  <desc id="desc">展示偏好数据需要维度规范、事实校验、安全门禁和回归评估,避免奖励模型或 DPO 学到漂亮但错误的回答。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">偏好对齐调的是选择倾向,不是替代事实和安全系统</text>
+  <text class="sub" x="56" y="82">Chosen / rejected 必须带清晰标注标准和回归门禁。</text>
+  <rect class="box" x="82" y="154" width="188" height="118" rx="8"/><text class="head" x="126" y="186">Preference Pair</text><text class="text" x="116" y="216">prompt</text><text class="text" x="116" y="240">chosen / rejected</text>
+  <path class="arrow" d="M270 213 H340"/>
+  <rect class="gate" x="340" y="128" width="188" height="170" rx="8"/><text class="head" x="386" y="160">Rubric</text><text class="text" x="374" y="190">事实性</text><text class="text" x="374" y="214">有用性</text><text class="text" x="374" y="238">安全性</text><text class="text" x="374" y="262">简洁和格式</text>
+  <path class="arrow" d="M528 213 H598"/>
+  <rect class="box" x="598" y="154" width="188" height="118" rx="8"/><text class="head" x="640" y="186">Train</text><text class="text" x="632" y="216">RLHF / DPO</text><text class="text" x="632" y="240">参考模型约束</text>
+  <path class="arrow" d="M786 213 H856"/>
+  <rect class="ok" x="856" y="128" width="188" height="170" rx="8"/><text class="head" x="902" y="160">Gates</text><text class="text" x="890" y="190">事实校验</text><text class="text" x="890" y="214">安全样本</text><text class="text" x="890" y="238">工具轨迹</text><text class="text" x="890" y="262">通用回归</text>
+  <rect x="176" y="420" width="768" height="38" rx="8" fill="#172033"/><text x="270" y="444" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">偏好样本如果不说明取舍顺序,模型学到的就是混乱偏好。</text>
+</svg>

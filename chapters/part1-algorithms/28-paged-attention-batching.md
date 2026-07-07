@@ -149,6 +149,12 @@ Continuous Batching,连续批处理,允许请求动态加入和退出 batch。
 
 静态批处理中,B 很快结束,但这一批仍被 A 拖着走,C 可能要等下一批。连续批处理中,B 结束后可以释放它的 KV block 和 batch 槽位,C 的 prefill 完成后就能加入后续 decode step。这样 GPU 上每一步处理的活跃请求更饱满。
 
+![连续批处理时间线](../assets/part1-serving-continuous-batching-timeline.svg)
+
+连续批处理的直觉是“每个 decode step 重新组织活跃请求”。短请求结束后释放 batch 槽位和 KV block,新请求 prefill 完成后插入后续 decode step。这样系统不用等最长请求结束才开始下一批,吞吐和显存复用都会更好。
+
+但连续批处理不是只把 batch size 调大。调度器必须决定什么时候插入 prefill、如何避免长请求饿死短请求、如何控制 TTFT、如何分配 KV block。聊天、批量评估、代码 Agent 的最优策略不同,所以服务端指标要同时看吞吐、TTFT、TPOT、并发和失败率。
+
 ## Prefill 和 Decode 的调度
 
 Prefill 和 decode 的计算形态不同。

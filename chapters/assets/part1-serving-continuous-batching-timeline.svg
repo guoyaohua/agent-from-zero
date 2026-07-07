@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">连续批处理时间线</title>
+  <desc id="desc">展示连续批处理如何让请求在 decode 步骤间动态加入和退出,避免短请求被长请求拖住。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.slot{fill:#fff;stroke:#d8e0eb;stroke-width:1}.a{fill:#dfe8f5}.b{fill:#e7f1ee}.c{fill:#fff0e6}.p{fill:#ece7f3}.line{stroke:#8796aa;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">连续批处理让请求动态加入和退出 decode batch</text>
+  <text class="sub" x="56" y="82">GPU 每一步处理活跃请求,而不是等一整批全部结束。</text>
+  <text class="head" x="96" y="136">Step</text><text class="head" x="210" y="136">1</text><text class="head" x="330" y="136">2</text><text class="head" x="450" y="136">3</text><text class="head" x="570" y="136">4</text><text class="head" x="690" y="136">5</text><text class="head" x="810" y="136">6</text><text class="head" x="930" y="136">7</text>
+  <g transform="translate(84 158)">
+    <text class="head" x="0" y="36">Req A</text><rect class="slot a" x="110" y="8" width="92" height="40"/><rect class="slot a" x="230" y="8" width="92" height="40"/><rect class="slot a" x="350" y="8" width="92" height="40"/><rect class="slot a" x="470" y="8" width="92" height="40"/><rect class="slot a" x="590" y="8" width="92" height="40"/><text class="text" x="704" y="34">continues</text>
+    <text class="head" x="0" y="106">Req B</text><rect class="slot b" x="110" y="78" width="92" height="40"/><rect class="slot b" x="230" y="78" width="92" height="40"/><text class="text" x="350" y="104">done, release blocks</text>
+    <text class="head" x="0" y="176">Req C</text><text class="text" x="110" y="174">waiting</text><rect class="slot p" x="350" y="148" width="92" height="40"/><text class="text" x="370" y="174">prefill</text><rect class="slot c" x="470" y="148" width="92" height="40"/><rect class="slot c" x="590" y="148" width="92" height="40"/><rect class="slot c" x="710" y="148" width="92" height="40"/>
+  </g>
+  <rect x="166" y="430" width="788" height="38" rx="8" fill="#172033"/><text x="248" y="454" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">连续批处理提升吞吐,但还要权衡 TTFT、公平性和 prefill 插入策略。</text>
+</svg>

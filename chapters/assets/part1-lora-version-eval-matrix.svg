@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">LoRA 版本组合与评估矩阵</title>
+  <desc id="desc">展示基础模型和 LoRA 适配器需要按组合评估,基础模型升级后旧适配器不一定仍然稳定。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.pass{fill:#e7f1ee}.warn{fill:#fff0e6}.fail{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">LoRA 是可插拔适配器,但每个组合都要重新验收</text>
+  <text class="sub" x="56" y="82">base model、adapter、任务和安全门禁共同决定是否可上线。</text>
+  <text class="head" x="110" y="136">组合</text><text class="head" x="326" y="136">目标能力</text><text class="head" x="540" y="136">回归风险</text><text class="head" x="760" y="136">门禁</text>
+  <g transform="translate(82 158)">
+    <rect class="cell pass" x="0" y="0" width="180" height="54"/><text class="text" x="26" y="34">base:v1 + support:v3</text>
+    <rect class="cell" x="210" y="0" width="180" height="54"/><text class="text" x="236" y="34">客服话术 + 工具格式</text>
+    <rect class="cell pass" x="420" y="0" width="180" height="54"/><text class="text" x="446" y="34">安全和 JSON 稳定</text>
+    <rect class="cell pass" x="630" y="0" width="300" height="54"/><text class="text" x="656" y="34">可灰度</text>
+    <rect class="cell warn" x="0" y="72" width="180" height="54"/><text class="text" x="26" y="106">base:v2 + support:v3</text>
+    <rect class="cell" x="210" y="72" width="180" height="54"/><text class="text" x="236" y="106">同一适配器迁移</text>
+    <rect class="cell warn" x="420" y="72" width="180" height="54"/><text class="text" x="446" y="106">分布已变化</text>
+    <rect class="cell warn" x="630" y="72" width="300" height="54"/><text class="text" x="656" y="106">必须重跑 golden / safety</text>
+    <rect class="cell fail" x="0" y="144" width="180" height="54"/><text class="text" x="26" y="178">base:v1 + legal:v2</text>
+    <rect class="cell" x="210" y="144" width="180" height="54"/><text class="text" x="236" y="178">法律风格适配</text>
+    <rect class="cell fail" x="420" y="144" width="180" height="54"/><text class="text" x="446" y="178">过度自信风险</text>
+    <rect class="cell fail" x="630" y="144" width="300" height="54"/><text class="text" x="656" y="178">需专家审核,不可自动决策</text>
+  </g>
+  <rect x="168" y="420" width="784" height="38" rx="8" fill="#172033"/><text x="256" y="444" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">LoRA 降低训练成本,不会降低评估和版本治理的成本。</text>
+</svg>

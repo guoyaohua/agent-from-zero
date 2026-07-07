@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent SFT 轨迹数据结构</title>
+  <desc id="desc">展示 Agent 工具调用 SFT 不应只训练最终答案,而应包含用户目标、工具决策、参数、观察、恢复和最终回答。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.5}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">Agent 的 SFT 样本要教会轨迹,不只是教会一句回答</text>
+  <text class="sub" x="56" y="82">好样本包含目标、决策、工具、观察、失败恢复和停止条件。</text>
+  <g transform="translate(66 168)">
+    <rect class="good" x="0" y="0" width="142" height="82" rx="8"/><text class="head" x="40" y="32">Goal</text><text class="text" x="28" y="58">用户目标和约束</text>
+    <path class="arrow" d="M142 41 H190"/>
+    <rect class="box" x="190" y="0" width="142" height="82" rx="8"/><text class="head" x="224" y="32">Decision</text><text class="text" x="214" y="58">是否需要工具</text>
+    <path class="arrow" d="M332 41 H380"/>
+    <rect class="box" x="380" y="0" width="142" height="82" rx="8"/><text class="head" x="424" y="32">Args</text><text class="text" x="406" y="58">参数和来源</text>
+    <path class="arrow" d="M522 41 H570"/>
+    <rect class="warn" x="570" y="0" width="142" height="82" rx="8"/><text class="head" x="612" y="32">Tool</text><text class="text" x="594" y="58">成功或失败观察</text>
+    <path class="arrow" d="M712 41 H760"/>
+    <rect class="box" x="760" y="0" width="142" height="82" rx="8"/><text class="head" x="790" y="32">Recover</text><text class="text" x="784" y="58">澄清 / 重试 / 停止</text>
+    <path class="arrow" d="M902 41 H950"/>
+    <rect class="good" x="950" y="0" width="142" height="82" rx="8"/><text class="head" x="990" y="32">Answer</text><text class="text" x="978" y="58">基于 observation</text>
+  </g>
+  <rect x="166" y="414" width="788" height="38" rx="8" fill="#172033"/><text x="248" y="438" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">只蒸馏最终回答会学到话术;蒸馏可验证轨迹才会学到 Agent 协议。</text>
+</svg>

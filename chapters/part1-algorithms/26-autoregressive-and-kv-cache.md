@@ -234,6 +234,12 @@ LLM 推理常分两个阶段。
 
 这能帮助你判断是应用层上下文问题,还是推理服务调度问题。
 
+![Prefill 与 Decode 延迟账本](../assets/part1-prefill-decode-latency-ledger.svg)
+
+推理优化首先要把延迟拆账。排队、prefill、首 token、decode、工具等待是不同瓶颈。长 prompt 和重复历史主要拖慢 prefill;长输出和 KV 读取主要拖慢 decode;并发 OOM 往往来自 KV Cache;工具慢则不该用模型解码优化来解决。
+
+Agent 系统尤其容易把所有问题混在一起。一次任务可能每轮都重新发送系统提示、工具 schema、历史轨迹和检索证据,导致 prefill 反复变贵;后面又生成长报告,decode 也慢。只有拆开看 TTFT、TPOT、工具等待和总耗时,才能知道该压缩上下文、缓存前缀、优化批处理,还是减少循环轮次。
+
 ## Agent 中的影响
 
 Agent 往往上下文长、轮次多、工具结果多。

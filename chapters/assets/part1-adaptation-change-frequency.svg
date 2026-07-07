@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">适配方式与变化频率矩阵</title>
+  <desc id="desc">展示 Prompt、RAG、工具、LoRA/SFT 和换模型分别适合不同变化频率与失败层,避免把所有问题都交给微调。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.p{fill:#dfe8f5}.r{fill:#e7f1ee}.t{fill:#fff0e6}.f{fill:#ece7f3}.m{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">变化越快,越不适合写进参数</text>
+  <text class="sub" x="56" y="82">先看失败层和变化频率,再选择 Prompt、RAG、工具、微调或换模型。</text>
+  <text class="head" x="116" y="138">变化频率</text><text class="head" x="340" y="138">更适合</text><text class="head" x="620" y="138">例子</text><text class="head" x="862" y="138">不宜误用</text>
+  <g transform="translate(82 160)">
+    <rect class="cell p" x="0" y="0" width="190" height="56"/><text class="text" x="24" y="34">每次请求不同</text>
+    <rect class="cell" x="220" y="0" width="230" height="56"/><text class="text" x="244" y="34">Prompt / Context</text>
+    <rect class="cell" x="480" y="0" width="220" height="56"/><text class="text" x="504" y="34">输出格式、当前约束</text>
+    <rect class="cell m" x="730" y="0" width="230" height="56"/><text class="text" x="754" y="34">不要为临时规则微调</text>
+    <rect class="cell r" x="0" y="72" width="190" height="56"/><text class="text" x="24" y="106">每天或每周变化</text>
+    <rect class="cell" x="220" y="72" width="230" height="56"/><text class="text" x="244" y="106">RAG / 数据库 / 工具</text>
+    <rect class="cell" x="480" y="72" width="220" height="56"/><text class="text" x="504" y="106">政策、库存、代码库</text>
+    <rect class="cell m" x="730" y="72" width="230" height="56"/><text class="text" x="754" y="106">不要把动态事实写进参数</text>
+    <rect class="cell f" x="0" y="144" width="190" height="56"/><text class="text" x="24" y="178">月度或季度稳定</text>
+    <rect class="cell" x="220" y="144" width="230" height="56"/><text class="text" x="244" y="178">LoRA / SFT</text>
+    <rect class="cell" x="480" y="144" width="220" height="56"/><text class="text" x="504" y="178">话术、工具轨迹、格式</text>
+    <rect class="cell t" x="730" y="144" width="230" height="56"/><text class="text" x="754" y="178">需 eval 和回滚</text>
+    <rect class="cell m" x="0" y="216" width="190" height="56"/><text class="text" x="24" y="250">基础能力不足</text>
+    <rect class="cell" x="220" y="216" width="230" height="56"/><text class="text" x="244" y="250">换模型 / 模型路由</text>
+    <rect class="cell" x="480" y="216" width="220" height="56"/><text class="text" x="504" y="250">复杂推理、代码、多模态</text>
+    <rect class="cell t" x="730" y="216" width="230" height="56"/><text class="text" x="754" y="250">微调难补能力上限</text>
+  </g>
+  <rect x="168" y="456" width="784" height="34" rx="8" fill="#172033"/><text x="266" y="478" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">微调适合稳定行为分布;RAG 和工具适合变化事实和外部状态。</text>
+</svg>
