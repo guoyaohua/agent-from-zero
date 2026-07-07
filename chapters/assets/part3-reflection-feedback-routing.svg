@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">失败经验回流</title>
+  <desc id="desc">展示自我修正中的失败证据如何经过分类、路由和验证,回流到评估集、工具 schema、workflow、prompt、记忆和文档。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #8b98aa; stroke-width: 1.6; stroke-dasharray: 5 5; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="52">反思的终点不是一句总结,而是把失败送到正确系统层</text>
+  <text class="sub" x="48" y="78">同一种失败,可能该修 prompt,也可能该修工具 schema、评估集、workflow 或记忆。</text>
+
+  <rect class="panel" x="48" y="108" width="1024" height="348" rx="8" />
+
+  <rect class="red" x="76" y="210" width="164" height="84" rx="8" />
+  <text class="label" x="122" y="240">失败证据</text>
+  <text class="small" x="104" y="264">测试日志/错误码</text>
+  <text class="small" x="104" y="284">轨迹/用户反馈</text>
+  <path class="arrow" d="M240 252 H300" />
+
+  <rect class="orange" x="300" y="210" width="168" height="84" rx="8" />
+  <text class="label" x="348" y="240">失败分类</text>
+  <text class="small" x="326" y="264">输入/工具/检索</text>
+  <text class="small" x="326" y="284">策略/评估/流程</text>
+  <path class="arrow" d="M468 252 H528" />
+
+  <rect class="blue" x="528" y="210" width="172" height="84" rx="8" />
+  <text class="label" x="574" y="240">路由决策</text>
+  <text class="small" x="554" y="264">最小有效改动</text>
+  <text class="small" x="554" y="284">带验证条件</text>
+
+  <rect class="green" x="772" y="142" width="116" height="58" rx="8" />
+  <text class="label" x="798" y="176">Eval 集</text>
+  <rect class="green" x="920" y="142" width="116" height="58" rx="8" />
+  <text class="label" x="942" y="176">Schema</text>
+  <rect class="green" x="772" y="238" width="116" height="58" rx="8" />
+  <text class="label" x="796" y="272">Workflow</text>
+  <rect class="green" x="920" y="238" width="116" height="58" rx="8" />
+  <text class="label" x="946" y="272">Prompt</text>
+  <rect class="green" x="772" y="334" width="116" height="58" rx="8" />
+  <text class="label" x="806" y="368">Memory</text>
+  <rect class="green" x="920" y="334" width="116" height="58" rx="8" />
+  <text class="label" x="950" y="368">Docs</text>
+
+  <path class="arrow" d="M700 242 C728 192 740 172 772 172" />
+  <path class="arrow" d="M700 242 C790 196 846 172 920 172" />
+  <path class="arrow" d="M700 252 H772" />
+  <path class="arrow" d="M700 262 C790 262 846 267 920 267" />
+  <path class="arrow" d="M700 282 C728 334 740 363 772 363" />
+  <path class="arrow" d="M700 282 C790 330 846 363 920 363" />
+
+  <rect class="gray" x="116" y="348" width="248" height="58" rx="8" />
+  <text class="label" x="144" y="382">不要全部塞回 prompt</text>
+  <rect class="gray" x="404" y="348" width="248" height="58" rx="8" />
+  <text class="label" x="432" y="382">先验证再长期沉淀</text>
+  <path class="dash" d="M528 348 C496 318 458 300 420 294" />
+
+  <rect class="gray" x="72" y="484" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="510">读图方式:失败回流的关键是分类和路由,让一次事故变成可复用测试、约束、流程或记忆,而不是一句泛泛反思。</text>
+</svg>

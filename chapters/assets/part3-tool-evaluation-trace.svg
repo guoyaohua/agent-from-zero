@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">工具轨迹评估</title>
+  <desc id="desc">展示工具使用评估如何从任务目标、工具轨迹、运行时决策、重放环境和评分卡中定位失败来源。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .num { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #8b98aa; stroke-width: 1.6; stroke-dasharray: 5 5; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="52">工具评估要看整条执行轨迹,不只看最后一句话</text>
+  <text class="sub" x="48" y="78">把工具调用变成可重放事件,才能定位选择、参数、权限、恢复和副作用中的真实问题。</text>
+
+  <rect class="panel" x="48" y="108" width="1024" height="348" rx="8" />
+
+  <rect class="blue" x="84" y="154" width="156" height="76" rx="8" />
+  <text class="label" x="122" y="184">任务目标</text>
+  <text class="small" x="112" y="207">用户意图/边界</text>
+  <path class="arrow" d="M240 192 H292" />
+
+  <rect class="green" x="292" y="154" width="176" height="76" rx="8" />
+  <text class="label" x="338" y="184">工具事件</text>
+  <text class="small" x="322" y="207">select/fill/execute</text>
+  <path class="arrow" d="M468 192 H520" />
+
+  <rect class="orange" x="520" y="154" width="176" height="76" rx="8" />
+  <text class="label" x="566" y="184">Runtime 决策</text>
+  <text class="small" x="552" y="207">policy/data flow</text>
+  <path class="arrow" d="M696 192 H748" />
+
+  <rect class="gray" x="748" y="154" width="176" height="76" rx="8" />
+  <text class="label" x="798" y="184">离线重放</text>
+  <text class="small" x="784" y="207">固定观察/回归</text>
+  <path class="arrow" d="M924 192 H980" />
+
+  <rect class="red" x="946" y="282" width="92" height="70" rx="8" />
+  <text class="label" x="970" y="311">评分</text>
+  <text class="small" x="966" y="332">定位根因</text>
+  <path class="arrow" d="M1000 230 V282" />
+
+  <rect class="gray" x="84" y="286" width="180" height="94" rx="8" />
+  <text class="num" x="108" y="316">1</text>
+  <text class="label" x="138" y="316">选择是否必要</text>
+  <text class="small" x="108" y="342">错误工具/跳过依赖</text>
+  <text class="small" x="108" y="364">重复调用/过度并行</text>
+
+  <rect class="gray" x="292" y="286" width="180" height="94" rx="8" />
+  <text class="num" x="316" y="316">2</text>
+  <text class="label" x="346" y="316">参数是否可信</text>
+  <text class="small" x="316" y="342">arg_sources 清楚</text>
+  <text class="small" x="316" y="364">高风险字段有确认</text>
+
+  <rect class="gray" x="500" y="286" width="180" height="94" rx="8" />
+  <text class="num" x="524" y="316">3</text>
+  <text class="label" x="554" y="316">策略是否生效</text>
+  <text class="small" x="524" y="342">权限/数据流/限速</text>
+  <text class="small" x="524" y="364">拒绝是否可解释</text>
+
+  <rect class="gray" x="708" y="286" width="180" height="94" rx="8" />
+  <text class="num" x="732" y="316">4</text>
+  <text class="label" x="762" y="316">恢复是否正确</text>
+  <text class="small" x="732" y="342">重试/降级/停止</text>
+  <text class="small" x="732" y="364">幂等/补偿/审计</text>
+
+  <path class="dash" d="M380 230 V286" />
+  <path class="dash" d="M608 230 V286" />
+  <path class="dash" d="M836 230 V286" />
+  <path class="dash" d="M888 333 H946" />
+
+  <rect class="gray" x="72" y="484" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="510">读图方式:一次失败要能沿着轨迹回放,看清是目标理解错、工具选错、参数来源错、策略漏拦,还是恢复动作错。</text>
+</svg>

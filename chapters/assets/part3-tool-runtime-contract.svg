@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">工具运行时契约</title>
+  <desc id="desc">展示 Agent 工具调用如何经过模型候选、运行时校验、权限策略、执行器、观察解释、事件日志和补偿恢复形成安全契约。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .dark { fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .white { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .muted { fill: #e5e7eb; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">工具调用不是模型说了算,而是 runtime 契约说了算</text>
+  <text class="sub" x="48" y="78">模型生成候选动作,运行时负责校验、权限、数据流、副作用、审计和恢复。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="392" rx="8" />
+  <rect class="blue" x="78" y="174" width="150" height="72" rx="8" />
+  <text class="label" x="116" y="202">模型候选</text>
+  <text class="small" x="104" y="224">tool + args + intent</text>
+  <path class="arrow" d="M228 210 H286" />
+
+  <rect class="dark" x="286" y="142" width="198" height="136" rx="8" />
+  <text class="white" x="346" y="174">Runtime Gate</text>
+  <text class="small muted" x="318" y="204">schema / type</text>
+  <text class="small muted" x="318" y="230">arg source / permission</text>
+  <text class="small muted" x="318" y="256">rate limit / data flow</text>
+  <path class="arrow" d="M484 210 H548" />
+
+  <rect class="green" x="548" y="174" width="154" height="72" rx="8" />
+  <text class="label" x="588" y="202">执行器</text>
+  <text class="small" x="576" y="224">read / write / external</text>
+  <path class="arrow" d="M702 210 H760" />
+
+  <rect class="orange" x="760" y="174" width="160" height="72" rx="8" />
+  <text class="label" x="806" y="202">观察解释</text>
+  <text class="small" x="786" y="224">ok / error / warning</text>
+
+  <rect class="gray" x="78" y="334" width="222" height="92" rx="8" />
+  <text class="label" x="110" y="366">事件日志</text>
+  <text class="small" x="110" y="394">call_id, args, sources</text>
+  <text class="small" x="110" y="416">status, artifact, cost</text>
+  <path class="arrow" d="M384 278 C348 342 300 372 300 378" />
+  <path class="arrow" d="M624 246 C590 324 398 376 300 378" />
+  <path class="arrow" d="M840 246 C748 346 418 402 300 404" />
+
+  <rect class="red" x="356" y="334" width="214" height="92" rx="8" />
+  <text class="label" x="408" y="366">副作用控制</text>
+  <text class="small" x="386" y="394">preview -> confirm</text>
+  <text class="small" x="386" y="416">idempotency -> verify</text>
+
+  <rect class="gray" x="626" y="334" width="294" height="92" rx="8" />
+  <text class="label" x="706" y="366">错误协议</text>
+  <text class="small" x="656" y="394">retryable / user_action_required</text>
+  <text class="small" x="656" y="416">permission_denied / conflict / unsafe</text>
+  <path class="dash" d="M728 334 C686 290 616 286 484 250" />
+  <path class="dash" d="M464 426 C464 466 824 466 840 246" />
+
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式:模型只提出候选动作;真正的安全边界在 runtime,每次工具调用都要能审计、重试、补偿和回归评估。</text>
+</svg>
