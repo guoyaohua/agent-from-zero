@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Chunk Viewer 调试台</title>
+  <desc id="desc">展示 chunk viewer 如何把原文、清洗文本、chunk 边界、检索命中、元数据过滤、证据包和答案引用放在同一个调试视图中。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 600 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #364256; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">Chunk Viewer 让切块问题可见,否则只能盲调 embedding</text>
+  <text class="sub" x="48" y="78">把原文、边界、命中、过滤、证据包和引用串起来,才能解释一次检索为什么成功或失败。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+
+  <rect class="blue" x="78" y="148" width="276" height="282" rx="8" />
+  <text class="label" x="110" y="180">原文与清洗结果</text>
+  <text class="mono" x="110" y="214">H2 交通费用 / 高铁</text>
+  <rect class="gray" x="110" y="232" width="210" height="34" rx="5" />
+  <text class="small" x="124" y="254">chunk 4.2.0 二等座规则</text>
+  <rect class="orange" x="110" y="276" width="210" height="34" rx="5" />
+  <text class="small" x="124" y="298">chunk 4.2.1 一等座审批</text>
+  <rect class="orange" x="110" y="320" width="210" height="34" rx="5" />
+  <text class="small" x="124" y="342">chunk 4.2.2 紧急公务例外</text>
+  <text class="small" x="110" y="382">边界、标题路径、页码、版本可见</text>
+
+  <rect class="green" x="410" y="148" width="266" height="122" rx="8" />
+  <text class="label" x="442" y="180">Query 命中</text>
+  <text class="small" x="442" y="210">高铁一等座能报销吗?</text>
+  <text class="small" x="442" y="236">top hits: 4.2.1, 4.2.2, 4.2.0</text>
+  <path class="arrow" d="M354 292 C380 240 394 210 410 202" />
+
+  <rect class="orange" x="410" y="308" width="266" height="122" rx="8" />
+  <text class="label" x="442" y="340">过滤与重排</text>
+  <text class="small" x="442" y="370">status=published, permission=employee</text>
+  <text class="small" x="442" y="396">rerank: 4.2.1 上升, hard negative 下降</text>
+  <path class="arrow" d="M543 270 V308" />
+
+  <rect class="red" x="742" y="148" width="276" height="122" rx="8" />
+  <text class="label" x="774" y="180">证据包检查</text>
+  <text class="small" x="774" y="210">S1: 一等座需事前审批</text>
+  <text class="small" x="774" y="236">S2: 紧急公务例外条件</text>
+  <path class="arrow" d="M676 210 H742" />
+
+  <rect class="gray" x="742" y="308" width="276" height="122" rx="8" />
+  <text class="label" x="774" y="340">答案引用</text>
+  <text class="small" x="774" y="370">结论是否被 S1/S2 支撑?</text>
+  <text class="small" x="774" y="396">是否丢掉审批、例外、版本?</text>
+  <path class="arrow" d="M880 270 V308" />
+
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: 每个错误答案都要能回看 chunk 边界和证据组包,找出知识是在入库前、检索时还是生成时丢失。</text>
+</svg>

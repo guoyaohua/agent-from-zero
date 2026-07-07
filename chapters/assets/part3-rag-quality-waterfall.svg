@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 质量漏斗</title>
+  <desc id="desc">展示 RAG 质量从覆盖、可见、查询、召回、重排、证据包、生成到引用校验逐层收窄,并标出每层常见失败原因。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .stage { fill: #dfe8f5; stroke: #355c9a; stroke-width: 1.8; }
+      .stage2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 1.8; }
+      .stage3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 1.8; }
+      .stage4 { fill: #f7d9df; stroke: #b13c52; stroke-width: 1.8; }
+      .label { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="600" />
+  <text class="title" x="48" y="52">RAG 失败要沿质量漏斗定位,不要只调 Prompt 或 top-k</text>
+  <text class="sub" x="48" y="78">每层都可能让正确答案消失:先看证据是否存在,再看是否被召回、排前、组包、忠实使用。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="362" rx="8" />
+  <rect class="stage" x="80" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="130" y="186">覆盖</text>
+  <text class="small" x="106" y="207">知识是否存在</text>
+  <path class="arrow" d="M208 192 H236" />
+
+  <rect class="stage" x="236" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="286" y="186">可见</text>
+  <text class="small" x="264" y="207">权限/版本过滤</text>
+  <path class="arrow" d="M364 192 H392" />
+
+  <rect class="stage2" x="392" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="442" y="186">查询</text>
+  <text class="small" x="420" y="207">改写和拆分</text>
+  <path class="arrow" d="M520 192 H548" />
+
+  <rect class="stage2" x="548" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="598" y="186">召回</text>
+  <text class="small" x="576" y="207">top-k 候选</text>
+  <path class="arrow" d="M676 192 H704" />
+
+  <rect class="stage3" x="704" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="754" y="186">重排</text>
+  <text class="small" x="728" y="207">hard negative</text>
+  <path class="arrow" d="M832 192 H860" />
+
+  <rect class="stage3" x="860" y="160" width="128" height="64" rx="8" />
+  <text class="label" x="910" y="186">证据包</text>
+  <text class="small" x="888" y="207">条件/来源/冲突</text>
+
+  <rect class="stage4" x="392" y="310" width="156" height="64" rx="8" />
+  <text class="label" x="456" y="336">生成</text>
+  <text class="small" x="418" y="357">只根据证据回答</text>
+  <rect class="stage4" x="600" y="310" width="156" height="64" rx="8" />
+  <text class="label" x="658" y="336">校验</text>
+  <text class="small" x="628" y="357">引用支撑结论</text>
+  <path class="arrow" d="M924 224 C882 292 676 300 548 330" />
+  <path class="arrow" d="M548 342 H600" />
+
+  <rect class="panel" x="96" y="400" width="872" height="48" rx="8" />
+  <text class="text" x="122" y="430">诊断口令: 不存在修数据,召不回修检索,排不前修重排,证据缺修组包,引用错修忠实性和校验。</text>
+
+  <rect class="panel" x="72" y="506" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="532">读图方式: 从左到右检查,不要在下游用更长 Prompt 弥补上游缺失的证据。</text>
+</svg>
