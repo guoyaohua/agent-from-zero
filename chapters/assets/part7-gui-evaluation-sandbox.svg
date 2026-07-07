@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">GUI Agent 可重置评估实验室</title>
+  <desc id="desc">展示 GUI Agent 评估需要可重置环境、脚本化任务、动作记录、副作用沙箱和结果断言,而不是只看一次录屏。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.lab{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.risk{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.fail{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">GUI Agent 不能只靠录屏验收,要有可重置评估实验室</text>
+  <text class="sub" x="56" y="82">每个任务都要能初始化环境、执行动作、断言结果并清理副作用。</text>
+  <rect class="lab" x="70" y="158" width="160" height="86" rx="8"/><text class="head" x="114" y="190">Fixture</text><text class="text" x="104" y="218">账号 / 数据 / 初始 UI</text>
+  <path class="arrow" d="M230 201 H294"/>
+  <rect class="box" x="294" y="128" width="170" height="146" rx="8"/><text class="head" x="340" y="160">Task Script</text><text class="text" x="326" y="190">目标状态</text><text class="text" x="326" y="216">允许动作</text><text class="text" x="326" y="242">禁止副作用</text>
+  <path class="arrow" d="M464 201 H528"/>
+  <rect class="risk" x="528" y="128" width="170" height="146" rx="8"/><text class="head" x="572" y="160">Run Agent</text><text class="text" x="560" y="190">observe</text><text class="text" x="560" y="216">act log</text><text class="text" x="560" y="242">verify after each step</text>
+  <path class="arrow" d="M698 201 H762"/>
+  <rect class="box" x="762" y="128" width="170" height="146" rx="8"/><text class="head" x="808" y="160">Assertions</text><text class="text" x="794" y="190">页面状态</text><text class="text" x="794" y="216">数据库状态</text><text class="text" x="794" y="242">无误提交</text>
+  <path class="arrow" d="M847 274 V326"/>
+  <rect class="fail" x="762" y="326" width="170" height="70" rx="8"/><text class="head" x="808" y="354">Reset</text><text class="text" x="794" y="378">清理副作用并回放</text>
+  <rect x="154" y="432" width="812" height="38" rx="8" fill="#172033"/><text x="244" y="456" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">没有 fixture 和断言的 GUI demo,只能证明它曾经成功过,不能证明它稳定可用。</text>
+</svg>

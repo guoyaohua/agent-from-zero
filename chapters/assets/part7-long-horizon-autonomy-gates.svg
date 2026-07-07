@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">长时程 Agent 自治分级与门禁</title>
+  <desc id="desc">展示长时程 Agent 从提醒、队列执行、阶段自治到条件自治和长期自治,每一级都需要更强的 checkpoint、预算、review 和事故响应。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.l1{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.l2{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.6}.l3{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.6}.l4{fill:#fff0e6;stroke:#b05c37;stroke-width:1.6}.l5{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.gate{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">长时程自主性要逐级开放,每一级都有工程门禁</text>
+  <text class="sub" x="56" y="82">不要从一次性问答直接跳到长期无人值守。</text>
+  <g transform="translate(66 144)">
+    <rect class="l1" x="0" y="70" width="160" height="88" rx="8"/><text class="head" x="48" y="100">L1 提醒</text><text class="text" x="34" y="128">只提醒人</text>
+    <path class="arrow" d="M160 114 H206"/>
+    <rect class="l2" x="206" y="52" width="160" height="124" rx="8"/><text class="head" x="246" y="84">L2 队列</text><text class="text" x="238" y="112">明确子任务</text><text class="text" x="238" y="138">可审计执行</text>
+    <path class="arrow" d="M366 114 H412"/>
+    <rect class="l3" x="412" y="34" width="160" height="160" rx="8"/><text class="head" x="446" y="66">L3 阶段自治</text><text class="text" x="444" y="96">阶段内探索</text><text class="text" x="444" y="122">阶段末 review</text><text class="text" x="444" y="148">checkpoint</text>
+    <path class="arrow" d="M572 114 H618"/>
+    <rect class="l4" x="618" y="18" width="160" height="192" rx="8"/><text class="head" x="652" y="50">L4 条件自治</text><text class="text" x="650" y="82">策略满足推进</text><text class="text" x="650" y="108">风险升高暂停</text><text class="text" x="650" y="134">预算分段</text><text class="text" x="650" y="160">事故预案</text>
+    <path class="arrow" d="M778 114 H824"/>
+    <rect class="l5" x="824" y="0" width="160" height="228" rx="8"/><text class="head" x="858" y="32">L5 长期自治</text><text class="text" x="856" y="64">自调度资源</text><text class="text" x="856" y="90">成熟安全</text><text class="text" x="856" y="116">持续评估</text><text class="text" x="856" y="142">运维体系</text>
+  </g>
+  <rect class="gate" x="174" y="420" width="772" height="38" rx="8"/><text x="242" y="444" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">每升一级,都要先补 checkpoint、review gate、budget、pause/resume 和 rollback。</text>
+</svg>

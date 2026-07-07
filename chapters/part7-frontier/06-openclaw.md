@@ -277,6 +277,12 @@ OpenClaw README 提到 agent workspace 和 skills。workspace 不是简单文件
 
 这些听起来不像“AI 能力”,但恰恰决定 Agent 能不能进入真实生活。
 
+![OpenClaw 类个人 Gateway 运维基线](../assets/part7-openclaw-operator-baseline.svg)
+
+OpenClaw README 里强调它是运行在自己设备上的 personal AI assistant,Gateway 是 control plane,并且默认要把真实消息表面的入站 DM 当成不可信输入。这个定位很关键:它不是“云端托管平台替你兜底”,而是“你拥有更多控制权,也承担更多配置和运维责任”。
+
+所以使用或设计这类系统时,不要只问“接了哪些渠道”和“支持哪些模型”。更应该先问:Gateway 暴露在哪里、谁能认证、未知私信如何 pairing、群聊如何触发、非 main 会话是否 sandbox、危险工具是否默认关闭、日志是否脱敏、出事后如何停机和轮换凭证。多渠道个人 Agent 真正的难点,是把便利和边界同时做出来。
+
 ## 设计启发
 
 即使不使用 OpenClaw,它也给 Agent 工程提供了几条启发。

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 互操作契约栈</title>
+  <desc id="desc">展示 Agent 标准化从能力发现、schema 契约、策略挂钩、trace 和 eval 到版本协商的层级,说明互操作不只是能调用。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.layer{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.policy{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.trace{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.version{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">真正互操作是一组契约栈,不是只把工具连上</text>
+  <text class="sub" x="56" y="82">Host 需要知道能力、限制、风险、错误、trace 和版本。</text>
+  <g transform="translate(190 126)">
+    <rect class="version" x="0" y="0" width="740" height="52" rx="8"/><text class="head" x="40" y="32">Version negotiation</text><text class="text" x="260" y="32">schema 版本、弃用策略、降级路径</text>
+    <rect class="trace" x="40" y="70" width="660" height="52" rx="8"/><text class="head" x="80" y="102">Trace &amp; Eval</text><text class="text" x="260" y="102">artifact、sample、rubric、failure layer</text>
+    <rect class="policy" x="80" y="140" width="580" height="52" rx="8"/><text class="head" x="120" y="172">Policy hooks</text><text class="text" x="260" y="172">identity、scope、risk、confirmation</text>
+    <rect class="layer" x="120" y="210" width="500" height="52" rx="8"/><text class="head" x="160" y="242">Tool / Resource schema</text><text class="text" x="350" y="242">输入、输出、错误、副作用</text>
+    <rect class="layer" x="160" y="280" width="420" height="52" rx="8"/><text class="head" x="200" y="312">Capability discovery</text><text class="text" x="390" y="312">能做什么和不能做什么</text>
+  </g>
+  <rect x="168" y="444" width="784" height="34" rx="8" fill="#172033"/><text x="250" y="466" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">标准负责表达动作和边界,本地策略负责决定动作是否允许。</text>
+</svg>

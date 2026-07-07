@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从 Demo 到可靠 Agent 的成熟度门禁</title>
+  <desc id="desc">展示 Agent 项目从 demo、prototype、pilot 到 production 的门禁,强调 trace、eval、harness、安全、成本和责任边界。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.d{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.p{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.pilot{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.prod{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">从 0 到 1 之后,核心是跨过成熟度门禁</text>
+  <text class="sub" x="56" y="82">每一级都要用证据证明系统更可靠,而不是只加功能。</text>
+  <rect class="d" x="78" y="160" width="190" height="126" rx="8"/><text class="head" x="140" y="192">Demo</text><text class="text" x="112" y="222">单例能跑</text><text class="text" x="112" y="248">录屏或演示</text>
+  <path class="arrow" d="M268 223 H334"/>
+  <rect class="p" x="334" y="140" width="190" height="166" rx="8"/><text class="head" x="396" y="172">Prototype</text><text class="text" x="368" y="202">trace</text><text class="text" x="368" y="228">固定 eval</text><text class="text" x="368" y="254">工具 schema</text>
+  <path class="arrow" d="M524 223 H590"/>
+  <rect class="pilot" x="590" y="120" width="190" height="206" rx="8"/><text class="head" x="654" y="152">Pilot</text><text class="text" x="624" y="182">真实低风险用户</text><text class="text" x="624" y="208">harness</text><text class="text" x="624" y="234">灰度和回滚</text><text class="text" x="624" y="260">成本预算</text>
+  <path class="arrow" d="M780 223 H846"/>
+  <rect class="prod" x="846" y="100" width="190" height="246" rx="8"/><text class="head" x="906" y="132">Production</text><text class="text" x="880" y="162">权限和审计</text><text class="text" x="880" y="188">安全 eval</text><text class="text" x="880" y="214">SLO 和告警</text><text class="text" x="880" y="240">事故响应</text><text class="text" x="880" y="266">责任边界</text>
+  <rect x="168" y="430" width="784" height="38" rx="8" fill="#172033"/><text x="252" y="454" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">越靠近真实用户,越要把边界、评估和责任写进系统,不是写进愿望。</text>
+</svg>

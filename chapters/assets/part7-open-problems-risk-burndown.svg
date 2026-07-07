@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 开放问题的降险路线</title>
+  <desc id="desc">展示开放问题如何先通过 trace、eval、harness 和 scope 降低风险,再等待模型研究和机制解释的长期突破。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.axis{stroke:#8796aa;stroke-width:2}.step{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.wait{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">开放问题不是都要等模型突破,很多可以先工程降险</text>
+  <text class="sub" x="56" y="82">先让失败可见、可复现、可拦截、可限制影响。</text>
+  <path class="axis" d="M126 392 H992"/><path class="axis" d="M126 392 V126"/>
+  <text class="text" x="92" y="130">风险</text><text class="text" x="918" y="420">成熟度</text>
+  <rect class="risk" x="166" y="148" width="150" height="82" rx="8"/><text class="head" x="200" y="178">未知失败</text><text class="text" x="198" y="204">看不见,难复现</text>
+  <path class="arrow" d="M316 190 H390"/>
+  <rect class="step" x="390" y="188" width="150" height="82" rx="8"/><text class="head" x="432" y="218">Trace</text><text class="text" x="422" y="244">失败可见</text>
+  <path class="arrow" d="M540 230 H614"/>
+  <rect class="step" x="614" y="230" width="150" height="82" rx="8"/><text class="head" x="660" y="260">Eval</text><text class="text" x="646" y="286">回归可复现</text>
+  <path class="arrow" d="M764 272 H838"/>
+  <rect class="step" x="838" y="272" width="150" height="82" rx="8"/><text class="head" x="874" y="302">Harness</text><text class="text" x="866" y="328">高风险可拦截</text>
+  <rect class="wait" x="614" y="118" width="252" height="58" rx="8"/><text class="head" x="654" y="142">长期研究</text><text class="text" x="654" y="164">更强推理、不确定性、机制解释</text>
+  <rect x="176" y="444" width="768" height="34" rx="8" fill="#172033"/><text x="258" y="466" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">工程降险不是解决一切,但能把不可控失败变成可管理失败。</text>
+</svg>

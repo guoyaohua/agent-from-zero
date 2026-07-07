@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw 类个人 Gateway 运维基线</title>
+  <desc id="desc">展示运行 OpenClaw 类个人 Agent Gateway 时需要检查网络暴露、认证、私信策略、会话隔离、工具权限、沙箱、审计和应急响应。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.safe{fill:#e7f1ee}.warn{fill:#fff0e6}.risk{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">个人 Gateway 的运维基线:先收窄入口,再开放能力</text>
+  <text class="sub" x="56" y="82">本地优先带来控制权,也要求操作者理解暴露面。</text>
+  <g transform="translate(82 126)">
+    <rect class="cell safe" x="0" y="0" width="220" height="58"/><text class="head" x="22" y="24">Network</text><text class="text" x="22" y="44">loopback / VPN / SSH tunnel</text>
+    <rect class="cell safe" x="244" y="0" width="220" height="58"/><text class="head" x="266" y="24">Auth</text><text class="text" x="266" y="44">token、device pairing</text>
+    <rect class="cell warn" x="488" y="0" width="220" height="58"/><text class="head" x="510" y="24">DM Policy</text><text class="text" x="510" y="44">pairing / allowlist 默认</text>
+    <rect class="cell warn" x="732" y="0" width="220" height="58"/><text class="head" x="754" y="24">Session Scope</text><text class="text" x="754" y="44">channel-peer 隔离</text>
+    <rect class="cell risk" x="0" y="82" width="220" height="58"/><text class="head" x="22" y="106">Tools</text><text class="text" x="22" y="126">危险工具按 session 开启</text>
+    <rect class="cell risk" x="244" y="82" width="220" height="58"/><text class="head" x="266" y="106">Sandbox</text><text class="text" x="266" y="126">非 main 会话默认隔离</text>
+    <rect class="cell warn" x="488" y="82" width="220" height="58"/><text class="head" x="510" y="106">Audit</text><text class="text" x="510" y="126">脱敏 trace + action log</text>
+    <rect class="cell warn" x="732" y="82" width="220" height="58"/><text class="head" x="754" y="106">Response</text><text class="text" x="754" y="126">停机、轮换、撤销、复盘</text>
+  </g>
+  <rect x="168" y="420" width="784" height="38" rx="8" fill="#172033"/><text x="242" y="444" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">Gateway 越常驻、越多渠道、越有工具,越要把运维当作产品能力。</text>
+</svg>
