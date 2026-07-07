@@ -18,6 +18,7 @@ Guardrails,护栏,是 Agent 系统中非常实用的一类机制。
 - 护栏应该放在哪些阶段。
 - 输入、上下文、工具、输出护栏分别检查什么。
 - 护栏的动作不只是拒绝。
+- 护栏决策如何设计成可复用的结构化契约。
 - 如何评估护栏效果。
 - 护栏和安全、评估、可观测性的关系。
 
@@ -63,6 +64,45 @@ Guardrails,护栏,是 Agent 系统中非常实用的一类机制。
 ```
 
 结构化决策能被 UI、Harness、trace 和 eval 复用。只返回“blocked”会让用户和工程师都不知道下一步怎么做。
+
+## 护栏契约:不要只返回 true/false
+
+生产系统里,护栏最好被看成一个稳定接口,而不是一段散落的判断逻辑。这个接口的输入是当前请求、上下文、候选动作、参数来源、用户权限和策略版本;输出是一份结构化决策。这样同一个决策可以同时驱动四件事:
+
+| 消费方 | 使用护栏决策做什么 |
+| --- | --- |
+| Runtime | 放行、拦截、降级、请求确认或路由人工 |
+| UI | 展示确认卡、解释风险、给出安全替代动作 |
+| Trace | 记录命中的 policy_id、风险等级、参数来源和动作 |
+| Eval | 统计误报、漏报、攻击拦截率和正常任务完成率 |
+
+![护栏契约与评估闭环](../assets/part5-guardrails-contract-eval-loop.svg)
+
+一个更完整的决策对象可以包含:
+
+```json
+{
+  "decision": "downgrade",
+  "risk_level": "high",
+  "policy_ids": ["external_email_pii.v2", "arg_source_untrusted.v1"],
+  "reason": "customer PII would be sent to an external domain",
+  "safe_alternative": {
+    "tool": "create_draft_email",
+    "required_user_action": "review_and_approve_redacted_body"
+  },
+  "arg_sources": {
+    "to": "user_input",
+    "body": "retrieved_internal_doc"
+  },
+  "data_classes": ["customer_pii"],
+  "trace_tags": ["security_event", "requires_review"],
+  "eval_label": "gray"
+}
+```
+
+这里的要点是:护栏不是简单地替模型说“不”,而是把一个风险状态翻译成系统可执行的下一步。`decision=block` 表示无法安全完成;`decision=downgrade` 表示可以转成草稿、脱敏摘要或只读分析;`decision=require_confirmation` 表示风险可接受但必须让用户看见具体参数;`decision=escalate` 表示需要更高权限或人工审批。
+
+这份契约还能避免“策略命中但体验断裂”。如果护栏只返回拒绝,UI 只能显示含糊错误;如果护栏返回 `safe_alternative`,用户可以继续完成一个安全版本的任务。对工程团队来说,这也让线上反馈可以回流:用户频繁 override 某条策略,可能是阈值太保守;某类 gray 样本频繁升级人工,可能需要更好的确认卡或更细的数据分类。
 
 ## 护栏不是万能
 
@@ -149,6 +189,22 @@ Prompt 可以解释策略,但关键拦截逻辑应可执行、可测试。
 | 动作是否真的成功且可审计? | post_execute |
 
 护栏越靠后,能阻止的损害越少。输出护栏不能撤销已经发出的邮件或已经写入的数据库记录。
+
+## 护栏组合故障
+
+多个护栏串联不等于天然更安全。组合系统有自己的故障模式,尤其在 Agent 这种多阶段运行时里非常常见。
+
+![护栏组合故障模式](../assets/part5-guardrails-composition-failure.svg)
+
+第一种故障是重复拦截。输入护栏要求澄清,工具护栏又弹确认,输出护栏再要求用户确认一次。每个护栏单看都合理,串起来却制造确认疲劳。修复方式是把多个护栏的结果合并成一个最终决策,由策略仲裁器决定用户只需要看到一次最完整的确认。
+
+第二种故障是标签丢失。上下文护栏给外部网页打了 `trust=untrusted` 标签,但摘要器输出一段“干净摘要”时没有继承标签,后面的工具护栏就不知道某个邮箱地址其实来自攻击者控制的网页。修复方式是让 trust、source、data_class 跟随 artifact 传播,而不是只跟随原始文本。
+
+第三种故障是阶段过晚。系统在输出阶段才检查“是否含有敏感数据”,但邮件已经通过工具发出。输出护栏只能保护最终回答,不能撤销已执行的副作用。所有写工具、外部发送、权限变更和长期记忆写入都必须有 tool_pre 护栏。
+
+第四种故障是动作冲突。一个护栏认为需要 `redact`,另一个护栏认为需要 `block`,第三个护栏认为可以 `confirm`。如果没有统一优先级,系统可能随机采用最后一个结果。常见仲裁顺序是:明确违规优先 block;不可逆高风险优先 escalate 或 require_confirmation;可安全替代时 downgrade;低风险才 allow。
+
+因此,护栏架构里最好有三个共享机制:共享标签、共享决策对象、共享仲裁器。共享标签保证不同阶段看到同一份事实;共享决策对象保证 UI、runtime、trace 和 eval 解释一致;共享仲裁器保证多个护栏不会互相打架。
 
 ## 输入护栏
 
@@ -360,6 +416,19 @@ LLM 适合处理语义判断,不适合独自承担不可逆动作的最终授权
 
 只有 attack 样本会让护栏越来越保守。加入 benign 和 gray,才能衡量误报、用户体验和安全降级能力。
 
+评估还要覆盖组合顺序,而不是只测单个护栏。例如“外部网页诱导发送客户列表”这个样本,至少要检查:网页是否被打上 untrusted 标签,客户数据是否被 data_class 标注,tool_pre 是否拦截 external_email,UI 是否给出草稿或审批替代,trace 是否记录 policy_id。只看最终回答有没有拒绝,会漏掉中间某一层已经失效的事实。
+
+一个实用的护栏回归表可以这样设计:
+
+| 样本类型 | 期望动作 | 必须检查的 trace 字段 |
+| --- | --- | --- |
+| attack | block 或 escalate | policy_id、arg_source、data_class、risk_level |
+| benign | allow | 未命中高风险策略,延迟影响可接受 |
+| gray | clarify、confirm 或 downgrade | safe_alternative、confirmation_id、user_visible_reason |
+| regression | 与上个版本一致或解释差异 | policy_version、model_version、decision_diff |
+
+这样评估出来的不是“护栏会不会拒绝”,而是“护栏是否在正确阶段做出正确动作,并留下足够证据”。
+
 ## 护栏配置和版本
 
 护栏规则会变化。
@@ -398,6 +467,6 @@ LLM 适合处理语义判断,不适合独自承担不可逆动作的最终授权
 
 ## 本章小结
 
-Guardrails 是 Agent 系统在输入、上下文、工具调用、输出和执行后阶段的检查与控制。护栏动作不只是拒绝,还包括脱敏、改写、澄清、确认、降级、升级和记录。高风险权限和副作用必须由 runtime 和策略系统执行,不能只靠模型判断。护栏也要可观测、可评估、可版本管理,并根据风险平衡误报和漏报。
+Guardrails 是 Agent 系统在输入、上下文、工具调用、输出和执行后阶段的检查与控制。护栏动作不只是拒绝,还包括脱敏、改写、澄清、确认、降级、升级和记录。高风险权限和副作用必须由 runtime 和策略系统执行,不能只靠模型判断。成熟护栏要有结构化决策契约、共享标签、组合仲裁、可观测 trace 和持续评估,并根据风险平衡误报和漏报。
 
 下一章会讲 Prompt Injection 与防御。它是 Agent 安全中最典型、也最容易被低估的攻击面之一。

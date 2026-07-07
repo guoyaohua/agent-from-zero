@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">运行时安全决策账本</title>
+  <desc id="desc">展示 Agent 在工具执行前如何记录来源、权限、数据分类、风险、策略和最终动作。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.head{fill:#e0f2fe;stroke:#0284c7}.cell{fill:#fff;stroke:#cbd5e1}.risk{fill:#fee2e2;stroke:#dc2626}.ok{fill:#dcfce7;stroke:#16a34a}.warn{fill:#fef3c7;stroke:#d97706}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="48" y="48">真正的安全边界在 runtime: 每次动作都要重新算账</text>
+  <text class="sub" x="48" y="74">不要只看工具名,要把用户、数据、参数来源、动作副作用和确认状态合在一起判断。</text>
+  <rect class="cell" x="54" y="116" width="150" height="78" rx="8"/><text class="h" x="84" y="147">User goal</text><text class="t" x="76" y="171">用户明确目标</text>
+  <rect class="cell" x="242" y="116" width="150" height="78" rx="8"/><text class="h" x="278" y="147">Context</text><text class="t" x="264" y="171">证据与 trust</text>
+  <rect class="warn" x="430" y="116" width="150" height="78" rx="8"/><text class="h" x="466" y="147">Tool args</text><text class="t" x="452" y="171">参数来源检查</text>
+  <rect class="risk" x="618" y="116" width="150" height="78" rx="8"/><text class="h" x="654" y="147">Risk score</text><text class="t" x="640" y="171">数据 x 副作用</text>
+  <rect class="ok" x="806" y="116" width="150" height="78" rx="8"/><text class="h" x="842" y="147">Decision</text><text class="t" x="834" y="171">allow / confirm</text>
+  <path class="arrow" d="M204 155 H242 M392 155 H430 M580 155 H618 M768 155 H806"/>
+  <rect class="head" x="54" y="248" width="1012" height="38" rx="8"/>
+  <text class="h" x="80" y="272">Trace ledger fields</text><text class="h" x="280" y="272">为什么需要</text><text class="h" x="610" y="272">缺失时的风险</text>
+  <rect class="cell" x="54" y="286" width="1012" height="46"/><text class="t" x="80" y="314">actor / session / tool / policy_version</text><text class="t" x="280" y="314">定位谁在什么上下文触发了哪条策略</text><text class="t" x="610" y="314">事故后无法复盘,也无法回滚策略</text>
+  <rect class="cell" x="54" y="332" width="1012" height="46"/><text class="t" x="80" y="360">data_class / arg_source / trust_level</text><text class="t" x="280" y="360">判断数据能否流向该工具和对象</text><text class="t" x="610" y="360">外部内容可能变成高风险工具参数</text>
+  <rect class="cell" x="54" y="378" width="1012" height="46"/><text class="t" x="80" y="406">risk_level / confirmation_id / decision</text><text class="t" x="280" y="406">证明高风险动作经过预览和确认</text><text class="t" x="610" y="406">用户以为只是草稿,系统却执行了写操作</text>
+  <rect class="cell" x="54" y="424" width="1012" height="46"/><text class="t" x="80" y="452">artifact_id / rollback_hint / eval_case_id</text><text class="t" x="280" y="452">把副作用、恢复路径和回归样本连起来</text><text class="t" x="610" y="452">同类事故无法转化为回归测试</text>
+</svg>

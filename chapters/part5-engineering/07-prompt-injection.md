@@ -27,6 +27,7 @@ Prompt Injection 防御的核心原则是:
 - 为什么 Agent 比普通聊天更危险。
 - 常见攻击路径。
 - 防御的分层策略。
+- 如何在摘要、工具参数、记忆和多 Agent 传递中保留信任标签。
 - 如何评估和红队测试。
 
 ## Direct vs Indirect
@@ -107,6 +108,27 @@ Agent 被注入后,可能:
 | 记忆写入 | untrusted 默认不能写成长期偏好或系统规则 |
 
 如果 taint 在链路中丢了,下游就很难知道某个“建议”其实来自攻击者写在网页里的文本。
+
+![Prompt Injection 信任保持转换](../assets/part5-prompt-injection-trust-preserving-transform.svg)
+
+Prompt Injection 最容易成功的地方,往往不是原始文本进入上下文的那一刻,而是内容被“加工”之后。网页被切成 chunk,chunk 被摘要,摘要被翻译,翻译结果被抽取成工具参数,工具参数又被写成多 Agent handoff。每一步都可能让文本看起来更干净、更像系统内部生成的内容,但它的来源并没有因此变可信。
+
+所以系统要把 trust 看成 artifact metadata,而不是文本旁边的一句注释。一个被摘要过的外部网页片段仍然应该携带:
+
+```json
+{
+  "artifact_id": "web_42.chunk_07.summary_01",
+  "source_id": "web_42",
+  "owner": "external",
+  "trust": "untrusted_web",
+  "transform": "summarize",
+  "data_classes": ["public_claim", "possible_instruction"],
+  "allowed_uses": ["cite_in_answer"],
+  "forbidden_uses": ["tool_instruction", "memory_rule"]
+}
+```
+
+这段 metadata 的含义很重要:同一段文本可以被用于回答中的引用,但不能直接变成 `send_email.to`;可以被用于“网页声称某事”的证据,但不能写入“以后都按网页规则行动”的长期记忆。防注入的核心不是让模型永远不读外部内容,而是让外部内容只能在被允许的通道里发挥作用。
 
 ## 指令和资料隔离
 
@@ -190,6 +212,34 @@ untrusted_web -> answer_with_citation: allowed
 ```
 
 这类规则比“不要泄露敏感信息”更可测试,也更容易进入 trace。
+
+## 防御矩阵:每层都要有可证明的职责
+
+Prompt Injection 经常被误解成“检测并删除恶意句子”。这不够。OWASP GenAI 风险中把 Prompt Injection 放在非常靠前的位置,原因正是它会沿着 Agent 的上下文、工具、记忆和多 Agent 通道传播。更稳的设计是把防御拆成矩阵:每一层负责一种保证,并为这种保证留下评估证据。
+
+![Prompt Injection 分层防御矩阵](../assets/part5-prompt-injection-defense-matrix.svg)
+
+可以按六个链路点理解:
+
+| 链路点 | 核心职责 | 常见失效 |
+| --- | --- | --- |
+| Source | 识别外部来源,写入 `source_id`、`owner`、`trust` | 把内部索引里的外部网页当成可信文档 |
+| Context | 把指令、用户目标、工具观察和外部证据分区 | 检索片段和系统规则混在同一区域 |
+| Tool | 检查高风险工具的关键参数来源 | 网页里的邮箱地址直接进入 `send_email.to` |
+| Data flow | 控制敏感数据从哪里流向哪里 | 内部文档摘要被发到外部工具 |
+| Memory | 阻止不可信内容写成长期规则或偏好 | 外部页面写入“以后跳过安全检查” |
+| Handoff | 多 Agent 传递时保留 evidence 与 instruction 区分 | Researcher 摘要被 Executor 当成系统消息 |
+
+这张矩阵也能帮助定位事故。假设发生了“Agent 把内部客户列表发给外部邮箱”的事故,不要只问模型为什么没拒绝,而要逐层追问:
+
+1. 外部内容是否被标注为 untrusted?
+2. 客户列表是否被标注为 PII/internal?
+3. 上下文是否把外部指令和可信用户目标隔离?
+4. `send_email.to` 和 `body` 的参数来源是否被记录?
+5. 数据流策略是否阻止 internal/PII 流向 external_email?
+6. 如果工具被拦截,trace 是否能证明哪条策略生效?
+
+这些问题让 Prompt Injection 从“模型会不会被骗”变成“系统哪一层没有守住它的职责”。这也是红队测试要覆盖完整攻击链的原因。
 
 ## RAG 防御
 
@@ -289,6 +339,26 @@ Prompt Injection 可以跨消息传播,所以只防入口不够。
 8. 输出前检查泄露和无依据动作。
 9. Trace 记录注入检测和策略决策。
 10. 安全 eval set 持续回归。
+
+可以把这 10 条压缩成一句工程原则:不可信内容可以影响答案中的“事实候选”,但不能影响系统中的“权限、工具、策略和长期状态”。如果某段外部内容想改变这四类东西,默认就是越权。
+
+具体到实现,建议把外部内容允许的动作收窄成三类:
+
+| 允许动作 | 条件 |
+| --- | --- |
+| 被引用 | 有 source_id,回答能指向原文或检索片段 |
+| 被比较 | 与其他证据并列,不单独成为事实真相 |
+| 被摘要 | 摘要继承原始 trust 和 data_class |
+
+而下面这些动作默认禁止,除非经过可信来源或用户确认重新授权:
+
+| 禁止动作 | 原因 |
+| --- | --- |
+| 改写系统/开发者规则 | 外部内容没有指令权 |
+| 直接调用高风险工具 | 外部内容不能赋予执行意图 |
+| 填充外部发送目标 | 容易形成数据外泄通道 |
+| 写入长期记忆或偏好 | 会把一次攻击变成持久污染 |
+| 作为下游 Agent 的系统消息 | 会在多 Agent 链路中提权 |
 
 ## 检测不是防御全部
 
@@ -402,6 +472,6 @@ Attack chain coverage 的价值在于避免“只测模型有没有识别注入�
 
 ## 本章小结
 
-Prompt Injection 的本质是不可信内容试图获得指令权。Agent 因为能检索、读工具结果、调用外部系统和写记忆,风险比普通聊天更高。防御要分层:隔离指令和资料、标注信任级别、最小化上下文、工具调用前策略检查、数据流控制、高风险确认、记忆写入门、多 Agent 消息保留来源和 trust level。检测注入有用,但不能替代 runtime 边界。安全样本要持续进入评估集,防止同类攻击回归。
+Prompt Injection 的本质是不可信内容试图获得指令权。Agent 因为能检索、读工具结果、调用外部系统和写记忆,风险比普通聊天更高。防御要分层:隔离指令和资料、标注信任级别、在每次转换中保留 source/trust/data_class、最小化上下文、工具调用前策略检查、数据流控制、高风险确认、记忆写入门、多 Agent 消息保留来源和 trust level。检测注入有用,但不能替代 runtime 边界。安全样本要持续进入评估集,防止同类攻击回归。
 
 到这里,Part 5 完成了工程实践主线:可观测、评估、Judge、成本延迟、安全、护栏和 Prompt Injection。下一篇 Part 6 会进入实战项目,把前面所有机制组装成一个个人研究助手。

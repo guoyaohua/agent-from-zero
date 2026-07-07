@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt Injection 信任保持转换</title>
+  <desc id="desc">展示不可信内容在切分、摘要、翻译、参数提取和记忆候选过程中必须保留来源与信任级别。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.code{font:400 11.5px ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;fill:#1f2937}.box{fill:#fff;stroke:#94a3b8;stroke-width:1.4}.red{fill:#fee2e2;stroke:#dc2626}.amber{fill:#fef3c7;stroke:#d97706}.blue{fill:#dbeafe;stroke:#2563eb}.green{fill:#dcfce7;stroke:#16a34a}.purple{fill:#ede9fe;stroke:#7c3aed}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="540"/>
+  <text class="title" x="48" y="48">危险常发生在“转换”时: 摘要变干净了,来源标签却丢了</text>
+  <text class="sub" x="48" y="74">chunk、summary、translation、tool_arg_candidate、memory_candidate 都必须继承 trust 和 source。</text>
+  <rect class="red" x="52" y="120" width="180" height="84" rx="8"/>
+  <text class="h" x="86" y="151">Raw evidence</text><text class="code" x="76" y="176">trust=untrusted_web</text>
+  <rect class="amber" x="278" y="120" width="180" height="84" rx="8"/>
+  <text class="h" x="326" y="151">Chunk</text><text class="code" x="302" y="176">inherits source_id</text>
+  <rect class="blue" x="504" y="120" width="180" height="84" rx="8"/>
+  <text class="h" x="552" y="151">Summary</text><text class="code" x="528" y="176">inherits trust</text>
+  <rect class="purple" x="730" y="120" width="180" height="84" rx="8"/>
+  <text class="h" x="774" y="151">Arg candidate</text><text class="code" x="754" y="176">source=untrusted</text>
+  <path class="arrow" d="M232 162 H278 M458 162 H504 M684 162 H730"/>
+  <rect class="box" x="52" y="258" width="1016" height="178" rx="10"/>
+  <text class="h" x="82" y="292">每次转换都要保留的最小元数据</text>
+  <text class="code" x="82" y="324">artifact_id: web_42.chunk_07.summary_01</text>
+  <text class="code" x="82" y="352">source_id: web_42        owner: external        trust: untrusted_web</text>
+  <text class="code" x="82" y="380">data_classes: public_claim | possible_instruction        transform: summarize</text>
+  <text class="code" x="82" y="408">allowed_uses: cite_in_answer        forbidden_uses: tool_instruction | memory_rule</text>
+  <rect class="green" x="52" y="458" width="318" height="56" rx="8"/>
+  <text class="h" x="86" y="481">Allowed: untrusted evidence</text>
+  <text class="h" x="86" y="500">-> answer with citation</text>
+  <rect class="red" x="402" y="458" width="318" height="56" rx="8"/>
+  <text class="h" x="428" y="481">Blocked: untrusted evidence</text>
+  <text class="h" x="428" y="500">-> high-risk tool arg</text>
+  <rect class="red" x="752" y="458" width="316" height="56" rx="8"/>
+  <text class="h" x="782" y="481">Blocked: untrusted evidence</text>
+  <text class="h" x="782" y="500">-> long-term rule</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">护栏契约与评估闭环</title>
+  <desc id="desc">展示护栏应输出结构化契约,并通过 trace、评估集和策略版本形成持续迭代闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.code{font:400 12px ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;fill:#1f2937}.box{fill:#fff;stroke:#94a3b8;stroke-width:1.4}.blue{fill:#dbeafe;stroke:#2563eb}.green{fill:#dcfce7;stroke:#16a34a}.amber{fill:#fef3c7;stroke:#d97706}.purple{fill:#ede9fe;stroke:#7c3aed}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="540"/>
+  <text class="title" x="48" y="48">护栏要有契约: 决策必须能被 UI、runtime、trace 和 eval 共用</text>
+  <text class="sub" x="48" y="74">只返回 true/false 会丢掉风险等级、原因、替代动作和评估标签。</text>
+  <rect class="box" x="54" y="112" width="360" height="300" rx="10"/>
+  <text class="h" x="84" y="146">GuardrailDecision</text>
+  <text class="code" x="84" y="178">decision: allow | block | confirm</text>
+  <text class="code" x="84" y="204">risk_level: low | medium | high</text>
+  <text class="code" x="84" y="230">policy_ids: [external_pii.v2]</text>
+  <text class="code" x="84" y="256">reason: human readable</text>
+  <text class="code" x="84" y="282">safe_alternative: create_draft</text>
+  <text class="code" x="84" y="308">arg_sources: user | tool | web</text>
+  <text class="code" x="84" y="334">trace_tags: security_event</text>
+  <text class="code" x="84" y="360">eval_label: attack | benign | gray</text>
+  <rect class="blue" x="506" y="112" width="188" height="78" rx="8"/><text class="h" x="552" y="145">Runtime</text><text class="t" x="536" y="169">执行或拦截动作</text>
+  <rect class="green" x="800" y="112" width="188" height="78" rx="8"/><text class="h" x="850" y="145">UI</text><text class="t" x="828" y="169">确认卡和解释</text>
+  <rect class="amber" x="506" y="280" width="188" height="78" rx="8"/><text class="h" x="560" y="313">Trace</text><text class="t" x="526" y="337">记录策略与来源</text>
+  <rect class="purple" x="800" y="280" width="188" height="78" rx="8"/><text class="h" x="852" y="313">Eval</text><text class="t" x="826" y="337">统计误报漏报</text>
+  <path class="arrow" d="M414 220 C458 178 466 151 506 151"/>
+  <path class="arrow" d="M694 151 H800"/>
+  <path class="arrow" d="M600 190 V280"/>
+  <path class="arrow" d="M694 319 H800"/>
+  <path class="arrow" d="M894 280 V190"/>
+  <rect class="box" x="54" y="446" width="1012" height="52" rx="8"/>
+  <text class="h" x="84" y="478">闭环:</text><text class="t" x="132" y="478">线上 trace 发现误报/漏报 -> 加入 gray 或 attack 样本 -> 调整 policy version -> 灰度发布 -> 继续观测。</text>
+</svg>

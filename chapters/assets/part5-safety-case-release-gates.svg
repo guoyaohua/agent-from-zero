@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 安全论证与发布门禁</title>
+  <desc id="desc">展示 Agent 安全从威胁建模、控制声明、证据采集到发布门禁的闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.box{fill:#fff;stroke:#94a3b8;stroke-width:1.4}.blue{fill:#dbeafe;stroke:#2563eb}.amber{fill:#fef3c7;stroke:#d97706}.green{fill:#dcfce7;stroke:#16a34a}.red{fill:#fee2e2;stroke:#dc2626}.purple{fill:#ede9fe;stroke:#7c3aed}.arrow{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">安全不是一句规则,而是一条可审计的安全论证</text>
+  <text class="sub" x="48" y="74">每个高风险能力都要说明: 风险是什么、用什么控制、证据在哪里、何时允许发布。</text>
+  <rect class="blue" x="48" y="112" width="230" height="130" rx="8"/>
+  <text class="h" x="78" y="144">1. Threat model</text>
+  <text class="t" x="78" y="173">资产: PII / 密钥 / 写工具</text>
+  <text class="t" x="78" y="198">攻击面: RAG / 邮件 / 插件</text>
+  <text class="t" x="78" y="223">损害: 泄露 / 误写 / 越权</text>
+  <rect class="amber" x="318" y="112" width="230" height="130" rx="8"/>
+  <text class="h" x="348" y="144">2. Control claims</text>
+  <text class="t" x="348" y="173">最小权限与数据最小化</text>
+  <text class="t" x="348" y="198">工具前策略与确认卡</text>
+  <text class="t" x="348" y="223">trace / 回滚 / 事故响应</text>
+  <rect class="green" x="588" y="112" width="230" height="130" rx="8"/>
+  <text class="h" x="618" y="144">3. Evidence</text>
+  <text class="t" x="618" y="173">红队样本与正常任务集</text>
+  <text class="t" x="618" y="198">策略命中 trace 覆盖率</text>
+  <text class="t" x="618" y="223">人工确认质量抽检</text>
+  <rect class="purple" x="858" y="112" width="214" height="130" rx="8"/>
+  <text class="h" x="888" y="144">4. Release gate</text>
+  <text class="t" x="888" y="173">通过 / 灰度 / 阻断发布</text>
+  <text class="t" x="888" y="198">策略版本可回滚</text>
+  <text class="t" x="888" y="223">高风险能力单独开关</text>
+  <path class="arrow" d="M278 177 H318"/><path class="arrow" d="M548 177 H588"/><path class="arrow" d="M818 177 H858"/>
+  <rect class="box" x="48" y="292" width="1024" height="190" rx="10"/>
+  <text class="h" x="78" y="326">发布门禁要看两类证据: 防住攻击,也不压垮正常任务</text>
+  <rect class="red" x="78" y="352" width="185" height="78" rx="8"/>
+  <text class="h" x="108" y="382">Attack set</text>
+  <text class="small" x="108" y="407">越权 / 注入 / 外泄 / 误写</text>
+  <rect class="green" x="291" y="352" width="185" height="78" rx="8"/>
+  <text class="h" x="321" y="382">Benign set</text>
+  <text class="small" x="321" y="407">正常完成率与误拒率</text>
+  <rect class="blue" x="504" y="352" width="185" height="78" rx="8"/>
+  <text class="h" x="534" y="382">Trace audit</text>
+  <text class="small" x="534" y="407">每个决策有 policy_id</text>
+  <rect class="amber" x="717" y="352" width="185" height="78" rx="8"/>
+  <text class="h" x="747" y="382">Rollback plan</text>
+  <text class="small" x="747" y="407">禁用工具 / 回滚策略</text>
+  <rect class="purple" x="930" y="352" width="112" height="78" rx="8"/>
+  <text class="h" x="956" y="382">Owner</text>
+  <text class="small" x="950" y="407">谁能放行</text>
+  <text class="sub" x="78" y="462">通过标准示例: attack_block_rate 达标, benign_completion_rate 未显著下降, high_risk_confirm_rate 有 trace, rollback 演练成功。</text>
+</svg>

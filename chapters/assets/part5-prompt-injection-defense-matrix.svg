@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt Injection 分层防御矩阵</title>
+  <desc id="desc">展示 Prompt Injection 在来源、上下文、工具、数据流、记忆和多 Agent 阶段的预防、运行时保证和评估证据。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#4b5563}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}.t{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}.head{fill:#e0f2fe;stroke:#0284c7}.cell{fill:#fff;stroke:#cbd5e1}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="560"/>
+  <text class="title" x="48" y="48">Prompt Injection 防御要覆盖整条攻击链,不能只靠检测句子</text>
+  <text class="sub" x="48" y="74">每一层都要同时回答: 怎么预防、runtime 保证什么、用什么证据评估。</text>
+  <rect class="head" x="50" y="112" width="1020" height="42" rx="8"/>
+  <text class="h" x="78" y="138">链路点</text><text class="h" x="238" y="138">预防</text><text class="h" x="486" y="138">运行时保证</text><text class="h" x="748" y="138">评估证据</text>
+  <rect class="cell" x="50" y="154" width="1020" height="58"/><text class="h" x="78" y="188">Source</text><text class="t" x="238" y="181">外部网页、邮件、issue 默认 untrusted</text><text class="t" x="486" y="181">source_id、trust、owner 写入 metadata</text><text class="t" x="748" y="181">untrusted 标注覆盖率</text><text class="t" x="748" y="199">隐藏文本/HTML 样本回归</text>
+  <rect class="cell" x="50" y="212" width="1020" height="58"/><text class="h" x="78" y="246">Context</text><text class="t" x="238" y="239">指令区和 evidence 区分离</text><text class="t" x="486" y="239">外部资料不能提升成系统/用户指令</text><text class="t" x="748" y="239">context isolation 检查</text><text class="t" x="748" y="257">证据引用准确率</text>
+  <rect class="cell" x="50" y="270" width="1020" height="58"/><text class="h" x="78" y="304">Tool</text><text class="t" x="238" y="297">高风险关键参数要求可信来源</text><text class="t" x="486" y="297">untrusted_web 不能直接生成 send_email.to</text><text class="t" x="748" y="297">危险工具调用拦截率</text><text class="t" x="748" y="315">确认卡完整性</text>
+  <rect class="cell" x="50" y="328" width="1020" height="58"/><text class="h" x="78" y="362">Data flow</text><text class="t" x="238" y="355">定义 internal_doc -> external_email 等规则</text><text class="t" x="486" y="355">敏感数据不可流向外部工具</text><text class="t" x="748" y="355">外泄率、脱敏覆盖率</text><text class="t" x="748" y="373">策略命中 trace</text>
+  <rect class="cell" x="50" y="386" width="1020" height="58"/><text class="h" x="78" y="420">Memory</text><text class="t" x="238" y="413">不可信内容默认不能写长期偏好</text><text class="t" x="486" y="413">memory_write 需要来源和确认</text><text class="t" x="748" y="413">记忆污染样本通过率</text><text class="t" x="748" y="431">删除/修正演练</text>
+  <rect class="cell" x="50" y="444" width="1020" height="58"/><text class="h" x="78" y="478">Handoff</text><text class="t" x="238" y="471">多 Agent 消息分 instruction/evidence</text><text class="t" x="486" y="471">下游不得接受上游自然语言提权</text><text class="t" x="748" y="471">跨 Agent 污染传播测试</text><text class="t" x="748" y="489">handoff schema 覆盖率</text>
+</svg>
