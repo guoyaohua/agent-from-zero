@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="490" viewBox="0 0 1120 490" role="img" aria-labelledby="title desc">
   <title id="title">LLM-as-a-Judge Rubric</title>
   <desc id="desc">展示 LLM-as-a-Judge 从样本、证据、rubric、判分、解释、校准和人工抽检组成的评估闭环。</desc>
   <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">LLM-as-a-Judge: 评的是 rubric,不是模型心情</text><text class="sub" x="56" y="86">Judge 适合主观或语义质量,但必须有标准、证据、校准、抽检和反作弊。</text>
+  <rect class="bg" width="1120" height="490"/><text class="title" x="56" y="58">LLM-as-a-Judge: 评的是 rubric,不是模型心情</text><text class="sub" x="56" y="86">Judge 适合主观或语义质量,但必须有标准、证据、校准、抽检和反作弊。</text>
+  <g transform="translate(0,-75)">
   <rect class="blue" x="86" y="214" width="144" height="68" rx="8"/><text class="head" x="126" y="242">Sample</text><text class="small" x="112" y="264">输入/输出/证据</text>
   <rect class="green" x="292" y="214" width="144" height="68" rx="8"/><text class="head" x="328" y="242">Rubric</text><text class="small" x="314" y="264">维度和判分锚点</text>
   <rect class="orange" x="498" y="214" width="144" height="68" rx="8"/><text class="head" x="536" y="242">Judge</text><text class="small" x="522" y="264">打分 + 理由</text>
@@ -10,5 +11,7 @@
   <rect class="red" x="910" y="214" width="144" height="68" rx="8"/><text class="head" x="950" y="242">Audit</text><text class="small" x="936" y="264">抽检和漂移监控</text>
   <path class="arrow" d="M230 248 H292"/><path class="arrow" d="M436 248 H498"/><path class="arrow" d="M642 248 H704"/><path class="arrow" d="M848 248 H910"/>
   <rect class="panel" x="120" y="396" width="880" height="118" rx="8"/><text class="head" x="156" y="432">Judge 输出契约</text><text class="text" x="156" y="464">score、pass/fail、violated criteria、supporting evidence、uncertainty、actionable feedback。</text><text class="text" x="156" y="492">不要只让 Judge 输出“好/不好”;没有理由和证据的分数无法调试。</text>
+
+  </g>
 </svg>
 

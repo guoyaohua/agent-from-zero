@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
   <title id="title">个人研究助手核心循环</title>
   <desc id="desc">展示研究助手的计划、检索、阅读、判断、回答、校验和状态更新循环。</desc>
   <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.node{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.node2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.node3{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.node4{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">核心循环: 每一步都要产生可用状态</text><text class="sub" x="56" y="86">研究助手不是一次生成答案,而是围绕证据持续计划、检索、阅读、校验和更新。</text>
+  <rect class="bg" width="1120" height="460"/><text class="title" x="56" y="58">核心循环: 每一步都要产生可用状态</text><text class="sub" x="56" y="86">研究助手不是一次生成答案,而是围绕证据持续计划、检索、阅读、校验和更新。</text>
+  <g transform="translate(0,-31)">
   <rect class="node" x="150" y="170" width="150" height="68" rx="8"/><text class="head" x="196" y="198">Plan</text><text class="text" x="184" y="220">拆问题和缺口</text>
   <rect class="node2" x="478" y="170" width="150" height="68" rx="8"/><text class="head" x="524" y="198">Search</text><text class="text" x="514" y="220">查询资料源</text>
   <rect class="node3" x="806" y="170" width="150" height="68" rx="8"/><text class="head" x="850" y="198">Read</text><text class="text" x="836" y="220">抽取证据</text>
@@ -10,5 +11,7 @@
   <rect class="bad" x="478" y="386" width="150" height="68" rx="8"/><text class="head" x="520" y="414">Verify</text><text class="text" x="506" y="436">引用/格式/安全</text>
   <rect class="node2" x="150" y="386" width="150" height="68" rx="8"/><text class="head" x="196" y="414">State</text><text class="text" x="180" y="436">进展和证据包</text>
   <path class="arrow" d="M300 204 H478"/><path class="arrow" d="M628 204 H806"/><path class="arrow" d="M881 238 V386"/><path class="arrow" d="M806 420 H628"/><path class="arrow" d="M478 420 H300"/><path class="arrow" d="M225 386 V238"/>
+
+  </g>
 </svg>
 

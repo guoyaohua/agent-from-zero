@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
   <title id="title">个人研究助手评估与迭代</title>
   <desc id="desc">展示研究助手通过样本、运行、评分、失败归因和改进回流形成评估迭代闭环。</desc>
   <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="680"/><text class="title" x="56" y="58">评估迭代: 每次失败都变成下一版能力</text><text class="sub" x="56" y="86">研究助手要评估答案质量、引用忠实度、检索召回、成本、延迟和拒答质量。</text>
+  <rect class="bg" width="1120" height="460"/><text class="title" x="56" y="58">评估迭代: 每次失败都变成下一版能力</text><text class="sub" x="56" y="86">研究助手要评估答案质量、引用忠实度、检索召回、成本、延迟和拒答质量。</text>
+  <g transform="translate(0,-59)">
   <rect class="blue" x="154" y="198" width="150" height="68" rx="8"/><text class="head" x="200" y="226">Samples</text><text class="text" x="188" y="248">研究问题集</text>
   <rect class="green" x="486" y="198" width="150" height="68" rx="8"/><text class="head" x="526" y="226">Run</text><text class="text" x="514" y="248">固定版本执行</text>
   <rect class="orange" x="818" y="198" width="150" height="68" rx="8"/><text class="head" x="856" y="226">Score</text><text class="text" x="846" y="248">规则/Judge/人工</text>
@@ -10,5 +11,7 @@
   <rect class="purple" x="486" y="414" width="150" height="68" rx="8"/><text class="head" x="526" y="442">Improve</text><text class="text" x="514" y="464">数据/工具/prompt</text>
   <rect class="blue" x="154" y="414" width="150" height="68" rx="8"/><text class="head" x="198" y="442">Regress</text><text class="text" x="184" y="464">加入回归集</text>
   <path class="arrow" d="M304 232 H486"/><path class="arrow" d="M636 232 H818"/><path class="arrow" d="M893 266 V414"/><path class="arrow" d="M818 448 H636"/><path class="arrow" d="M486 448 H304"/><path class="arrow" d="M229 414 V266"/>
+
+  </g>
 </svg>
 

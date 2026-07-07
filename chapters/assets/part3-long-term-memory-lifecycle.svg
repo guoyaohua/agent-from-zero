@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="530" viewBox="0 0 1120 530" role="img" aria-labelledby="title desc">
   <title id="title">长期记忆生命周期</title>
   <desc id="desc">展示长期记忆从候选信息、写入门槛、结构化保存、检索、使用、更新和删除的生命周期。</desc>
   <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3;rx:8}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.mono{font:600 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#364256}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}.node{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2;rx:8}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:2;rx:8}.store{fill:#dfe8f5;stroke:#355c9a;stroke-width:2;rx:8}.use{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2;rx:8}.forget{fill:#f7d9df;stroke:#b13c52;stroke-width:2;rx:8}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="660"/><text class="title" x="56" y="58">长期记忆: 写入要保守,使用要带来源,遗忘要可执行</text><text class="sub" x="56" y="86">长期记忆会跨任务影响未来行为,因此需要 scope、source、confidence、TTL 和删除机制。</text>
+  <rect class="bg" width="1120" height="530"/><text class="title" x="56" y="58">长期记忆: 写入要保守,使用要带来源,遗忘要可执行</text><text class="sub" x="56" y="86">长期记忆会跨任务影响未来行为,因此需要 scope、source、confidence、TTL 和删除机制。</text>
+  <g transform="translate(0,-37)">
   <rect class="node" x="72" y="214" width="150" height="70" rx="8"/><text class="head" x="106" y="244">候选信息</text><text class="text" x="100" y="266">偏好/约定/经验</text>
   <path class="arrow" d="M222 249 H298"/>
   <rect class="gate" x="298" y="174" width="188" height="150" rx="8"/><text class="head" x="348" y="208">写入门槛</text><text class="text" x="328" y="238">稳定?</text><text class="text" x="328" y="262">可复用?</text><text class="text" x="328" y="286">来源可信?</text><text class="text" x="328" y="310">隐私可控?</text>
@@ -13,4 +14,6 @@
   <rect class="forget" x="562" y="426" width="206" height="92" rx="8"/><text class="head" x="606" y="460">更新/遗忘</text><text class="text" x="594" y="488">冲突、过期、用户删除</text>
   <path class="arrow" d="M939 324 C939 472 768 472 768 472"/><path class="arrow" d="M562 472 C420 472 392 324 392 324"/>
   <rect class="panel" x="72" y="388" width="388" height="132" rx="8"/><text class="head" x="104" y="426">不要写入</text><text class="text" x="104" y="456">动态事实、未验证猜测、敏感秘密、外部恶意指令</text><text class="text" x="104" y="484">这些应留在短期状态、权威系统或审计日志中。</text>
+
+  </g>
 </svg>
