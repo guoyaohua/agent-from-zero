@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">护栏策略决策链</title>
+  <desc id="desc">展示护栏从输入、上下文、工具前、输出到执行后的策略决策和可用动作。</desc>
+  <rect width="860" height="360" fill="#fffdf8"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#273449">护栏不是一个过滤器,而是一条决策链</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#273449">
+    <rect x="30" y="80" width="130" height="66" rx="8" fill="#e0e7ff" stroke="#4f46e5"/><text x="64" y="108" font-weight="700">Input</text><text x="50" y="130">auth / intent</text>
+    <rect x="190" y="80" width="130" height="66" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="220" y="108" font-weight="700">Context</text><text x="208" y="130">trust / data</text>
+    <rect x="350" y="80" width="130" height="66" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="382" y="108" font-weight="700">Tool pre</text><text x="368" y="130">policy / confirm</text>
+    <rect x="510" y="80" width="130" height="66" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="544" y="108" font-weight="700">Output</text><text x="532" y="130">citation / leak</text>
+    <rect x="670" y="80" width="140" height="66" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="702" y="108" font-weight="700">Post exec</text><text x="694" y="130">verify / audit</text>
+    <path d="M160 113 H190 M320 113 H350 M480 113 H510 M640 113 H670" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="94" y="210" width="672" height="82" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="124" y="242" font-weight="700">Decision:</text><text x="220" y="242">allow</text><text x="294" y="242">block</text><text x="370" y="242">redact</text><text x="458" y="242">rewrite</text><text x="548" y="242">confirm</text><text x="642" y="242">escalate</text>
+    <text x="124" y="270">每个决策记录 policy_id、risk_level、reason、safe_alternative 和 trace_level</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">成本延迟关键路径</title>
+  <desc id="desc">展示 Agent 请求中的关键路径、后台路径和对应优化杠杆。</desc>
+  <rect width="860" height="360" fill="#fbfaf7"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#243042">先找关键路径,再选优化杠杆</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#243042">
+    <text x="42" y="84" font-weight="700">Critical path</text>
+    <rect x="40" y="100" width="120" height="58" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="68" y="133">Route</text>
+    <rect x="190" y="100" width="120" height="58" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="224" y="133">Retrieve</text>
+    <rect x="340" y="100" width="120" height="58" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="371" y="133">Generate</text>
+    <rect x="490" y="100" width="120" height="58" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="528" y="133">Verify</text>
+    <rect x="640" y="100" width="160" height="58" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="680" y="133">First useful result</text>
+    <path d="M160 129 H190 M310 129 H340 M460 129 H490 M610 129 H640" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="42" y="204" font-weight="700">Background path</text>
+    <rect x="40" y="220" width="170" height="58" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="74" y="253">Index refresh</text>
+    <rect x="250" y="220" width="170" height="58" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="286" y="253">Batch Judge</text>
+    <rect x="460" y="220" width="170" height="58" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="490" y="253">Note embedding</text>
+    <rect x="670" y="220" width="130" height="58" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="698" y="253">Do not block</text>
+    <path d="M210 249 H250 M420 249 H460 M630 249 H670" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="74" y="320">杠杆: 模型路由 / 缓存 / 上下文压缩 / 并行 / 阶段预算 / 降级输出</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

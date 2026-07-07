@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="370" viewBox="0 0 860 370" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt Injection taint flow</title>
+  <desc id="desc">展示不可信内容从外部来源进入检索、上下文、工具参数、多 Agent 消息和记忆写入时如何保留 taint 标记。</desc>
+  <rect width="860" height="370" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1e293b">不可信内容必须一路带着 taint 标记</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1e293b">
+    <rect x="34" y="76" width="138" height="72" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="64" y="106" font-weight="700">External</text><text x="54" y="130">web / mail / issue</text>
+    <rect x="206" y="76" width="138" height="72" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="244" y="106" font-weight="700">RAG</text><text x="230" y="130">trust metadata</text>
+    <rect x="378" y="76" width="138" height="72" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="412" y="106" font-weight="700">Context</text><text x="396" y="130">evidence zone</text>
+    <rect x="550" y="76" width="138" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="584" y="106" font-weight="700">Action</text><text x="570" y="130">arg source check</text>
+    <rect x="722" y="76" width="104" height="72" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="746" y="106" font-weight="700">Answer</text><text x="742" y="130">cite only</text>
+    <path d="M172 112 H206 M344 112 H378 M516 112 H550 M688 112 H722" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="96" y="212" width="668" height="94" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="126" y="242" font-weight="700">Blocked upgrades:</text><text x="260" y="242">untrusted evidence -> instruction</text><text x="500" y="242">untrusted text -> high-risk tool args</text>
+    <text x="126" y="270">untrusted text -> long-term memory</text><text x="390" y="270">summary loses trust level</text><text x="586" y="270">handoff as system message</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>
