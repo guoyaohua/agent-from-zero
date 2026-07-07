@@ -16,6 +16,8 @@
 
 ![个人研究助手架构](../assets/part6-architecture-design.svg)
 
+![运行时边界与控制面](../assets/part6-architecture-runtime-boundary.svg)
+
 本章会讲:
 
 - 项目模块如何划分。
@@ -65,6 +67,17 @@ flowchart LR
 
 注意这里 LLM 不直接访问 RAG Store 或 Memory。它通过工具和上下文间接使用这些能力。
 
+## 控制面和数据面
+
+这个项目最好从一开始就把控制面和数据面分开。
+
+| 平面 | 负责什么 | 不应该做什么 |
+| --- | --- | --- |
+| 数据面 | 检索、读取、生成 evidence pack、传递 Observation | 决定高风险动作是否允许 |
+| 控制面 | 权限、预算、状态机、确认、引用校验、写入门 | 直接生成长篇自然语言回答 |
+
+例如 `search_corpus` 属于数据面,它返回候选资料。`Orchestrator` 和 `Guardrails` 属于控制面,它们决定这些资料是否能进入 context、是否满足权限、是否需要继续检索。把二者混在一起,后续会很难解释一次失败到底是检索问题、权限问题还是模型生成问题。
+
 ## Orchestrator
 
 Orchestrator 是任务控制器。
@@ -82,6 +95,22 @@ Orchestrator 是任务控制器。
 - 判断是否完成或需要用户。
 
 它不负责写长篇回答。回答由模型生成,但 Orchestrator 决定什么时候生成、给什么上下文、生成后如何校验。
+
+Orchestrator 的输出也要结构化。每次循环结束至少产生一个 `state_diff`:
+
+```json
+{
+  "turn": 4,
+  "previous_status": "reading",
+  "next_status": "answering",
+  "new_evidence": ["S3", "S4"],
+  "new_gaps": ["missing source for latency claim"],
+  "budget_delta": {"model_calls": -1, "tool_calls": -2},
+  "stop_reason": null
+}
+```
+
+这样 trace 不只是流水账,而是能看出任务状态为什么发生变化。
 
 ## ResearchTask state
 
@@ -130,6 +159,17 @@ Context Builder 负责把状态、证据、记忆和工具说明组织成模型�
 - 不可信资料中的指令。
 
 Context Builder 是项目质量的关键模块。
+
+一个可用的 Context Builder 可以按四段组织输入:
+
+| 段落 | 内容 | 目的 |
+| --- | --- | --- |
+| Task Frame | goal、constraints、output contract、budget | 防止目标漂移 |
+| Working State | 当前计划、已知事实、缺口、冲突 | 让模型接着做,不是从头猜 |
+| Evidence Pack | 经过筛选的证据和来源 | 限制事实来源 |
+| Tool Contract | 当前状态允许的工具和参数 schema | 缩小动作空间 |
+
+注意不要把完整 trace 全塞进去。模型需要的是当前决策所需的最小工作视图。
 
 ## LLM Adapter
 
@@ -232,6 +272,13 @@ v1 护栏包括:
 
 这些护栏不复杂,但能避免很多基础事故。
 
+Guardrails 在架构中应至少有两个位置:
+
+1. **工具前**:检查工具是否允许、参数是否有效、是否需要确认。
+2. **输出后**:检查引用、敏感信息、不确定性和写入动作。
+
+只在输出后做护栏是不够的。研究助手虽然以只读为主,但一旦加入笔记写入、外部资料同步或团队资料源,工具前护栏就会成为关键边界。
+
 ## Trace Store
 
 Trace Store 保存每次任务过程。
@@ -287,6 +334,14 @@ Eval Runner 用固定样本运行助手。
 
 没有 trace,后续无法评估和调试。
 
+### 6. Harness 先于扩展
+
+只要新增工具可能写文件、写笔记、访问远程资源或触发外部动作,就先补 Harness:工具注册、schema、风险等级、权限、确认、幂等和错误协议。不要等工具变多以后再补边界。
+
+### 7. Eval Runner 读取真实 trace
+
+Eval 不应只读取最终回答。它应该能读取检索结果、evidence pack、citation report、成本和失败归因。否则评估只能告诉你“错了”,不能告诉你“该修哪层”。
+
 ## 常见架构反模式
 
 ### 1. 一个超长 prompt 管所有事
@@ -309,9 +364,16 @@ Eval Runner 用固定样本运行助手。
 
 每次优化都靠感觉。
 
+### 6. Context Builder 和检索耦合
+
+检索负责找候选,Context Builder 负责选择进入模型的工作材料。二者耦合后,很难分别优化 recall 和 faithfulness。
+
+### 7. Trace 只记录最终 prompt
+
+最终 prompt 不能解释工具参数来源、状态变化和引用校验。Trace 要覆盖 state/action/observation。
+
 ## 本章小结
 
 个人研究助手的架构应把 UI、Orchestrator、Context Builder、LLM Adapter、Tool Layer、RAG Store、Memory/Notes、Guardrails、Trace Store 和 Eval Runner 分开。Orchestrator 管状态和控制流,模型负责判断和生成,工具负责外部能力,RAG 和 Memory 提供资料,Trace 和 Eval 保证可调试和可改进。好的架构让每个模块都有边界,避免把整个系统变成一个巨大 prompt。
 
 下一章会实现核心循环和工具。我们会把架构中的 Orchestrator、state 和 tool calls 串成一个最小可运行流程。
-

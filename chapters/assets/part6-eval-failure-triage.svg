@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">失败归因与迭代闭环</title>
+  <desc id="desc">展示评估样本如何通过 trace、评分器、失败归因和修复队列进入下一轮版本。</desc>
+  <rect width="860" height="360" fill="#fbfaf7"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#243042">Eval 的价值是把失败变成下一步工程动作</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#243042">
+    <rect x="36" y="78" width="150" height="74" rx="8" fill="#e0e7ff" stroke="#4f46e5"/><text x="72" y="108" font-weight="700">Eval Set</text><text x="58" y="132">golden / safety / rag</text>
+    <rect x="224" y="78" width="150" height="74" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="264" y="108" font-weight="700">Run</text><text x="246" y="132">answer + trace</text>
+    <rect x="412" y="78" width="150" height="74" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="445" y="108" font-weight="700">Score</text><text x="430" y="132">rules + judge + human</text>
+    <rect x="600" y="78" width="220" height="74" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="638" y="108" font-weight="700">Failure Layer</text><text x="624" y="132">prompt / context / harness / loop</text>
+    <path d="M186 115 H224 M374 115 H412 M562 115 H600" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="110" y="212" width="640" height="82" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="140" y="242" font-weight="700">Fix Queue:</text><text x="230" y="242">改检索</text><text x="330" y="242">改 evidence pack</text><text x="485" y="242">补校验</text><text x="600" y="242">加停止条件</text>
+    <text x="140" y="270">每个失败样本保留 trace_ref、owner、regression 标记和 release gate 结论</text>
+    <path d="M710 152 C710 190 674 212 636 212" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

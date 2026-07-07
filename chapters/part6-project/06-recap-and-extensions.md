@@ -10,6 +10,8 @@
 
 ![个人研究助手扩展路线](../assets/part6-recap-extension-roadmap.svg)
 
+![扩展风险门禁](../assets/part6-extension-risk-gates.svg)
+
 本章会讲:
 
 - v1 架构复盘。
@@ -78,6 +80,18 @@ v1 完成了一个可信研究助手的最小形态。
 - 清洗和切块可靠。
 - eval 覆盖新资料源。
 
+新增资料源时,先做一个 ingestion checklist:
+
+| 检查 | 目的 |
+| --- | --- |
+| source owner | 知道资料归属和权限 |
+| update cadence | 判断资料是否会过期 |
+| parser quality | 避免导航、广告、脚注污染 chunk |
+| permission scope | 防止用户检索到无权资料 |
+| eval samples | 证明新增资料源真的提升回答 |
+
+资料源越多,系统越像知识治理项目,不是简单多接几个 loader。
+
 ### 扩展二:多 Agent 分工
 
 可以拆出:
@@ -88,6 +102,18 @@ v1 完成了一个可信研究助手的最小形态。
 - Curator:负责笔记整理。
 
 但不要一开始就拆。只有当单 Agent 上下文过长、职责冲突或评估粒度不足时,多 Agent 才值得。
+
+拆多 Agent 前,先确认瓶颈是哪一种:
+
+| 瓶颈 | 是否适合多 Agent |
+| --- | --- |
+| 检索 recall 差 | 不适合,先修 RAG |
+| 引用校验弱 | 可拆 Critic,但也要补规则校验 |
+| 上下文太长 | 可能适合,用 Researcher/Analyst 分段 |
+| 职责冲突 | 适合,把生成和评审分开 |
+| 成本太高 | 不一定,多 Agent 可能更贵 |
+
+多 Agent 是组织复杂度工具,不是质量自动增强器。
 
 ### 扩展三:主动研究任务
 
@@ -107,6 +133,16 @@ v1 完成了一个可信研究助手的最小形态。
 - 成本预算。
 
 长时程任务比一次性问答复杂很多,不要在 v1 就做。
+
+主动任务至少要新增三类机制:
+
+| 机制 | 为什么 |
+| --- | --- |
+| checkpoint | 任务跨天恢复和审计 |
+| review gate | 阶段性让用户确认方向和预算 |
+| stale evidence policy | 防止旧资料长期污染结论 |
+
+没有这些机制,“每周自动研究”很容易变成每周自动生成一份难以验证的文本。
 
 ### 扩展四:团队知识库
 
@@ -158,6 +194,14 @@ Host 根据任务动态选择 tools/resources。
 - 是否有回滚方案?
 - 是否会污染长期记忆?
 - 是否需要用户确认?
+
+如果扩展涉及写操作或外部副作用,还要额外问:
+
+- 是否有 preview/confirm/commit 三段式?
+- 是否有幂等键防止重复执行?
+- 是否有撤销、回滚或补偿流程?
+- 是否有单独的安全 eval 样本?
+- 是否能在 trace 中证明谁确认了动作?
 
 如果这些问题没有答案,扩展会把系统推向混乱。
 
@@ -232,6 +276,19 @@ Agent 工程不是把模型放进循环,而是围绕模型建立状态、工具�
 
 模型是核心推理组件,但可靠性来自系统。
 
+更具体地说,这个项目把全书几个抽象概念落成了工程对象:
+
+| 概念 | 项目里的对象 |
+| --- | --- |
+| Prompt | answer contract、tool instruction、Judge rubric |
+| Context | task frame、state summary、evidence pack |
+| Harness | tool schema、citation checker、note write gate |
+| Loop | research state machine、budget、retry、stop reason |
+| Memory | user preference、confirmed notes、deletion policy |
+| Evaluation | golden set、trace replay、release gate |
+
+读者真正掌握的标志,是能把这些对象迁移到自己的项目里。
+
 ## 后续学习路线
 
 完成这个项目后,可以继续深入:
@@ -267,6 +324,6 @@ Agent 项目是持续迭代系统。eval 和 trace 会不断带来新改进。
 
 ## 本章小结
 
-个人研究助手 v1 把 Agent 的核心能力串成了一个可信研究闭环。它的关键设计是 runtime 管状态、证据包作为中心产物、保守记忆写入、独立引用校验、trace 和 eval 贯穿始终。后续可以扩展到更多资料源、多 Agent、主动研究、团队知识库、MCP 接入和自动评估平台。但每次扩展都要先确认评估、安全、权限、成本和回滚机制是否跟得上。
+个人研究助手 v1 把 Agent 的核心能力串成了一个可信研究闭环。它的关键设计是 runtime 管状态、证据包作为中心产物、保守记忆写入、独立引用校验、trace 和 eval 贯穿始终。后续可以扩展到更多资料源、多 Agent、主动研究、团队知识库、MCP 接入和自动评估平台。但每次扩展都要先确认评估、安全、权限、成本、回滚和运维机制是否跟得上。
 
 至此,Part 6 实战项目完成。下一篇 Part 7 会从前沿趋势和开放问题出发,讨论 Computer Use、长时程任务、标准化、可解释性以及从 0 到 1 之后该如何继续走。

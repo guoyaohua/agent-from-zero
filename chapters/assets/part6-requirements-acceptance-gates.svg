@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">需求、风险与验收门</title>
+  <desc id="desc">展示个人研究助手从用户故事到风险分级、功能需求、非功能需求和验收样例的闭环。</desc>
+  <rect width="860" height="360" fill="#fbfaf7"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#243042">v1 不是功能清单,而是可信闭环</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#243042">
+    <rect x="30" y="66" width="156" height="72" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="52" y="94" font-weight="700">用户故事</text><text x="52" y="118">解释 / 对比 / 阅读 / 笔记</text>
+    <rect x="210" y="66" width="156" height="72" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="232" y="94" font-weight="700">功能需求</text><text x="232" y="118">检索 / 证据 / 回答 / 校验</text>
+    <rect x="390" y="66" width="156" height="72" rx="8" fill="#fef3c7" stroke="#d97706"/>
+    <text x="412" y="94" font-weight="700">非功能需求</text><text x="412" y="118">trace / eval / 成本 / 安全</text>
+    <rect x="570" y="66" width="156" height="72" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="592" y="94" font-weight="700">风险边界</text><text x="592" y="118">只读优先,外部副作用禁止</text>
+    <path d="M186 102 H210 M366 102 H390 M546 102 H570" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="80" y="180" width="700" height="122" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="110" y="212" font-size="15" font-weight="700">验收门</text>
+    <line x1="110" y1="226" x2="750" y2="226" stroke="#cbd5e1"/>
+    <text x="110" y="252">1. 证据是否可追溯</text><text x="330" y="252">2. 引用是否被校验</text><text x="550" y="252">3. 失败是否可复盘</text>
+    <text x="110" y="280">4. 预算是否可控</text><text x="330" y="280">5. 笔记是否确认写入</text><text x="550" y="280">6. 注入是否被隔离</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

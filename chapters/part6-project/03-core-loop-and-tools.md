@@ -12,6 +12,8 @@ v1 的核心不是复杂框架,而是一个清晰循环:
 
 ![个人研究助手核心循环](../assets/part6-core-loop-tools.svg)
 
+![工具契约生命周期](../assets/part6-tool-contract-lifecycle.svg)
+
 本章会讲:
 
 - 核心循环如何设计。
@@ -89,6 +91,22 @@ def run_research_task(task):
 ```
 
 这样 runtime 可以校验和执行。
+
+Decision 还应该带上少量运行时字段,便于 Harness 判断风险:
+
+```json
+{
+  "type": "tool_call",
+  "tool": "read_source",
+  "args": {"chunk_id": "rag_survey#12"},
+  "reason_summary": "Read the most relevant source before extracting evidence.",
+  "risk_level": "L1",
+  "expected_observation": "source text with metadata",
+  "idempotency_key": "research_001:read:rag_survey#12"
+}
+```
+
+`reason_summary` 不是隐藏推理链,而是可审计的短解释。`expected_observation` 能帮助系统发现工具返回不符合预期。`idempotency_key` 能避免重试时重复写入或重复创建产物。
 
 ## 最小工具集
 
@@ -177,6 +195,23 @@ v1 工具不需要多。
 
 先生成笔记草稿,用户确认后写入。
 
+## 工具契约模板
+
+每个工具都应该有一份契约,不要只写一个函数名。
+
+| 字段 | 示例 | 作用 |
+| --- | --- | --- |
+| `name` | `search_corpus` | 模型可见工具名 |
+| `purpose` | 检索资料库候选 chunk | 防止工具误用 |
+| `input_schema` | query、top_k、filters | 参数校验 |
+| `output_schema` | results、empty_reason、trace_ref | Observation 标准化 |
+| `risk_level` | L1 | Harness 策略 |
+| `side_effect` | none/read/write | 决定是否确认和幂等 |
+| `retry_policy` | timeout 可重试 2 次 | 防止无限重试 |
+| `failure_modes` | no_result、permission_denied、timeout | 让 Loop 能恢复 |
+
+工具契约越明确,模型越容易正确调用,Harness 越容易判断是否允许执行。
+
 ## 工具设计原则
 
 这些工具都遵循:
@@ -238,6 +273,22 @@ v1 工具不需要多。
 | 用户确认笔记 | commit note |
 
 状态更新要由程序执行,不要只让模型在对话里记住。
+
+建议把更新规则写成 reducer,而不是散落在工具函数里:
+
+```python
+def reduce_state(state, action, observation):
+    if observation.ok and action.tool == "search_corpus":
+        state.candidate_sources.extend(observation.results)
+    elif observation.ok and action.tool == "extract_evidence":
+        state.evidence.extend(observation.evidence)
+    elif not observation.ok:
+        state.errors.append(observation.error)
+        state.recovery_hint = observation.suggested_next
+    return state
+```
+
+这样做的好处是所有状态变化都能被 trace 捕获,也方便回放一条失败路径。
 
 ## 处理证据不足
 
@@ -329,6 +380,19 @@ v1 设置简单预算:
 
 每种错误要有最大重试次数。
 
+错误恢复要避免“原样再试”。一个简单策略是按错误类型路由:
+
+| 错误 | 下一步 |
+| --- | --- |
+| `schema_error` | 让模型按 schema 修正参数,不调用工具 |
+| `no_result` | 改写 query 或放宽过滤 |
+| `permission_denied` | 停止或请求授权,不要重试 |
+| `citation_unsupported` | 回到 evidence pack 修正回答 |
+| `timeout` | 有限重试,然后降级 |
+| `no_progress` | 重规划或输出当前缺口 |
+
+这就是 Loop Engineering 在项目里的落地:失败后必须改变状态、参数或策略。
+
 ## Trace
 
 每步记录:
@@ -341,6 +405,23 @@ v1 设置简单预算:
 - cost 和 latency。
 
 这样才能评估“回答错是检索问题还是生成问题”。
+
+最小 trace event 可以这样设计:
+
+```json
+{
+  "event_type": "tool_call",
+  "turn": 3,
+  "state_id": "research_001:v4",
+  "action": {"tool": "search_corpus", "args_hash": "..."},
+  "validation": {"schema_ok": true, "policy_ok": true},
+  "observation": {"ok": true, "summary": "8 chunks returned"},
+  "state_diff": {"candidate_sources_added": 8},
+  "latency_ms": 420
+}
+```
+
+记录 `args_hash` 而不是完整参数,可以在保留审计能力的同时减少敏感信息暴露。需要完整参数时,再通过受控 artifact 引用查看。
 
 ## 常见误解
 
@@ -369,4 +450,3 @@ v1 设置简单预算:
 个人研究助手的核心循环是状态驱动的:构建上下文、模型决策、工具调用、状态更新、回答生成和引用校验。v1 工具集应保持小而清晰,包括检索、读取、证据提取、引用校验和笔记草稿/提交。关键产物是 evidence pack,最终回答应基于证据并接受校验。runtime 负责状态、预算、错误恢复和 trace,模型负责判断和生成。
 
 下一章会加入记忆与 RAG,让研究助手既能使用外部资料,也能沉淀用户确认的研究笔记。
-

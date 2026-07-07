@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">扩展风险门禁</title>
+  <desc id="desc">展示个人研究助手从 v1 扩展到资料源、多 Agent、主动任务和团队知识库时需要经过的风险门禁。</desc>
+  <rect width="860" height="360" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1e293b">每次扩展都要先过门禁</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1e293b">
+    <rect x="40" y="74" width="130" height="72" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="75" y="104" font-weight="700">v1</text><text x="62" y="128">单用户可信闭环</text>
+    <rect x="210" y="74" width="130" height="72" rx="8" fill="#e0f2fe" stroke="#0284c7"/><text x="235" y="104" font-weight="700">资料源+</text><text x="230" y="128">权限 / 版本 / eval</text>
+    <rect x="380" y="74" width="130" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="410" y="104" font-weight="700">多 Agent</text><text x="400" y="128">handoff / trace</text>
+    <rect x="550" y="74" width="130" height="72" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="575" y="104" font-weight="700">主动任务</text><text x="570" y="128">checkpoint / review</text>
+    <rect x="720" y="74" width="110" height="72" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="744" y="104" font-weight="700">团队版</text><text x="736" y="128">审计 / 合规</text>
+    <path d="M170 110 H210 M340 110 H380 M510 110 H550 M680 110 H720" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="116" y="210" width="628" height="86" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="146" y="240" font-weight="700">统一门禁:</text><text x="236" y="240">trace 能定位失败</text><text x="392" y="240">eval 覆盖新增能力</text><text x="580" y="240">权限最小化</text>
+    <text x="146" y="268">高风险动作必须 preview / confirm / commit,并能回滚或补偿</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

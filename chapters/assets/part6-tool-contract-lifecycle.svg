@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="330" viewBox="0 0 860 330" role="img" aria-labelledby="title desc">
+  <title id="title">工具契约生命周期</title>
+  <desc id="desc">展示工具调用从结构化决策、校验、执行、观察到状态更新的生命周期。</desc>
+  <rect width="860" height="330" fill="#fffdf8"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#273449">一次工具调用必须穿过完整契约</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#273449">
+    <rect x="30" y="82" width="130" height="82" rx="8" fill="#e0e7ff" stroke="#4f46e5"/><text x="55" y="112" font-weight="700">Decision</text><text x="48" y="140">tool + args + reason</text>
+    <rect x="190" y="82" width="130" height="82" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="225" y="112" font-weight="700">Validate</text><text x="212" y="140">schema / policy</text>
+    <rect x="350" y="82" width="130" height="82" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="390" y="112" font-weight="700">Execute</text><text x="373" y="140">sandbox / retry</text>
+    <rect x="510" y="82" width="130" height="82" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="540" y="112" font-weight="700">Observe</text><text x="532" y="140">ok / error type</text>
+    <rect x="670" y="82" width="130" height="82" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="706" y="112" font-weight="700">Reduce</text><text x="690" y="140">state diff + trace</text>
+    <path d="M160 123 H190 M320 123 H350 M480 123 H510 M640 123 H670" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="110" y="214" width="640" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="136" y="242" font-weight="700">失败恢复:</text><text x="220" y="242">schema_error 修参数</text><text x="386" y="242">permission_denied 停止</text><text x="570" y="242">timeout 有限重试</text>
+    <text x="136" y="264">no_result 改 query</text><text x="310" y="264">citation_unsupported 回到证据包</text><text x="570" y="264">no_progress 重规划</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

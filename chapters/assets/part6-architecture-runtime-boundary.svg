@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="370" viewBox="0 0 860 370" role="img" aria-labelledby="title desc">
+  <title id="title">运行时边界与控制面</title>
+  <desc id="desc">展示个人研究助手架构中的数据面、控制面和模型边界。</desc>
+  <rect width="860" height="370" fill="#f8fafc"/>
+  <text x="28" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1e293b">模型负责建议,Runtime 负责边界</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1e293b">
+    <rect x="28" y="70" width="248" height="250" rx="10" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="50" y="100" font-size="16" font-weight="700">数据面</text>
+    <text x="50" y="132">检索 Search</text><text x="50" y="160">读取 Read</text><text x="50" y="188">证据 Evidence Pack</text><text x="50" y="216">工具 Observation</text><text x="50" y="244">Artifact Store</text>
+    <rect x="306" y="70" width="248" height="250" rx="10" fill="#fef9c3" stroke="#ca8a04"/>
+    <text x="328" y="100" font-size="16" font-weight="700">控制面</text>
+    <text x="328" y="132">State Machine</text><text x="328" y="160">Budget / Stop</text><text x="328" y="188">Policy / Permission</text><text x="328" y="216">Citation Check</text><text x="328" y="244">Trace / Eval Gate</text>
+    <rect x="584" y="70" width="248" height="250" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="606" y="100" font-size="16" font-weight="700">模型边界</text>
+    <text x="606" y="132">Plan</text><text x="606" y="160">Tool Decision</text><text x="606" y="188">Draft Answer</text><text x="606" y="216">Revision</text><text x="606" y="244">Uncertainty Text</text>
+    <path d="M276 194 H306 M554 194 H584" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="325" y="340" fill="#475569">关键原则: LLM 不直接写 state、不直接越过 Harness 调工具、不直接写长期记忆</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#475569"/></marker></defs>
+</svg>

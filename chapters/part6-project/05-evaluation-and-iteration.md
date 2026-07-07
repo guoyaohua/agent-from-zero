@@ -15,6 +15,8 @@
 
 ![个人研究助手评估与迭代](../assets/part6-evaluation-iteration.svg)
 
+![失败归因与迭代闭环](../assets/part6-eval-failure-triage.svg)
+
 本章会讲:
 
 - 研究助手的 eval set 如何设计。
@@ -60,6 +62,16 @@ v1 可以准备 30-50 条样本。
 | 安全/注入 | 5 | 检查不可信内容隔离 |
 
 样本不必一开始很多,但要覆盖关键失败模式。
+
+样本还应按风险分层。普通概念解释可以自动评分较多,但涉及安全、记忆写入、冲突证据的样本要保留人工抽检。
+
+| 风险 | 样本 | 评分方式 |
+| --- | --- | --- |
+| 低 | 简单概念解释、已知资料总结 | 规则 + Judge |
+| 中 | 方案比较、冲突资料、过期资料 | Judge + 人工抽检 |
+| 高 | 注入、敏感信息、笔记写入 | 规则门禁 + 人工复核 |
+
+评估不是追求完全自动化,而是把机器擅长的检查和人擅长的判断放在合适位置。
 
 ## 样本结构
 
@@ -145,6 +157,22 @@ Judge 输入必须包含 evidence pack 和 rubric。
 
 用于高价值样本、Judge 校准和复杂失败分析。
 
+Judge 的输出也要结构化,不要只给一个分数:
+
+```json
+{
+  "faithfulness": 4,
+  "citation_support": 3,
+  "completeness": 4,
+  "safety": 5,
+  "failure_layer": "context",
+  "evidence": "Claim about latency cites S2, but S2 only discusses recall.",
+  "recommended_fix": "Add latency source or remove claim."
+}
+```
+
+结构化 Judge 结果可以直接进入失败归因统计。
+
 ## 引用准确性评估
 
 引用准确性是研究助手的核心。
@@ -173,6 +201,17 @@ Judge 输入必须包含 evidence pack 和 rubric。
 | 注入成功 | 不可信内容隔离失败、工具策略缺失 |
 
 归因决定怎么改。
+
+建议把失败归因落到四层:
+
+| 层 | 典型失败 | 修复方向 |
+| --- | --- | --- |
+| Prompt | 输出格式不稳、遗漏要求结构 | 改输出契约和示例 |
+| Context/RAG | 没看到关键资料、证据顺序噪声大 | 改检索、rerank、evidence pack |
+| Harness | 引用不存在仍通过、未确认写笔记 | 加校验、权限、确认和策略 |
+| Loop | 重复检索、预算耗尽、证据不足仍继续 | 加停止条件、重规划和预算策略 |
+
+不要把所有失败都归为“模型不够强”。如果 trace 能显示模型根本没看到正确证据,优先修检索和 Context。
 
 ## 迭代路径
 
@@ -239,6 +278,15 @@ P95 latency: 不高于 baseline + 20%
 
 门禁可以逐步严格。
 
+门禁最好拆成两级:
+
+| 门禁 | 触发时机 | 要求 |
+| --- | --- | --- |
+| Smoke gate | 每次 prompt、工具、检索改动 | 快速样本全通过,无 schema/引用/安全硬错误 |
+| Release gate | 合并或发布前 | Golden set 不低于 baseline,成本和延迟在预算内 |
+
+这样开发时不会被大评估拖慢,发布前又不会只凭感觉。
+
 ## 线上反馈
 
 如果项目有真实用户,可以收集:
@@ -274,6 +322,19 @@ Next actions:
 
 这种报告比“这版更好”有用得多。
 
+评估报告还应附上失败样本清单:
+
+| 字段 | 说明 |
+| --- | --- |
+| sample_id | 哪个样本失败 |
+| failure_layer | prompt/context/harness/loop/tool/model |
+| regression | 是否从通过变失败 |
+| trace_ref | 失败 trace |
+| owner | 谁负责修 |
+| next_action | 修复或接受风险 |
+
+这让 eval 从“打分”变成“工程队列”。
+
 ## 常见误解
 
 ### 误解一:项目小就不用 eval
@@ -301,4 +362,3 @@ Next actions:
 个人研究助手的评估要覆盖答案质量、引用忠实、检索质量、过程效率、成本延迟和安全。Eval set 应包含概念解释、方案比较、阅读总结、证据不足、冲突证据和注入样本。评分器要组合规则、检索指标、LLM Judge 和人工抽检。每次失败都要归因,并把样本加入回归集。这样项目才能从演示走向可靠迭代。
 
 下一章会复盘整个项目,并讨论如何扩展到多资料源、多 Agent、团队知识库和长时程研究任务。
-

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 与记忆治理边界</title>
+  <desc id="desc">区分短期状态、长期记忆、RAG 资料和笔记写入门。</desc>
+  <rect width="860" height="360" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2937">不要把所有信息扔进同一个向量库</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1f2937">
+    <rect x="40" y="78" width="210" height="86" rx="8" fill="#e0f2fe" stroke="#0284c7"/><text x="62" y="108" font-weight="700">短期状态</text><text x="62" y="134">当前任务 / 计划 / 缺口</text><text x="62" y="154">任务结束后归档</text>
+    <rect x="325" y="78" width="210" height="86" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="347" y="108" font-weight="700">长期记忆</text><text x="347" y="134">用户偏好 / 稳定约定</text><text x="347" y="154">用户可查看删除</text>
+    <rect x="610" y="78" width="210" height="86" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="632" y="108" font-weight="700">RAG 资料</text><text x="632" y="134">论文 / 网页 / 文档 / 笔记</text><text x="632" y="154">按权限和版本更新</text>
+    <rect x="222" y="214" width="416" height="82" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="250" y="244" font-weight="700">写入门</text><text x="330" y="244">用户确认 + 来源 + 非敏感 + 可删除</text>
+    <text x="250" y="270">外部资料只能成为 evidence,不能直接成为系统指令或长期偏好</text>
+    <path d="M250 121 H325 M535 121 H610 M430 164 V214" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>
