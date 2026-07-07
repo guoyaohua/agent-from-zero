@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">向量相似度分数的诊断含义</title>
+  <desc id="desc">展示向量分数只是候选排序信号,不能直接当作事实置信度,需要结合来源、版本、权限、重排和证据充分性判断。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.score{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">向量分数不是置信度,只是当前索引里的相似排序信号</text>
+  <text class="sub" x="56" y="82">相似片段可能相关但不能回答;低分片段也可能因为关键词或元数据而关键。</text>
+  <rect class="score" x="78" y="164" width="230" height="130" rx="8"/><text class="head" x="126" y="198">vector score 0.82</text><text class="text" x="116" y="232">方向接近 / 排名靠前</text><text class="text" x="116" y="260">不是“答案可信 82%”</text>
+  <path class="arrow" d="M308 230 H390"/>
+  <rect class="warn" x="390" y="116" width="250" height="226" rx="8"/><text class="head" x="452" y="150">需要继续判断</text><text class="text" x="430" y="188">来源是否权威?</text><text class="text" x="430" y="218">版本和权限是否匹配?</text><text class="text" x="430" y="248">是否只是主题相似?</text><text class="text" x="430" y="278">是否被 reranker 支持?</text><text class="text" x="430" y="308">能否支撑具体 claim?</text>
+  <path class="arrow" d="M640 202 H724"/><path class="arrow" d="M640 280 H724"/>
+  <rect class="good" x="724" y="138" width="270" height="94" rx="8"/><text class="head" x="806" y="172">可作为证据</text><text class="text" x="770" y="204">进入 evidence pack,保留引用</text>
+  <rect class="bad" x="724" y="268" width="270" height="94" rx="8"/><text class="head" x="806" y="302">只作为候选</text><text class="text" x="770" y="334">继续检索、重排或丢弃</text>
+  <rect x="166" y="430" width="788" height="36" rx="8" fill="#172033"/><text x="248" y="453" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">置信度来自证据链,不是单个 embedding 分数。</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Context Builder 的质量门</title>
+  <desc id="desc">展示上下文构建器如何通过完整性、相关性、层级性、可追溯性和预算检查,生成可测试的 context pack。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.src{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.pack{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">Context pack 应该像接口数据一样过质量门</text>
+  <text class="sub" x="56" y="82">上下文工程不是拼字符串,而是选择、压缩、排序、标注和预算控制。</text>
+  <rect class="src" x="70" y="136" width="200" height="218" rx="8"/><text class="head" x="122" y="170">输入来源</text><text class="text" x="110" y="208">短期状态</text><text class="text" x="110" y="236">长期记忆</text><text class="text" x="110" y="264">RAG 证据</text><text class="text" x="110" y="292">工具观察</text><text class="text" x="110" y="320">工具 schema</text>
+  <path class="arrow" d="M270 246 H354"/>
+  <rect class="gate" x="354" y="108" width="310" height="274" rx="8"/><text class="head" x="446" y="142">质量门</text><text class="text" x="398" y="180">完整性: 关键目标和约束在吗?</text><text class="text" x="398" y="212">相关性: 噪声和废弃信息去掉了吗?</text><text class="text" x="398" y="244">层级性: 指令、证据、记忆分清了吗?</text><text class="text" x="398" y="276">可追溯: 事实有来源和 artifact 吗?</text><text class="text" x="398" y="308">预算: token 和工具 schema 可控吗?</text><text class="text" x="398" y="340">安全: 不可信内容标注了吗?</text>
+  <path class="arrow" d="M664 246 H748"/>
+  <rect class="pack" x="748" y="142" width="286" height="206" rx="8"/><text class="head" x="838" y="176">Context Pack</text><text class="text" x="790" y="214">System boundaries</text><text class="text" x="790" y="242">Task and current state</text><text class="text" x="790" y="270">Scoped memories and evidence</text><text class="text" x="790" y="298">Available tools and output contract</text><text class="text" x="790" y="326">Trace snapshot for review</text>
+  <rect x="162" y="430" width="796" height="38" rx="8" fill="#172033"/><text x="244" y="454" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">上下文问题可以回归测试: 模型到底看到了什么,少了什么,多了什么?</text>
+</svg>

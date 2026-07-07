@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">记忆类型、作用域与质量门</title>
+  <desc id="desc">展示不同类型的 Agent 记忆应绑定不同作用域、来源、稳定性和风险门,避免把所有历史都当长期记忆。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">记忆不是一种存储,而是一组带作用域的治理对象</text>
+  <text class="sub" x="56" y="82">每类记忆的寿命、来源、检索方式和风险不同,写入前要先过质量门。</text>
+  <text class="head" x="88" y="132">类型</text><text class="head" x="260" y="132">适合 scope</text><text class="head" x="432" y="132">来源要求</text><text class="head" x="626" y="132">使用方式</text><text class="head" x="838" y="132">主要风险</text>
+  <rect class="blue" x="70" y="154" width="160" height="58" rx="8"/><text class="head" x="110" y="188">工作状态</text><text class="small" x="250" y="188">task / session</text><text class="small" x="432" y="188">工具观察、用户约束</text><text class="small" x="626" y="188">每轮构建工作上下文</text><text class="small" x="838" y="188">长日志淹没目标</text>
+  <rect class="good" x="70" y="232" width="160" height="58" rx="8"/><text class="head" x="110" y="266">用户偏好</text><text class="small" x="250" y="266">user</text><text class="small" x="432" y="266">显式要求或多次确认</text><text class="small" x="626" y="266">作为默认偏好</text><text class="small" x="838" y="266">覆盖当前请求</text>
+  <rect class="good" x="70" y="310" width="160" height="58" rx="8"/><text class="head" x="110" y="344">项目约定</text><text class="small" x="250" y="344">project / workspace</text><text class="small" x="432" y="344">仓库文件或用户确认</text><text class="small" x="626" y="344">先按 scope 过滤</text><text class="small" x="838" y="344">串到其他项目</text>
+  <rect class="warn" x="70" y="388" width="160" height="58" rx="8"/><text class="head" x="110" y="422">经验线索</text><text class="small" x="250" y="422">task_type</text><text class="small" x="432" y="422">多次验证、低置信起步</text><text class="small" x="626" y="422">提示下一步,不替代验证</text><text class="small" x="838" y="422">把经验当事实</text>
+  <rect class="bad" x="70" y="454" width="982" height="34" rx="8"/><text class="head" x="104" y="476">写入质量门</text><text class="text" x="236" y="476">稳定、可复用、来源可信、scope 清楚、隐私风险可控、未来能更新或删除。</text>
+</svg>

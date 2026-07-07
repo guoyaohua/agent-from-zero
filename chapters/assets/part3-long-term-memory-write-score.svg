@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">长期记忆写入评分与作用域过滤</title>
+  <desc id="desc">展示长期记忆写入前应检查稳定性、复用价值、来源可信度、隐私风险、作用范围和可更新性。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.candidate{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.gate{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.pass{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.deny{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">长期记忆写入是决策,不是自动保存</text>
+  <text class="sub" x="56" y="82">只有稳定、可复用、来源可信且风险可控的信息,才适合跨任务影响未来行为。</text>
+  <rect class="candidate" x="70" y="204" width="190" height="90" rx="8"/><text class="head" x="118" y="238">候选信息</text><text class="text" x="108" y="266">来自对话/工具/反馈</text>
+  <path class="arrow" d="M260 250 H334"/>
+  <rect class="gate" x="334" y="118" width="150" height="54" rx="8"/><text class="head" x="384" y="150">稳定性</text>
+  <rect class="gate" x="334" y="192" width="150" height="54" rx="8"/><text class="head" x="374" y="224">复用价值</text>
+  <rect class="gate" x="334" y="266" width="150" height="54" rx="8"/><text class="head" x="374" y="298">来源可信</text>
+  <rect class="gate" x="334" y="340" width="150" height="54" rx="8"/><text class="head" x="374" y="372">隐私风险</text>
+  <rect class="gate" x="548" y="156" width="170" height="54" rx="8"/><text class="head" x="594" y="188">scope 清楚</text>
+  <rect class="gate" x="548" y="246" width="170" height="54" rx="8"/><text class="head" x="590" y="278">可更新/删除</text>
+  <rect class="pass" x="784" y="134" width="260" height="86" rx="8"/><text class="head" x="856" y="168">写入长期记忆</text><text class="text" x="830" y="196">source / confidence / TTL / sensitivity</text>
+  <rect class="deny" x="784" y="276" width="260" height="86" rx="8"/><text class="head" x="866" y="310">不写入</text><text class="text" x="830" y="338">留在短期状态、脱敏或请求确认</text>
+  <path class="arrow" d="M484 224 C510 204 520 184 548 182M484 298 C512 286 522 274 548 272M718 182 H784M718 272 C746 278 756 306 784 318"/>
+  <rect x="162" y="446" width="796" height="36" rx="8" fill="#172033"/><text x="250" y="469" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">长期记忆是带来源和作用域的线索,不是未来任务里的最高优先级事实。</text>
+</svg>

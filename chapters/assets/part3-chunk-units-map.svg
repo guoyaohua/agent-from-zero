@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">检索单元、上下文单元和引用单元</title>
+  <desc id="desc">展示 RAG 切块中检索、阅读和引用三种单元的不同目标,避免用同一个 chunk 承担所有职责。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.retr{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.ctx{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.cite{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">一个 chunk 很难同时适合召回、阅读和引用</text>
+  <text class="sub" x="56" y="82">更稳的 RAG 会把三种单元分开设计,命中后按需回源扩展。</text>
+  <rect class="retr" x="82" y="154" width="260" height="166" rx="8"/><text class="head" x="154" y="188">检索单元</text><text class="text" x="126" y="226">目标: 被 query 精准命中</text><text class="text" x="126" y="254">倾向: 小、主题单一</text><text class="small" x="126" y="286">子块、标题、关键词、向量</text>
+  <path class="arrow" d="M342 238 H430"/>
+  <rect class="ctx" x="430" y="132" width="260" height="210" rx="8"/><text class="head" x="502" y="166">上下文单元</text><text class="text" x="474" y="204">目标: 支撑模型理解</text><text class="text" x="474" y="232">倾向: 中等、条件完整</text><text class="text" x="474" y="260">可用父块和邻接扩展</text><text class="small" x="474" y="306">放入 evidence pack</text>
+  <path class="arrow" d="M690 238 H778"/>
+  <rect class="cite" x="778" y="154" width="260" height="166" rx="8"/><text class="head" x="850" y="188">引用单元</text><text class="text" x="822" y="226">目标: 支撑一个 claim</text><text class="text" x="822" y="254">倾向: 精确、可人工核验</text><text class="small" x="822" y="286">条款、表格行、代码行号</text>
+  <rect x="166" y="426" width="788" height="38" rx="8" fill="#172033"/><text x="238" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">小块负责命中,父块负责阅读,精确来源负责引用。</text>
+</svg>

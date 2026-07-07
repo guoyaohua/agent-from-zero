@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 证据充分性与 Trace</title>
+  <desc id="desc">展示 RAG 不应只看 top-k,还要检查证据是否支持结论、限制条件、冲突和拒答,并保留完整 trace。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.retr{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.check{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">top-k 不是证据充分性,只是候选列表</text>
+  <text class="sub" x="56" y="82">可靠 RAG 要判断这些证据是否足以回答,并保留可复盘 trace。</text>
+  <rect class="retr" x="70" y="158" width="210" height="130" rx="8"/><text class="head" x="124" y="192">检索候选</text><text class="text" x="108" y="226">S1, S2, S3...</text><text class="text" x="108" y="254">分数、来源、排名</text>
+  <path class="arrow" d="M280 224 H356"/>
+  <rect class="check" x="356" y="116" width="250" height="216" rx="8"/><text class="head" x="426" y="150">Sufficiency Check</text><text class="text" x="400" y="190">支持主要结论?</text><text class="text" x="400" y="220">包含限制和例外?</text><text class="text" x="400" y="250">冲突能解释?</text><text class="text" x="400" y="280">不足时能拒答?</text>
+  <path class="arrow" d="M606 202 H690"/><path class="arrow" d="M606 278 H690"/>
+  <rect class="good" x="690" y="138" width="250" height="100" rx="8"/><text class="head" x="758" y="172">可以回答</text><text class="text" x="728" y="204">证据包进入生成,答案引用 S1/S2</text>
+  <rect class="bad" x="690" y="268" width="250" height="100" rx="8"/><text class="head" x="760" y="302">不能回答</text><text class="text" x="728" y="334">继续检索、澄清或明确拒答</text>
+  <rect x="172" y="426" width="776" height="42" rx="8" fill="#172033"/><text x="224" y="452" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">Trace 记录: query rewrite、ACL、召回、重排、证据包、答案和引用校验。</text>
+</svg>
