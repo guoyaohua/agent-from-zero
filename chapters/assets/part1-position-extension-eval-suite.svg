@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">位置机制扩展评估套件</title>
+  <desc id="desc">展示 RoPE scaling 或 ALiBi 等位置机制扩展后,应同时评估容量、局部分辨率、远距引用、噪声鲁棒和 Agent 状态保持。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.ok{fill:#e7f1ee}.warn{fill:#fff0e6}.info{fill:#dfe8f5}.risk{fill:#f7d9df}.bar{fill:#172033}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">位置扩展通过后,还要证明局部和远距都没坏</text>
+  <text class="sub" x="56" y="82">最大上下文只是容量测试;RoPE scaling 还可能改变局部分辨率。</text>
+  <g transform="translate(76 130)">
+    <text class="head" x="24" y="0">评估项</text><text class="head" x="244" y="0">测什么</text><text class="head" x="586" y="0">失败信号</text>
+    <rect class="cell info" x="0" y="24" width="190" height="52"/><text class="text" x="24" y="56">容量</text><rect class="cell" x="210" y="24" width="320" height="52"/><text class="small" x="234" y="56">是否能输入目标长度,TTFT 是否可接受</text><rect class="cell warn" x="550" y="24" width="440" height="52"/><text class="small" x="574" y="56">OOM、截断、首 token 极慢</text>
+    <rect class="cell info" x="0" y="92" width="190" height="52"/><text class="text" x="24" y="124">局部分辨率</text><rect class="cell" x="210" y="92" width="320" height="52"/><text class="small" x="234" y="124">代码括号、表格行列、短距离顺序</text><rect class="cell risk" x="550" y="92" width="440" height="52"/><text class="small" x="574" y="124">近处顺序错、变量归属错</text>
+    <rect class="cell info" x="0" y="160" width="190" height="52"/><text class="text" x="24" y="192">远距引用</text><rect class="cell" x="210" y="160" width="320" height="52"/><text class="small" x="234" y="192">远处约束、定义、证据是否可用</text><rect class="cell warn" x="550" y="160" width="440" height="52"/><text class="small" x="574" y="192">只用近处材料,远处证据被忽略</text>
+    <rect class="cell info" x="0" y="228" width="190" height="52"/><text class="text" x="24" y="260">噪声鲁棒</text><rect class="cell" x="210" y="228" width="320" height="52"/><text class="small" x="234" y="260">hard negative、重复片段、冲突文档</text><rect class="cell risk" x="550" y="228" width="440" height="52"/><text class="small" x="574" y="260">被无关但相似材料带偏</text>
+    <rect class="cell info" x="0" y="296" width="190" height="52"/><text class="text" x="24" y="328">Agent 状态</text><rect class="cell" x="210" y="296" width="320" height="52"/><text class="small" x="234" y="328">长工具轨迹、旧约束、停止条件</text><rect class="cell warn" x="550" y="296" width="440" height="52"/><text class="small" x="574" y="328">重复尝试、忘记禁止事项、过早结束</text>
+  </g>
+  <rect class="bar" x="166" y="462" width="788" height="32" rx="8"/>
+  <text x="264" y="483" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">位置机制扩展要同时保护短距离精度和长距离可用性,二者缺一不可。</text>
+</svg>

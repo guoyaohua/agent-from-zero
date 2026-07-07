@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">KV Cache 容量规划器</title>
+  <desc id="desc">展示 KV Cache 容量如何由层数、KV 头数、上下文长度、并发和精度决定,以及通过上下文压缩、GQA、分页缓存和量化降低压力。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.info{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">KV Cache 容量是长上下文和并发的共同账本</text>
+  <text class="sub" x="56" y="82">同一模型下,上下文长度和并发数会线性放大缓存压力。</text>
+  <g transform="translate(80 128)">
+    <rect class="box info" x="0" y="0" width="190" height="88" rx="8"/><text class="head" x="34" y="32">Model shape</text><text class="small" x="28" y="60">layers / KV heads / head dim</text>
+    <path class="arrow" d="M190 44 H238"/>
+    <rect class="box warn" x="238" y="0" width="190" height="88" rx="8"/><text class="head" x="280" y="32">Traffic shape</text><text class="small" x="266" y="60">context / output / batch</text>
+    <path class="arrow" d="M428 44 H476"/>
+    <rect class="box risk" x="476" y="0" width="190" height="88" rx="8"/><text class="head" x="518" y="32">KV bytes</text><text class="small" x="504" y="60">2 * L * Hkv * T * d * bytes</text>
+    <path class="arrow" d="M666 44 H714"/>
+    <rect class="box ok" x="714" y="0" width="250" height="88" rx="8"/><text class="head" x="756" y="32">Serving capacity</text><text class="small" x="742" y="60">并发、OOM、TTFT、TPOT</text>
+  </g>
+  <g transform="translate(112 272)">
+    <text class="head" x="0" y="0">降低压力的杠杆</text>
+    <rect class="box" x="0" y="24" width="210" height="62" rx="8"/><text class="text" x="24" y="50">减少 T</text><text class="small" x="24" y="70">上下文压缩 / RAG 选材</text>
+    <rect class="box" x="242" y="24" width="210" height="62" rx="8"/><text class="text" x="266" y="50">减少 Hkv</text><text class="small" x="266" y="70">GQA / MQA</text>
+    <rect class="box" x="484" y="24" width="210" height="62" rx="8"/><text class="text" x="508" y="50">减少 bytes</text><text class="small" x="508" y="70">KV Cache 量化</text>
+    <rect class="box" x="726" y="24" width="210" height="62" rx="8"/><text class="text" x="750" y="50">提高复用</text><text class="small" x="750" y="70">PagedAttention / prefix cache</text>
+  </g>
+  <rect class="bar" x="166" y="442" width="788" height="36" rx="8"/>
+  <text x="300" y="465" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">KV Cache 优化的第一步是拆账:模型形状、流量形状和缓存策略分别算。</text>
+</svg>

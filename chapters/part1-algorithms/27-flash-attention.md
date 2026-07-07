@@ -263,6 +263,27 @@ Flash Attention 优化实现。
 
 还要确认用到的是哪个 kernel。很多框架会根据 dtype、head dimension、mask、dropout、GPU 架构选择不同 backend。如果某个条件不满足,代码仍然能跑,但可能回退到普通或 memory efficient kernel。生产环境里最好记录 attention backend,把它纳入性能 trace,否则一次依赖升级可能悄悄改变延迟和显存曲线。
 
+![Flash Attention Kernel 回退排查](../assets/part1-flash-attention-kernel-debug.svg)
+
+上图把 Flash Attention 的工程验收拆成实际 backend 排查。配置里打开 flash attention,不代表每个请求形状都命中最快 kernel。dtype、head dimension、mask 类型、dropout、训练/推理模式、GPU 架构和框架版本都会影响 backend 选择。代码能跑,也可能已经回退到更慢路径。
+
+所以性能排查时要记录请求形状和实际 kernel。长序列 prefill 没有变快,可能是 mask 类型导致回退;依赖升级后显存曲线变差,可能是 backend 策略变化;某个模型 head dimension 不被支持,可能根本没走期望的 kernel。Flash Attention 是实现优化,工程验收必须看实际延迟、显存和 backend,不能只看开关。
+
+## Flash Attention 性能排查清单
+
+当收益不符合预期时,可以按下面顺序排查:
+
+| 检查项 | 可能问题 |
+| --- | --- |
+| 实际 backend | 是否命中 flash kernel,还是回退到其他实现 |
+| dtype | FP16/BF16 是否满足 kernel 条件 |
+| head dimension | 维度是否在支持范围内 |
+| mask 和 dropout | 是否使用复杂 mask 或训练态 dropout |
+| 序列长度和 batch | 是否太短导致 kernel 开销占比高 |
+| GPU 和框架版本 | 是否支持当前 Flash Attention 版本 |
+
+这也解释了为什么同一模型在不同机器、不同框架、不同 batch 形状下表现差异很大。Flash Attention 的收益来自硬件数据流优化,而不是抽象公式变化;只要数据流没有命中合适 kernel,理论收益就不会完整出现。
+
 ## 对 Agent 的意义
 
 Agent 常有长 prompt 和多轮上下文。
