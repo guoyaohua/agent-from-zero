@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">开放问题优先级矩阵</title>
+  <desc id="desc">用可观测性和可拦截性两个维度,把 Agent 开放问题分成工程可先解决、需要评估降低风险、需要范围控制和需要研究突破四类。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .q1 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .q2 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .q3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .q4 { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .axis { stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">开放问题要按“能否看见、能否拦住”排序</text>
+  <text class="sub" x="48" y="78">先解决能被工程观测和拦截的问题,再用评估、范围控制和研究进展处理更深的不确定性。</text>
+
+  <rect class="panel" x="118" y="126" width="884" height="380" rx="8" />
+  <line class="axis" x1="180" y1="452" x2="940" y2="452" />
+  <line class="axis" x1="180" y1="452" x2="180" y2="172" />
+  <text class="text" x="474" y="486">可拦截性: runtime 能否阻止或降级</text>
+  <text class="text" x="52" y="306" transform="rotate(-90 52 306)">可观测性: trace/eval 能否看见</text>
+
+  <rect class="q1" x="220" y="196" width="320" height="112" rx="8" />
+  <text class="label" x="252" y="228">能观测 + 能拦截</text>
+  <text class="small" x="252" y="254">schema 错、权限不足、危险工具</text>
+  <text class="small" x="252" y="280">优先用 Harness 和测试解决</text>
+
+  <rect class="q2" x="580" y="196" width="320" height="112" rx="8" />
+  <text class="label" x="612" y="228">能观测 + 难完全拦截</text>
+  <text class="small" x="612" y="254">误读证据、Judge 偏差</text>
+  <text class="small" x="612" y="280">用多信号 eval 和抽检降低风险</text>
+
+  <rect class="q3" x="220" y="330" width="320" height="112" rx="8" />
+  <text class="label" x="252" y="362">难观测 + 可限制影响</text>
+  <text class="small" x="252" y="388">记忆污染、目标漂移</text>
+  <text class="small" x="252" y="414">用 scope、checkpoint、review gate</text>
+
+  <rect class="q4" x="580" y="330" width="320" height="112" rx="8" />
+  <text class="label" x="612" y="362">难观测 + 难拦截</text>
+  <text class="small" x="612" y="388">未知安全漏洞、内部机制失败</text>
+  <text class="small" x="612" y="414">限制自动化范围,等待研究和红队</text>
+
+  <rect class="panel" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: 工程可控的问题不要等模型奇迹;研究未解的问题要先缩小权限、范围和事故半径。</text>
+</svg>

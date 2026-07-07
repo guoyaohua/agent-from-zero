@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 能力成长地图</title>
+  <desc id="desc">展示读者从概念理解、最小实现、失败诊断、工程边界、产品协作到组织治理的能力成长路径。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .n1 { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .n2 { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .n3 { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .n4 { fill: #f3e8f6; stroke: #7c4d9b; stroke-width: 2; }
+      .n5 { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">从读懂 Agent 到做成 Agent,中间隔着诊断和工程边界</text>
+  <text class="sub" x="48" y="78">真正的成长不是背更多术语,而是能实现、复盘、评估、治理和交付。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="n1" x="84" y="180" width="132" height="78" rx="8" />
+  <text class="label" x="120" y="210">概念层</text>
+  <text class="small" x="112" y="234">讲清术语关系</text>
+  <path class="arrow" d="M216 219 H266" />
+
+  <rect class="n2" x="266" y="180" width="132" height="78" rx="8" />
+  <text class="label" x="302" y="210">实现层</text>
+  <text class="small" x="296" y="234">loop/tool/trace</text>
+  <path class="arrow" d="M398 219 H448" />
+
+  <rect class="n3" x="448" y="180" width="132" height="78" rx="8" />
+  <text class="label" x="484" y="210">诊断层</text>
+  <text class="small" x="478" y="234">失败归因和重放</text>
+  <path class="arrow" d="M580 219 H630" />
+
+  <rect class="n4" x="630" y="180" width="132" height="78" rx="8" />
+  <text class="label" x="666" y="210">工程层</text>
+  <text class="small" x="660" y="234">Harness/eval/release</text>
+  <path class="arrow" d="M762 219 H812" />
+
+  <rect class="n5" x="812" y="180" width="132" height="78" rx="8" />
+  <text class="label" x="848" y="210">产品层</text>
+  <text class="small" x="842" y="234">协作和确认点</text>
+
+  <rect class="panel" x="178" y="336" width="764" height="72" rx="8" />
+  <text class="label" x="210" y="368">组织层</text>
+  <text class="text" x="304" y="368">权限、责任、上线门禁、审计和事故响应决定系统能否进入真实业务。</text>
+
+  <rect class="panel" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: demo 往往停在实现层;可靠产品必须跨过诊断层和工程层。</text>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">长时程任务运行时</title>
+  <desc id="desc">展示长时程 Agent 如何通过目标、任务图、工作队列、worker run、checkpoint、review gate 和 artifact store 组成任务操作系统。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #2d7d80; stroke-width: 2; stroke-dasharray: 6 6; marker-end: url(#greenArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">长时程 Agent 更像任务操作系统,不是一个超长 Prompt</text>
+  <text class="sub" x="48" y="78">模型被 runtime 唤醒执行小步骤;真正持久的是任务图、状态、检查点、预算和产物。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="blue" x="84" y="174" width="134" height="70" rx="8" />
+  <text class="label" x="132" y="204">Goal</text>
+  <text class="small" x="112" y="226">完成标准/约束</text>
+  <path class="arrow" d="M218 209 H272" />
+
+  <rect class="blue" x="272" y="174" width="142" height="70" rx="8" />
+  <text class="label" x="306" y="204">Task Graph</text>
+  <text class="small" x="302" y="226">依赖/状态</text>
+  <path class="arrow" d="M414 209 H468" />
+
+  <rect class="green" x="468" y="174" width="142" height="70" rx="8" />
+  <text class="label" x="506" y="204">Queue</text>
+  <text class="small" x="500" y="226">可执行子任务</text>
+  <path class="arrow" d="M610 209 H664" />
+
+  <rect class="orange" x="664" y="174" width="142" height="70" rx="8" />
+  <text class="label" x="698" y="204">Worker Run</text>
+  <text class="small" x="690" y="226">模型/工具一次运行</text>
+  <path class="arrow" d="M806 209 H860" />
+
+  <rect class="red" x="860" y="174" width="142" height="70" rx="8" />
+  <text class="label" x="900" y="204">Review Gate</text>
+  <text class="small" x="898" y="226">评估/人工确认</text>
+
+  <rect class="gray" x="224" y="326" width="190" height="78" rx="8" />
+  <text class="label" x="270" y="358">Checkpoint</text>
+  <text class="small" x="254" y="382">进度/证据/风险/下一步</text>
+  <rect class="gray" x="468" y="326" width="190" height="78" rx="8" />
+  <text class="label" x="512" y="358">State Store</text>
+  <text class="small" x="500" y="382">事实/假设/预算/权限</text>
+  <rect class="gray" x="712" y="326" width="190" height="78" rx="8" />
+  <text class="label" x="754" y="358">Artifact Store</text>
+  <text class="small" x="742" y="382">报告/补丁/数据版本</text>
+  <path class="loop" d="M931 244 C900 300 824 326 807 326" />
+  <path class="loop" d="M735 244 C710 290 640 326 563 326" />
+  <path class="loop" d="M539 244 C500 292 400 326 319 326" />
+  <path class="loop" d="M319 404 C330 456 882 456 931 244" />
+
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式: 长任务靠外部状态和 review gate 收敛;模型只是每次处理一个可验证的运行片段。</text>
+</svg>

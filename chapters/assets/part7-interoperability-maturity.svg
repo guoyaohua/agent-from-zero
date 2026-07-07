@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-labelledby="title desc">
+  <title id="title">互操作成熟度路径</title>
+  <desc id="desc">展示 Agent 系统从格式统一到能力发现、策略接入、跨系统 trace 和评估互操作的成熟路径。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="600" />
+  <text class="title" x="48" y="52">互操作不是“能调通”,而是能力、策略、证据都能跨边界工作</text>
+  <text class="sub" x="48" y="78">生产级标准化要从格式走向发现、契约、策略接入和可评估 trace。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="362" rx="8" />
+  <rect class="blue" x="92" y="176" width="180" height="92" rx="8" />
+  <text class="label" x="136" y="208">L1 格式统一</text>
+  <text class="small" x="122" y="236">schema / JSON</text>
+  <path class="arrow" d="M272 222 H326" />
+
+  <rect class="green" x="326" y="176" width="180" height="92" rx="8" />
+  <text class="label" x="370" y="208">L2 能力发现</text>
+  <text class="small" x="356" y="236">tools/resources/prompts</text>
+  <path class="arrow" d="M506 222 H560" />
+
+  <rect class="orange" x="560" y="176" width="180" height="92" rx="8" />
+  <text class="label" x="604" y="208">L3 策略接入</text>
+  <text class="small" x="590" y="236">identity/scope/risk</text>
+  <path class="arrow" d="M740 222 H794" />
+
+  <rect class="red" x="794" y="176" width="180" height="92" rx="8" />
+  <text class="label" x="838" y="208">L4 可评估</text>
+  <text class="small" x="824" y="236">trace/eval/artifact</text>
+
+  <rect class="panel" x="118" y="334" width="824" height="64" rx="8" />
+  <text class="label" x="150" y="366">成熟标志</text>
+  <text class="text" x="252" y="366">换 Host、换工具或换模型后,失败仍能复盘,策略仍能执行,评估仍能比较。</text>
+
+  <rect class="panel" x="72" y="506" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="532">读图方式: L1/L2 解决接入成本,L3/L4 才开始解决真实生产里的治理、审计和回归问题。</text>
+</svg>
