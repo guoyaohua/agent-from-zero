@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="480" viewBox="0 0 1080 480" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 自主性与控制面</title>
+  <desc id="desc">展示从普通建议到长时程委托的自主性阶梯,以及每一级需要的权限、预算、审计和人工确认控制。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 27px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.card{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.low{fill:#e7f1ee;stroke:#2d7d80}.mid{fill:#dfe8f5;stroke:#355c9a}.high{fill:#fff0e6;stroke:#b05c37}.risk{fill:#f7d9df;stroke:#b13c52}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1080" height="480"/>
+  <text class="title" x="48" y="50">Agent 不是越自主越好,而是自主性要匹配控制面</text>
+  <text class="sub" x="48" y="78">每放大一级自主性,都要补上更强的权限、预算、审计和恢复机制。</text>
+
+  <g transform="translate(58 118)">
+    <rect class="card low" x="0" y="0" width="222" height="210" rx="8"/>
+    <text class="head" x="22" y="30">低自主:生成建议</text>
+    <text class="text" x="22" y="64">模型输出内容</text>
+    <text class="text" x="22" y="88">人决定是否采用</text>
+    <line x1="22" y1="112" x2="200" y2="112" stroke="#d8e0eb"/>
+    <text class="small" x="22" y="140">控制:人工采纳</text>
+    <text class="small" x="22" y="164">适合:解释、改写、总结</text>
+
+    <rect class="card mid" x="248" y="0" width="222" height="210" rx="8"/>
+    <text class="head" x="270" y="30">中自主:固定流程</text>
+    <text class="text" x="270" y="64">代码决定路径</text>
+    <text class="text" x="270" y="88">模型做局部判断</text>
+    <line x1="270" y1="112" x2="448" y2="112" stroke="#d8e0eb"/>
+    <text class="small" x="270" y="140">控制:规则门禁</text>
+    <text class="small" x="270" y="164">适合:抽取、分流、审核</text>
+
+    <rect class="card high" x="496" y="0" width="222" height="210" rx="8"/>
+    <text class="head" x="518" y="30">高自主:工具循环</text>
+    <text class="text" x="518" y="64">模型选择下一步</text>
+    <text class="text" x="518" y="88">根据观察继续行动</text>
+    <line x1="518" y1="112" x2="696" y2="112" stroke="#d8e0eb"/>
+    <text class="small" x="518" y="140">控制:预算 + 权限 + trace</text>
+    <text class="small" x="518" y="164">适合:排障、研究、代码</text>
+
+    <rect class="card risk" x="744" y="0" width="222" height="210" rx="8"/>
+    <text class="head" x="766" y="30">很高:长时程委托</text>
+    <text class="text" x="766" y="64">跨会话推进目标</text>
+    <text class="text" x="766" y="88">可能改变外部状态</text>
+    <line x1="766" y1="112" x2="944" y2="112" stroke="#d8e0eb"/>
+    <text class="small" x="766" y="140">控制:检查点 + 回滚 + 审批</text>
+    <text class="small" x="766" y="164">适合:少数高价值任务</text>
+
+    <path class="arrow" d="M222 105 H244"/>
+    <path class="arrow" d="M470 105 H492"/>
+    <path class="arrow" d="M718 105 H740"/>
+  </g>
+
+  <rect class="bar" x="146" y="394" width="788" height="38" rx="8"/>
+  <text x="230" y="418" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">自主性每升一级,系统控制面也必须升一级;否则能力会变成不可控风险。</text>
+</svg>

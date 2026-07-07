@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="480" viewBox="0 0 1080 480" role="img" aria-labelledby="title desc">
+  <title id="title">是否引入 Agent 的决策矩阵</title>
+  <desc id="desc">用步骤动态性和外部状态变化两个维度,区分普通 LLM 调用、RAG 问答、Workflow 和 Agent。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 27px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.q1{fill:#e7f1ee}.q2{fill:#dfe8f5}.q3{fill:#fff0e6}.q4{fill:#f7d9df}.axis{stroke:#8796aa;stroke-width:2}.line{stroke:#cbd5e1;stroke-width:1.3}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1080" height="480"/>
+  <text class="title" x="48" y="50">什么时候真的需要 Agent:看动态性和外部状态</text>
+  <text class="sub" x="48" y="78">Agent 适合“下一步依赖观察结果”且“需要受控行动”的任务。</text>
+
+  <g transform="translate(102 112)">
+    <rect class="q2" x="0" y="0" width="330" height="145"/>
+    <rect class="q4" x="330" y="0" width="330" height="145"/>
+    <rect class="q1" x="0" y="145" width="330" height="145"/>
+    <rect class="q3" x="330" y="145" width="330" height="145"/>
+    <rect x="0" y="0" width="660" height="290" fill="none" stroke="#9aa8bb" stroke-width="1.7"/>
+    <line class="line" x1="330" y1="0" x2="330" y2="290"/>
+    <line class="line" x1="0" y1="145" x2="660" y2="145"/>
+
+    <text class="head" x="42" y="46">Workflow</text>
+    <text class="text" x="42" y="76">路径固定,动作可审计</text>
+    <text class="small" x="42" y="104">例:审批、发票、批处理</text>
+
+    <text class="head" x="378" y="46">Agent</text>
+    <text class="text" x="378" y="76">动态观察、行动、验证</text>
+    <text class="small" x="378" y="104">例:排障、研究、代码修复</text>
+
+    <text class="head" x="42" y="190">普通 LLM 调用</text>
+    <text class="text" x="42" y="220">一次输入,一次输出</text>
+    <text class="small" x="42" y="248">例:解释、改写、短总结</text>
+
+    <text class="head" x="378" y="190">RAG / 搜索问答</text>
+    <text class="text" x="378" y="220">动态取资料,主要输出文字</text>
+    <text class="small" x="378" y="248">例:知识库问答、资料综述</text>
+
+    <path class="arrow" d="M0 314 H660"/>
+    <text class="small" x="218" y="342">下一步是否依赖观察结果</text>
+    <path class="arrow" d="M-28 290 V0"/>
+    <text class="small" x="-78" y="132">是否改变外部状态</text>
+  </g>
+
+  <g transform="translate(804 118)">
+    <rect class="panel" x="0" y="0" width="220" height="246" rx="8"/>
+    <text class="head" x="24" y="34">引入前检查</text>
+    <text class="text" x="24" y="70">1. 是否需要工具?</text>
+    <text class="text" x="24" y="102">2. 是否有状态进度?</text>
+    <text class="text" x="24" y="134">3. 是否能验证结果?</text>
+    <text class="text" x="24" y="166">4. 是否有停止条件?</text>
+    <text class="text" x="24" y="198">5. 高风险是否确认?</text>
+  </g>
+
+  <rect class="bar" x="146" y="420" width="788" height="34" rx="8"/>
+  <text x="244" y="442" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">先选择最简单可控的形态;只有动态行动和反馈闭环真的必要时,再升级为 Agent。</text>
+</svg>

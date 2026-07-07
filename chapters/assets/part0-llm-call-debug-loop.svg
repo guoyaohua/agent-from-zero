@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="500" viewBox="0 0 1080 500" role="img" aria-labelledby="title desc">
+  <title id="title">LLM API 调用调试闭环</title>
+  <desc id="desc">展示一次 LLM API 调用从请求构造、模型输出、解析校验、工具执行到遥测回放的调试闭环,并列出常见症状对应的参数排查方向。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 27px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.req{fill:#dfe8f5;stroke:#355c9a}.gate{fill:#fff0e6;stroke:#b05c37}.ok{fill:#e7f1ee;stroke:#2d7d80}.warn{fill:#f7d9df;stroke:#b13c52}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1080" height="500"/>
+  <text class="title" x="48" y="50">把每次 LLM 调用当成可回放的工程事件</text>
+  <text class="sub" x="48" y="78">Agent 不稳定时,先定位是上下文、参数、工具 schema、解析校验还是外部工具的问题。</text>
+
+  <g transform="translate(58 122)">
+    <rect class="box req" x="0" y="0" width="178" height="92" rx="8"/>
+    <text class="head" x="34" y="30">Build request</text>
+    <text class="small" x="24" y="58">messages / model</text>
+    <text class="small" x="24" y="76">params / tools</text>
+    <path class="arrow" d="M178 46 H222"/>
+
+    <rect class="box" x="222" y="0" width="178" height="92" rx="8"/>
+    <text class="head" x="274" y="30">LLM</text>
+    <text class="small" x="250" y="58">text / JSON</text>
+    <text class="small" x="250" y="76">tool call</text>
+    <path class="arrow" d="M400 46 H444"/>
+
+    <rect class="box gate" x="444" y="0" width="178" height="92" rx="8"/>
+    <text class="head" x="484" y="30">Parse + Gate</text>
+    <text class="small" x="472" y="58">schema 校验</text>
+    <text class="small" x="472" y="76">权限和风险</text>
+    <path class="arrow" d="M622 46 H666"/>
+
+    <rect class="box ok" x="666" y="0" width="178" height="92" rx="8"/>
+    <text class="head" x="710" y="30">Tool / Answer</text>
+    <text class="small" x="696" y="58">执行或展示</text>
+    <text class="small" x="696" y="76">返回 observation</text>
+    <path class="arrow" d="M755 92 C755 128 184 128 184 92"/>
+
+    <rect class="box warn" x="886" y="0" width="136" height="92" rx="8"/>
+    <text class="head" x="920" y="30">Telemetry</text>
+    <text class="small" x="910" y="58">trace / cost</text>
+    <text class="small" x="910" y="76">latency / errors</text>
+    <path class="arrow" d="M844 46 H886"/>
+  </g>
+
+  <g transform="translate(76 274)">
+    <rect class="box" x="0" y="0" width="220" height="86" rx="8"/>
+    <text class="head" x="24" y="30">输出不稳定</text>
+    <text class="small" x="24" y="58">查 temperature、schema、示例</text>
+    <rect class="box" x="246" y="0" width="220" height="86" rx="8"/>
+    <text class="head" x="270" y="30">工具参数错</text>
+    <text class="small" x="270" y="58">查 tools 描述、枚举、校验错误</text>
+    <rect class="box" x="492" y="0" width="220" height="86" rx="8"/>
+    <text class="head" x="516" y="30">成本过高</text>
+    <text class="small" x="516" y="58">查上下文、max_tokens、路由</text>
+    <rect class="box" x="738" y="0" width="220" height="86" rx="8"/>
+    <text class="head" x="762" y="30">延迟过长</text>
+    <text class="small" x="762" y="58">查模型、stream、缓存、批处理</text>
+  </g>
+
+  <rect class="bar" x="146" y="430" width="788" height="34" rx="8"/>
+  <text x="246" y="452" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">没有完整请求和 trace,就很难判断该调 Prompt、参数、工具还是系统边界。</text>
+</svg>
