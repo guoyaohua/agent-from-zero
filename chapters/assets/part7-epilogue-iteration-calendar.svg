@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 工程迭代日历</title>
+  <desc id="desc">展示从每日 trace 复盘、每周 eval 回归、每月权限复查到每季度架构升级的团队节奏。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.d{fill:#e7f1ee}.w{fill:#dfe8f5}.m{fill:#fff0e6}.q{fill:#f7d9df}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">从 0 到 1 之后,靠节奏把系统养稳</text>
+  <text class="sub" x="54" y="80">Agent 工程不是一次上线,而是 trace、eval、权限和架构的固定循环。</text>
+  <g transform="translate(112 146)">
+    <rect class="box d" x="0" y="0" width="180" height="116" rx="8"/><text class="h" x="66" y="34">每日</text><text class="t" x="34" y="68">失败 trace</text><text class="t" x="34" y="94">成本和高风险拦截</text><path class="arrow" d="M180 58 H220"/>
+    <rect class="box w" x="240" y="0" width="180" height="116" rx="8"/><text class="h" x="306" y="34">每周</text><text class="t" x="274" y="68">eval 回归</text><text class="t" x="274" y="94">发布门禁</text><path class="arrow" d="M420 58 H460"/>
+    <rect class="box m" x="480" y="0" width="180" height="116" rx="8"/><text class="h" x="546" y="34">每月</text><text class="t" x="514" y="68">权限复查</text><text class="t" x="514" y="94">记忆和安全样本</text><path class="arrow" d="M660 58 H700"/>
+    <rect class="box q" x="720" y="0" width="180" height="116" rx="8"/><text class="h" x="786" y="34">每季</text><text class="t" x="754" y="68">模型/标准/架构</text><text class="t" x="754" y="94">升级评审</text>
+  </g>
+  <rect x="206" y="360" width="708" height="56" rx="8" fill="#172033"/><text x="272" y="386" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">节奏的目的不是流程感,而是让每次失败变成样本、规则、门禁或架构改进。</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">开放问题证据漏斗</title>
+  <desc id="desc">展示把开放问题从口号变成工程行动时,需要经历现象、复现、归因、指标、干预和回归。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.step{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.note{fill:#172033}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">开放问题要落地,先变成证据问题</text>
+  <text class="sub" x="54" y="80">“可靠性不好”太大;“哪类样本、哪一层、什么指标退化”才可行动。</text>
+  <g transform="translate(84 150)">
+    <rect class="step" x="0" y="0" width="132" height="78" rx="8"/><text class="h" x="42" y="30">现象</text><text class="t" x="20" y="56">失败描述</text><path class="arrow" d="M132 39 H166"/>
+    <rect class="step" x="186" y="0" width="132" height="78" rx="8"/><text class="h" x="228" y="30">复现</text><text class="t" x="206" y="56">固定样本</text><path class="arrow" d="M318 39 H352"/>
+    <rect class="step" x="372" y="0" width="132" height="78" rx="8"/><text class="h" x="414" y="30">归因</text><text class="t" x="392" y="56">模型/工具/上下文</text><path class="arrow" d="M504 39 H538"/>
+    <rect class="step" x="558" y="0" width="132" height="78" rx="8"/><text class="h" x="600" y="30">指标</text><text class="t" x="578" y="56">可比较</text><path class="arrow" d="M690 39 H724"/>
+    <rect class="step" x="744" y="0" width="132" height="78" rx="8"/><text class="h" x="786" y="30">干预</text><text class="t" x="764" y="56">改一层</text><path class="arrow" d="M876 39 H910"/>
+    <rect class="step" x="930" y="0" width="132" height="78" rx="8"/><text class="h" x="972" y="30">回归</text><text class="t" x="950" y="56">防止复发</text>
+  </g>
+  <rect class="note" x="214" y="342" width="692" height="54" rx="8"/><text x="274" y="374" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">前沿判断不是预测谁赢,而是把不确定性变成可验证的实验。</text>
+</svg>

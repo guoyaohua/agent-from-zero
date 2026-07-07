@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">标准采用门禁</title>
+  <desc id="desc">展示团队采用 Agent 标准前应检查表达力、安全挂钩、版本迁移、生态收益和退出路径。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.gate{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">采用标准前,先过五道门</text>
+  <text class="sub" x="54" y="80">标准化的收益来自边界复用,风险来自过早绑定和抽象泄漏。</text>
+  <g transform="translate(78 154)">
+    <rect class="gate" x="0" y="0" width="160" height="86" rx="8"/><text class="h" x="50" y="30">表达力</text><text class="t" x="24" y="58">能表达错误/副作用</text><path class="arrow" d="M160 43 H194"/>
+    <rect class="gate" x="214" y="0" width="160" height="86" rx="8"/><text class="h" x="258" y="30">安全挂钩</text><text class="t" x="238" y="58">身份/scope/risk</text><path class="arrow" d="M374 43 H408"/>
+    <rect class="gate" x="428" y="0" width="160" height="86" rx="8"/><text class="h" x="472" y="30">版本迁移</text><text class="t" x="452" y="58">兼容/废弃/降级</text><path class="arrow" d="M588 43 H622"/>
+    <rect class="gate" x="642" y="0" width="160" height="86" rx="8"/><text class="h" x="686" y="30">生态收益</text><text class="t" x="666" y="58">复用工具和评估</text><path class="arrow" d="M802 43 H836"/>
+    <rect class="gate" x="856" y="0" width="160" height="86" rx="8"/><text class="h" x="900" y="30">退出路径</text><text class="t" x="880" y="58">可替换/可桥接</text>
+  </g>
+  <rect class="ok" x="200" y="320" width="300" height="70" rx="8"/><text class="h" x="300" y="350">适合采用</text><text class="t" x="236" y="376">边界稳定、跨系统复用、评估收益明确</text>
+  <rect class="warn" x="620" y="320" width="300" height="70" rx="8"/><text class="h" x="720" y="350">暂缓采用</text><text class="t" x="656" y="376">语义还在变、策略无法表达、迁移成本高</text>
+</svg>

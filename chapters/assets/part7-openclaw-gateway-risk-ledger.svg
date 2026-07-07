@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">OpenCLAW Gateway 风险账本</title>
+  <desc id="desc">展示个人 Agent Gateway 需要记录入口身份、会话路由、工具权限、节点能力、幂等和审计。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">个人 Agent Gateway 的核心不是多渠道,而是风险账本</text>
+  <text class="sub" x="54" y="80">每条外部消息变成动作前,都要经过身份、会话、权限、节点和审计记录。</text>
+  <g transform="translate(94 128)">
+    <rect class="cell" x="0" y="0" width="932" height="260" rx="8"/>
+    <g class="h"><text x="24" y="38">环节</text><text x="196" y="38">风险</text><text x="520" y="38">账本字段</text></g>
+    <rect class="warn" x="0" y="58" width="932" height="44"/><text class="h" x="24" y="86">入口身份</text><text class="t" x="196" y="86">陌生人或群聊触发个人工具</text><text class="t" x="520" y="86">channel_user, allowlist, trust_level</text>
+    <rect class="ok" x="0" y="108" width="932" height="44"/><text class="h" x="24" y="136">会话路由</text><text class="t" x="196" y="136">消息串线、上下文泄露</text><text class="t" x="520" y="136">session_id, agent_id, scope</text>
+    <rect class="bad" x="0" y="158" width="932" height="44"/><text class="h" x="24" y="186">工具权限</text><text class="t" x="196" y="186">远程消息触发本地高风险工具</text><text class="t" x="520" y="186">tool_group, risk, confirmation, sandbox</text>
+    <rect class="warn" x="0" y="208" width="932" height="44"/><text class="h" x="24" y="236">幂等审计</text><text class="t" x="196" y="236">网络重试造成重复副作用</text><text class="t" x="520" y="236">idempotency_key, action_id, audit_id</text>
+  </g>
+  <rect x="214" y="432" width="692" height="38" rx="8" fill="#172033"/><text x="286" y="456" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">Gateway 是控制面;控制面越长期在线,越需要默认最小权限和可回放审计。</text>
+</svg>

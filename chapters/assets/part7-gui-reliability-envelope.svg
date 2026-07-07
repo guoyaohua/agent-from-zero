@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">GUI Agent 可靠性包络</title>
+  <desc id="desc">展示 GUI Agent 上线前需要把观察、意图、动作、校验、停止和接管组织成可靠性包络。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.guard{fill:#fff0e6;stroke:#b05c37;stroke-width:1.6}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.stop{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">GUI Agent 的可靠性不在“会点”,而在动作包络</text>
+  <text class="sub" x="54" y="80">每一步都要有观察证据、动作理由、执行约束、结果断言和停止条件。</text>
+  <g transform="translate(78 138)">
+    <rect class="box" x="0" y="0" width="146" height="82" rx="8"/><text class="h" x="44" y="30">Observe</text><text class="t" x="24" y="58">截图/DOM/OCR</text><path class="arrow" d="M146 41 H188"/>
+    <rect class="box" x="208" y="0" width="146" height="82" rx="8"/><text class="h" x="252" y="30">Intent</text><text class="t" x="232" y="58">当前目标/页面</text><path class="arrow" d="M354 41 H396"/>
+    <rect class="guard" x="416" y="0" width="146" height="82" rx="8"/><text class="h" x="456" y="30">Policy</text><text class="t" x="440" y="58">动作白名单</text><path class="arrow" d="M562 41 H604"/>
+    <rect class="box" x="624" y="0" width="146" height="82" rx="8"/><text class="h" x="672" y="30">Act</text><text class="t" x="650" y="58">点击/输入/等待</text><path class="arrow" d="M770 41 H812"/>
+    <rect class="ok" x="832" y="0" width="146" height="82" rx="8"/><text class="h" x="876" y="30">Verify</text><text class="t" x="858" y="58">状态断言</text>
+  </g>
+  <rect class="stop" x="196" y="320" width="270" height="74" rx="8"/><text class="h" x="284" y="350">停止条件</text><text class="t" x="230" y="376">低置信、状态不变、弹窗循环、权限不足</text>
+  <rect class="guard" x="510" y="320" width="270" height="74" rx="8"/><text class="h" x="598" y="350">用户接管</text><text class="t" x="548" y="376">高风险动作 preview/confirm,失败时交还控制</text>
+  <rect x="228" y="438" width="664" height="38" rx="8" fill="#172033"/><text x="292" y="462" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">没有 Verify 和 Stop 的 GUI Agent,只是一个更快犯错的远程鼠标。</text>
+</svg>

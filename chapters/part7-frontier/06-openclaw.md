@@ -277,9 +277,29 @@ OpenClaw README 提到 agent workspace 和 skills。workspace 不是简单文件
 
 这些听起来不像“AI 能力”,但恰恰决定 Agent 能不能进入真实生活。
 
+## Gateway 风险账本
+
+OpenClaw 的公开 README 把它定位为运行在自己设备上的 personal AI assistant,并把 Gateway 描述为 sessions、channels、tools 和 events 的 local-first control plane。这个定位意味着:Gateway 不只是消息转发器,而是个人 Agent 的控制面。控制面最需要的不是“接更多渠道”,而是维护一份风险账本。
+
+![OpenClaw Gateway 风险账本](../assets/part7-openclaw-gateway-risk-ledger.svg)
+
+这份账本至少要覆盖五类字段。
+
+第一,入口身份。每条消息来自哪个 channel、哪个 peer、哪个群组、是否已 pairing、是否在 allowlist、trust level 是什么。多渠道系统的第一风险,是外部消息绕过人的直觉边界,直接触发个人工具。
+
+第二,会话路由。消息被路由到哪个 `session_id`、哪个 agent、哪个 workspace、是否属于 `main` 会话、是否和其他发送者共享上下文。会话路由一旦错,后果不是回答错一句话,而是上下文泄露和权限串线。
+
+第三,工具权限。当前 session 能调用哪些 tool group,是否允许 browser、canvas、nodes、cron、gateway、discord/slack action、文件写入或 shell 类能力。README 中也强调非 main session 可以用 sandbox 收紧工具组,这说明 Gateway 必须把工具开放程度和会话风险绑定起来。
+
+第四,幂等和副作用。发送消息、创建任务、改文件、触发节点命令都可能因为重试造成重复执行。每个有副作用动作都应带 `idempotency_key`、`action_id` 和结果状态,让 Loop 可以安全重试或停止。
+
+第五,审计和恢复。风险账本要能回答:谁触发、哪条策略放行、哪个工具执行、返回了什么、是否需要确认、如何撤销或轮换凭证。没有这些字段,Gateway 长期在线越久,事故复盘越困难。
+
+这也是 OpenClaw 类系统给 Agent 工程最大的启发:个人 Agent 可以很亲密、很方便、很本地,但一旦它能从真实消息渠道被远程触发,它就必须像一个有权限的软件系统一样被治理。
+
 ![OpenClaw 类个人 Gateway 运维基线](../assets/part7-openclaw-operator-baseline.svg)
 
-OpenClaw README 里强调它是运行在自己设备上的 personal AI assistant,Gateway 是 control plane,并且默认要把真实消息表面的入站 DM 当成不可信输入。这个定位很关键:它不是“云端托管平台替你兜底”,而是“你拥有更多控制权,也承担更多配置和运维责任”。
+这张运维基线图强调的是同一件事:自托管不是“云端平台替你兜底”,而是“你拥有更多控制权,也承担更多配置和运维责任”。
 
 所以使用或设计这类系统时,不要只问“接了哪些渠道”和“支持哪些模型”。更应该先问:Gateway 暴露在哪里、谁能认证、未知私信如何 pairing、群聊如何触发、非 main 会话是否 sandbox、危险工具是否默认关闭、日志是否脱敏、出事后如何停机和轮换凭证。多渠道个人 Agent 真正的难点,是把便利和边界同时做出来。
 

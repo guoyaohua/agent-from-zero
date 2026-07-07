@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">解释访问决策</title>
+  <desc id="desc">展示 Agent 可解释性需要按用户、开发者、安全审计和研究人员提供不同深度的解释访问。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.u{fill:#e7f1ee}.d{fill:#dfe8f5}.s{fill:#fff0e6}.r{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">解释不是越多越好,而是给对的人看对的层</text>
+  <text class="sub" x="54" y="80">同一条 trace 对用户、开发者、安全审计和研究人员的可见深度不同。</text>
+  <g transform="translate(118 128)">
+    <rect class="box u" x="0" y="0" width="196" height="210" rx="8"/><text class="h" x="72" y="34">用户</text><text class="t" x="34" y="72">看到结论依据</text><text class="t" x="34" y="102">引用和下一步</text><text class="t" x="34" y="132">不暴露敏感 trace</text>
+    <rect class="box d" x="232" y="0" width="196" height="210" rx="8"/><text class="h" x="294" y="34">开发者</text><text class="t" x="266" y="72">看到 context diff</text><text class="t" x="266" y="102">工具日志/状态变化</text><text class="t" x="266" y="132">用于修复失败</text>
+    <rect class="box s" x="464" y="0" width="196" height="210" rx="8"/><text class="h" x="526" y="34">安全审计</text><text class="t" x="498" y="72">看到权限决策</text><text class="t" x="498" y="102">敏感数据流</text><text class="t" x="498" y="132">高风险动作理由</text>
+    <rect class="box r" x="696" y="0" width="196" height="210" rx="8"/><text class="h" x="758" y="34">研究人员</text><text class="t" x="730" y="72">聚合样本</text><text class="t" x="730" y="102">机制线索</text><text class="t" x="730" y="132">脱敏后分析</text>
+  </g>
+  <rect x="196" y="402" width="728" height="42" rx="8" fill="#172033"/><text x="278" y="428" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">解释层级和访问控制一起设计,否则解释会在有用和泄密之间摇摆。</text>
+</svg>
