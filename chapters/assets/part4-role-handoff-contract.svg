@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">角色交接契约</title>
+  <desc id="desc">展示多 Agent 角色交接时应传递目标、产物、证据、缺口、约束、权限、artifact 和 trace 引用。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.agent{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.contract{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.risk{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">交接不是“我做完了”,而是下游可消费的契约</text>
+  <text class="sub" x="54" y="80">交接消息要让下游知道可用证据、未解缺口、权限边界和回源位置。</text>
+  <rect class="agent" x="70" y="205" width="154" height="92" rx="8"/><text class="head" x="108" y="238">Researcher</text><text class="txt" x="100" y="266">找证据和缺口</text>
+  <path class="arrow" d="M224 250 H286"/>
+  <rect class="contract" x="306" y="122" width="508" height="256" rx="8"/>
+  <text class="head" x="506" y="154">handoff.v1</text>
+  <g class="txt">
+    <text x="350" y="190">task_goal: 当前目标和完成标准</text><text x="350" y="220">deliverable: 本角色产物 schema</text><text x="350" y="250">evidence_refs: 证据 ID、来源、版本</text><text x="350" y="280">gaps: 缺什么,为什么影响答案</text><text x="350" y="310">constraints: 禁止动作、用户确认状态</text><text x="350" y="340">artifact_refs / trace_refs: 可回源材料</text>
+  </g>
+  <rect class="risk" x="486" y="386" width="148" height="48" rx="8"/><text class="head" x="530" y="416">schema 校验</text>
+  <path class="arrow" d="M814 250 H876"/>
+  <rect class="agent" x="896" y="205" width="154" height="92" rx="8"/><text class="head" x="938" y="238">Critic</text><text class="txt" x="928" y="266">按证据评审</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">MCP 能力风险矩阵</title>
+  <desc id="desc">展示 MCP Tools、Resources 和 Prompts 在能力发现、上下文注入、执行和安全方面的不同风险。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.grid{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.tool{fill:#dfe8f5}.res{fill:#e7f1ee}.prompt{fill:#fff0e6}.risk{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">MCP 的三类能力,风险不一样</text>
+  <text class="sub" x="54" y="80">Tools 是动作,Resources 是资料,Prompts 是模板。Host 的选择、权限和注入策略应分别处理。</text>
+  <g transform="translate(98 122)">
+    <rect class="grid" width="924" height="286" rx="8"/>
+    <g class="h"><text x="28" y="38">能力</text><text x="190" y="38">主要价值</text><text x="388" y="38">关键风险</text><text x="620" y="38">Host 控制点</text></g>
+    <rect class="tool" x="0" y="60" width="924" height="58"/><text class="h" x="28" y="94">Tools</text><text class="t" x="190" y="94">执行动作</text><text class="t" x="388" y="94">副作用、越权、参数错误</text><text class="t" x="620" y="94">授权、确认、幂等、回滚</text>
+    <rect class="res" x="0" y="128" width="924" height="58"/><text class="h" x="28" y="162">Resources</text><text class="t" x="190" y="162">提供上下文</text><text class="t" x="388" y="162">隐私泄露、注入、过期</text><text class="t" x="620" y="162">权限、标注、摘要、引用</text>
+    <rect class="prompt" x="0" y="196" width="924" height="58"/><text class="h" x="28" y="230">Prompts</text><text class="t" x="190" y="230">复用任务模板</text><text class="t" x="388" y="230">模板覆盖系统规则</text><text class="t" x="620" y="230">优先级、审计、版本</text>
+  </g>
+  <rect class="risk" x="198" y="438" width="724" height="40" rx="8"/><text x="284" y="464" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#172033">能力发现只是目录;进入模型上下文和真正执行都必须另过 Host 的策略门。</text>
+</svg>

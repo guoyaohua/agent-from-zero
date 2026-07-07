@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">消息退化防线</title>
+  <desc id="desc">展示多 Agent 自然语言消息容易在摘要、转述、压缩和合并中丢失约束,需要结构化字段和 artifact 引用保护。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">多 Agent 的错误常在消息退化中悄悄产生</text>
+  <text class="sub" x="54" y="80">每一次摘要、转述、压缩、合并,都可能丢掉来源、限制条件、权限和不确定性。</text>
+  <rect class="bad" x="74" y="164" width="160" height="90" rx="8"/><text class="head" x="114" y="196">原始证据</text><text class="txt" x="104" y="224">含例外和来源</text>
+  <path class="arrow" d="M234 210 H286"/><rect class="bad" x="306" y="164" width="160" height="90" rx="8"/><text class="head" x="354" y="196">摘要</text><text class="txt" x="336" y="224">删掉例外</text>
+  <path class="arrow" d="M466 210 H518"/><rect class="bad" x="538" y="164" width="160" height="90" rx="8"/><text class="head" x="586" y="196">转述</text><text class="txt" x="568" y="224">置信度变强</text>
+  <path class="arrow" d="M698 210 H750"/><rect class="bad" x="770" y="164" width="160" height="90" rx="8"/><text class="head" x="818" y="196">合并</text><text class="txt" x="800" y="224">冲突被抹平</text>
+  <rect class="ok" x="186" y="328" width="748" height="76" rx="8"/><text class="head" x="250" y="356">防线</text><text class="txt" x="318" y="356">结构化 claims / evidence_ids / constraints / confidence / artifact_ref / forbidden_tools</text><text class="txt" x="318" y="384">自然语言可以有,但机器关键字段不能只藏在自然语言里。</text>
+</svg>

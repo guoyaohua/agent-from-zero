@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">角色工具权限矩阵</title>
+  <desc id="desc">展示多 Agent 角色应该按职责获得不同工具权限,并把读、写、发布和阻塞能力分开。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.grid{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.yes{fill:#e7f1ee}.no{fill:#f7d9df}.maybe{fill:#fff0e6}.mark{font:700 16px system-ui;fill:#172033}.note{fill:#172033}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">角色边界要落到工具权限,不是只写在 prompt 里</text>
+  <text class="sub" x="54" y="80">同一个业务流程里,读、写、发布、评审阻塞应由 runtime 分配给不同角色。</text>
+  <g transform="translate(98 122)">
+    <rect class="grid" width="924" height="264" rx="8"/>
+    <g class="h"><text x="28" y="38">角色</text><text x="194" y="38">读资源</text><text x="344" y="38">检索</text><text x="494" y="38">执行写工具</text><text x="650" y="38">发布/提交</text><text x="806" y="38">阻塞动作</text></g>
+    <g class="t"><text x="28" y="88">Planner</text><text x="28" y="132">Researcher</text><text x="28" y="176">Executor</text><text x="28" y="220">Critic</text></g>
+    <g>
+      <rect class="maybe" x="170" y="60" width="120" height="34"/><text class="mark" x="222" y="83">△</text><rect class="no" x="320" y="60" width="120" height="34"/><text class="mark" x="374" y="83">×</text><rect class="no" x="470" y="60" width="130" height="34"/><text class="mark" x="528" y="83">×</text><rect class="no" x="630" y="60" width="130" height="34"/><text class="mark" x="688" y="83">×</text><rect class="no" x="790" y="60" width="110" height="34"/><text class="mark" x="838" y="83">×</text>
+      <rect class="yes" x="170" y="104" width="120" height="34"/><text class="mark" x="222" y="127">✓</text><rect class="yes" x="320" y="104" width="120" height="34"/><text class="mark" x="374" y="127">✓</text><rect class="no" x="470" y="104" width="130" height="34"/><text class="mark" x="528" y="127">×</text><rect class="no" x="630" y="104" width="130" height="34"/><text class="mark" x="688" y="127">×</text><rect class="no" x="790" y="104" width="110" height="34"/><text class="mark" x="838" y="127">×</text>
+      <rect class="maybe" x="170" y="148" width="120" height="34"/><text class="mark" x="222" y="171">△</text><rect class="no" x="320" y="148" width="120" height="34"/><text class="mark" x="374" y="171">×</text><rect class="yes" x="470" y="148" width="130" height="34"/><text class="mark" x="528" y="171">✓</text><rect class="maybe" x="630" y="148" width="130" height="34"/><text class="mark" x="688" y="171">△</text><rect class="no" x="790" y="148" width="110" height="34"/><text class="mark" x="838" y="171">×</text>
+      <rect class="yes" x="170" y="192" width="120" height="34"/><text class="mark" x="222" y="215">✓</text><rect class="maybe" x="320" y="192" width="120" height="34"/><text class="mark" x="374" y="215">△</text><rect class="no" x="470" y="192" width="130" height="34"/><text class="mark" x="528" y="215">×</text><rect class="no" x="630" y="192" width="130" height="34"/><text class="mark" x="688" y="215">×</text><rect class="yes" x="790" y="192" width="110" height="34"/><text class="mark" x="838" y="215">✓</text>
+    </g>
+  </g>
+  <rect class="note" x="164" y="424" width="792" height="42" rx="8"/><text x="236" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">权限矩阵应由 runtime 执行; prompt 里的“不要调用”只能作为辅助说明。</text>
+</svg>

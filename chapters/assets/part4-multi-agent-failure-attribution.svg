@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多 Agent 失败归因漏斗</title>
+  <desc id="desc">展示多 Agent 最终失败时,应从目标、计划、证据、执行、评审、合并、状态和权限逐层定位。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.lane{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.hot{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">多 Agent 出错时,先定位哪一层断了</text>
+  <text class="sub" x="54" y="80">不要把最终失败直接归因给“模型不够聪明”。多 Agent 的错误常发生在交接和状态层。</text>
+  <g transform="translate(56 128)">
+    <rect class="lane" x="0" y="0" width="122" height="82" rx="8"/><text class="head" x="32" y="28">目标</text><text class="txt" x="18" y="56">目标/约束错</text>
+    <path class="arrow" d="M122 41 H154"/><rect class="lane" x="166" y="0" width="122" height="82" rx="8"/><text class="head" x="198" y="28">计划</text><text class="txt" x="184" y="56">依赖/顺序错</text>
+    <path class="arrow" d="M288 41 H320"/><rect class="lane" x="332" y="0" width="122" height="82" rx="8"/><text class="head" x="364" y="28">证据</text><text class="txt" x="350" y="56">漏召回/误读</text>
+    <path class="arrow" d="M454 41 H486"/><rect class="lane" x="498" y="0" width="122" height="82" rx="8"/><text class="head" x="530" y="28">执行</text><text class="txt" x="516" y="56">工具参数错</text>
+    <path class="arrow" d="M620 41 H652"/><rect class="lane" x="664" y="0" width="122" height="82" rx="8"/><text class="head" x="696" y="28">评审</text><text class="txt" x="682" y="56">漏掉高风险</text>
+    <path class="arrow" d="M786 41 H818"/><rect class="lane" x="830" y="0" width="122" height="82" rx="8"/><text class="head" x="862" y="28">合并</text><text class="txt" x="848" y="56">冲突被抹平</text>
+  </g>
+  <rect class="hot" x="190" y="284" width="330" height="84" rx="8"/><text class="head" x="318" y="314">状态层错误</text><text class="txt" x="232" y="344">旧观察被当新事实,重试后状态没有更新</text>
+  <rect class="hot" x="600" y="284" width="330" height="84" rx="8"/><text class="head" x="728" y="314">权限层错误</text><text class="txt" x="642" y="344">低权限证据流向高风险写工具</text>
+  <rect x="170" y="420" width="780" height="42" rx="8" fill="#172033"/><text x="238" y="446" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">Trace 至少要能回答:哪个角色、哪条消息、哪个状态字段、哪个权限门导致了失败。</text>
+</svg>

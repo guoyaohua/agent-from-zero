@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">编排调度账本</title>
+  <desc id="desc">展示 Orchestrator 调用下一个 Agent 前,应记录状态触发、候选角色、预算、权限、上下文包和停止条件。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.6}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">Orchestrator 调谁,应该是可复盘的调度决策</text>
+  <text class="sub" x="54" y="80">调度不是“感觉下一步该研究”,而是状态、权限、预算、缺口和停止条件共同产生的结果。</text>
+  <rect class="box" x="70" y="168" width="150" height="90" rx="8"/><text class="head" x="116" y="200">State</text><text class="txt" x="98" y="228">目标/计划/缺口</text>
+  <path class="arrow" d="M220 214 H270"/>
+  <rect class="gate" x="290" y="112" width="142" height="70" rx="8"/><text class="head" x="326" y="142">触发条件</text><text class="txt" x="314" y="166">事件/错误/缺口</text>
+  <rect class="gate" x="290" y="222" width="142" height="70" rx="8"/><text class="head" x="326" y="252">候选角色</text><text class="txt" x="314" y="276">谁能关闭缺口</text>
+  <rect class="gate" x="488" y="112" width="142" height="70" rx="8"/><text class="head" x="524" y="142">预算检查</text><text class="txt" x="512" y="166">token/时间/调用</text>
+  <rect class="gate" x="488" y="222" width="142" height="70" rx="8"/><text class="head" x="524" y="252">权限检查</text><text class="txt" x="512" y="276">工具/数据/确认</text>
+  <path class="arrow" d="M432 148 H488M432 258 H488"/>
+  <path class="arrow" d="M630 202 H696"/>
+  <rect class="ok" x="716" y="150" width="170" height="126" rx="8"/><text class="head" x="764" y="182">Context Pack</text><text class="txt" x="750" y="214">只给必要材料</text><text class="txt" x="750" y="240">附带 schema 和停止条件</text>
+  <path class="arrow" d="M886 214 H936"/>
+  <rect class="box" x="956" y="168" width="122" height="90" rx="8"/><text class="head" x="988" y="200">Agent</text><text class="txt" x="982" y="228">执行一步</text>
+  <rect x="178" y="394" width="764" height="48" rx="8" fill="#172033"/><text x="234" y="424" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">账本字段: trigger, candidates, chosen_role, context_pack_id, budget_before, permission_decision, stop_rule。</text>
+</svg>

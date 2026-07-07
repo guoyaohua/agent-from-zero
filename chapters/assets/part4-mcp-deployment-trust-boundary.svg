@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">MCP 部署信任边界</title>
+  <desc id="desc">展示本地 MCP Server、远程 MCP Server、Host 和用户环境之间的信任边界、认证、权限和审计关注点。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.host{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.local{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.remote{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.boundary{fill:none;stroke:#8796aa;stroke-width:2;stroke-dasharray:6 6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">MCP 部署形态不同,信任边界也不同</text>
+  <text class="sub" x="54" y="80">本地 Server 更接近用户环境,远程 Server 更依赖认证、网络边界和集中审计。</text>
+  <rect class="boundary" x="70" y="122" width="470" height="262" rx="12"/><text class="head" x="96" y="152">用户设备边界</text>
+  <rect class="host" x="132" y="198" width="148" height="86" rx="8"/><text class="head" x="170" y="230">Host</text><text class="txt" x="158" y="258">会话/模型/策略</text>
+  <rect class="local" x="340" y="198" width="148" height="86" rx="8"/><text class="head" x="374" y="230">本地 Server</text><text class="txt" x="364" y="258">文件/命令/IDE</text>
+  <path class="arrow" d="M280 242 H340"/>
+  <rect class="boundary" x="610" y="122" width="440" height="262" rx="12"/><text class="head" x="636" y="152">企业/云边界</text>
+  <rect class="remote" x="742" y="198" width="170" height="86" rx="8"/><text class="head" x="788" y="230">远程 Server</text><text class="txt" x="774" y="258">业务 API/文档库</text>
+  <path class="arrow" d="M488 242 C570 242 642 242 742 242"/>
+  <rect class="risk" x="126" y="414" width="234" height="50" rx="8"/><text class="head" x="172" y="444">本地: 文件/命令权限</text>
+  <rect class="risk" x="442" y="414" width="234" height="50" rx="8"/><text class="head" x="488" y="444">传输: TLS/认证/租户</text>
+  <rect class="risk" x="758" y="414" width="234" height="50" rx="8"/><text class="head" x="804" y="444">远程: 审计/配额/撤权</text>
+</svg>

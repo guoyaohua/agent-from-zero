@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Blackboard 治理泳道</title>
+  <desc id="desc">展示共享黑板应把目标、计划、证据、假设、冲突和决策分区,并通过写入门、版本和状态防止污染。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.lane{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">Blackboard 不是共享草稿纸,而是分区状态库</text>
+  <text class="sub" x="54" y="80">共享工作区必须有写入规则、状态字段、版本和来源,否则很快变成上下文垃圾桶。</text>
+  <g transform="translate(82 124)">
+    <rect class="lane" x="0" y="0" width="150" height="234" rx="8"/><text class="h" x="52" y="30">目标</text><text class="t" x="28" y="62">objective</text><text class="t" x="28" y="88">scope</text><text class="t" x="28" y="114">done_when</text>
+    <rect class="lane" x="160" y="0" width="150" height="234" rx="8"/><text class="h" x="212" y="30">计划</text><text class="t" x="188" y="62">steps</text><text class="t" x="188" y="88">owner</text><text class="t" x="188" y="114">depends_on</text>
+    <rect class="lane" x="320" y="0" width="150" height="234" rx="8"/><text class="h" x="372" y="30">证据</text><text class="t" x="348" y="62">source</text><text class="t" x="348" y="88">version</text><text class="t" x="348" y="114">confidence</text>
+    <rect class="lane" x="480" y="0" width="150" height="234" rx="8"/><text class="h" x="532" y="30">假设</text><text class="t" x="508" y="62">status</text><text class="t" x="508" y="88">evidence_ids</text><text class="t" x="508" y="114">owner</text>
+    <rect class="lane" x="640" y="0" width="150" height="234" rx="8"/><text class="h" x="692" y="30">冲突</text><text class="t" x="668" y="62">claims</text><text class="t" x="668" y="88">arbiter</text><text class="t" x="668" y="114">decision</text>
+    <rect class="lane" x="800" y="0" width="150" height="234" rx="8"/><text class="h" x="852" y="30">决策</text><text class="t" x="828" y="62">accepted</text><text class="t" x="828" y="88">rejected</text><text class="t" x="828" y="114">reason</text>
+  </g>
+  <rect class="gate" x="142" y="398" width="214" height="54" rx="8"/><text class="h" x="214" y="430">写入门</text>
+  <rect class="ok" x="454" y="398" width="214" height="54" rx="8"/><text class="h" x="524" y="430">版本/来源</text>
+  <rect class="bad" x="766" y="398" width="214" height="54" rx="8"/><text class="h" x="824" y="430">过期/冲突清理</text>
+</svg>

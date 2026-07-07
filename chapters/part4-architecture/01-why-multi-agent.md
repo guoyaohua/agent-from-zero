@@ -238,6 +238,26 @@ $$
 
 协调成本也不能低估。多 Agent 每多一层交接,就多一次摘要失真、状态不同步、冲突仲裁和预算消耗。真正值得拆的子任务,应该能产出一个下游可消费、系统可校验、失败可归因的中间产物。
 
+## 拆分账本:每拆一个角色,都要说明收益
+
+多 Agent 最危险的起点是“我们需要一个 Planner、一个 Researcher、一个 Critic”。这些名字听起来合理,但它们不能证明系统应该拆。更好的做法是为每个候选角色写一张拆分账本。
+
+![多 Agent 拆分账本](../assets/part4-multi-agent-split-ledger.svg)
+
+拆分账本至少回答五个问题:
+
+| 问题 | 说明 | 不成立时的信号 |
+| --- | --- | --- |
+| 中间产物是什么 | 下游能否消费这个角色的输出 | 只输出一段泛泛建议 |
+| 上下文是否减负 | 角色是否少看了无关信息 | 每个角色仍拿全量上下文 |
+| 工具是否隔离 | 权限面是否真的变窄 | 所有角色都能调用所有工具 |
+| 是否可独立评估 | 能否给该产物设计指标或测试 | 只能凭最终答案判断好坏 |
+| 协调成本多大 | 交接、合并、冲突和等待是否可控 | 多次转述后限制条件丢失 |
+
+例如“Researcher”值得拆,不是因为这个名字专业,而是因为它可以产出 `evidence_pack.v1`:包含 claim、source、version、confidence 和 gap。这个产物能被 Critic 评审,能被 Synthesizer 引用,也能被 RAG 评估集复用。反过来,如果一个“Advisor Agent”只是把同样的上下文再读一遍,输出一段没有 schema 的建议,它就没有架构价值。
+
+拆分账本也应该记录不拆的决定。很多系统后期混乱,是因为早期为了显得“智能”创建了太多角色。保留“为什么没有拆”的记录,能帮助团队在复杂度上保持克制:当上下文压力、权限压力或评估压力真的出现时再拆,而不是先拆再找理由。
+
 ## 拆分单位:中间产物,不是角色名
 
 判断是否该拆 Agent,还有一个很实用的问题:
@@ -325,6 +345,29 @@ flowchart LR
 多 Agent 系统最容易失控的形态,是角色之间互相转发长篇自然语言,每个角色都维护一份自己理解的“事实”。几轮之后,谁看过什么、哪个结论被采纳、哪个假设已废弃,都会变得模糊。更可靠的方式是让 Orchestrator 或 runtime 持有权威状态,角色只通过结构化消息写回计划、证据、观察、评审和 artifact 引用。
 
 这样做有一个直接好处:失败可以回放。你可以看到 Researcher 写入了哪些证据,Executor 基于哪个计划调用了什么工具,Critic 阻止了哪个风险动作。没有共享权威状态,多 Agent 很难从实验走向生产。
+
+## 失败归因:不要把所有错都怪最终回答
+
+多 Agent 系统的一个好处是失败可拆解,但前提是系统真的保存了中间产物和状态变化。否则多个 Agent 只会让错误更难定位:看起来大家都做了事,最后却不知道是哪一步把任务带偏。
+
+![多 Agent 失败归因漏斗](../assets/part4-multi-agent-failure-attribution.svg)
+
+一次多 Agent 失败至少可以沿着八层排查:
+
+| 层 | 典型问题 | 应看什么 trace |
+| --- | --- | --- |
+| 目标 | 用户目标或完成标准被误解 | 原始任务、目标重写记录 |
+| 计划 | 步骤依赖、风险控制或停止条件错 | plan schema、depends_on、done_when |
+| 证据 | Researcher 漏召回、误读或没标注来源 | evidence_pack、query、source version |
+| 执行 | Executor 参数错、工具失败或副作用未知 | tool_call、observation、idempotency key |
+| 评审 | Critic 没按 rubric 发现问题 | critique、rubric、blocked_reason |
+| 合并 | Synthesizer 抹平冲突或隐藏不确定性 | final claims 到 evidence 的映射 |
+| 状态 | 旧观察覆盖新事实,重试后状态没更新 | state diff、event log |
+| 权限 | 低权限信息流向高风险工具 | data_classification、allowed_tools |
+
+这张漏斗能让多 Agent 的“复杂”变成“可归因”。例如最终答案错说“可以退款”,不一定是 Synthesizer 的错。可能是 Researcher 没找到地区例外,也可能是 Critic 看到了例外但没有阻塞,还可能是合并阶段删掉了“不足以判断”的说明。每一层的修法不同:缺证据要修检索,工具参数错要修执行契约,状态错要修 runtime,权限错要修消息流策略。
+
+所以多 Agent 的 trace 不应该只保存对话文本。它应该保存 `message_id`、`role`、`input_context_pack_id`、`output_schema_version`、`state_diff`、`artifact_refs`、`permission_decision` 和 `eval_result`。当这些字段齐全时,多 Agent 才真的比单 Agent 更容易治理。
 
 ## 设计检查表
 

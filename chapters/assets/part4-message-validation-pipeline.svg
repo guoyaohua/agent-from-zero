@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">消息校验流水线</title>
+  <desc id="desc">展示多 Agent 消息进入下游前,应经过 schema、引用、权限、TTL、大小和状态更新校验。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.txt{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.step{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.err{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">消息进入下游前,先过机器校验</text>
+  <text class="sub" x="54" y="80">校验失败应返回结构化 error,而不是让下游 Agent 猜这条消息能不能用。</text>
+  <g transform="translate(68 152)">
+    <rect class="step" x="0" y="0" width="132" height="78" rx="8"/><text class="head" x="42" y="30">Schema</text><text class="txt" x="24" y="56">必填/版本</text><path class="arrow" d="M132 39 H170"/>
+    <rect class="step" x="190" y="0" width="132" height="78" rx="8"/><text class="head" x="232" y="30">引用</text><text class="txt" x="214" y="56">证据/artifact</text><path class="arrow" d="M322 39 H360"/>
+    <rect class="step" x="380" y="0" width="132" height="78" rx="8"/><text class="head" x="422" y="30">权限</text><text class="txt" x="404" y="56">发送/读取</text><path class="arrow" d="M512 39 H550"/>
+    <rect class="step" x="570" y="0" width="132" height="78" rx="8"/><text class="head" x="612" y="30">TTL</text><text class="txt" x="594" y="56">是否过期</text><path class="arrow" d="M702 39 H740"/>
+    <rect class="step" x="760" y="0" width="132" height="78" rx="8"/><text class="head" x="802" y="30">大小</text><text class="txt" x="784" y="56">token/附件</text><path class="arrow" d="M892 39 H930"/>
+    <rect class="step" x="950" y="0" width="132" height="78" rx="8"/><text class="head" x="986" y="30">状态写入</text><text class="txt" x="974" y="56">更新/拒绝</text>
+  </g>
+  <rect class="err" x="272" y="342" width="576" height="64" rx="8"/><text class="head" x="486" y="370">校验失败</text><text class="txt" x="340" y="394">返回 error.v1: field_errors, retryable, required_fix, safe_to_continue=false</text>
+</svg>
