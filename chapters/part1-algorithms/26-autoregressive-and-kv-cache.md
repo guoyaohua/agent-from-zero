@@ -14,6 +14,8 @@ KV Cache 是自回归推理中最重要的优化之一。它不能改变“一�
 
 ![自回归瓶颈与 KV Cache](../assets/part1-autoregressive-kv-cache.svg)
 
+![Prefill、Decode 与 KV Cache 增长](../assets/part1-kv-cache-prefill-decode.svg)
+
 本章会讲:
 
 - 为什么推理不能像训练那样完全并行。
@@ -221,6 +223,17 @@ LLM 推理常分两个阶段。
 
 优化 LLM 服务时,不要只看一个“响应时间”。首 token 慢和输出速度慢,对应的瓶颈可能完全不同。
 
+可以用一个简单诊断表:
+
+| 现象 | 更可能瓶颈 | 优化方向 |
+| --- | --- | --- |
+| 首 token 很慢 | prefill、排队、长 prompt | 上下文压缩、prompt caching、prefill 调度 |
+| 后续 token 慢 | decode、KV 读取、batch 调度 | 连续批处理、PagedAttention、KV 量化 |
+| 并发一高就 OOM | KV Cache 显存 | 限制上下文、GQA/MQA、分页缓存 |
+| Agent 每轮都慢 | 重复 prefill | 状态摘要、稳定前缀缓存、减少历史重发 |
+
+这能帮助你判断是应用层上下文问题,还是推理服务调度问题。
+
 ## Agent 中的影响
 
 Agent 往往上下文长、轮次多、工具结果多。
@@ -241,6 +254,16 @@ Agent 往往上下文长、轮次多、工具结果多。
 长文档应该检索相关片段。
 
 状态应该压缩成当前任务摘要。
+
+Agent 系统尤其容易重复 prefill:每一轮都把系统 prompt、工具说明、历史轨迹、检索材料重新发一遍。优化时可以把上下文分成三类:
+
+| 上下文 | 策略 |
+| --- | --- |
+| 稳定前缀 | 系统规则、工具 schema,尽量缓存 |
+| 任务状态 | 用结构化摘要替代完整历史 |
+| 临时证据 | 只放本轮需要的 evidence pack |
+
+这样既减少 token,也减少 KV Cache 压力。
 
 ## 常见优化方向
 

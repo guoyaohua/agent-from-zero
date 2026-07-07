@@ -10,6 +10,8 @@ PagedAttention 和连续批处理就是为了解决这些服务端效率问题�
 
 ![PagedAttention 与连续批处理](../assets/part1-paged-attention-batching.svg)
 
+![KV Cache 分页映射](../assets/part1-paged-attention-block-table.svg)
+
 本章会讲:
 
 - 为什么 KV Cache 管理是服务端瓶颈。
@@ -96,6 +98,8 @@ PagedAttention 把每个请求的 KV Cache 拆成多个块。
 
 注意力在逻辑上仍能访问完整历史,只是 kernel 需要通过 block table 找到对应的 K/V 数据。
 
+这带来一个重要工程结果:调度器可以按需给请求追加 block,而不是一开始猜一个最大输出长度并预留整段显存。对于输出长度不可预知的聊天和 Agent 请求,这能显著减少浪费。
+
 ## PagedAttention 为什么重要
 
 长上下文请求会占用大量 KV Cache。
@@ -178,6 +182,17 @@ Decode 每次处理一个新 token,更受内存带宽和 KV Cache 读取影响�
 
 如果只看平均延迟,很容易误判。一个系统可能吞吐很高,但首 token 很慢;也可能首 token 很快,但长输出阶段速度不稳定。
 
+调度策略通常要在两类目标之间取舍:
+
+| 目标 | 偏向策略 | 代价 |
+| --- | --- | --- |
+| 低 TTFT | 更快插入 prefill、限制队列等待 | 可能打断 decode 吞吐 |
+| 高吞吐 | 让 decode batch 更饱满 | 新请求首 token 可能变慢 |
+| 高并发 | 更激进的 KV block 复用和限制上下文 | 单请求可用上下文可能受限 |
+| 稳定延迟 | 控制最大输出、超时和优先级 | 可能降低极长任务能力 |
+
+所以服务端优化要结合产品形态。聊天产品、批量评估平台、代码 Agent 的最优调度并不一样。
+
 ## Throughput 和 latency
 
 服务端优化经常要权衡吞吐和延迟。
@@ -213,6 +228,8 @@ Agent 请求比普通聊天更复杂。
 如果 Agent 每一步都重新发送全部历史,会反复产生大 prefill。
 
 如果能复用前缀、压缩上下文、减少无关 token,服务成本会显著下降。
+
+Agent 的请求生命周期也更不均匀。一次用户任务可能产生多个短模型调用、几个长工具等待、一次长报告生成。连续批处理能提升模型服务吞吐,但端到端 Agent 延迟还要和工具并行、Loop 设计、上下文压缩一起优化。
 
 ## Prompt caching
 

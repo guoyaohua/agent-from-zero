@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">投机解码接受与拒绝</title>
+  <desc id="desc">展示草稿模型提出多个 token,目标模型并行验证并接受前缀或拒绝后校正采样。</desc>
+  <rect width="860" height="360" fill="#fbfaf7"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#243042">草稿负责猜,目标模型负责验</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#243042">
+    <text x="62" y="86" font-weight="700">Draft tokens</text>
+    <rect x="60" y="104" width="92" height="50" rx="7" fill="#dbeafe" stroke="#2563eb"/><text x="86" y="134">t1</text>
+    <rect x="164" y="104" width="92" height="50" rx="7" fill="#dbeafe" stroke="#2563eb"/><text x="190" y="134">t2</text>
+    <rect x="268" y="104" width="92" height="50" rx="7" fill="#dbeafe" stroke="#2563eb"/><text x="294" y="134">t3</text>
+    <rect x="372" y="104" width="92" height="50" rx="7" fill="#dbeafe" stroke="#2563eb"/><text x="398" y="134">t4</text>
+    <path d="M486 129 H566" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="566" y="86" width="230" height="86" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <text x="606" y="120" font-weight="700">Target verifies in parallel</text><text x="602" y="146">accept prefix, correct at rejection</text>
+    <text x="62" y="222" font-weight="700">Result</text>
+    <rect x="60" y="240" width="92" height="50" rx="7" fill="#dcfce7" stroke="#16a34a"/><text x="82" y="270">accept</text>
+    <rect x="164" y="240" width="92" height="50" rx="7" fill="#dcfce7" stroke="#16a34a"/><text x="186" y="270">accept</text>
+    <rect x="268" y="240" width="92" height="50" rx="7" fill="#fee2e2" stroke="#dc2626"/><text x="292" y="270">reject</text>
+    <rect x="372" y="240" width="160" height="50" rx="7" fill="#ede9fe" stroke="#7c3aed"/><text x="404" y="270">sample correction</text>
+    <text x="584" y="270" fill="#64748b">接受率越高,大模型一次验证推进越远</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

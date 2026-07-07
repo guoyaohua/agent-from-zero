@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">长上下文工作台组织</title>
+  <desc id="desc">展示长上下文中全局约束、工作状态、证据索引、证据细节、最新观察和输出契约的分区组织。</desc>
+  <rect width="860" height="360" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1e293b">长上下文要分区,不是顺序堆料</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1e293b">
+    <rect x="44" y="70" width="772" height="242" rx="12" fill="#ffffff" stroke="#94a3b8"/>
+    <rect x="70" y="98" width="210" height="58" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="96" y="132" font-weight="700">Global frame</text>
+    <rect x="326" y="98" width="210" height="58" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="354" y="132" font-weight="700">Working state</text>
+    <rect x="582" y="98" width="210" height="58" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="616" y="132" font-weight="700">Evidence index</text>
+    <rect x="70" y="202" width="210" height="58" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="100" y="236" font-weight="700">Evidence details</text>
+    <rect x="326" y="202" width="210" height="58" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="356" y="236" font-weight="700">Recent observations</text>
+    <rect x="582" y="202" width="210" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7"/><text x="620" y="236" font-weight="700">Output contract</text>
+    <text x="106" y="334" fill="#64748b">RAG 决定放什么材料,长上下文负责容纳、比较和整合</text>
+  </g>
+</svg>

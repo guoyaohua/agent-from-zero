@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">Prefill Decode 与 KV Cache 增长</title>
+  <desc id="desc">展示 LLM 推理中 prefill 阶段建立 KV Cache,decode 阶段逐 token 读取并追加缓存。</desc>
+  <rect width="860" height="360" fill="#fffdf8"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#273449">首 token 慢和后续 token 慢,瓶颈不同</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#273449">
+    <rect x="46" y="80" width="260" height="96" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="78" y="112" font-weight="700">Prefill</text><text x="78" y="138">处理完整 prompt</text><text x="78" y="160">建立初始 KV Cache</text>
+    <rect x="356" y="80" width="448" height="96" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="386" y="112" font-weight="700">Decode</text><text x="386" y="138">每步生成 1 token</text><text x="386" y="160">读取历史 KV,追加新 K/V</text>
+    <path d="M306 128 H356" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="90" y="230" width="110" height="34" fill="#bfdbfe"/><rect x="200" y="230" width="110" height="34" fill="#bfdbfe"/><rect x="310" y="230" width="110" height="34" fill="#bbf7d0"/><rect x="420" y="230" width="110" height="34" fill="#bbf7d0"/><rect x="530" y="230" width="110" height="34" fill="#bbf7d0"/>
+    <text x="118" y="253">prompt KV</text><text x="338" y="253">+ token</text><text x="448" y="253">+ token</text><text x="558" y="253">+ token</text>
+    <text x="110" y="318" fill="#64748b">TTFT 主要看 prefill 和排队; TPOT 主要看 decode、KV 读取和批处理</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>
