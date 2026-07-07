@@ -468,6 +468,14 @@ def run_agent(user_goal, tools, limits):
 
 Agent 的智能不只是“继续努力”,而是知道如何根据反馈改变策略。
 
+![Agent Loop 信息增量账本](../assets/part2-agent-loop-information-gain-ledger.svg)
+
+可以把每轮循环当成一次信息增量审计。`Observe` 是否带来新事实、artifact 或错误类型;`Update` 是否让 state diff 发生有意义变化;`Decide` 是否让下一步更具体;预算消耗是否换来了证据或收敛。只要这些问题连续给不出正答案,Loop 就已经从“自主”变成了“空转”。
+
+这个账本能帮你区分两类多轮任务。第一类是有效探索:每轮都缩小不确定性,哪怕最终结论是证据不足。第二类是无效循环:模型反复改写同一个计划,调用相似工具,读到相似观察,但 state 没有推进。工程上应该允许第一类继续,让第二类停止、降级或请求用户。
+
+所以停止条件不只是 `max_steps`。更好的停止条件是:没有新 observation、没有 state delta、没有更具体 decision、预算消耗不再带来质量提升。Loop 的成熟标志,是它会用证据证明自己值得继续运行。
+
 ## Agent loop 和 Workflow 的区别
 
 Workflow 的路径通常由代码固定:

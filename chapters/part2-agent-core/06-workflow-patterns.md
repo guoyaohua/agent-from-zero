@@ -391,6 +391,14 @@ Workflow 管大边界,Agent 处理不确定节点。
 
 不要一上来就做最复杂的多 Agent 编排。先用最简单、最可控的模式覆盖主要路径。
 
+![工作流模式适配账本](../assets/part2-workflow-pattern-fit-ledger.svg)
+
+选择工作流模式时,不要先问“哪个模式更高级”,而要先问“不确定性在哪里”。如果不确定性在每一步输出质量,Prompt Chaining 加校验门就够了;如果不确定性在输入类型,Routing 更合适;如果不确定性来自多个独立资料源,Parallelization 能把信息收集并行化;如果子任务会动态变化,才需要 Orchestrator-Workers;如果质量需要反复改进,Evaluator-Optimizer 更合适。
+
+每种模式都应该有自己的验证方式。Chaining 看每步 schema 和 gate;Routing 看路由置信度和 fallback;Parallelization 看合并质量和冲突检测;Orchestrator-Workers 看 handoff、状态和子任务完成率;Evaluator-Optimizer 看 rubric、最大迭代次数和质量增量。
+
+模式选择错了,系统会出现很典型的症状:本来固定路径却做成 Agent,成本和不稳定性都会上升;本来需要探索却硬做 Chaining,异常一来就卡住;本来只是质量迭代,却拆成多 Agent,复杂度会盖过收益。工作流设计的核心,是把不确定性放在系统最容易观察和控制的位置。
+
 ## 工作流节点设计
 
 每个节点都应该有明确契约:

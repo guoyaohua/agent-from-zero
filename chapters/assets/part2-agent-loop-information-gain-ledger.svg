@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Loop 信息增量账本</title>
+  <desc id="desc">展示每一轮 Agent 循环如何用新观察、新状态、新决策、预算和停止条件判断是否继续。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">Agent Loop 每轮都要产生信息增量</text>
+  <text class="sub" x="54" y="80">继续循环的理由不是“还没想完”,而是出现了新观察、新状态或新可执行决策。</text>
+  <g transform="translate(82 126)">
+    <rect class="cell" x="0" y="0" width="956" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">账本项</text><text x="220" y="38">继续信号</text><text x="504" y="38">空转信号</text><text x="754" y="38">动作</text></g>
+    <rect class="ok" x="0" y="58" width="956" height="48"/><text class="h" x="24" y="88">Observation</text><text class="t" x="220" y="88">工具返回新事实</text><text class="t" x="504" y="88">重复观察或无 artifact</text><text class="t" x="754" y="88">继续或换工具</text>
+    <rect class="blue" x="0" y="112" width="956" height="48"/><text class="h" x="24" y="142">State</text><text class="t" x="220" y="142">open issue 减少</text><text class="t" x="504" y="142">state diff 几乎不变</text><text class="t" x="754" y="142">触发 no_progress</text>
+    <rect class="warn" x="0" y="166" width="956" height="48"/><text class="h" x="24" y="196">Decision</text><text class="t" x="220" y="196">下一步更具体</text><text class="t" x="504" y="196">计划反复重写</text><text class="t" x="754" y="196">重规划或求助</text>
+    <rect class="bad" x="0" y="220" width="956" height="48"/><text class="h" x="24" y="250">Budget</text><text class="t" x="220" y="250">成本换来证据</text><text class="t" x="504" y="250">消耗增加但质量不变</text><text class="t" x="754" y="250">降级、停止、交还</text>
+  </g>
+  <rect x="198" y="432" width="724" height="42" rx="8" fill="#172033"/><text x="264" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">没有信息增量的循环不是智能,只是昂贵的重复。</text>
+</svg>

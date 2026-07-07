@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">ReAct 观察质量账本</title>
+  <desc id="desc">展示 ReAct 轨迹中观察是否可验证、可行动、可信、能改变后续决策。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">ReAct 的上限由 Observation 决定</text>
+  <text class="sub" x="54" y="80">一个好观察不是“有返回文本”,而是可验证、可行动、可信且能改变下一步。</text>
+  <g transform="translate(82 126)">
+    <rect class="cell" x="0" y="0" width="956" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">维度</text><text x="206" y="38">好观察</text><text x="480" y="38">坏观察</text><text x="742" y="38">工程修复</text></g>
+    <rect class="ok" x="0" y="58" width="956" height="48"/><text class="h" x="24" y="88">可验证</text><text class="t" x="206" y="88">有 source/artifact/id</text><text class="t" x="480" y="88">只是一段摘要</text><text class="t" x="742" y="88">保存 artifact ref</text>
+    <rect class="blue" x="0" y="112" width="956" height="48"/><text class="h" x="24" y="142">可行动</text><text class="t" x="206" y="142">给出 next options</text><text class="t" x="480" y="142">无法改变计划</text><text class="t" x="742" y="142">结构化 observation</text>
+    <rect class="warn" x="0" y="166" width="956" height="48"/><text class="h" x="24" y="196">可信度</text><text class="t" x="206" y="196">trust/source 分明</text><text class="t" x="480" y="196">外部内容像指令</text><text class="t" x="742" y="196">隔离 evidence/instruction</text>
+    <rect class="bad" x="0" y="220" width="956" height="48"/><text class="h" x="24" y="250">影响</text><text class="t" x="206" y="250">更新 state 或停止</text><text class="t" x="480" y="250">观察后仍原地想</text><text class="t" x="742" y="250">进展不变量</text>
+  </g>
+  <rect x="184" y="432" width="752" height="42" rx="8" fill="#172033"/><text x="246" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">ReAct 不是 Thought 多写几行,而是 Observation 真正约束下一步。</text>
+</svg>

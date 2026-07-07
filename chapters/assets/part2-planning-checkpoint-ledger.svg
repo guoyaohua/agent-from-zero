@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Planning 检查点账本</title>
+  <desc id="desc">展示计划如何用目标版本、假设、依赖、验证和重规划触发器保持可执行。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">计划不是承诺路线,而是可检查的状态对象</text>
+  <text class="sub" x="54" y="80">好的计划知道目标版本、依赖、假设、验证方式和什么时候重规划。</text>
+  <g transform="translate(82 126)">
+    <rect class="cell" x="0" y="0" width="956" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">字段</text><text x="212" y="38">要记录什么</text><text x="514" y="38">缺失后果</text><text x="756" y="38">触发动作</text></g>
+    <rect class="ok" x="0" y="58" width="956" height="48"/><text class="h" x="24" y="88">目标版本</text><text class="t" x="212" y="88">goal 和 done_when</text><text class="t" x="514" y="88">目标漂移</text><text class="t" x="756" y="88">重新确认</text>
+    <rect class="blue" x="0" y="112" width="956" height="48"/><text class="h" x="24" y="142">依赖</text><text class="t" x="212" y="142">先后关系和阻塞项</text><text class="t" x="514" y="142">乱序执行</text><text class="t" x="756" y="142">等待或拆分</text>
+    <rect class="warn" x="0" y="166" width="956" height="48"/><text class="h" x="24" y="196">假设</text><text class="t" x="212" y="196">未验证前提</text><text class="t" x="514" y="196">把猜测当事实</text><text class="t" x="756" y="196">验证或降权</text>
+    <rect class="bad" x="0" y="220" width="956" height="48"/><text class="h" x="24" y="250">验证</text><text class="t" x="212" y="250">每阶段验收标准</text><text class="t" x="514" y="250">完成不可判定</text><text class="t" x="756" y="250">checkpoint/replan</text>
+  </g>
+  <rect x="194" y="432" width="732" height="42" rx="8" fill="#172033"/><text x="258" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">计划真正的价值不是预测未来,而是让偏离未来时能被发现。</text>
+</svg>

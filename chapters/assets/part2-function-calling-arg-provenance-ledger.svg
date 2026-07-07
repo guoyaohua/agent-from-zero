@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Function Calling 参数来源账本</title>
+  <desc id="desc">展示工具参数从用户、可信工具、外部资料或模型推断而来时,应采用不同执行策略。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">工具参数正确不只看类型,还要看来源</text>
+  <text class="sub" x="54" y="80">同一个字段来自用户、可信系统、外部网页或模型补全,风险完全不同。</text>
+  <g transform="translate(78 126)">
+    <rect class="cell" x="0" y="0" width="964" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">参数来源</text><text x="230" y="38">可用场景</text><text x="506" y="38">风险</text><text x="756" y="38">执行策略</text></g>
+    <rect class="ok" x="0" y="58" width="964" height="48"/><text class="h" x="24" y="88">可信工具结果</text><text class="t" x="230" y="88">订单金额、用户权限</text><text class="t" x="506" y="88">工具过期或错误</text><text class="t" x="756" y="88">校验后可执行</text>
+    <rect class="blue" x="0" y="112" width="964" height="48"/><text class="h" x="24" y="142">用户明确输入</text><text class="t" x="230" y="142">目标、确认、收件人</text><text class="t" x="506" y="142">权限不足或误输入</text><text class="t" x="756" y="142">结合权限和确认</text>
+    <rect class="warn" x="0" y="166" width="964" height="48"/><text class="h" x="24" y="196">外部资料</text><text class="t" x="230" y="196">引用、比较、摘要</text><text class="t" x="506" y="196">Prompt injection</text><text class="t" x="756" y="196">不能驱动高风险工具</text>
+    <rect class="bad" x="0" y="220" width="964" height="48"/><text class="h" x="24" y="250">模型补全</text><text class="t" x="230" y="250">低风险草稿</text><text class="t" x="506" y="250">编造关键参数</text><text class="t" x="756" y="250">确认或拒绝执行</text>
+  </g>
+  <rect x="182" y="432" width="756" height="42" rx="8" fill="#172033"/><text x="248" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">Schema 保证形状,provenance 决定能不能执行。</text>
+</svg>

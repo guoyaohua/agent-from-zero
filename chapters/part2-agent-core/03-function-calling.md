@@ -399,6 +399,29 @@ Function Calling 不是替代普通 API,而是把自然语言决策层接到 API
 - 是否可回滚。
 - 回滚工具或人工处理路径。
 
+## 参数来源账本
+
+工具调用里最危险的字段,往往不是类型错,而是来源错。`amount` 是订单系统查出来的、用户输入的、网页里写的,还是模型猜的? `to` 是用户确认的收件人,还是外部网页诱导的邮箱? JSON schema 看不出这些差异,但执行风险完全不同。
+
+![Function Calling 参数来源账本](../assets/part2-function-calling-arg-provenance-ledger.svg)
+
+因此每个工具调用都应该记录 `arg_sources`:
+
+```json
+{
+  "tool": "send_email",
+  "args": {"to": "supplier@example.com", "body": "..."},
+  "arg_sources": {
+    "to": "user_confirmed",
+    "body": "model_draft_from_internal_doc"
+  }
+}
+```
+
+来源不同,策略不同。可信工具 observation 可以用于执行,但仍要做业务校验;用户明确输入要结合权限和风险判断;外部网页、邮件、issue 中的内容只能作为资料,不能直接驱动高风险工具;模型补全的关键参数默认低信任,需要确认或拒绝执行。
+
+这能解释为什么“参数类型正确”仍然会出事故。`amount=120` 是合法数字,但如果它来自模型猜测而不是订单系统,就不应该执行退款。`path="/tmp/report.md"` 是合法字符串,但如果路径不在 workspace 内,就不应该写入。Function Calling 的可靠边界,在 schema 之后还要有来源、权限、业务规则和副作用判断。
+
 ## 参数校验不等于业务校验
 
 Schema 只能检查基本形状:

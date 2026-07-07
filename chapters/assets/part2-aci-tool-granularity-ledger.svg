@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">ACI 工具粒度账本</title>
+  <desc id="desc">展示 Agent 工具粒度如何在语义清晰、动作可控、参数负担和错误恢复之间取平衡。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">好 ACI 不是最通用,而是最少让模型猜</text>
+  <text class="sub" x="54" y="80">工具粒度要让动作有业务语义,参数有来源,错误可恢复,副作用可控制。</text>
+  <g transform="translate(92 138)">
+    <rect class="bad" x="0" y="0" width="250" height="122" rx="8"/><text class="h" x="92" y="34">太细</text><text class="t" x="32" y="64">模型要编排大量底层步骤</text><text class="t" x="32" y="88">错误恢复难,调用次数高</text><path class="arrow" d="M250 61 H314"/>
+    <rect class="ok" x="334" y="0" width="250" height="122" rx="8"/><text class="h" x="426" y="34">合适</text><text class="t" x="366" y="64">一个工具对应一个业务动作</text><text class="t" x="366" y="88">输入少,输出可验证</text><path class="arrow" d="M584 61 H648"/>
+    <rect class="bad" x="668" y="0" width="250" height="122" rx="8"/><text class="h" x="760" y="34">太粗</text><text class="t" x="700" y="64">工具内部隐藏太多决策</text><text class="t" x="700" y="88">副作用和失败不可解释</text>
+  </g>
+  <g transform="translate(192 318)">
+    <rect class="warn" x="0" y="0" width="736" height="78" rx="8"/><text class="h" x="286" y="30">粒度评审问题</text><text class="t" x="56" y="56">模型是否需要猜业务规则? 参数能否从可信来源得到? 返回是否能驱动下一步? 失败能否分类恢复?</text>
+  </g>
+  <rect x="198" y="438" width="724" height="38" rx="8" fill="#172033"/><text x="264" y="462" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">ACI 的目标不是暴露所有能力,而是暴露 Agent 能可靠使用的能力。</text>
+</svg>
