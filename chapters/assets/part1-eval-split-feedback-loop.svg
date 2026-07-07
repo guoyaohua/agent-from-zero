@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">训练集、验证集、测试集的边界</title>
+  <desc id="desc">展示训练集用于更新参数,验证集用于调参和选择模型,测试集只用于最终评估,强调测试集泄漏会让泛化结论失真。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+      .danger { fill: none; stroke: #b13c52; stroke-width: 2.2; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">数据划分的意义,是防止模型和人一起“偷看答案”</text>
+  <text class="sub" x="48" y="74">训练、调参和最终评估必须分工清楚,否则测试分数会变成乐观幻觉。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="104" y="162" width="210" height="104" rx="8" />
+  <text class="label" x="164" y="194">训练集</text>
+  <text class="small" x="136" y="222">计算 loss 和梯度</text>
+  <text class="small" x="136" y="244">直接更新参数</text>
+  <path class="arrow" d="M314 214 H402" />
+  <rect class="orange" x="402" y="162" width="210" height="104" rx="8" />
+  <text class="label" x="462" y="194">模型参数</text>
+  <text class="small" x="434" y="222">被训练集改变</text>
+  <text class="small" x="434" y="244">被验证集选择</text>
+  <path class="arrow" d="M507 266 V318 H270 V266" />
+  <text class="small" x="322" y="310">多轮训练反馈</text>
+
+  <rect class="green" x="696" y="142" width="230" height="88" rx="8" />
+  <text class="label" x="758" y="174">验证集</text>
+  <text class="small" x="728" y="202">调学习率、Prompt、模型选择</text>
+  <path class="arrow" d="M612 194 H696" />
+
+  <rect class="red" x="696" y="276" width="230" height="88" rx="8" />
+  <text class="label" x="764" y="308">测试集</text>
+  <text class="small" x="728" y="336">只在最终版本评估</text>
+  <path class="arrow" d="M612 230 C660 246 668 292 696 320" />
+  <path class="danger" d="M926 320 C990 320 994 176 926 176" />
+  <text class="small" x="936" y="252">泄漏会污染结论</text>
+
+  <rect class="panel" x="162" y="394" width="796" height="34" rx="8" />
+  <text class="text" x="190" y="416">Agent 评估也一样: 开发集可反复调,保留集要少碰,线上失败样本再进入回归集。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 泛化评估不是仪式,而是在防止系统只学会你反复看过的题目。</text>
+</svg>

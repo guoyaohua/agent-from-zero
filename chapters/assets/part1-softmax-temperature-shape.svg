@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Temperature 如何改变 Softmax 分布形状</title>
+  <desc id="desc">对比低温、默认温度和高温下同一组 logits 经过 Softmax 后的概率分布,说明温度改变采样多样性但不增加模型知识。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .bar1 { fill: #355c9a; }
+      .bar2 { fill: #2d7d80; }
+      .bar3 { fill: #b05c37; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">Temperature 调的是“分布形状”,不是模型能力</text>
+  <text class="sub" x="48" y="74">同一组 logits 在不同温度下会变尖或变平,从而改变采样时低概率候选出现的机会。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="92" y="150" width="288" height="226" rx="8" />
+  <text class="label" x="200" y="180">T&lt;1</text>
+  <text class="small" x="158" y="204">更尖锐,更保守</text>
+  <rect class="bar1" x="132" y="240" width="56" height="92" rx="4" />
+  <rect class="bar2" x="214" y="286" width="56" height="46" rx="4" />
+  <rect class="bar3" x="296" y="310" width="56" height="22" rx="4" />
+  <text class="small" x="136" y="350">A</text><text class="small" x="218" y="350">B</text><text class="small" x="300" y="350">C</text>
+
+  <rect class="green" x="416" y="150" width="288" height="226" rx="8" />
+  <text class="label" x="524" y="180">T=1</text>
+  <text class="small" x="484" y="204">原始分布形状</text>
+  <rect class="bar1" x="456" y="252" width="56" height="80" rx="4" />
+  <rect class="bar2" x="538" y="282" width="56" height="50" rx="4" />
+  <rect class="bar3" x="620" y="304" width="56" height="28" rx="4" />
+  <text class="small" x="460" y="350">A</text><text class="small" x="542" y="350">B</text><text class="small" x="624" y="350">C</text>
+
+  <rect class="orange" x="740" y="150" width="288" height="226" rx="8" />
+  <text class="label" x="848" y="180">T&gt;1</text>
+  <text class="small" x="806" y="204">更平坦,更多样</text>
+  <rect class="bar1" x="780" y="270" width="56" height="62" rx="4" />
+  <rect class="bar2" x="862" y="284" width="56" height="48" rx="4" />
+  <rect class="bar3" x="944" y="294" width="56" height="38" rx="4" />
+  <text class="small" x="784" y="350">A</text><text class="small" x="866" y="350">B</text><text class="small" x="948" y="350">C</text>
+
+  <rect class="panel" x="148" y="396" width="824" height="34" rx="8" />
+  <text class="text" x="176" y="418">温度越高,尾部 token 越容易被采到;温度越低,最高 logit 更容易主导输出。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 代码、工具调用偏低温;创意写作可适当升温,但事实性不能靠升温解决。</text>
+</svg>

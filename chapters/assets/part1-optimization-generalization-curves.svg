@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">优化下降不等于泛化变好</title>
+  <desc id="desc">展示训练误差持续下降时,验证误差可能先下降后上升,说明过拟合以及为什么要用验证集和早停观察泛化。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .axis { stroke: #8b98aa; stroke-width: 2; }
+      .grid { stroke: #d8e0eb; stroke-width: 1; }
+      .train { fill: none; stroke: #355c9a; stroke-width: 4; }
+      .val { fill: none; stroke: #b13c52; stroke-width: 4; }
+      .dash { fill: none; stroke: #2d7d80; stroke-width: 2.5; stroke-dasharray: 6 6; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">训练损失下降只是优化成功,验证曲线才暴露泛化风险</text>
+  <text class="sub" x="48" y="74">模型可能越来越会拟合训练集,同时越来越不适合真实任务分布。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <line class="axis" x1="150" y1="362" x2="760" y2="362" />
+  <line class="axis" x1="150" y1="362" x2="150" y2="150" />
+  <line class="grid" x1="150" y1="300" x2="760" y2="300" />
+  <line class="grid" x1="150" y1="238" x2="760" y2="238" />
+  <line class="grid" x1="150" y1="176" x2="760" y2="176" />
+  <text class="small" x="384" y="392">训练 step</text>
+  <text class="small" x="94" y="160">误差/损失</text>
+  <path class="train" d="M160 176 C260 208 330 250 420 288 S610 338 742 350" />
+  <path class="val" d="M160 218 C260 244 342 288 430 302 C520 316 620 292 742 238" />
+  <line class="dash" x1="438" y1="138" x2="438" y2="368" />
+  <text class="label" x="470" y="168">最佳验证点</text>
+  <text class="small" x="470" y="190">继续训练可能开始过拟合</text>
+  <rect class="green" x="812" y="176" width="180" height="52" rx="8" />
+  <text class="small" x="842" y="208">训练曲线: 持续下降</text>
+  <rect class="red" x="812" y="252" width="180" height="52" rx="8" />
+  <text class="small" x="842" y="284">验证曲线: 先降后升</text>
+  <rect class="panel" x="198" y="404" width="724" height="28" rx="8" />
+  <text class="text" x="226" y="424">工程判断: 只盯训练 loss 会错过过拟合、数据泄漏和真实分布偏移。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 优化回答“训练集上是否更好”,泛化回答“没见过的数据上是否仍然更好”。</text>
+</svg>

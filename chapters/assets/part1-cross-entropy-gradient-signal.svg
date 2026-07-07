@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Softmax 加交叉熵的梯度信号</title>
+  <desc id="desc">展示预测概率与真实标签的差 p-y 如何成为 logits 的梯度,正确类别概率低会被向上推,错误类别概率高会被向下压。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .barP { fill: #355c9a; }
+      .barY { fill: #2d7d80; }
+      .down { fill: #b13c52; }
+      .up { fill: #2d7d80; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrowUp { fill: none; stroke: #2d7d80; stroke-width: 3; marker-end: url(#greenArrow); }
+      .arrowDown { fill: none; stroke: #b13c52; stroke-width: 3; marker-end: url(#redArrow); }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">交叉熵给 logits 的学习信号非常直接: p - y</text>
+  <text class="sub" x="48" y="74">模型预测概率和目标分布之间的差,决定每个候选分数该升还是该降。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="92" y="152" width="260" height="212" rx="8" />
+  <text class="label" x="170" y="182">预测 p</text>
+  <rect class="barP" x="130" y="248" width="46" height="72" rx="4" />
+  <rect class="barP" x="206" y="210" width="46" height="110" rx="4" />
+  <rect class="barP" x="282" y="292" width="46" height="28" rx="4" />
+  <text class="small" x="132" y="340">猫</text><text class="small" x="208" y="340">狗</text><text class="small" x="284" y="340">车</text>
+  <text class="small" x="130" y="390">真实标签: 猫</text>
+  <path class="arrow" d="M352 258 H430" />
+
+  <rect class="green" x="430" y="152" width="260" height="212" rx="8" />
+  <text class="label" x="508" y="182">目标 y</text>
+  <rect class="barY" x="468" y="190" width="46" height="130" rx="4" />
+  <rect class="barY" x="544" y="318" width="46" height="2" rx="1" />
+  <rect class="barY" x="620" y="318" width="46" height="2" rx="1" />
+  <text class="small" x="470" y="340">猫</text><text class="small" x="546" y="340">狗</text><text class="small" x="622" y="340">车</text>
+  <text class="small" x="468" y="390">one-hot: [1,0,0]</text>
+  <path class="arrow" d="M690 258 H768" />
+
+  <rect class="orange" x="768" y="152" width="260" height="212" rx="8" />
+  <text class="label" x="842" y="182">梯度 p - y</text>
+  <path class="arrowUp" d="M820 308 V226" />
+  <path class="arrowDown" d="M898 226 V308" />
+  <path class="arrowDown" d="M974 264 V308" />
+  <text class="small" x="792" y="340">正确类: logit 上升</text>
+  <text class="small" x="792" y="364">高概率错类: logit 下降更多</text>
+
+  <rect class="panel" x="132" y="404" width="856" height="28" rx="8" />
+  <text class="text" x="160" y="424">这就是为什么交叉熵不只告诉模型“错了”,还告诉它每个候选该往哪个方向改。</text>
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 正确 token 概率越低,上推越强;错误 token 概率越高,下压越强。</text>
+</svg>

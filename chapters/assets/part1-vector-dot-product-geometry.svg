@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">点积、夹角与相似度</title>
+  <desc id="desc">展示两个向量的夹角如何影响点积和余弦相似度,并说明 Attention 与向量检索为什么常用向量方向判断相关性。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 27px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .axis { stroke: #cbd5e1; stroke-width: 1.4; }
+      .vecA { fill: none; stroke: #355c9a; stroke-width: 4; marker-end: url(#blueArrow); }
+      .vecB { fill: none; stroke: #2d7d80; stroke-width: 4; marker-end: url(#greenArrow); }
+      .arc { fill: none; stroke: #b05c37; stroke-width: 2.5; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#355c9a" /></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="560" />
+  <text class="title" x="48" y="48">点积把“方向是否接近”变成一个可训练、可排序的分数</text>
+  <text class="sub" x="48" y="74">长度会影响点积,余弦相似度会把长度除掉;二者都在高维空间中服务于“相关性判断”。</text>
+  <rect class="panel" x="48" y="104" width="1024" height="340" rx="8" />
+
+  <rect class="blue" x="88" y="142" width="430" height="246" rx="8" />
+  <text class="label" x="226" y="174">几何直觉</text>
+  <line class="axis" x1="150" y1="330" x2="450" y2="330" />
+  <line class="axis" x1="150" y1="330" x2="150" y2="170" />
+  <path class="vecA" d="M150 330 L395 230" />
+  <path class="vecB" d="M150 330 L270 190" />
+  <path class="arc" d="M205 308 C218 282 235 263 258 248" />
+  <text class="label" x="406" y="232">x</text>
+  <text class="label" x="274" y="190">y</text>
+  <text class="small" x="224" y="286">theta 小: 点积大</text>
+  <text class="small" x="170" y="360">x . y = ||x|| ||y|| cos(theta)</text>
+
+  <path class="arrow" d="M518 266 H602" />
+
+  <rect class="green" x="602" y="142" width="430" height="246" rx="8" />
+  <text class="label" x="738" y="174">模型里的用法</text>
+  <rect class="orange" x="642" y="204" width="154" height="64" rx="8" />
+  <text class="label" x="681" y="232">Attention</text>
+  <text class="small" x="668" y="254">Query . Key</text>
+  <rect class="red" x="838" y="204" width="154" height="64" rx="8" />
+  <text class="label" x="878" y="232">RAG</text>
+  <text class="small" x="862" y="254">question . chunk</text>
+  <rect class="panel" x="642" y="304" width="350" height="50" rx="8" />
+  <text class="text" x="666" y="326">高分不是“真理”,只是当前空间中的相关性信号。</text>
+  <text class="text" x="666" y="346">事实性仍需要来源、校验和任务评估。</text>
+
+  <rect class="panel" x="72" y="470" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="496">读图方式: 向量空间把语义关系变成几何关系,点积和余弦把几何关系变成可排序的数字。</text>
+</svg>
