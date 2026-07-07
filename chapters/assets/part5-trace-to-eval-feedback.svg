@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从线上 Trace 到回归评估样本</title>
+  <desc id="desc">展示 Agent 线上失败如何通过 trace、归因、最小复现包和标签进入评估集,形成持续改进闭环。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.span{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.triage{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.eval{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.gate{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">可观测性的终点不是看日志,而是把失败变成回归资产</text>
+  <text class="sub" x="56" y="82">一次线上错误应该能被定位、复现、标注并进入下一次上线门禁。</text>
+  <rect class="span" x="70" y="162" width="200" height="130" rx="8"/><text class="head" x="132" y="196">线上 Trace</text><text class="text" x="108" y="230">context / tool / state</text><text class="text" x="108" y="258">artifact 引用</text>
+  <path class="arrow" d="M270 226 H346"/>
+  <rect class="triage" x="346" y="130" width="230" height="194" rx="8"/><text class="head" x="414" y="164">失败归因</text><text class="text" x="388" y="202">context?</text><text class="text" x="388" y="230">retrieval?</text><text class="text" x="388" y="258">tool/state/policy?</text><text class="text" x="388" y="286">severity + tag</text>
+  <path class="arrow" d="M576 226 H652"/>
+  <rect class="eval" x="652" y="138" width="230" height="178" rx="8"/><text class="head" x="720" y="172">最小复现包</text><text class="text" x="694" y="210">用户目标</text><text class="text" x="694" y="238">固定证据/工具 fixture</text><text class="text" x="694" y="266">期望行为 + must_not</text><text class="text" x="694" y="294">版本和随机种子</text>
+  <path class="arrow" d="M882 226 H948"/>
+  <rect class="gate" x="948" y="162" width="126" height="130" rx="8"/><text class="head" x="984" y="196">Eval</text><text class="text" x="978" y="230">回归集</text><text class="text" x="978" y="258">门禁</text>
+  <rect x="160" y="414" width="800" height="38" rx="8" fill="#172033"/><text x="252" y="438" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">没有 trace 的失败很难复现;不能复现的失败很难防止再次发生。</text>
+</svg>

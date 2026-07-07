@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt Injection 攻击链覆盖</title>
+  <desc id="desc">展示 Prompt Injection 防御需要覆盖来源标注、上下文隔离、工具策略、数据外流、记忆写入和 trace 六个链路点。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 11.8px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.block{fill:none;stroke:#2d7d80;stroke-width:2.2;stroke-dasharray:5 5}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">Prompt Injection 防御不是一个开关,而是一条链</text>
+  <text class="sub" x="56" y="82">红队样本应检查攻击链上每个防线是否生效,而不只是模型有没有拒绝。</text>
+  <rect class="bad" x="54" y="180" width="140" height="76" rx="8"/><text class="head" x="88" y="210">恶意内容</text><text class="text" x="82" y="234">网页/邮件/PDF</text>
+  <rect class="gate" x="234" y="154" width="132" height="128" rx="8"/><text class="head" x="266" y="184">来源标注</text><text class="text" x="266" y="212">trust=untrusted</text><text class="text" x="266" y="240">metadata 保留</text>
+  <rect class="gate" x="406" y="154" width="132" height="128" rx="8"/><text class="head" x="438" y="184">上下文隔离</text><text class="text" x="438" y="212">evidence 区</text><text class="text" x="438" y="240">非 instruction</text>
+  <rect class="gate" x="578" y="154" width="132" height="128" rx="8"/><text class="head" x="610" y="184">工具策略</text><text class="text" x="610" y="212">参数来源</text><text class="text" x="610" y="240">confirm</text>
+  <rect class="gate" x="750" y="154" width="132" height="128" rx="8"/><text class="head" x="782" y="184">数据流</text><text class="text" x="782" y="212">阻止外流</text><text class="text" x="782" y="240">脱敏</text>
+  <rect class="gate" x="922" y="154" width="132" height="128" rx="8"/><text class="head" x="954" y="184">记忆写入</text><text class="text" x="954" y="212">拒绝污染</text><text class="text" x="954" y="240">需可信来源</text>
+  <path class="arrow" d="M194 218 H234M366 218H406M538 218H578M710 218H750M882 218H922"/>
+  <rect class="ok" x="372" y="344" width="376" height="62" rx="8"/><text class="head" x="506" y="374">Trace coverage</text><text class="text" x="438" y="396">记录来源、taint、策略命中、拦截和最终输出</text>
+  <path class="block" d="M300 282 C370 326 458 344 560 344M816 282 C760 326 662 344 560 344"/>
+  <rect x="166" y="448" width="788" height="34" rx="8" fill="#172033"/><text x="252" y="470" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">链上任一环丢失 trust 标记,不可信内容就可能被升级成指令。</text>
+</svg>

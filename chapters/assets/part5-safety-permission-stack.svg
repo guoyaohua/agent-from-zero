@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 最小权限四层栈</title>
+  <desc id="desc">展示用户权限、Agent 权限、Session 权限和 Action 权限如何共同决定一次动作是否允许执行。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.layer1{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.layer2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.layer3{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.layer4{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.allow{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">用户有权限,不等于 Agent 本轮动作就有权限</text>
+  <text class="sub" x="56" y="82">真正执行前要叠加用户、角色、会话阶段和单次动作风险检查。</text>
+  <rect class="layer1" x="126" y="116" width="868" height="66" rx="8"/><text class="head" x="176" y="154">User permission</text><text class="text" x="398" y="154">用户本来能访问哪些数据和系统</text>
+  <rect class="layer2" x="186" y="204" width="748" height="66" rx="8"/><text class="head" x="236" y="242">Agent permission</text><text class="text" x="440" y="242">当前 Agent 角色被授予哪些工具</text>
+  <rect class="layer3" x="246" y="292" width="628" height="66" rx="8"/><text class="head" x="296" y="330">Session permission</text><text class="text" x="500" y="330">当前任务阶段临时开放什么</text>
+  <rect class="layer4" x="306" y="380" width="508" height="66" rx="8"/><text class="head" x="356" y="418">Action permission</text><text class="text" x="560" y="418">参数来源、风险、确认、幂等</text>
+  <path class="arrow" d="M560 182 V204M560 270V292M560 358V380"/>
+  <rect class="allow" x="842" y="380" width="170" height="66" rx="8"/><text class="head" x="884" y="410">Decision</text><text class="text" x="878" y="434">allow / confirm / block</text>
+  <path class="arrow" d="M814 413 H842"/>
+  <rect x="168" y="466" width="784" height="34" rx="8" fill="#172033"/><text x="250" y="488" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">权限要在 runtime 计算,不能由模型用自然语言自证安全。</text>
+</svg>
