@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手发布评估门禁</title>
+  <desc id="desc">展示一次研究助手改动如何依次经过 smoke、golden、safety、cost latency、人工抽检和发布记录门禁,失败样本进入修复队列。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5d6878}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#405066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#657184}.box{fill:#fff;stroke:#d9e1ec;stroke-width:1}.gate{fill:#e8f4ee}.safe{fill:#fff1e6}.cost{fill:#e8f0fb}.rel{fill:#efeaf6}.bad{fill:#fff;stroke:#c76b47;stroke-width:1.2}.line{stroke:#8794a6;stroke-width:1.5;marker-end:url(#arrow)}.fail{stroke:#c76b47;stroke-width:1.4;stroke-dasharray:5 4;marker-end:url(#warn)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8794a6"/></marker>
+    <marker id="warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c76b47"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="470"/>
+  <text class="title" x="52" y="46">发布门禁把“评估分数”变成“是否允许上线”的工程判断</text>
+  <text class="sub" x="52" y="72">每个 gate 都应该有通过条件、失败归因、负责人和回滚策略。</text>
+
+  <g transform="translate(58 112)">
+    <rect class="box" x="0" y="0" width="132" height="82" rx="8"/><text class="h" x="18" y="25">Candidate</text><text class="t" x="18" y="49">prompt / tool</text><text class="s" x="18" y="66">rag / model</text>
+    <rect class="box gate" x="170" y="0" width="132" height="82" rx="8"/><text class="h" x="188" y="25">Smoke</text><text class="t" x="188" y="49">schema 100%</text><text class="s" x="188" y="66">引用存在</text>
+    <rect class="box gate" x="340" y="0" width="132" height="82" rx="8"/><text class="h" x="358" y="25">Golden</text><text class="t" x="358" y="49">faithfulness</text><text class="s" x="358" y="66">不低 baseline</text>
+    <rect class="box safe" x="510" y="0" width="132" height="82" rx="8"/><text class="h" x="528" y="25">Safety</text><text class="t" x="528" y="49">注入失败率 0</text><text class="s" x="528" y="66">未确认写入 0</text>
+    <rect class="box cost" x="680" y="0" width="132" height="82" rx="8"/><text class="h" x="698" y="25">Cost / Latency</text><text class="t" x="698" y="49">P95 +20%</text><text class="s" x="698" y="66">cost +20%</text>
+    <rect class="box rel" x="850" y="0" width="132" height="82" rx="8"/><text class="h" x="868" y="25">Human Spot</text><text class="t" x="868" y="49">高风险抽检</text><text class="s" x="868" y="66">Judge 校准</text>
+    <rect class="box rel" x="1020" y="0" width="72" height="82" rx="8"/><text class="h" x="1038" y="25">Ship</text><text class="t" x="1038" y="49">note</text><text class="s" x="1038" y="66">owner</text>
+    <path class="line" d="M132 41H170"/><path class="line" d="M302 41H340"/><path class="line" d="M472 41H510"/><path class="line" d="M642 41H680"/><path class="line" d="M812 41H850"/><path class="line" d="M982 41H1020"/>
+  </g>
+
+  <g transform="translate(146 246)">
+    <rect class="bad" x="0" y="0" width="212" height="116" rx="8"/><text class="h" x="18" y="26">Gate 失败</text><text class="t" x="18" y="52">记录 sample_id</text><text class="t" x="18" y="74">trace_ref</text><text class="t" x="18" y="96">regression=true/false</text>
+    <rect class="box" x="260" y="0" width="212" height="116" rx="8"/><text class="h" x="278" y="26">失败归因</text><text class="t" x="278" y="52">prompt / context</text><text class="t" x="278" y="74">harness / loop</text><text class="t" x="278" y="96">rag / judge</text>
+    <rect class="box rel" x="520" y="0" width="212" height="116" rx="8"/><text class="h" x="538" y="26">修复队列</text><text class="t" x="538" y="52">owner</text><text class="t" x="538" y="74">next_action</text><text class="t" x="538" y="96">target gate</text>
+    <rect class="box gate" x="780" y="0" width="212" height="116" rx="8"/><text class="h" x="798" y="26">重新评估</text><text class="t" x="798" y="52">只修不删样本</text><text class="t" x="798" y="74">更新 baseline</text><text class="t" x="798" y="96">生成 release note</text>
+    <path class="fail" d="M212 58H260"/><path class="line" d="M472 58H520"/><path class="line" d="M732 58H780"/>
+  </g>
+</svg>

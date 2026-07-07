@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手笔记与 RAG 生命周期</title>
+  <desc id="desc">展示研究笔记如何从证据包生成草稿,经过来源校验、冲突检查和用户确认后写入 Notes,再进入 RAG 索引,并支持过期标注、更新和删除传播。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5d6878}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#405066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#657184}.box{fill:#fff;stroke:#d9e1ec;stroke-width:1}.evi{fill:#e8f4ee}.note{fill:#e8f0fb}.gate{fill:#fff1e6}.idx{fill:#efeaf6}.line{stroke:#8794a6;stroke-width:1.5;marker-end:url(#arrow)}.loop{stroke:#6f7e92;stroke-width:1.4;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8794a6"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="500"/>
+  <text class="title" x="52" y="46">笔记进入 RAG 前,必须先完成来源、冲突和删除治理</text>
+  <text class="sub" x="52" y="72">否则系统会把一次回答里的临时判断放大成未来所有任务的“知识”。</text>
+
+  <g transform="translate(58 112)">
+    <rect class="box evi" x="0" y="0" width="152" height="86" rx="8"/><text class="h" x="18" y="25">Evidence Pack</text><text class="t" x="18" y="49">quote + source</text><text class="s" x="18" y="67">claim_supported</text>
+    <rect class="box note" x="194" y="0" width="152" height="86" rx="8"/><text class="h" x="212" y="25">Note Draft</text><text class="t" x="212" y="49">claims + tags</text><text class="s" x="212" y="67">uncertainty</text>
+    <rect class="box gate" x="388" y="0" width="152" height="86" rx="8"/><text class="h" x="406" y="25">Source Gate</text><text class="t" x="406" y="49">source_ids exist</text><text class="s" x="406" y="67">quote 可回源</text>
+    <rect class="box gate" x="582" y="0" width="152" height="86" rx="8"/><text class="h" x="600" y="25">Conflict Gate</text><text class="t" x="600" y="49">重复 / 冲突</text><text class="s" x="600" y="67">stale policy</text>
+    <rect class="box gate" x="776" y="0" width="152" height="86" rx="8"/><text class="h" x="794" y="25">User Confirm</text><text class="t" x="794" y="49">preview diff</text><text class="s" x="794" y="67">scope + owner</text>
+    <rect class="box note" x="970" y="0" width="92" height="86" rx="8"/><text class="h" x="988" y="25">Notes</text><text class="t" x="988" y="49">commit</text><text class="s" x="988" y="67">version</text>
+    <path class="line" d="M152 43H194"/><path class="line" d="M346 43H388"/><path class="line" d="M540 43H582"/><path class="line" d="M734 43H776"/><path class="line" d="M928 43H970"/>
+  </g>
+
+  <g transform="translate(92 252)">
+    <rect class="box idx" x="0" y="0" width="208" height="112" rx="8"/><text class="h" x="18" y="26">进入 RAG Index</text><text class="t" x="18" y="52">source_type=user_note</text><text class="t" x="18" y="74">trust=user_confirmed</text><text class="t" x="18" y="96">version + source_ids</text>
+    <rect class="box gate" x="260" y="0" width="208" height="112" rx="8"/><text class="h" x="278" y="26">过期与冲突</text><text class="t" x="278" y="52">source updated</text><text class="t" x="278" y="74">new evidence conflicts</text><text class="t" x="278" y="96">降权或提示复核</text>
+    <rect class="box note" x="520" y="0" width="208" height="112" rx="8"/><text class="h" x="538" y="26">更新笔记</text><text class="t" x="538" y="52">保留历史版本</text><text class="t" x="538" y="74">记录修改来源</text><text class="t" x="538" y="96">重建相关 chunk</text>
+    <rect class="box gate" x="780" y="0" width="208" height="112" rx="8"/><text class="h" x="798" y="26">删除传播</text><text class="t" x="798" y="52">Notes 删除</text><text class="t" x="798" y="74">RAG tombstone</text><text class="t" x="798" y="96">未来检索不可见</text>
+    <path class="line" d="M208 56H260"/><path class="line" d="M468 56H520"/><path class="line" d="M728 56H780"/>
+    <path class="loop" d="M104 0C104 -38 912 -38 884 0"/>
+  </g>
+  <rect x="190" y="426" width="740" height="38" rx="8" fill="#172033"/>
+  <text x="286" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">能保存、能更新、能降权、能删除的笔记,才配成为下一轮 RAG 的资料源。</text>
+</svg>

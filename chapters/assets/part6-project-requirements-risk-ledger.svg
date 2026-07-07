@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手需求风险账本</title>
+  <desc id="desc">展示用户故事如何转成失败模式、可观测信号、评估样本和发布门禁,用于在需求冻结前发现 Agent 项目的风险缺口。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5a6678}.head{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#3f4c5f}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#627086}.cell{fill:#fff;stroke:#d9e1ec;stroke-width:1}.risk{fill:#fff1e6}.eval{fill:#e8f2ef}.gate{fill:#ece8f5}.line{stroke:#8b98aa;stroke-width:1.4;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#8b98aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="460"/>
+  <text class="title" x="52" y="46">需求冻结前,先把每个用户故事写成风险账本</text>
+  <text class="sub" x="52" y="72">Agent 需求不是“支持某功能”,而是“知道它会怎样错,在哪里能看见,用什么门禁拦住”。</text>
+
+  <g transform="translate(52 106)">
+    <text class="head" x="18" y="18">用户故事</text><text class="head" x="216" y="18">主要失败模式</text><text class="head" x="430" y="18">Trace 早期信号</text><text class="head" x="644" y="18">Eval 样本</text><text class="head" x="842" y="18">发布门禁</text>
+    <rect class="cell" x="0" y="34" width="174" height="62" rx="6"/><text class="text" x="16" y="59">快速解释</text><text class="small" x="16" y="78">概念 + 来源</text>
+    <rect class="cell risk" x="198" y="34" width="174" height="62" rx="6"/><text class="text" x="214" y="59">引用存在但不支持</text><text class="small" x="214" y="78">模型把相关当证据</text>
+    <rect class="cell" x="412" y="34" width="174" height="62" rx="6"/><text class="text" x="428" y="59">citation_check_fail</text><text class="small" x="428" y="78">unsupported claim 上升</text>
+    <rect class="cell eval" x="626" y="34" width="174" height="62" rx="6"/><text class="text" x="642" y="59">概念解释 + hard negative</text><text class="small" x="642" y="78">检查具体 claim 支持</text>
+    <rect class="cell gate" x="824" y="34" width="192" height="62" rx="6"/><text class="text" x="840" y="59">关键 claim 全有证据</text><text class="small" x="840" y="78">不支持则修正或拒答</text>
+
+    <rect class="cell" x="0" y="112" width="174" height="62" rx="6"/><text class="text" x="16" y="137">方案比较</text><text class="small" x="16" y="156">维度、取舍、限制</text>
+    <rect class="cell risk" x="198" y="112" width="174" height="62" rx="6"/><text class="text" x="214" y="137">只召回单边证据</text><text class="small" x="214" y="156">比较变成立场输出</text>
+    <rect class="cell" x="412" y="112" width="174" height="62" rx="6"/><text class="text" x="428" y="137">missing_dimension</text><text class="small" x="428" y="156">conflict_found 为空</text>
+    <rect class="cell eval" x="626" y="112" width="174" height="62" rx="6"/><text class="text" x="642" y="137">对照组 + 冲突资料</text><text class="small" x="642" y="156">要求说明适用边界</text>
+    <rect class="cell gate" x="824" y="112" width="192" height="62" rx="6"/><text class="text" x="840" y="137">比较维度不缺失</text><text class="small" x="840" y="156">冲突必须显式呈现</text>
+
+    <rect class="cell" x="0" y="190" width="174" height="62" rx="6"/><text class="text" x="16" y="215">阅读资料</text><text class="small" x="16" y="234">提取观点和限制</text>
+    <rect class="cell risk" x="198" y="190" width="174" height="62" rx="6"/><text class="text" x="214" y="215">作者观点被改写</text><text class="small" x="214" y="234">推断混入原文摘要</text>
+    <rect class="cell" x="412" y="190" width="174" height="62" rx="6"/><text class="text" x="428" y="215">quote_mismatch</text><text class="small" x="428" y="234">summary 无 quote 依据</text>
+    <rect class="cell eval" x="626" y="190" width="174" height="62" rx="6"/><text class="text" x="642" y="215">忠实摘要样本</text><text class="small" x="642" y="234">观点/推断分离评分</text>
+    <rect class="cell gate" x="824" y="190" width="192" height="62" rx="6"/><text class="text" x="840" y="215">原文观点可回源</text><text class="small" x="840" y="234">限制条件不可丢</text>
+
+    <rect class="cell" x="0" y="268" width="174" height="62" rx="6"/><text class="text" x="16" y="293">沉淀笔记</text><text class="small" x="16" y="312">保存长期知识</text>
+    <rect class="cell risk" x="198" y="268" width="174" height="62" rx="6"/><text class="text" x="214" y="293">临时结论污染记忆</text><text class="small" x="214" y="312">外部内容变成规则</text>
+    <rect class="cell" x="412" y="268" width="174" height="62" rx="6"/><text class="text" x="428" y="293">unconfirmed_write</text><text class="small" x="428" y="312">missing source id</text>
+    <rect class="cell eval" x="626" y="268" width="174" height="62" rx="6"/><text class="text" x="642" y="293">写入门 + 注入样本</text><text class="small" x="642" y="312">删除后不再召回</text>
+    <rect class="cell gate" x="824" y="268" width="192" height="62" rx="6"/><text class="text" x="840" y="293">未确认写入为 0</text><text class="small" x="840" y="312">来源缺失直接阻塞</text>
+    <path class="line" d="M174 65H198"/><path class="line" d="M372 65H412"/><path class="line" d="M586 65H626"/><path class="line" d="M800 65H824"/>
+  </g>
+</svg>

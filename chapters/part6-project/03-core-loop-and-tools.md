@@ -290,6 +290,53 @@ def reduce_state(state, action, observation):
 
 这样做的好处是所有状态变化都能被 trace 捕获,也方便回放一条失败路径。
 
+## Observation 契约
+
+很多 Agent Loop 看起来有状态机,实际仍然不稳定,根因是工具 observation 没有契约。工具返回一段自然语言,模型读完后自己决定“发生了什么”,这等于把状态更新又交回了模型。更稳的做法是:工具返回结构化 observation,由 reducer 判断这条 observation 是否能改变 state。
+
+![研究助手核心循环的 Observation 契约](../assets/part6-project-loop-observation-contract.svg)
+
+一个可用的 observation 至少包含这些字段:
+
+```json
+{
+  "ok": true,
+  "tool": "read_source",
+  "action_id": "research_001:read:rag_survey#12",
+  "artifact_ref": "artifact://source_text/rag_survey#12",
+  "summary": "Read section about retrieval misses and hallucination.",
+  "data": {
+    "chunk_id": "rag_survey#12",
+    "source_uri": "https://example.com/rag-survey",
+    "quote_count": 3,
+    "trust": "external"
+  },
+  "state_delta_hint": {
+    "add_source_text": "artifact://source_text/rag_survey#12"
+  },
+  "error": null
+}
+```
+
+注意 `state_delta_hint` 只是建议,不是最终状态变化。真正写入 state 的动作仍由 reducer 完成。Reducer 要检查 `action_id` 是否对应当前任务、artifact 是否存在、权限是否匹配、返回类型是否符合工具契约、外部资料是否被当作数据隔离。只有通过这些检查,observation 才能变成 `state_diff`。
+
+失败 observation 也要结构化:
+
+```json
+{
+  "ok": false,
+  "tool": "search_corpus",
+  "error": {
+    "code": "no_result",
+    "retryable": true,
+    "suggested_next": "rewrite_query",
+    "message": "No chunks matched filters source_type=paper language=zh."
+  }
+}
+```
+
+这会让错误恢复变得可控。`schema_error` 不调用真实工具,只让模型修参数;`permission_denied` 不自动重试,而是停止或请求授权;`no_result` 可以改写 query;`citation_unsupported` 回到回答修正或证据补充。Loop Engineering 的本质不是“多轮跑下去”,而是每一轮都能根据可验证的 observation 改变状态、收敛目标或明确停止。
+
 ## 处理证据不足
 
 研究助手必须会说“不足以判断”。

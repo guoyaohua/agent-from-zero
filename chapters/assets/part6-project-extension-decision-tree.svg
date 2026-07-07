@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手扩展决策树</title>
+  <desc id="desc">展示个人研究助手从 v1 扩展到更多资料源、工具、多 Agent、长时程任务和团队知识库前,应按瓶颈、风险、门禁和回滚条件做决策。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5d6878}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#405066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#657184}.box{fill:#fff;stroke:#d9e1ec;stroke-width:1}.q{fill:#e8f0fb}.ok{fill:#e8f4ee}.risk{fill:#fff1e6}.team{fill:#efeaf6}.line{stroke:#8794a6;stroke-width:1.4;marker-end:url(#arrow)}.no{stroke:#c76b47;stroke-width:1.4;stroke-dasharray:5 4;marker-end:url(#warn)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8794a6"/></marker>
+    <marker id="warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c76b47"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="500"/>
+  <text class="title" x="52" y="46">扩展不是下一步清单,而是一棵瓶颈驱动的决策树</text>
+  <text class="sub" x="52" y="72">先证明瓶颈在哪一层,再选择最小扩展,并带着 eval、trace、权限和回滚一起上线。</text>
+
+  <g transform="translate(466 104)">
+    <rect class="box q" x="0" y="0" width="188" height="78" rx="8"/><text class="h" x="18" y="25">v1 失败主要在哪?</text><text class="t" x="18" y="49">用 trace + eval 归因</text><text class="s" x="18" y="66">不要凭感觉扩展</text>
+  </g>
+
+  <g transform="translate(66 216)">
+    <rect class="box ok" x="0" y="0" width="180" height="96" rx="8"/><text class="h" x="18" y="25">资料覆盖不足</text><text class="t" x="18" y="50">加资料源 / MCP</text><text class="s" x="18" y="70">先补权限与入库 eval</text>
+    <rect class="box ok" x="218" y="0" width="180" height="96" rx="8"/><text class="h" x="236" y="25">检索排序差</text><text class="t" x="236" y="50">hybrid / rerank</text><text class="s" x="236" y="70">hard negatives 进回归</text>
+    <rect class="box risk" x="436" y="0" width="180" height="96" rx="8"/><text class="h" x="454" y="25">循环跑偏</text><text class="t" x="454" y="50">补 stop / budget</text><text class="s" x="454" y="70">先修 Loop,再加工具</text>
+    <rect class="box team" x="654" y="0" width="180" height="96" rx="8"/><text class="h" x="672" y="25">职责冲突</text><text class="t" x="672" y="50">考虑多 Agent</text><text class="s" x="672" y="70">生成与评审分离</text>
+    <rect class="box risk" x="872" y="0" width="180" height="96" rx="8"/><text class="h" x="890" y="25">需要外部写入</text><text class="t" x="890" y="50">preview/confirm</text><text class="s" x="890" y="70">rollback + audit 先行</text>
+  </g>
+
+  <path class="line" d="M560 182C560 204 156 194 156 216"/><path class="line" d="M560 182C560 204 374 194 374 216"/><path class="line" d="M560 182V216"/><path class="line" d="M560 182C560 204 810 194 810 216"/><path class="line" d="M560 182C560 204 1028 194 1028 216"/>
+
+  <g transform="translate(116 374)">
+    <rect class="box q" x="0" y="0" width="210" height="74" rx="8"/><text class="h" x="18" y="25">上线前共同门槛</text><text class="t" x="18" y="50">trace 可归因 + eval 覆盖</text>
+    <rect class="box q" x="258" y="0" width="210" height="74" rx="8"/><text class="h" x="276" y="25">控制面跟上了吗?</text><text class="t" x="276" y="50">权限、预算、确认、审计</text>
+    <rect class="box q" x="516" y="0" width="210" height="74" rx="8"/><text class="h" x="534" y="25">能回滚吗?</text><text class="t" x="534" y="50">feature flag + 版本索引</text>
+    <rect class="box risk" x="774" y="0" width="210" height="74" rx="8"/><text class="h" x="792" y="25">任何一个否</text><text class="t" x="792" y="50">降级为实验或暂缓</text>
+    <path class="line" d="M210 37H258"/><path class="line" d="M468 37H516"/><path class="no" d="M726 37H774"/>
+  </g>
+</svg>

@@ -287,6 +287,40 @@ P95 latency: 不高于 baseline + 20%
 
 这样开发时不会被大评估拖慢,发布前又不会只凭感觉。
 
+## 发布门禁
+
+回归门禁回答的是“这次改动有没有明显变坏”,发布门禁还要进一步回答“是否允许把这次改动交给真实用户”。两者不要混在一起。回归门禁偏自动化,发布门禁要把质量、安全、成本、人工抽检和发布记录合成一个决策。
+
+![研究助手发布评估门禁](../assets/part6-project-release-eval-gates.svg)
+
+一个实用的发布门禁可以这样定义:
+
+| Gate | 阻塞条件 | 失败后动作 |
+| --- | --- | --- |
+| Smoke | schema 错误、引用 ID 不存在、工具策略错误 | 修实现或工具契约,不进入大评估 |
+| Golden | faithfulness、completeness、citation support 低于 baseline | 用 trace 归因到 RAG/Context/Prompt/Harness |
+| Safety | prompt injection 成功、未确认写笔记、越权读取 | 阻塞发布,新增红队样本 |
+| Cost/Latency | cost 或 P95 latency 超过预算 | 限制检索轮数、压缩上下文或降级模型 |
+| Human Spot | 高风险样本人工认为不可接受 | 修 rubric 或修系统,不得用 Judge 分数覆盖人工结论 |
+| Release Note | 没有风险说明、回滚方式、owner | 不发布,补齐变更记录 |
+
+发布门禁必须记录失败样本,而不是只记录总分。尤其要区分两类失败:一类是 regression,也就是旧版本通过、新版本失败;另一类是 known gap,即旧版本也失败但这次仍未修。Regression 通常应该阻塞发布,known gap 可以接受,但必须写进 release note 和 backlog。
+
+Release note 不需要很长,但必须包含:
+
+```text
+Change: reranker-v2 + evidence pack trim
+Eval: golden 46/50 -> 47/50, citation support 91% -> 94%
+Regressions: none
+Known gaps: conflict_003 still misses stale-source warning
+Cost: +6%, P95 latency +4%
+Safety: injection set 100% blocked
+Rollback: switch RERANKER_VERSION=v1
+Owner: rag-runtime
+```
+
+这段记录看似朴素,但它会让 Agent 项目从“调 prompt 的手感工程”变成“可回滚的发布工程”。当线上用户反馈某个回答质量退化时,团队可以快速知道是哪次改动引入、当时评估覆盖了什么、是否有已知风险、如何回退。
+
 ## 线上反馈
 
 如果项目有真实用户,可以收集:

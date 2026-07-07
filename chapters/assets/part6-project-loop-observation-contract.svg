@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手核心循环的 Observation 契约</title>
+  <desc id="desc">展示模型决策、工具参数校验、工具执行、结构化观察、状态 reducer、trace 和下一步决策之间的闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5e6878}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#405066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#657184}.box{fill:#fff;stroke:#d9e1ec;stroke-width:1}.model{fill:#ece8f5}.tool{fill:#e8f4ee}.guard{fill:#fff1e6}.state{fill:#e8f0fb}.line{stroke:#8794a6;stroke-width:1.5;marker-end:url(#arrow)}.bad{stroke:#c76b47;stroke-width:1.4;stroke-dasharray:5 4;marker-end:url(#warn)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8794a6"/></marker>
+    <marker id="warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c76b47"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="470"/>
+  <text class="title" x="52" y="46">Loop 可靠性的核心,是 Observation 能被 reducer 安全消费</text>
+  <text class="sub" x="52" y="72">工具返回的不是一段文本,而是带类型、来源、错误、证据和状态建议的运行时事件。</text>
+
+  <g transform="translate(58 112)">
+    <rect class="box model" x="0" y="0" width="150" height="86" rx="8"/><text class="h" x="18" y="25">Decision</text><text class="t" x="18" y="49">tool + args</text><text class="s" x="18" y="67">reason_summary</text>
+    <rect class="box guard" x="188" y="0" width="150" height="86" rx="8"/><text class="h" x="206" y="25">Validate</text><text class="t" x="206" y="49">schema / policy</text><text class="s" x="206" y="67">budget / risk</text>
+    <rect class="box tool" x="376" y="0" width="150" height="86" rx="8"/><text class="h" x="394" y="25">Execute</text><text class="t" x="394" y="49">tool runtime</text><text class="s" x="394" y="67">timeout + retry</text>
+    <rect class="box tool" x="564" y="0" width="174" height="86" rx="8"/><text class="h" x="582" y="25">Observation</text><text class="t" x="582" y="49">ok / error_code</text><text class="s" x="582" y="67">artifact_ref + summary</text>
+    <rect class="box state" x="776" y="0" width="150" height="86" rx="8"/><text class="h" x="794" y="25">Reducer</text><text class="t" x="794" y="49">state_diff</text><text class="s" x="794" y="67">accept / reject</text>
+    <rect class="box state" x="964" y="0" width="92" height="86" rx="8"/><text class="h" x="982" y="25">Trace</text><text class="t" x="982" y="49">event</text><text class="s" x="982" y="67">replay</text>
+    <path class="line" d="M150 43H188"/><path class="line" d="M338 43H376"/><path class="line" d="M526 43H564"/><path class="line" d="M738 43H776"/><path class="line" d="M926 43H964"/>
+  </g>
+
+  <g transform="translate(76 246)">
+    <rect class="box" x="0" y="0" width="226" height="116" rx="8"/><text class="h" x="18" y="26">可接受 Observation</text><text class="t" x="18" y="52">`ok=true` 且 schema 合法</text><text class="t" x="18" y="74">source / quote 可追溯</text><text class="t" x="18" y="96">state_delta 类型匹配</text>
+    <rect class="box guard" x="266" y="0" width="226" height="116" rx="8"/><text class="h" x="284" y="26">拒绝或隔离</text><text class="t" x="284" y="52">未知 artifact</text><text class="t" x="284" y="74">权限不匹配</text><text class="t" x="284" y="96">外部文本试图下指令</text>
+    <rect class="box model" x="532" y="0" width="226" height="116" rx="8"/><text class="h" x="550" y="26">恢复策略</text><text class="t" x="550" y="52">schema_error: 修参数</text><text class="t" x="550" y="74">no_result: 改 query</text><text class="t" x="550" y="96">permission: 停止/确认</text>
+    <rect class="box state" x="798" y="0" width="226" height="116" rx="8"/><text class="h" x="816" y="26">下一轮输入</text><text class="t" x="816" y="52">working_state</text><text class="t" x="816" y="74">open_gaps</text><text class="t" x="816" y="96">stop_reason / budget</text>
+    <path class="bad" d="M492 58H532"/><path class="line" d="M758 58H798"/>
+  </g>
+</svg>

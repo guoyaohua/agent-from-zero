@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手架构决策记录</title>
+  <desc id="desc">展示 Agent 架构决策记录如何把问题、决策、替代方案、影响模块、失败模式、观测字段和回滚条件连成闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 26px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#5e6878}.h{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#182235}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#415066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#667386}.box{fill:#fff;stroke:#d9e1ec;stroke-width:1}.control{fill:#e9f0fb}.data{fill:#e8f4ee}.risk{fill:#fff1e6}.eval{fill:#efeaf6}.line{stroke:#8794a6;stroke-width:1.5;marker-end:url(#arrow)}.dot{fill:#172033}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8794a6"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="500"/>
+  <text class="title" x="52" y="46">每个关键架构选择都应该留下 ADR,否则边界会被功能慢慢冲散</text>
+  <text class="sub" x="52" y="72">ADR 的价值不是写文档,而是让模块责任、失败归因、观测字段和回滚条件可追踪。</text>
+
+  <g transform="translate(52 104)">
+    <rect class="box control" x="0" y="0" width="230" height="94" rx="8"/><text class="h" x="18" y="26">1. 问题</text><text class="t" x="18" y="50">模型是否能直接写状态?</text><text class="s" x="18" y="70">风险: 任务不可回放、难复盘</text>
+    <rect class="box control" x="276" y="0" width="230" height="94" rx="8"/><text class="h" x="294" y="26">2. 决策</text><text class="t" x="294" y="50">状态由 Orchestrator 写入</text><text class="s" x="294" y="70">模型只输出 decision/state proposal</text>
+    <rect class="box" x="552" y="0" width="230" height="94" rx="8"/><text class="h" x="570" y="26">3. 替代方案</text><text class="t" x="570" y="50">全放 prompt 或工具自写</text><text class="s" x="570" y="70">记录为什么暂不采用</text>
+    <rect class="box risk" x="828" y="0" width="230" height="94" rx="8"/><text class="h" x="846" y="26">4. 失败模式</text><text class="t" x="846" y="50">状态漂移、重复调用</text><text class="s" x="846" y="70">引用漏检、笔记误写</text>
+    <path class="line" d="M230 47H276"/><path class="line" d="M506 47H552"/><path class="line" d="M782 47H828"/>
+  </g>
+
+  <g transform="translate(68 236)">
+    <rect class="box control" x="0" y="0" width="208" height="116" rx="8"/><text class="h" x="18" y="26">影响模块</text><text class="t" x="18" y="52">Orchestrator</text><text class="t" x="18" y="74">Context Builder</text><text class="t" x="18" y="96">Trace Store</text>
+    <rect class="box data" x="238" y="0" width="208" height="116" rx="8"/><text class="h" x="256" y="26">接口契约</text><text class="t" x="256" y="52">Decision schema</text><text class="t" x="256" y="74">Observation schema</text><text class="t" x="256" y="96">State reducer</text>
+    <rect class="box risk" x="476" y="0" width="208" height="116" rx="8"/><text class="h" x="494" y="26">观测字段</text><text class="t" x="494" y="52">state_diff</text><text class="t" x="494" y="74">arg_sources</text><text class="t" x="494" y="96">stop_reason</text>
+    <rect class="box eval" x="714" y="0" width="208" height="116" rx="8"/><text class="h" x="732" y="26">验证方式</text><text class="t" x="732" y="52">trace replay</text><text class="t" x="732" y="74">golden eval</text><text class="t" x="732" y="96">failure triage</text>
+    <rect class="box" x="952" y="0" width="84" height="116" rx="8"/><text class="h" x="970" y="26">回滚</text><text class="s" x="970" y="52">关闭</text><text class="s" x="970" y="72">写入</text><text class="s" x="970" y="92">降级</text>
+    <path class="line" d="M208 58H238"/><path class="line" d="M446 58H476"/><path class="line" d="M684 58H714"/><path class="line" d="M922 58H952"/>
+  </g>
+
+  <rect x="172" y="408" width="776" height="40" rx="8" fill="#172033"/>
+  <text x="252" y="433" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">好的架构不是模块多,而是每个边界都有决策理由、失败证据和撤退路线。</text>
+</svg>

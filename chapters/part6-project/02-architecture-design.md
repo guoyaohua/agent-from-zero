@@ -84,6 +84,27 @@ flowchart LR
 
 这个时序能直接指导代码结构。控制面适合放在 `orchestrator/`、`harness/`、`guardrails/` 和 `trace/`;数据面适合放在 `tools/`、`rag/`、`ingestion/` 和 `artifacts/`;模型适配层单独封装。这样后续新增浏览器资料源、论文库或团队知识库时,不会把权限逻辑散落到每个 loader 里。
 
+## 架构决策记录
+
+架构设计不能只停留在“画出模块”。Agent 系统的模块会随着工具、资料源、记忆和评估不断增长,如果没有决策记录,半年后很难回答一个朴素问题:为什么状态由 Orchestrator 写,而不是让模型或工具自己写? 为什么引用校验独立成节点,而不是放在回答 prompt 里? 这类问题一旦答不清,边界就会被新功能慢慢冲散。
+
+![研究助手架构决策记录](../assets/part6-project-architecture-decision-record.svg)
+
+建议为 v1 至少写 6 条 ADR:
+
+| ADR | 决策 | 必须记录的工程后果 |
+| --- | --- | --- |
+| ADR-001 | 模型不直接写 `ResearchTask` state | 需要 reducer、state_diff、trace replay |
+| ADR-002 | RAG、Memory、Notes 分开治理 | 需要不同写入门、删除策略、trust 标注 |
+| ADR-003 | 工具统一走 Harness | 需要 schema、风险等级、确认、幂等、错误协议 |
+| ADR-004 | Evidence Pack 是回答中心产物 | 需要 claim/evidence 映射和 citation checker |
+| ADR-005 | Eval Runner 读取真实 trace | 需要保存检索、证据、校验、成本和失败原因 |
+| ADR-006 | 控制面和数据面分离 | 权限、预算和策略不能散落在 loader 或工具里 |
+
+一条好的 ADR 不只写“我们决定做 X”。它还要写替代方案、失败模式、观测字段和回滚条件。比如 ADR-003 选择统一 Harness,替代方案是“工具函数自己校验参数”。后者短期更快,但新增写工具时会导致确认、幂等、权限和审计散落到各处。因此 ADR 应明确:每个工具必须声明 `input_schema`、`output_schema`、`risk_level`、`side_effect`、`retry_policy` 和 `failure_modes`;trace 必须记录 `validation` 和 `state_diff`;写工具上线前必须有安全样本。
+
+ADR 的另一个作用是帮你判断扩展是否真的准备好了。如果要接入浏览器、企业知识库或 MCP Server,不要只问“能不能接上”,而要问“现有 ADR 是否覆盖这个新边界”。如果新能力引入了新的副作用、权限域或资料生命周期,就先补 ADR,再写代码。
+
 ## Orchestrator
 
 Orchestrator 是任务控制器。
