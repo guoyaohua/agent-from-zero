@@ -213,6 +213,30 @@ untrusted_web -> answer_with_citation: allowed
 
 这类规则比“不要泄露敏感信息”更可测试,也更容易进入 trace。
 
+## 来源账本:内容被加工后不能被洗白
+
+Prompt Injection 防御中最容易漏掉的一点是:内容经过摘要、翻译、抽取、重写或多 Agent 传递后,看起来会更像系统内部生成的“干净内容”。但它的来源并没有因此变可信。
+
+![Prompt Injection 来源账本](../assets/part5-prompt-injection-provenance-ledger.svg)
+
+因此系统需要一份 provenance ledger。每个 artifact 都应该知道自己来自哪里、经过哪些转换、当前 trust level 是什么、允许用途和禁止用途是什么。
+
+例如外部网页中的邮箱地址,可以被用于回答“网页上列出的联系邮箱是什么”,但不能自动成为 `send_email.to`。外部网页中的流程说明可以被引用为“网页声称的步骤”,但不能覆盖系统工具策略。被污染 issue 的摘要可以传给下游 Agent 做分析,但不能作为下游 Agent 的 system message。
+
+一个实用的 provenance 字段包括:
+
+| 字段 | 作用 |
+| --- | --- |
+| `source_id` | 原始网页、邮件、PDF、issue 或工具结果 |
+| `owner` | external、user、internal_system、trusted_tool |
+| `trust` | trusted、untrusted、mixed、derived_from_untrusted |
+| `transform_chain` | chunk、ocr、summarize、translate、extract、handoff |
+| `data_classes` | public、internal、PII、secret、possible_instruction |
+| `allowed_uses` | cite、summarize、compare、ask_user_to_confirm |
+| `forbidden_uses` | tool_instruction、memory_rule、system_message、external_send |
+
+防注入不是让模型永远不读外部内容,而是让外部内容只能在被允许的通道里发挥作用。来源账本能保证一段文本不因为被摘要得很顺滑,就悄悄获得指令权或工具权。
+
 ## 防御矩阵:每层都要有可证明的职责
 
 Prompt Injection 经常被误解成“检测并删除恶意句子”。这不够。OWASP GenAI 风险中把 Prompt Injection 放在非常靠前的位置,原因正是它会沿着 Agent 的上下文、工具、记忆和多 Agent 通道传播。更稳的设计是把防御拆成矩阵:每一层负责一种保证,并为这种保证留下评估证据。

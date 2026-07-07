@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 评估回归契约</title>
+  <desc id="desc">展示评估样本、评分器、失败归因、门禁和发布决策之间的契约关系。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.pass{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.fail{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">评估不是分数表,而是上线契约</text>
+  <text class="sub" x="54" y="80">每条样本都要定义输入、环境、期望、禁止行为、评分器和阻塞条件。</text>
+  <g transform="translate(76 130)">
+    <rect class="box" x="0" y="0" width="166" height="88" rx="8"/><text class="h" x="48" y="30">Eval Sample</text><text class="t" x="24" y="56">输入/fixture/tag</text><path class="arrow" d="M166 44 H210"/>
+    <rect class="box" x="230" y="0" width="166" height="88" rx="8"/><text class="h" x="280" y="30">Run Agent</text><text class="t" x="250" y="56">锁版本和环境</text><path class="arrow" d="M396 44 H440"/>
+    <rect class="box" x="460" y="0" width="166" height="88" rx="8"/><text class="h" x="512" y="30">Score</text><text class="t" x="484" y="56">规则/程序/Judge</text><path class="arrow" d="M626 44 H670"/>
+    <rect class="gate" x="690" y="0" width="166" height="88" rx="8"/><text class="h" x="744" y="30">Gate</text><text class="t" x="714" y="56">硬门禁不可平均</text><path class="arrow" d="M856 44 H900"/>
+    <rect class="pass" x="920" y="0" width="146" height="88" rx="8"/><text class="h" x="970" y="30">Ship?</text><text class="t" x="948" y="56">灰度或阻塞</text>
+  </g>
+  <g transform="translate(120 286)">
+    <rect class="fail" x="0" y="0" width="276" height="78" rx="8"/><text class="h" x="82" y="30">硬门禁</text><text class="t" x="32" y="56">安全/权限/伪引用/未确认写操作</text>
+    <rect class="gate" x="326" y="0" width="276" height="78" rx="8"/><text class="h" x="414" y="30">软门禁</text><text class="t" x="356" y="56">成本/延迟/轻微质量取舍</text>
+    <rect class="box" x="652" y="0" width="276" height="78" rx="8"/><text class="h" x="734" y="30">失败归因</text><text class="t" x="688" y="56">Prompt/Context/Harness/Loop/Tool</text>
+  </g>
+  <rect x="210" y="430" width="700" height="42" rx="8" fill="#172033"/><text x="282" y="456" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">平均分只能辅助判断;不可接受风险必须作为独立门禁。</text>
+</svg>

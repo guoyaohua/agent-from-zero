@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">成本质量路由账本</title>
+  <desc id="desc">展示 Agent 如何根据风险、置信度、证据充分性和预算选择小模型、强模型、缓存、后台或人工路径。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.cheap{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.mid{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.cost{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">优化不是少花钱,而是把预算花在不确定且重要的地方</text>
+  <text class="sub" x="54" y="80">路由决策应同时看任务风险、置信度、证据充分性、预算和用户等待。</text>
+  <g transform="translate(82 126)">
+    <rect class="cell" x="0" y="0" width="956" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">信号</text><text x="204" y="38">低成本路径</text><text x="424" y="38">升级条件</text><text x="674" y="38">高质量路径</text></g>
+    <rect class="cheap" x="0" y="58" width="956" height="48"/><text class="h" x="24" y="88">风险</text><text class="t" x="204" y="88">只读/低影响</text><text class="t" x="424" y="88">外发、写入、PII、生产变更</text><text class="t" x="674" y="88">强模型 + 策略 + 确认</text>
+    <rect class="mid" x="0" y="112" width="956" height="48"/><text class="h" x="24" y="142">置信度</text><text class="t" x="204" y="142">规则或小模型高置信</text><text class="t" x="424" y="142">低置信/冲突/多义目标</text><text class="t" x="674" y="142">检索、澄清或强模型</text>
+    <rect class="cost" x="0" y="166" width="956" height="48"/><text class="h" x="24" y="196">证据</text><text class="t" x="204" y="196">缓存命中且版本新</text><text class="t" x="424" y="196">证据不足/来源冲突/过期</text><text class="t" x="674" y="196">重检索、rerank、引用校验</text>
+    <rect class="risk" x="0" y="220" width="956" height="48"/><text class="h" x="24" y="250">预算</text><text class="t" x="204" y="250">阶段预算充足</text><text class="t" x="424" y="250">P95 或 cost 接近阈值</text><text class="t" x="674" y="250">降级输出或转后台</text>
+  </g>
+  <rect x="198" y="432" width="724" height="42" rx="8" fill="#172033"/><text x="256" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">便宜路径需要退出条件;强模型路径需要进入条件。否则路由只会变成随机省钱。</text>
+</svg>

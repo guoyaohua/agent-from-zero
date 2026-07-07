@@ -291,6 +291,27 @@ Disagreement set 不应该被丢掉。它是改进 rubric 的金矿。
 
 很多评估系统的质量提升,不是来自换更大 Judge,而是来自把 disagreement 讲清楚。
 
+## 分歧复盘板
+
+Judge 和人工不一致时,不要急着把其中一方判错。分歧样本通常暴露了评估系统最有价值的问题:rubric 模糊、证据不足、输入裁剪错误、Judge 偏见、人工标注标准不一致,或者这个维度根本不该交给 Judge。
+
+![Judge 分歧复盘板](../assets/part5-judge-disagreement-review-board.svg)
+
+可以把每次分歧记录成一张复盘板:
+
+| 字段 | 要回答的问题 |
+| --- | --- |
+| `judge_score` / `human_label` | 分歧发生在哪个维度 |
+| `error_type` | Judge 假阳性、假阴性,还是人工标签争议 |
+| `rubric_clause` | 哪条 rubric 被不同理解 |
+| `visible_evidence` | Judge 是否看到了人工判定依赖的证据 |
+| `bias_signal` | 是否存在长度、格式、位置、自信或同源偏见 |
+| `fix` | 改 rubric、改输入裁剪、加反例、换确定性检查或升级人工 |
+
+对高风险任务,假阴性通常比假阳性更危险:Judge 放过事实错误、权限越界或敏感泄露,会让发布门禁失效。对普通体验任务,假阳性会带来过度保守和迭代噪声。不同维度应该设置不同的容忍度。
+
+最好的 disagreement set 会不断缩小 rubric 的模糊区。比如 Judge 偏好长答案,就在 rubric 里明确“冗余不加分,无关引用扣分”;Judge 放过无证据结论,就要求每个关键 claim 绑定 evidence id;Judge 被候选答案里的指令影响,就改输入边界和系统提示。分歧样本不是评估噪声,而是评估器自己的训练场。
+
 ## 常见偏见
 
 Judge 可能有多种偏见。

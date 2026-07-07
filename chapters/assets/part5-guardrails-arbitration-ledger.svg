@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">护栏仲裁账本</title>
+  <desc id="desc">展示多个护栏决策如何通过共享标签、决策对象和仲裁器合并成最终动作。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">多个护栏必须仲裁,否则会互相打架</text>
+  <text class="sub" x="54" y="80">共享标签保留事实,共享决策对象驱动 UI/trace/eval,仲裁器给出唯一动作。</text>
+  <g transform="translate(84 124)">
+    <rect class="box" x="0" y="0" width="168" height="76" rx="8"/><text class="h" x="44" y="30">Input</text><text class="t" x="24" y="54">clarify?</text>
+    <rect class="box" x="0" y="98" width="168" height="76" rx="8"/><text class="h" x="38" y="128">Context</text><text class="t" x="24" y="152">redact?</text>
+    <rect class="warn" x="0" y="196" width="168" height="76" rx="8"/><text class="h" x="44" y="226">Tool</text><text class="t" x="24" y="250">confirm?</text>
+    <path class="arrow" d="M168 38 H250"/><path class="arrow" d="M168 136 H250"/><path class="arrow" d="M168 234 H250"/>
+    <rect class="bad" x="270" y="76" width="236" height="120" rx="8"/><text class="h" x="342" y="110">Arbitrator</text><text class="t" x="304" y="140">block &gt; escalate &gt; confirm</text><text class="t" x="304" y="164">downgrade &gt; redact &gt; allow</text><path class="arrow" d="M506 136 H588"/>
+    <rect class="ok" x="608" y="76" width="236" height="120" rx="8"/><text class="h" x="674" y="110">Final Decision</text><text class="t" x="642" y="140">one action, one reason</text><text class="t" x="642" y="164">UI + runtime + trace</text>
+  </g>
+  <g transform="translate(208 412)"><rect x="0" y="0" width="704" height="42" rx="8" fill="#172033"/><text x="74" y="27" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">护栏越多,越需要统一事实标签和优先级;否则安全会变成确认疲劳。</text></g>
+</svg>

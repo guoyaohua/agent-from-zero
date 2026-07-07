@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 安全控制覆盖图</title>
+  <desc id="desc">展示安全论证如何把风险声明、控制点、证据和事故响应连接起来。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.ctrl{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.evi{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">安全控制要能覆盖风险链路,也要能证明覆盖有效</text>
+  <text class="sub" x="54" y="80">每个高风险能力都要有风险声明、runtime 控制、放行证据和事故响应。</text>
+  <g transform="translate(88 128)">
+    <rect class="risk" x="0" y="0" width="190" height="86" rx="8"/><text class="h" x="54" y="30">Risk Claim</text><text class="t" x="24" y="56">资产、攻击面、损害半径</text><path class="arrow" d="M190 43 H236"/>
+    <rect class="ctrl" x="256" y="0" width="190" height="86" rx="8"/><text class="h" x="308" y="30">Control</text><text class="t" x="286" y="56">权限/数据流/确认</text><path class="arrow" d="M446 43 H492"/>
+    <rect class="evi" x="512" y="0" width="190" height="86" rx="8"/><text class="h" x="564" y="30">Evidence</text><text class="t" x="540" y="56">红队/eval/trace</text><path class="arrow" d="M702 43 H748"/>
+    <rect class="ok" x="768" y="0" width="190" height="86" rx="8"/><text class="h" x="824" y="30">Manage</text><text class="t" x="794" y="56">灰度/kill switch/runbook</text>
+  </g>
+  <g transform="translate(120 280)">
+    <rect class="cell" x="0" y="0" width="880" height="94" rx="8"/>
+    <text class="h" x="28" y="32">覆盖缺口会长这样:</text>
+    <text class="t" x="28" y="60">有风险声明但没有控制 = 焦虑; 有控制但没有证据 = 口号; 有证据但没有响应 = 只能事后后悔。</text>
+  </g>
+  <rect x="180" y="432" width="760" height="42" rx="8" fill="#172033"/><text x="248" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">安全上线不是证明系统永不失败,而是证明风险在定义边界内可接受且可恢复。</text>
+</svg>

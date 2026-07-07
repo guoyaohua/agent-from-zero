@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 根因定位账本</title>
+  <desc id="desc">展示可观测性如何把症状、证据、根因层、修复动作和回归样本连接成闭环。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.dark{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="52" y="52">Trace 的价值是把“坏了”变成“该修哪一层”</text>
+  <text class="sub" x="52" y="80">每个失败样本都要落成可复现账本:症状、证据、根因、修复和回归门禁。</text>
+  <g transform="translate(66 124)">
+    <rect class="cell" x="0" y="0" width="988" height="270" rx="8"/>
+    <g class="h"><text x="24" y="36">症状</text><text x="190" y="36">必须打开的证据</text><text x="430" y="36">根因层</text><text x="610" y="36">优先修复</text><text x="816" y="36">回归资产</text></g>
+    <rect class="orange" x="0" y="56" width="988" height="48"/><text class="t" x="24" y="86">答案引用不存在</text><text class="t" x="190" y="86">evidence pack, citation ids</text><text class="h" x="430" y="86">Context/RAG</text><text class="t" x="610" y="86">引用校验和证据裁剪</text><text class="t" x="816" y="86">hard negative</text>
+    <rect class="red" x="0" y="110" width="988" height="48"/><text class="t" x="24" y="140">未确认写操作</text><text class="t" x="190" y="140">tool span, policy decision</text><text class="h" x="430" y="140">Harness</text><text class="t" x="610" y="140">tool_pre 门禁</text><text class="t" x="816" y="140">safety regression</text>
+    <rect class="blue" x="0" y="164" width="988" height="48"/><text class="t" x="24" y="194">长任务空转</text><text class="t" x="190" y="194">state diff, budget, progress</text><text class="h" x="430" y="194">Loop</text><text class="t" x="610" y="194">无进展停止</text><text class="t" x="816" y="194">trajectory eval</text>
+    <rect class="green" x="0" y="218" width="988" height="48"/><text class="t" x="24" y="248">工具参数错</text><text class="t" x="190" y="248">arg_sources, schema result</text><text class="h" x="430" y="248">Tool</text><text class="t" x="610" y="248">参数来源约束</text><text class="t" x="816" y="248">fixture replay</text>
+  </g>
+  <g transform="translate(146 424)">
+    <rect class="dark" x="0" y="0" width="828" height="46" rx="8"/>
+    <text x="72" y="29" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#fff">没有根因层和回归资产的 trace,只是更贵的日志;有账本的 trace 才会变成工程改进。</text>
+  </g>
+</svg>

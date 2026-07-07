@@ -293,6 +293,26 @@ Trace 保存摘要和引用。需要复查时再打开 artifact。
 
 这张表的价值在于克制“先改 prompt”的冲动。很多线上事故应该修 runtime,不是修话术。
 
+## 根因定位账本
+
+分层调试最好落成一份根因定位账本。否则 trace 很容易变成“信息很多,但没人知道下一步该修哪里”的大日志。
+
+![Agent 根因定位账本](../assets/part5-observability-root-cause-ledger.svg)
+
+这份账本把一次失败压成五列。
+
+第一列是症状,例如引用不存在、工具参数错、长任务空转、未确认写操作。症状要用用户或系统能观察到的语言描述,不要一开始就写根因。
+
+第二列是必须打开的证据。不同症状需要不同证据:引用错误看 evidence pack,工具错误看 arg sources 和 schema result,安全事故看 policy decision,长任务空转看 state diff、progress marker 和 budget ledger。证据列能防止复盘只靠印象。
+
+第三列是根因层。根因层应该落到 Prompt、Context、Retrieval、Tool、State、Harness、Loop 或 Product boundary 之一。复杂事故可以有多个层,但必须标出主责层。
+
+第四列是优先修复。Context 问题修 context builder,工具问题修 schema 和参数来源,安全问题修 runtime policy,循环问题修停止条件。把症状和修复动作解耦,能减少“所有问题都改 prompt”的惯性。
+
+第五列是回归资产。每次线上失败都应该留下一个 smoke、regression、safety、hard negative 或 trajectory eval 样本。没有回归资产,同类事故只会在下一次模型、prompt 或工具版本变化时回来。
+
+这份账本的价值不是让复盘更正式,而是让每次失败都能进入工程系统:有证据、有归因、有修复、有门禁。可观测性到这里才真正闭环。
+
 ## 一个调试案例
 
 用户问:

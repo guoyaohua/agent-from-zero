@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt Injection 来源账本</title>
+  <desc id="desc">展示不可信内容在检索、摘要、工具参数、记忆和多 Agent 传递中必须保留来源和信任标签。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">防注入的核心是来源不丢失,权限不升级</text>
+  <text class="sub" x="54" y="80">外部内容可以被引用和摘要,但不能变成工具指令、长期规则或下游系统消息。</text>
+  <g transform="translate(78 132)">
+    <rect class="bad" x="0" y="0" width="146" height="84" rx="8"/><text class="h" x="34" y="30">Source</text><text class="t" x="18" y="56">untrusted web</text><path class="arrow" d="M146 42 H188"/>
+    <rect class="warn" x="208" y="0" width="146" height="84" rx="8"/><text class="h" x="248" y="30">Chunk</text><text class="t" x="226" y="56">source_id + trust</text><path class="arrow" d="M354 42 H396"/>
+    <rect class="warn" x="416" y="0" width="146" height="84" rx="8"/><text class="h" x="448" y="30">Summary</text><text class="t" x="432" y="56">inherits trust</text><path class="arrow" d="M562 42 H604"/>
+    <rect class="box" x="624" y="0" width="146" height="84" rx="8"/><text class="h" x="650" y="30">Parameter</text><text class="t" x="640" y="56">arg_source checked</text><path class="arrow" d="M770 42 H812"/>
+    <rect class="ok" x="832" y="0" width="146" height="84" rx="8"/><text class="h" x="874" y="30">Action</text><text class="t" x="850" y="56">allow only safe use</text>
+  </g>
+  <g transform="translate(136 282)">
+    <rect class="ok" x="0" y="0" width="240" height="76" rx="8"/><text class="h" x="78" y="30">允许</text><text class="t" x="34" y="54">引用、比较、摘要,且继承标签</text>
+    <rect class="bad" x="300" y="0" width="240" height="76" rx="8"/><text class="h" x="378" y="30">禁止</text><text class="t" x="326" y="54">工具指令、记忆规则、系统消息</text>
+    <rect class="warn" x="600" y="0" width="240" height="76" rx="8"/><text class="h" x="678" y="30">例外</text><text class="t" x="628" y="54">可信来源或用户确认重新授权</text>
+  </g>
+  <rect x="194" y="430" width="732" height="42" rx="8" fill="#172033"/><text x="258" y="456" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">内容被加工得越干净,越要保留原始来源;摘要不能洗白信任级别。</text>
+</svg>

@@ -345,6 +345,29 @@ cost/task: 不超过 baseline + 10%
 
 这样团队不会因为平均分好看而忽略红线。
 
+## 评估回归契约
+
+一个成熟 eval case 不只是“输入和期望答案”,而是一份回归契约。它要明确这个样本为什么存在、依赖什么环境、哪些行为必须发生、哪些行为绝对不能发生、由哪些评分器判断、失败时是否阻塞发布。
+
+![Agent 评估回归契约](../assets/part5-evaluation-regression-contract.svg)
+
+最小契约可以包含这些字段:
+
+| 字段 | 作用 |
+| --- | --- |
+| `input` | 用户请求和必要上下文 |
+| `fixtures` | 工具返回、文档快照、权限和租户状态 |
+| `tags` | rag、tool_write、safety、cost、long_context 等 |
+| `expected_behavior` | 应完成的行为,不要求逐字匹配 |
+| `must_not` | 不得调用的工具、不得泄露的数据、不得伪造的引用 |
+| `scorers` | 规则、程序验证、Judge、人工复核的组合 |
+| `failure_layer` | 失败时要求归因到哪一层 |
+| `blocking` | 是否硬阻塞上线 |
+
+这份契约让评估从“跑一批题”变成“执行一组发布约束”。例如安全样本的 `must_not` 失败不能被普通样本高分抵消;引用伪造、未确认写操作、越权工具调用必须作为硬门禁;成本和延迟则可以根据业务进入软门禁评审。
+
+评估系统越成熟,越不依赖单一总分。总分回答“整体趋势如何”,契约回答“这个版本在关键边界内能不能发布”。Agent 上线需要后者。
+
 ![评估门禁与 Scorecard](../assets/part5-eval-gates-scorecard.svg)
 
 门禁最好落成一张 scorecard,而不是只输出一个总分。Scorecard 至少要把 baseline、candidate、差值、阈值、样本标签和阻塞原因放在一起。这样你能一眼看出“总体成功率涨了 2%,但 safety set 退化 1 例,所以不能上线”,而不是在漂亮的平均分里把风险抹平。
