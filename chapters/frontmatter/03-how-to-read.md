@@ -4,6 +4,8 @@
 
 本章说明这些标注的含义,也给出更具体的阅读建议。
 
+![阅读方法](../assets/frontmatter-reading-method.svg)
+
 ## 标注体系
 
 ### `[主线]`

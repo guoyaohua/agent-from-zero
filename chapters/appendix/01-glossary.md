@@ -2,6 +2,22 @@
 
 本术语表用于快速查阅本书常见概念。它不是严格学术定义,而是面向工程理解的解释。
 
+![术语分类地图](../assets/appendix-glossary-map.svg)
+
+## 如何使用术语表
+
+Agent 领域的很多争论来自“同一个词指代不同层”。遇到陌生概念时,先判断它属于哪一层:
+
+| 层 | 典型词 | 关键问题 |
+| --- | --- | --- |
+| 模型层 | Attention、SFT、RLHF、KV Cache | 模型能力和推理成本从哪里来 |
+| 上下文层 | Prompt、Context、Evidence Pack、Memory | 模型这一轮能看见什么 |
+| 运行时层 | Tool Call、Harness、Guardrails、Trace | 模型建议如何变成可控动作 |
+| 循环层 | Agent Loop、Planning、Loop Engineering | 多轮任务如何推进并停止 |
+| 工程层 | Evaluation、Observability、Cost、Security | 系统如何上线、监控和迭代 |
+
+不要把不同层的词互相替代。例如 Prompt 不能替代 Harness,长上下文不能替代 Memory 治理,Function Calling 不能替代权限控制。
+
 ## A
 
 ### Agent
@@ -90,6 +106,14 @@ Direct Preference Optimization,一种偏好对齐方法,可直接利用偏好数
 
 混合检索,通常结合关键词检索和向量检索。
 
+### Harness
+
+Agent Harness,模型和真实工具/环境之间的运行时外骨架。负责动作 schema 校验、权限、策略、sandbox、执行、错误协议、trace 和回滚。
+
+### Harness Engineering
+
+围绕 Harness 的工程设计方法。重点是把模型动作建议变成可验证、可授权、可执行、可记录、可恢复的系统事件,而不是只包装 API 调用。
+
 ## J
 
 ### Judge
@@ -103,6 +127,10 @@ Direct Preference Optimization,一种偏好对齐方法,可直接利用偏好数
 自回归推理中缓存历史 token 的 Key/Value,避免重复计算注意力。
 
 ## L
+
+### Loop Engineering
+
+围绕 Agent 多轮任务收敛的工程设计。重点不是写 while 循环,而是状态摘要、进展不变量、预算、停止条件、重规划、检查点和过程评估。
 
 ### Long-term Memory
 
@@ -122,11 +150,21 @@ Model Context Protocol,模型上下文协议。用于模型应用连接外部工
 
 多 Agent 系统。多个职责不同的 Agent 通过编排、消息和共享状态协作。
 
+## O
+
+### OpenClaw
+
+一个开源、自托管的个人 AI 助手和多渠道 Agent Gateway。它把 WhatsApp、Telegram、Slack、Discord、Signal、iMessage、WebChat 等消息入口连接到本地或自托管的 Agent runtime、workspace、skills、tools、nodes 和控制界面。
+
 ## P
 
 ### PEFT
 
 Parameter-Efficient Fine-Tuning,参数高效微调方法集合。
+
+### Prompt / Context / Harness / Loop
+
+Agent 工程的四层边界:Prompt 管任务表达,Context 管信息供应,Harness 管运行时边界,Loop 管多轮收敛。
 
 ### Prompt Injection
 
@@ -170,9 +208,20 @@ Supervised Fine-Tuning,监督微调。使用输入输出样本训练模型遵循
 
 一次任务的完整过程记录,包含模型调用、工具调用、状态更新、成本和错误。
 
+## 易混概念对照
+
+| 概念 A | 概念 B | 核心区别 |
+| --- | --- | --- |
+| Prompt | Context | Prompt 是任务表达;Context 是模型实际可见的全部工作材料 |
+| Function Calling | Harness | Function Calling 让模型结构化表达动作;Harness 决定动作能否执行以及如何执行 |
+| Memory | RAG | Memory 保存用户/任务经验;RAG 检索外部知识证据 |
+| Workflow | Agent | Workflow 路径由系统预定义;Agent 可根据观察动态选择下一步 |
+| Guardrails | Alignment | Guardrails 是系统运行时控制;Alignment 是模型或系统行为对齐过程 |
+| Trace | Explanation | Trace 是可观察事实记录;解释是基于事实对行为的说明 |
+| Loop | Loop Engineering | Loop 是循环形态;Loop Engineering 是让循环收敛、可恢复、可评估的工程设计 |
+
 ## V
 
 ### Vector Database
 
 向量数据库。存储 embedding 并支持近似相似搜索的系统。
-
