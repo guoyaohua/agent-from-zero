@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">注意力变体选型门</title>
+  <desc id="desc">展示选择标准注意力、滑窗、稀疏、线性注意力或应用层检索压缩时,应先判断任务依赖、长度、质量风险和硬件实现。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.q{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.a{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.b{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.c{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">注意力变体不是越省越好,要看关键连接会不会被切断</text>
+  <text class="sub" x="56" y="82">很多 Agent 长上下文问题,先用应用层检索和压缩更可控。</text>
+  <rect class="q" x="92" y="172" width="190" height="72" rx="8"/><text class="head" x="132" y="202">远距精确引用?</text><text class="text" x="122" y="226">定义、证据、约束</text>
+  <path class="arrow" d="M282 208 H354"/>
+  <rect class="a" x="354" y="134" width="190" height="72" rx="8"/><text class="head" x="394" y="164">标准/全局连接</text><text class="text" x="388" y="188">质量优先,成本更高</text>
+  <rect class="q" x="354" y="258" width="190" height="72" rx="8"/><text class="head" x="398" y="288">局部性强?</text><text class="text" x="388" y="312">日志、邻近代码、局部文档</text>
+  <path class="arrow" d="M544 294 H616"/>
+  <rect class="b" x="616" y="258" width="190" height="72" rx="8"/><text class="head" x="666" y="288">滑窗/稀疏</text><text class="text" x="650" y="312">省成本,需评估远距损失</text>
+  <path class="arrow" d="M544 170 H616"/>
+  <rect class="c" x="616" y="134" width="190" height="72" rx="8"/><text class="head" x="658" y="164">应用层注意力</text><text class="text" x="648" y="188">RAG、摘要、按需读取</text>
+  <path class="arrow" d="M806 208 H878"/>
+  <rect class="a" x="878" y="172" width="170" height="72" rx="8"/><text class="head" x="930" y="202">Eval</text><text class="text" x="906" y="226">目标任务验证</text>
+  <rect x="168" y="426" width="784" height="38" rx="8" fill="#172033"/><text x="258" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">复杂度公式只是起点,最终要看目标任务的关键连接是否仍然可见。</text>
+</svg>

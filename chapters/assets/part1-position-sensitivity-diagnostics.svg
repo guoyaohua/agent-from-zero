@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">位置机制敏感性诊断</title>
+  <desc id="desc">展示位置编码在语序、代码结构、长上下文和 Agent 上下文中的典型敏感点,以及对应的工程缓解方式。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.warn{fill:#fff0e6}.ok{fill:#e7f1ee}.risk{fill:#f7d9df}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">位置编码给模型坐标系,但上下文工程要负责路标</text>
+  <text class="sub" x="56" y="82">顺序、距离、方向和边界混乱时,模型即使有位置机制也会用错信息。</text>
+  <text class="head" x="100" y="134">场景</text><text class="head" x="282" y="134">位置敏感点</text><text class="head" x="526" y="134">典型失败</text><text class="head" x="762" y="134">工程缓解</text>
+  <g transform="translate(72 156)">
+    <rect class="cell ok" x="0" y="0" width="160" height="58"/><text class="text" x="24" y="24">自然语言</text><text class="text" x="24" y="44">词序和否定</text>
+    <rect class="cell" x="190" y="0" width="220" height="58"/><text class="text" x="214" y="34">谁在前、谁修饰谁</text>
+    <rect class="cell warn" x="440" y="0" width="210" height="58"/><text class="text" x="464" y="34">反转语义、漏掉否定</text>
+    <rect class="cell" x="680" y="0" width="290" height="58"/><text class="text" x="704" y="34">保留句子结构,不要过度摘要</text>
+    <rect class="cell ok" x="0" y="74" width="160" height="58"/><text class="text" x="24" y="98">代码</text><text class="text" x="24" y="118">括号和作用域</text>
+    <rect class="cell" x="190" y="74" width="220" height="58"/><text class="text" x="214" y="108">定义到使用的距离</text>
+    <rect class="cell warn" x="440" y="74" width="210" height="58"/><text class="text" x="464" y="108">变量归属和块结构错</text>
+    <rect class="cell" x="680" y="74" width="290" height="58"/><text class="text" x="704" y="108">符号索引 + 按需回源</text>
+    <rect class="cell ok" x="0" y="148" width="160" height="58"/><text class="text" x="24" y="172">长上下文</text><text class="text" x="24" y="192">远近证据</text>
+    <rect class="cell" x="190" y="148" width="220" height="58"/><text class="text" x="214" y="182">中间位置容易被忽略</text>
+    <rect class="cell risk" x="440" y="148" width="210" height="58"/><text class="text" x="464" y="182">lost in the middle</text>
+    <rect class="cell" x="680" y="148" width="290" height="58"/><text class="text" x="704" y="182">evidence index + 关键证据提升</text>
+    <rect class="cell ok" x="0" y="222" width="160" height="58"/><text class="text" x="24" y="246">Agent</text><text class="text" x="24" y="266">指令和资料边界</text>
+    <rect class="cell" x="190" y="222" width="220" height="58"/><text class="text" x="214" y="256">系统规则、用户目标、工具观察</text>
+    <rect class="cell risk" x="440" y="222" width="210" height="58"/><text class="text" x="464" y="256">把资料误当指令</text>
+    <rect class="cell" x="680" y="222" width="290" height="58"/><text class="text" x="704" y="256">显式分区、trust 标注、Harness</text>
+  </g>
+  <rect x="166" y="462" width="788" height="34" rx="8" fill="#172033"/><text x="270" y="484" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">位置机制解决坐标问题,不自动解决信息组织问题。</text>
+</svg>

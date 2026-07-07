@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从预训练到 Agent 可靠性的能力栈</title>
+  <desc id="desc">展示预训练提供基础模型能力,但 Agent 可靠性还需要 SFT、偏好对齐、工具数据、Harness、Loop、评估和安全边界。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.base{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.align{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.sys{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.eval{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">预训练给模型脑力,Agent 可靠性来自完整能力栈</text>
+  <text class="sub" x="56" y="82">Scaling Law 提升地基,不自动补齐工具、状态、权限和评估。</text>
+  <g transform="translate(250 126)">
+    <rect class="eval" x="0" y="0" width="620" height="58" rx="8"/><text class="head" x="42" y="34">Evaluation / Safety</text><text class="text" x="254" y="34">回归门禁、红队、成本和事故响应</text>
+    <rect class="sys" x="40" y="76" width="540" height="58" rx="8"/><text class="head" x="82" y="110">Harness / Loop</text><text class="text" x="254" y="110">状态、工具、权限、预算、恢复</text>
+    <rect class="align" x="80" y="152" width="460" height="58" rx="8"/><text class="head" x="122" y="186">SFT / Preference / Tool data</text><text class="text" x="340" y="186">指令、偏好、轨迹</text>
+    <rect class="base" x="120" y="228" width="380" height="58" rx="8"/><text class="head" x="162" y="262">Pretraining</text><text class="text" x="286" y="262">语言、代码、知识、模式</text>
+  </g>
+  <rect x="168" y="444" width="784" height="34" rx="8" fill="#172033"/><text x="252" y="466" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">预训练决定上限的一部分,系统工程决定能否安全使用这部分能力。</text>
+</svg>

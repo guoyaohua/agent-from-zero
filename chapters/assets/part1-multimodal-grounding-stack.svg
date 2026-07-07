@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多模态证据锚定栈</title>
+  <desc id="desc">展示多模态 Agent 应把图片、PDF、视频和屏幕观察转成可追溯证据,再进入推理和工具执行。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">多模态 Agent 先锚定证据,再做推理和行动</text>
+  <text class="sub" x="56" y="82">视觉模型不是完美眼睛,关键结论要能回到区域、页码或时间戳。</text>
+  <rect class="box" x="76" y="170" width="160" height="88" rx="8"/><text class="head" x="124" y="202">Input</text><text class="text" x="108" y="230">图像 / PDF / 视频 / 屏幕</text>
+  <path class="arrow" d="M236 214 H306"/>
+  <rect class="box" x="306" y="138" width="170" height="152" rx="8"/><text class="head" x="350" y="170">Parse</text><text class="text" x="338" y="200">OCR</text><text class="text" x="338" y="224">layout</text><text class="text" x="338" y="248">bbox / timestamp</text>
+  <path class="arrow" d="M476 214 H546"/>
+  <rect class="gate" x="546" y="138" width="170" height="152" rx="8"/><text class="head" x="586" y="170">Evidence</text><text class="text" x="578" y="200">quote / region</text><text class="text" x="578" y="224">page / cell</text><text class="text" x="578" y="248">confidence</text>
+  <path class="arrow" d="M716 214 H786"/>
+  <rect class="ok" x="786" y="138" width="170" height="152" rx="8"/><text class="head" x="828" y="170">Reason</text><text class="text" x="818" y="200">基于证据推理</text><text class="text" x="818" y="224">必要时回源复查</text><text class="text" x="818" y="248">再决定动作</text>
+  <rect x="166" y="426" width="788" height="38" rx="8" fill="#172033"/><text x="244" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">感知错误会被长推理放大;证据锚点让错误能被定位。</text>
+</svg>
