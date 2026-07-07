@@ -9,6 +9,8 @@
 - 如何把模型、工具、记忆和知识组织成系统?
 - 如何让这个系统可评估、可调试、可上线?
 
+![全书路线图](../assets/frontmatter-roadmap-overview.svg)
+
 ## 全书结构总览
 
 ```mermaid
@@ -79,7 +81,7 @@ while task_not_done:
     update_state()
 ```
 
-这一篇会解释 Agent 循环、ReAct、Function Calling、工具设计、任务规划、工作流模式,以及 Workflow 和自主 Agent 的选择。
+这一篇会解释 Agent 循环、ReAct、Function Calling、工具设计、任务规划、工作流模式、Workflow 和自主 Agent 的选择,并进一步拆开 Prompt、Context、Harness、Loop 四层工程边界。
 
 读完 Part 2,你应该能够回答:
 
@@ -88,8 +90,10 @@ while task_not_done:
 - Function Calling 如何让模型稳定调用外部工具?
 - 工具 schema、工具描述和错误反馈为什么重要?
 - 什么场景适合固定 Workflow,什么场景适合更自主的 Agent?
+- Prompt、Context、Harness、Loop 分别负责什么?
+- 为什么工具执行和多轮收敛不能只靠 Prompt?
 
-这一篇的成果是“能设计一个最小 Agent”。它可能还没有长期记忆和复杂知识库,但已经具备目标、状态、工具和循环。
+这一篇的成果是“能设计一个最小但边界清楚的 Agent”。它可能还没有长期记忆和复杂知识库,但已经具备目标、状态、工具、运行时边界和收敛意识。
 
 ## Part 3 能力构建篇:记忆、知识与上下文
 
@@ -158,7 +162,7 @@ Part 6 会把前面的知识汇总到一个具体项目:个人研究助手。
 
 Part 7 把视角放到未来。
 
-Agent 领域仍在快速变化。Computer Use、GUI Agent、长时程自主任务、标准化与互操作、可解释性、安全边界,都还在发展中。许多问题没有最终答案,但已经影响今天的系统设计。
+Agent 领域仍在快速变化。Computer Use、GUI Agent、长时程自主任务、标准化与互操作、可解释性、安全边界、个人 Agent Gateway,以及从真实交互中学习的 Agentic RL,都还在发展中。许多问题没有最终答案,但已经影响今天的系统设计。
 
 读完 Part 7,你应该能够回答:
 
@@ -167,6 +171,7 @@ Agent 领域仍在快速变化。Computer Use、GUI Agent、长时程自主任�
 - 标准化协议会如何影响 Agent 生态?
 - 当前 Agent 仍有哪些开放问题和局限?
 - 可解释性为什么对高风险 Agent 重要?
+- OpenClaw 这类个人 Agent Gateway 为什么重视渠道、会话、工具和安全边界?
 
 这一篇的成果是“知道从 0 到 1 之后还能往哪里走”。
 

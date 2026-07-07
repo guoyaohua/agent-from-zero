@@ -18,9 +18,9 @@
 
 ## 如何阅读
 
-- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07)→ `part3`(01/02/04/09)→ `part4`(01/05)→ `part5`(01/02/04/06/07)→ `part6` 全部 → `part7`(06)。读完即可动手做出可用 Agent。
+- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07/08/09/10)→ `part3`(01/02/04/09)→ `part4`(01/05)→ `part5`(01/02/04/06/07)→ `part6` 全部 → `part7`(07)。读完即可动手做出可用 Agent。
 - **原理深潜支线**:完整精读 `part1`(算法篇)的全部 `[进阶]` 与 `★`,吃透 LLM 内部世界。
-- **应用进阶支线**:`part2`–`part5` 的 `[进阶]` 项 + `part7` 趋势与可解释性。
+- **应用进阶支线**:`part2`–`part5` 的 `[进阶]` 项 + `part2` 的 Harness/Loop 深入章节 + `part7` 趋势、OpenClaw 与可解释性。
 
 > 怕数学的读者可先跳过 `part1` 直接进 `part2`,日后再回看;想深究原理者按序精读 `part1` 再进应用线。
 
@@ -90,7 +90,7 @@
 - [投机解码](chapters/part1-algorithms/29-speculative-decoding.md) `[进阶]` ★
 
 ### Part 2 Agent 核心原理篇 · `chapters/part2-agent-core/`
-> Agent 之所以为 Agent 的核心机制——循环、推理-行动、工具、规划、工作流编排。
+> Agent 之所以为 Agent 的核心机制——循环、推理-行动、工具、规划、工作流编排,以及 Prompt/Context/Harness/Loop 四层工程边界。
 - [Agent 循环](chapters/part2-agent-core/01-agent-loop.md) `[主线]`
 - [ReAct:推理与行动交织](chapters/part2-agent-core/02-react.md) `[主线]` ★
 - [Function Calling 工具调用](chapters/part2-agent-core/03-function-calling.md) `[主线]` ★
@@ -98,6 +98,9 @@
 - [Planning 任务规划](chapters/part2-agent-core/05-planning.md) `[进阶]`
 - [五大工作流模式](chapters/part2-agent-core/06-workflow-patterns.md) `[进阶]`
 - [工作流 vs 自主 Agent:如何选](chapters/part2-agent-core/07-workflow-vs-agent.md) `[主线]`
+- [Prompt、Context、Harness、Loop:四层如何区分](chapters/part2-agent-core/08-prompt-context-harness-loop.md) `[主线]` ★
+- [Harness Engineering:给 Agent 装上运行时外骨架](chapters/part2-agent-core/09-harness-engineering.md) `[主线]` ★
+- [Loop Engineering:让 Agent 多轮任务真正收敛](chapters/part2-agent-core/10-loop-engineering.md) `[主线]` ★
 
 ### Part 3 能力构建篇 · `chapters/part3-capabilities/`
 > 给 Agent 装上记忆、知识检索、自我修正与上下文管理,从"能跑"到"好用"。
@@ -139,13 +142,14 @@
 - [复盘与扩展方向](chapters/part6-project/06-recap-and-extensions.md) `[进阶]`
 
 ### Part 7 前沿展望篇 · `chapters/part7-frontier/`
-> 站在当下看未来——新兴方向、未解难题、给读者的结语。
+> 站在当下看未来——新兴方向、个人 Agent Gateway、未解难题、给读者的结语。
 - [趋势:Computer Use 与 GUI Agent](chapters/part7-frontier/01-trends-computer-use.md) `[进阶]`
 - [趋势:长时程自主任务](chapters/part7-frontier/02-trends-long-horizon.md) `[进阶]`
 - [趋势:标准化与互操作](chapters/part7-frontier/03-trends-standardization.md) `[进阶]`
 - [开放问题与局限](chapters/part7-frontier/04-open-problems.md) `[进阶]`
 - [大模型可解释性](chapters/part7-frontier/05-interpretability.md) `[进阶]`
-- [结语:从 0 到 1 之后](chapters/part7-frontier/06-epilogue.md) `[主线]`
+- [OpenClaw:小龙虾与个人 Agent Gateway](chapters/part7-frontier/06-openclaw.md) `[进阶]` ★
+- [结语:从 0 到 1 之后](chapters/part7-frontier/07-epilogue.md) `[主线]`
 
 ### 附录 · `chapters/appendix/`
 > 速查与延伸资源。
@@ -157,9 +161,9 @@
 
 ## 写作进度
 
-本书大纲已定并完成正文写作,共 **9 篇 82 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
+本书大纲已定并完成正文写作,共 **9 个部分、86 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
 
-> 大纲参考了李宏毅《生成式 AI 导论》与吴恩达 DeepLearning.AI《Generative AI with LLMs》课程做查漏补缺,后续会边写边修订。
+> 大纲参考了李宏毅《生成式 AI 导论》与吴恩达 DeepLearning.AI《Generative AI with LLMs》课程做查漏补缺,正文会继续通过复审、评估和读者反馈迭代完善。
 
 ---
 
