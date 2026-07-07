@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 与记忆证据治理账本</title>
+  <desc id="desc">展示短期状态、RAG 资料、长期记忆和用户笔记的写入门、信任级别、生命周期和删除传播。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">RAG、记忆、笔记不能共用同一套写入规则</text>
+  <text class="sub" x="54" y="80">每类信息都要有来源、写入门、生命周期、冲突处理和删除传播。</text>
+  <g transform="translate(76 124)">
+    <rect class="cell" x="0" y="0" width="968" height="282" rx="8"/>
+    <g class="h"><text x="22" y="38">信息类型</text><text x="206" y="38">写入门</text><text x="408" y="38">可作为证据?</text><text x="626" y="38">主要风险</text><text x="812" y="38">治理动作</text></g>
+    <rect class="blue" x="0" y="58" width="968" height="50"/><text class="t" x="22" y="88">短期状态</text><text class="t" x="206" y="88">tool/user event</text><text class="t" x="408" y="88">仅当前任务</text><text class="t" x="626" y="88">假设变事实</text><text class="t" x="812" y="88">state diff</text>
+    <rect class="green" x="0" y="114" width="968" height="50"/><text class="t" x="22" y="144">RAG 资料</text><text class="t" x="206" y="144">ingestion pipeline</text><text class="t" x="408" y="144">按 trust/权限</text><text class="t" x="626" y="144">过期/越权</text><text class="t" x="812" y="144">版本和权限过滤</text>
+    <rect class="orange" x="0" y="170" width="968" height="50"/><text class="t" x="22" y="200">长期记忆</text><text class="t" x="206" y="200">明确偏好</text><text class="t" x="408" y="200">通常不做事实证据</text><text class="t" x="626" y="200">偏好污染</text><text class="t" x="812" y="200">scope/删除</text>
+    <rect class="red" x="0" y="226" width="968" height="50"/><text class="t" x="22" y="256">确认笔记</text><text class="t" x="206" y="256">用户确认 + 来源</text><text class="t" x="408" y="256">可以,但需标注</text><text class="t" x="626" y="256">冲突/删除残留</text><text class="t" x="812" y="256">tombstone + reindex</text>
+  </g>
+  <rect x="178" y="438" width="764" height="38" rx="8" fill="#172033"/><text x="236" y="462" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">研究助手会“学习”之前,必须先学会忘记、降权、标注冲突和回源。</text>
+</svg>

@@ -46,6 +46,34 @@
 
 这能防止外部网页、模型猜测或临时结论悄悄变成“以后都要遵守”的长期规则。
 
+## 证据治理账本
+
+RAG、长期记忆、用户笔记和短期状态都可能进入模型上下文,但它们不能共用同一套信任规则。最稳的做法是维护一份证据治理账本,明确每类信息谁能写、能不能作为证据、主要风险是什么、如何删除和降权。
+
+![RAG 与记忆证据治理账本](../assets/part6-rag-memory-evidence-governance-ledger.svg)
+
+这份账本能避免四类常见事故。
+
+第一,把短期假设当长期事实。当前任务里的推断只能留在 `ResearchTask` state,除非被证据和用户确认提升为笔记。否则一次错误推断会污染后续研究。
+
+第二,把 RAG 资料当可信指令。外部资料可以作为 evidence,但必须带 `source_uri`、`trust`、`permission_scope` 和 `retrieved_at`;它不能改变工具权限、写入规则或系统行为。
+
+第三,把长期记忆当事实来源。用户偏好能影响输出风格和默认约束,但通常不能支持事实 claim。例如“用户常研究 RAG”不是“RAG 适合某场景”的证据。
+
+第四,删除不传播。用户删除或撤回笔记后,Notes Store、向量索引、关键词索引、缓存和 eval fixture 都要知道这条资料不可再用。工程上最好写 tombstone,并让检索层过滤 `deleted_at != null`。
+
+可以给每条进入 context 的材料都加上 `evidence_role`:
+
+| `evidence_role` | 含义 |
+| --- | --- |
+| `source_quote` | 可支持具体 claim 的原文证据 |
+| `user_confirmed_note` | 用户确认过的二级资料,需保留来源 |
+| `preference` | 只影响表达和默认约束,不支持事实 claim |
+| `working_hypothesis` | 当前任务假设,必须标注未验证 |
+| `untrusted_content` | 只能引用或比较,不能作为指令 |
+
+这样 Context Builder 就能按角色选择材料:回答事实问题时优先 `source_quote`,生成风格时读取 `preference`,总结当前进展时可包含 `working_hypothesis`,而工具策略永远不接受 `untrusted_content` 作为执行指令。
+
 ## RAG 资料库
 
 资料库可以从简单开始。

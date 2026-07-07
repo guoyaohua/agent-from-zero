@@ -105,6 +105,26 @@ flowchart LR
 
 ADR 的另一个作用是帮你判断扩展是否真的准备好了。如果要接入浏览器、企业知识库或 MCP Server,不要只问“能不能接上”,而要问“现有 ADR 是否覆盖这个新边界”。如果新能力引入了新的副作用、权限域或资料生命周期,就先补 ADR,再写代码。
 
+## 运行时契约
+
+架构边界只有在每一轮运行时都被执行,才算真实存在。个人研究助手可以把每轮循环约束成一份运行时契约:模型只能产出 decision 或 answer draft;状态、工具、引用校验、笔记写入和 trace 都由 runtime 接管。
+
+![研究助手运行时契约](../assets/part6-architecture-runtime-contract.svg)
+
+这份契约可以写成几条不可破坏的规则。
+
+第一,`Orchestrator` 是状态权威。模型可以建议“需要继续检索”或“可以回答”,但不能直接改 `ResearchTask.status`、`evidence`、`notes` 或 `budget`。所有状态变化都要经过 reducer,并生成 `state_diff`。
+
+第二,`Context Builder` 只提供当前决策所需的工作视图。它从 state、evidence pack、memory 和 tool contract 中选材料,但不能在构建上下文时偷偷执行检索、修改笔记或放宽权限。
+
+第三,`Tool/RAG` 只返回 observation 和 artifact。工具不决定高风险动作是否允许,也不把外部资料提升为指令。工具的责任是结构化返回事实、错误和来源。
+
+第四,`Guardrails` 在工具前和输出后都要生效。引用校验、笔记确认、外部资料 trust 标注、预算限制和不可信内容隔离,都不应该只写在 prompt 里。
+
+第五,`Trace/Eval` 不是旁路日志,而是运行时契约的一部分。每个 decision、observation、state diff、policy decision 和 citation report 都要能进入 trace,否则评估无法判断失败归因。
+
+读者实现时可以把这张图当成代码目录边界:一旦某个模块开始越权,比如工具直接改 state、Context Builder 直接读取无权限资料、模型输出被直接写入笔记,就说明架构契约正在失效。
+
 ## Orchestrator
 
 Orchestrator 是任务控制器。

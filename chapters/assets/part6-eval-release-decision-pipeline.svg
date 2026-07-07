@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手评估发布决策流水线</title>
+  <desc id="desc">展示研究助手如何从失败 trace 到 eval 样本、scorecard、release gate、release note 和线上反馈形成闭环。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">评估要能回答“能不能发版”,不只是“分数多少”</text>
+  <text class="sub" x="54" y="80">失败 trace 进入样本集,scorecard 进入门禁,release note 记录取舍和回滚。</text>
+  <g transform="translate(72 132)">
+    <rect class="box" x="0" y="0" width="148" height="82" rx="8"/><text class="h" x="40" y="30">Trace</text><text class="t" x="20" y="56">失败和反馈</text><path class="arrow" d="M148 41 H190"/>
+    <rect class="box" x="210" y="0" width="148" height="82" rx="8"/><text class="h" x="248" y="30">Eval Set</text><text class="t" x="232" y="56">标签/fixture</text><path class="arrow" d="M358 41 H400"/>
+    <rect class="gate" x="420" y="0" width="148" height="82" rx="8"/><text class="h" x="456" y="30">Scorecard</text><text class="t" x="442" y="56">质量/成本/安全</text><path class="arrow" d="M568 41 H610"/>
+    <rect class="bad" x="630" y="0" width="148" height="82" rx="8"/><text class="h" x="666" y="30">Gate</text><text class="t" x="652" y="56">阻塞或灰度</text><path class="arrow" d="M778 41 H820"/>
+    <rect class="ok" x="840" y="0" width="148" height="82" rx="8"/><text class="h" x="874" y="30">Release</text><text class="t" x="862" y="56">note + rollback</text>
+  </g>
+  <g transform="translate(168 286)">
+    <rect class="bad" x="0" y="0" width="238" height="74" rx="8"/><text class="h" x="66" y="30">Regression</text><text class="t" x="30" y="54">旧版过,新版失败,通常阻塞</text>
+    <rect class="gate" x="286" y="0" width="238" height="74" rx="8"/><text class="h" x="354" y="30">Known Gap</text><text class="t" x="312" y="54">旧版也失败,记录风险和 owner</text>
+    <rect class="ok" x="572" y="0" width="238" height="74" rx="8"/><text class="h" x="640" y="30">Rollback</text><text class="t" x="600" y="54">模型/prompt/reranker/策略可回退</text>
+  </g>
+  <rect x="190" y="432" width="740" height="42" rx="8" fill="#172033"/><text x="258" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">没有 release note 的 Agent 迭代,很快会变成无法解释的手感调参。</text>
+</svg>

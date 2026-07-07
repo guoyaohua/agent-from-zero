@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手循环收敛账本</title>
+  <desc id="desc">展示研究助手每轮循环如何用新证据、状态变化、预算和停止条件判断是否继续。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">Loop 每跑一轮,都要证明自己更接近完成</text>
+  <text class="sub" x="54" y="80">没有新证据、新状态或新决策,就不应继续消耗预算。</text>
+  <g transform="translate(84 126)">
+    <rect class="cell" x="0" y="0" width="952" height="270" rx="8"/>
+    <g class="h"><text x="24" y="38">检查项</text><text x="240" y="38">继续条件</text><text x="530" y="38">停止/恢复动作</text><text x="776" y="38">trace 字段</text></g>
+    <rect class="ok" x="0" y="58" width="952" height="48"/><text class="h" x="24" y="88">证据增量</text><text class="t" x="240" y="88">新增支持 claim 的 quote</text><text class="t" x="530" y="88">无新增则改 query 或停止</text><text class="t" x="776" y="88">new_evidence</text>
+    <rect class="blue" x="0" y="112" width="952" height="48"/><text class="h" x="24" y="142">状态变化</text><text class="t" x="240" y="142">open question 减少</text><text class="t" x="530" y="142">重复 state diff 触发 no_progress</text><text class="t" x="776" y="142">state_diff</text>
+    <rect class="warn" x="0" y="166" width="952" height="48"/><text class="h" x="24" y="196">预算消耗</text><text class="t" x="240" y="196">成本换来信息增量</text><text class="t" x="530" y="196">降级输出或请求用户</text><text class="t" x="776" y="196">budget_delta</text>
+    <rect class="bad" x="0" y="220" width="952" height="48"/><text class="h" x="24" y="250">安全边界</text><text class="t" x="240" y="250">工具和写入都通过 Harness</text><text class="t" x="530" y="250">确认、降级或拒绝</text><text class="t" x="776" y="250">policy_decision</text>
+  </g>
+  <rect x="210" y="432" width="700" height="42" rx="8" fill="#172033"/><text x="272" y="458" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">循环不是越长越强;能收敛、能停止、能复盘的循环才可靠。</text>
+</svg>

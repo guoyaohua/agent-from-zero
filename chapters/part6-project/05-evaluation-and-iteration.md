@@ -321,6 +321,26 @@ Owner: rag-runtime
 
 这段记录看似朴素,但它会让 Agent 项目从“调 prompt 的手感工程”变成“可回滚的发布工程”。当线上用户反馈某个回答质量退化时,团队可以快速知道是哪次改动引入、当时评估覆盖了什么、是否有已知风险、如何回退。
 
+## 评估发布决策流水线
+
+研究助手的评估系统最终要服务一个问题:这个版本能不能发给真实用户? 所以 eval 不应该止步于分数,而要形成从失败 trace 到 release note 的决策流水线。
+
+![研究助手评估发布决策流水线](../assets/part6-eval-release-decision-pipeline.svg)
+
+流水线可以按五步运转。
+
+第一,线上失败和人工反馈进入 trace。每条失败都要保留用户目标、资料快照、evidence pack、citation report、模型版本、工具版本和失败层。
+
+第二,从 trace 中抽取最小可复现样本。不要把整条长 trace 原样塞进 eval set,而是保留能复现问题的输入、fixture、期望行为和 `must_not`。
+
+第三,运行 scorecard。scorecard 同时报告质量、引用、检索、安全、成本和延迟,并按 tag 展示变化。研究助手尤其要单独看 `citation_support`、`evidence_faithfulness`、`conflict_handling` 和 `unconfirmed_note_write`。
+
+第四,执行 gate。这里要区分 `regression` 和 `known gap`:旧版通过、新版失败通常阻塞;旧版也失败的缺口可以进入 release note,但必须有 owner 和后续计划。安全、伪引用、未确认写入这类硬错误不应被平均分抵消。
+
+第五,生成 release note。它至少写清 change、eval diff、regressions、known gaps、cost/latency、safety、rollback 和 owner。这样每次发布都能被解释、被回滚、被复盘。
+
+这条流水线会让项目迭代节奏变得很稳:失败不只是 bug,而是新的 eval 资产;发版不只是合并代码,而是带证据的质量判断。
+
 ## 线上反馈
 
 如果项目有真实用户,可以收集:

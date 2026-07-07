@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手需求验收账本</title>
+  <desc id="desc">展示个人研究助手如何把用户故事映射到系统对象、trace 信号、eval 样本和发布门禁。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.blue{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:1.5}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">需求只有能验收,才算进入 Agent 工程</text>
+  <text class="sub" x="54" y="80">每个用户故事都要绑定对象、trace、eval 和发布门禁,否则只是功能愿望。</text>
+  <g transform="translate(76 124)">
+    <rect class="cell" x="0" y="0" width="968" height="282" rx="8"/>
+    <g class="h"><text x="22" y="38">用户故事</text><text x="206" y="38">系统对象</text><text x="408" y="38">trace 信号</text><text x="626" y="38">eval 样本</text><text x="810" y="38">发布门禁</text></g>
+    <rect class="blue" x="0" y="58" width="968" height="50"/><text class="t" x="22" y="88">快速解释</text><text class="t" x="206" y="88">Claim, Evidence</text><text class="t" x="408" y="88">claim->evidence</text><text class="t" x="626" y="88">concept_gold</text><text class="t" x="810" y="88">无伪引用</text>
+    <rect class="green" x="0" y="114" width="968" height="50"/><text class="t" x="22" y="144">方案比较</text><text class="t" x="206" y="144">ResearchPlan</text><text class="t" x="408" y="144">dimensions/conflict</text><text class="t" x="626" y="144">compare_set</text><text class="t" x="810" y="144">维度齐全</text>
+    <rect class="orange" x="0" y="170" width="968" height="50"/><text class="t" x="22" y="200">阅读资料</text><text class="t" x="206" y="200">Source, Chunk</text><text class="t" x="408" y="200">quote/interpretation</text><text class="t" x="626" y="200">summary_faithful</text><text class="t" x="810" y="200">作者观点可回源</text>
+    <rect class="red" x="0" y="226" width="968" height="50"/><text class="t" x="22" y="256">沉淀笔记</text><text class="t" x="206" y="256">NoteDraft, Note</text><text class="t" x="408" y="256">confirmation/source</text><text class="t" x="626" y="256">note_write</text><text class="t" x="810" y="256">未确认写入为 0</text>
+  </g>
+  <rect x="198" y="438" width="724" height="38" rx="8" fill="#172033"/><text x="256" y="462" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">需求冻结不是停止想象,而是把想象变成可验证的系统契约。</text>
+</svg>

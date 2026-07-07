@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手运行时契约</title>
+  <desc id="desc">展示 Orchestrator、Context Builder、Tools、RAG、Guardrails、Trace 和 Eval 之间的运行时契约。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.h{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.ctrl{fill:#fff0e6;stroke:#b05c37;stroke-width:1.5}.data{fill:#e8f0ff;stroke:#5178c9;stroke-width:1.5}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.5}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="54" y="52">架构边界要落到每一轮运行时契约</text>
+  <text class="sub" x="54" y="80">模型只产出 decision; runtime 写状态、管工具、校验引用、记录 trace。</text>
+  <g transform="translate(74 130)">
+    <rect class="ctrl" x="0" y="78" width="180" height="86" rx="8"/><text class="h" x="44" y="110">Orchestrator</text><text class="t" x="24" y="136">state/budget/policy</text><path class="arrow" d="M180 121 H228"/>
+    <rect class="box" x="248" y="0" width="180" height="76" rx="8"/><text class="h" x="286" y="30">Context</text><text class="t" x="272" y="54">task frame + evidence</text><path class="arrow" d="M428 38 H476"/>
+    <rect class="box" x="496" y="0" width="180" height="76" rx="8"/><text class="h" x="544" y="30">LLM</text><text class="t" x="518" y="54">decision/answer draft</text><path class="arrow" d="M496 76 L410 116"/>
+    <rect class="data" x="248" y="152" width="180" height="76" rx="8"/><text class="h" x="292" y="182">Tools/RAG</text><text class="t" x="272" y="206">observation/artifact</text><path class="arrow" d="M428 190 H476"/>
+    <rect class="ctrl" x="496" y="152" width="180" height="76" rx="8"/><text class="h" x="542" y="182">Guardrails</text><text class="t" x="520" y="206">check/confirm/verify</text><path class="arrow" d="M676 190 H724"/>
+    <rect class="ok" x="744" y="78" width="180" height="86" rx="8"/><text class="h" x="790" y="110">Trace/Eval</text><text class="t" x="768" y="136">state diff + gates</text>
+    <path class="arrow" d="M248 190 L180 142"/><path class="arrow" d="M676 152 L744 121"/>
+  </g>
+  <rect x="198" y="430" width="724" height="42" rx="8" fill="#172033"/><text x="262" y="456" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="700" fill="#fff">如果某个模块越界,trace 要能看见;如果 trace 看不见,边界很快会被冲散。</text>
+</svg>
