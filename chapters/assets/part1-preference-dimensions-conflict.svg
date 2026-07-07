@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">偏好维度与冲突</title>
+  <desc id="desc">展示偏好对齐中事实性、有用性、安全性、简洁度、格式和语气之间可能冲突。</desc>
+  <rect width="860" height="360" fill="#fffdf8"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#273449">偏好不是一个分数,而是一组取舍</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#273449">
+    <circle cx="430" cy="180" r="82" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+    <text x="398" y="176" font-weight="700">Preference</text><text x="392" y="200">chosen &gt; rejected</text>
+    <rect x="56" y="80" width="150" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="92" y="112">事实性</text>
+    <rect x="56" y="220" width="150" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="92" y="252">有用性</text>
+    <rect x="356" y="294" width="150" height="54" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="392" y="326">安全性</text>
+    <rect x="654" y="80" width="150" height="54" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="690" y="112">简洁度</text>
+    <rect x="654" y="220" width="150" height="54" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="690" y="252">协议格式</text>
+    <path d="M206 107 C270 120 322 145 358 166 M206 247 C275 232 324 214 358 195 M431 294 V262 M654 107 C590 120 538 145 502 166 M654 247 C590 232 538 214 502 195" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="250" y="56" fill="#64748b">标注指南必须说明冲突时谁优先</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">LoRA 适配器决策图</title>
+  <desc id="desc">展示 LoRA 从问题诊断、目标模块、rank 选择到组合评估和部署方式的决策过程。</desc>
+  <rect width="860" height="360" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2937">LoRA 适合稳定行为适配,不适合动态知识更新</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1f2937">
+    <rect x="40" y="76" width="150" height="70" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="76" y="106" font-weight="700">诊断</text><text x="62" y="130">格式 / 风格 / 工具</text>
+    <rect x="230" y="76" width="150" height="70" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="260" y="106" font-weight="700">Target modules</text><text x="252" y="130">Q/V / FFN / layers</text>
+    <rect x="420" y="76" width="150" height="70" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="456" y="106" font-weight="700">Rank</text><text x="438" y="130">表达力 vs 过拟合</text>
+    <rect x="610" y="76" width="170" height="70" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="652" y="106" font-weight="700">Evaluate</text><text x="632" y="130">目标集 + 回归集</text>
+    <path d="M190 111 H230 M380 111 H420 M570 111 H610" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="126" y="218" width="608" height="76" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="156" y="248" font-weight="700">部署:</text><text x="220" y="248">动态加载适配器便于多任务</text><text x="470" y="248">合并权重便于固定服务</text>
+    <text x="156" y="274">基础模型升级后,旧 LoRA 必须重新评估,不能默认兼容</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

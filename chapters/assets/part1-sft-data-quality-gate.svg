@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">SFT 数据质量门</title>
+  <desc id="desc">展示 SFT 数据从任务定义到安全策略、边界样本和回归评估的质量门。</desc>
+  <rect width="860" height="360" fill="#f8fafc"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1e293b">SFT 成败先看数据门,再看训练技巧</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#1e293b">
+    <rect x="34" y="76" width="122" height="70" rx="8" fill="#dbeafe" stroke="#2563eb"/><text x="62" y="106" font-weight="700">Task</text><text x="52" y="130">目标清楚</text>
+    <rect x="190" y="76" width="122" height="70" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="220" y="106" font-weight="700">Answer</text><text x="208" y="130">事实正确</text>
+    <rect x="346" y="76" width="122" height="70" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="382" y="106" font-weight="700">Format</text><text x="365" y="130">协议一致</text>
+    <rect x="502" y="76" width="122" height="70" rx="8" fill="#ede9fe" stroke="#7c3aed"/><text x="536" y="106" font-weight="700">Edges</text><text x="520" y="130">失败边界</text>
+    <rect x="658" y="76" width="160" height="70" rx="8" fill="#fee2e2" stroke="#dc2626"/><text x="700" y="106" font-weight="700">Safety</text><text x="684" y="130">拒绝 / 确认 / 权限</text>
+    <path d="M156 111 H190 M312 111 H346 M468 111 H502 M624 111 H658" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="110" y="214" width="640" height="82" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="140" y="246" font-weight="700">验收:</text><text x="210" y="246">in-domain 提升</text><text x="350" y="246">out-of-domain 不退化</text><text x="560" y="246">tool/safety 回归通过</text>
+    <text x="140" y="272">低质量示范会被模型稳定学会,所以坏样本比少样本更危险</text>
+  </g>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+</svg>

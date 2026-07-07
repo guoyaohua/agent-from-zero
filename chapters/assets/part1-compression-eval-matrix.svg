@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
+  <title id="title">压缩评估矩阵</title>
+  <desc id="desc">展示蒸馏和量化方案需要同时评估质量、延迟、显存、轨迹和风险。</desc>
+  <rect width="860" height="360" fill="#fbfaf7"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#243042">压缩是质量、成本和风险的交换</text>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#243042">
+    <rect x="54" y="76" width="752" height="210" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="86" y="112" font-weight="700">方案</text><text x="232" y="112" font-weight="700">质量</text><text x="360" y="112" font-weight="700">延迟</text><text x="488" y="112" font-weight="700">显存</text><text x="616" y="112" font-weight="700">Agent 风险</text>
+    <line x1="76" y1="128" x2="784" y2="128" stroke="#cbd5e1"/>
+    <text x="86" y="158">Teacher full</text><text x="232" y="158">baseline</text><text x="360" y="158">慢</text><text x="488" y="158">高</text><text x="616" y="158">成本高</text>
+    <text x="86" y="196">Distilled</text><text x="232" y="196">轻微下降</text><text x="360" y="196">快</text><text x="488" y="196">中</text><text x="616" y="196">长尾弱</text>
+    <text x="86" y="234">INT8</text><text x="232" y="234">通常较稳</text><text x="360" y="234">看硬件</text><text x="488" y="234">低</text><text x="616" y="234">需回归</text>
+    <text x="86" y="272">INT4</text><text x="232" y="272">风险更高</text><text x="360" y="272">看框架</text><text x="488" y="272">很低</text><text x="616" y="272">工具/推理敏感</text>
+    <text x="104" y="326" fill="#64748b">必须评估完整轨迹: tool choice、JSON 合法率、错误恢复、长上下文和安全拒绝</text>
+  </g>
+</svg>

@@ -14,6 +14,8 @@ LoRA 是最常用的 PEFT 方法之一。
 
 ![PEFT 与 LoRA](../assets/part1-peft-lora-low-rank.svg)
 
+![LoRA 适配器决策图](../assets/part1-lora-adapter-decision.svg)
+
 本章会讲:
 
 - 为什么全量微调成本高。
@@ -176,6 +178,17 @@ LoRA 常加在 Transformer 的线性层上。
 
 这是一个任务相关的取舍。
 
+可以粗略按目标选择 target modules:
+
+| 目标 | 常见选择 | 取舍 |
+| --- | --- | --- |
+| 轻量格式适配 | Q/V 或部分 attention 层 | 参数少,但表达有限 |
+| 领域风格和术语 | Attention + 部分 FFN | 效果更强,成本更高 |
+| 代码/复杂指令 | 更多层和 FFN | 更能改变行为,也更易过拟合 |
+| 输出词表偏向 | 输出层附近 | 需谨慎,可能影响通用表达 |
+
+这不是固定公式。真正选择要靠验证集和回归集,尤其要看目标能力提升是否伴随通用能力下降。
+
 ## LoRA 的超参数
 
 常见 LoRA 超参数包括:
@@ -192,6 +205,18 @@ rank 太小可能学不动。
 
 rank 太大可能过拟合或失去参数高效优势。
 
+LoRA 调参时要避免只看训练 loss。建议记录:
+
+| 参数 | 观察指标 |
+| --- | --- |
+| rank | 目标任务分数、过拟合、适配器大小 |
+| alpha | 输出稳定性、是否过度改变基础模型风格 |
+| dropout | 小数据下泛化能力 |
+| target modules | 能力提升位置和推理开销 |
+| learning rate | 收敛速度、灾难性行为变化 |
+
+如果 rank 提升后目标集只小幅改善,但安全或格式回归变差,就不值得继续加 rank。
+
 ## LoRA 适合什么
 
 LoRA 适合:
@@ -205,6 +230,16 @@ LoRA 适合:
 - 快速实验不同任务版本。
 
 比如一个企业可以用同一个基础模型,为客服、法务、代码助手分别训练不同 LoRA 适配器。
+
+LoRA 的一个工程优势是版本管理。你可以把基础模型和适配器分开:
+
+```text
+base-model:v1 + customer-support-lora:v3
+base-model:v1 + legal-review-lora:v2
+base-model:v2 + code-agent-lora:v1
+```
+
+这样做方便回滚和 A/B 测试。但前提是每个组合都经过评估。基础模型升级后,旧 LoRA 不一定仍然稳定。
 
 ## LoRA 不适合什么
 
@@ -285,6 +320,18 @@ Agent 系统可以用 LoRA 适配:
 - 审计。
 
 LoRA 能让模型更配合系统,不能替代系统。
+
+Agent 使用 LoRA 时尤其要评估轨迹指标:
+
+| 指标 | 为什么 |
+| --- | --- |
+| tool_call_validity | 是否稳定输出合法工具参数 |
+| tool_choice_accuracy | 是否在正确时机调用正确工具 |
+| recovery_behavior | 工具失败后是否能恢复 |
+| confirmation_rate | 高风险动作是否请求确认 |
+| no_tool_when_not_needed | 是否避免过度调用工具 |
+
+如果 LoRA 只让最终回答更像公司风格,却让工具调用更激进,对 Agent 反而可能是退步。
 
 ## 常见误解
 
