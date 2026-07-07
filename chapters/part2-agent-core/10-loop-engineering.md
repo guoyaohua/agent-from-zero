@@ -60,6 +60,31 @@ while not done:
 
 Loop Engineering 的核心,是让多轮任务**有方向、有边界、有收敛机制**。
 
+## 收敛不是玄学
+
+一个 Loop 是否健康,不能只看“模型有没有继续努力”。真正的收敛,是任务状态里的不确定性在减少。
+
+可以把每轮看成对一个状态账本的更新:
+
+![Loop 收敛账本](../assets/part2-loop-engineering-convergence-ledger.svg)
+
+| 账本字段 | 每轮应该怎样变化 | 没变化意味着什么 |
+| --- | --- | --- |
+| `known_facts` | 增加经过工具或证据验证的事实 | 只是重复阅读旧材料 |
+| `open_questions` | 减少、拆分或明确阻塞原因 | 问题空间没有缩小 |
+| `hypotheses` | 被验证、推翻或排序 | 还在凭直觉乱试 |
+| `artifacts` | 产生草稿、patch、证据包或报告 | 没有可检验产物 |
+| `risk_state` | 被确认、降级或交还用户 | 风险在暗中累积 |
+| `budget` | 被有意识地消耗或降级 | 成本只是被动流失 |
+
+所以 Loop Engineering 的目标不是“让模型想更久”,而是让每一轮都能回答三个问题:
+
+1. 这一轮让我们比上一轮多知道了什么?
+2. 哪些可能性被排除了,哪些风险被确认了?
+3. 下一轮为什么不是重复上一轮?
+
+如果回答不上来,这轮就不该无条件继续。它应该触发重规划、换工具、请求用户、降级输出或停止。
+
 ## 进展不变量
 
 最重要的原则是:
@@ -132,6 +157,12 @@ Loop Engineering 的核心,是让多轮任务**有方向、有边界、有收敛
 
 如果都没有变化,Loop 可能在空转。
 
+这里有一个关键细节:State Summary 应该由 reducer 更新,而不是让模型自由改写。模型可以提出“我认为当前假设是 X”,但系统要根据 Observation 判断哪些内容能进入 `known_facts`,哪些只能进入 `hypotheses`,哪些应该进入 `open_questions`。
+
+例如工具返回 `ok=false` 时,reducer 不应该允许状态变成 `done`;引用校验失败时,reducer 不应该允许报告进入 `verified`;用户确认未返回时,reducer 不应该允许高风险动作进入 `committed`。这就是 Loop 和 Harness 的连接点:Harness 给出可信 Observation,Loop 的 reducer 决定它如何改变状态。
+
+一个状态字段如果不能被比较、不能被追踪来源、不能被回滚,就不适合承担 Loop 控制职责。它可以放进聊天历史,但不应成为“是否继续”的依据。
+
 ## 停止条件要显式
 
 没有停止条件的 Loop 会无限消耗资源。
@@ -170,6 +201,21 @@ Loop Engineering 的核心,是让多轮任务**有方向、有边界、有收敛
 | 策略拒绝 | 不适合重试 | 改动作或交还用户 |
 
 Loop Engineering 要把错误类型纳入状态,而不是把所有失败都交给模型自由解释。
+
+更实用的做法是建立错误路由表。Loop 不直接问“要不要再试一次”,而是先把错误分到不同恢复路径。
+
+![Loop 错误路由](../assets/part2-loop-engineering-error-routing.svg)
+
+| 错误路径 | 触发条件 | Loop 动作 |
+| --- | --- | --- |
+| 修参数 | schema 错、字段缺失、枚举错误 | 让模型基于错误信息重写 action |
+| 换证据 | 检索无结果、证据过旧、来源冲突 | 改写查询、换数据源、标注缺口 |
+| 换策略 | 连续无进展、假设被推翻 | 重规划,改变工具或任务分解 |
+| 请求用户 | 权限不足、目标不清、确认缺失 | 进入 `needs_user`,停止自动推进 |
+| 降级交付 | 预算不足、非关键工具不可用 | 输出带限制说明的结果 |
+| 停止失败 | 策略拒绝、不可恢复副作用失败 | 进入 `blocked` 或 `failed` |
+
+这个表的价值是避免“反射式重试”。重试只适合暂时性错误。对于权限、策略、目标、证据和业务规则问题,原样重试是在消耗预算,不是在推进任务。
 
 ## 计划会过期
 
@@ -258,6 +304,26 @@ any -> failed
 第三,审计。你可以解释任务为什么走到当前状态。
 
 长任务没有检查点,就像没有保存点的长流程自动化。
+
+## 持久执行和恢复协议
+
+长时程 Agent 还需要回答一个更工程化的问题:进程重启、网络断开、用户隔天回来、工具半路超时之后,Loop 如何继续?
+
+![Loop 持久执行与恢复协议](../assets/part2-loop-engineering-durable-recovery.svg)
+
+最小恢复协议可以拆成五步:
+
+| 步骤 | 作用 | 关键字段 |
+| --- | --- | --- |
+| checkpoint | 保存可恢复状态 | `state_id`、`plan_version`、`budget`、`risk_state` |
+| resume | 重新加载任务 | `last_committed_turn`、`pending_action` |
+| reconcile | 对账外部世界 | 工具结果、artifact 哈希、外部系统 ID |
+| decide | 判断继续路径 | continue、retry、rollback、ask_user、abort |
+| compact | 重建工作上下文 | 最新 goal、事实、缺口、下一步 |
+
+这里最容易漏掉的是 `reconcile`。系统不能只从自己的 checkpoint 继续,还要检查外部世界到底发生了什么。例如邮件是否真的发出,PR 是否已经创建,测试命令是否完成,文件是否被用户手动改过。否则恢复后的 Loop 可能重复副作用,或基于过期状态继续。
+
+持久 Loop 的原则是:每个有副作用的动作都要有 `pending -> committed -> observed` 的生命周期。系统中断时,恢复逻辑先处理 pending action,而不是立刻让模型生成新动作。
 
 ## 预算是 Loop 的一等变量
 
@@ -407,6 +473,41 @@ Loop 的质量不能只看最终答案。
 | 人类介入准确率 | 请求用户的时机是否合理 |
 
 如果一个 Agent 最终偶尔答对,但用了 30 轮、重复 12 次搜索、忽略 3 次工具失败,这个 Loop 仍然不健康。
+
+## 轨迹级评估集
+
+Loop 的评估样本不应该只有输入和最终答案,还应该包含期望轨迹特征。
+
+![Loop 轨迹级评估矩阵](../assets/part2-loop-engineering-trajectory-eval.svg)
+
+例如一个代码修复任务,评估集可以写成:
+
+```json
+{
+  "task": "修复 UserService 默认 active 测试失败",
+  "must_observe": ["test_failure", "source_file_read"],
+  "must_not_do": ["edit_unrelated_files", "claim_success_without_tests"],
+  "expected_progress": [
+    "form_hypothesis",
+    "apply_minimal_patch",
+    "run_targeted_test"
+  ],
+  "stop_condition": "tests_pass_or_report_blocker"
+}
+```
+
+这种评估比只看最终 diff 更能发现 Loop 问题。一个 Agent 可能最终碰巧改对,但如果它没有读取失败日志、没有运行测试、改了无关文件,这个轨迹仍然不合格。反过来,一个 Agent 最终因为权限不足没有完成,但它正确识别阻塞、保留证据、停止并请求授权,这个 Loop 可能是合格的。
+
+轨迹级评估至少覆盖四类样本:
+
+| 样本类型 | 检查重点 |
+| --- | --- |
+| 正常完成 | 是否用最少必要轮数完成并验证 |
+| 工具失败 | 是否根据错误类型恢复或降级 |
+| 证据不足 | 是否补搜、标注缺口,而不是编造 |
+| 高风险动作 | 是否停在 preview/confirm,而不是自动 commit |
+
+这类评估会逼着 Loop 变得可观测。你不能只说“模型会自己判断”,必须把每轮状态、动作、Observation 和停止原因记录下来。
 
 ## Loop 的设计模式
 

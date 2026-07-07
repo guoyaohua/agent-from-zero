@@ -56,6 +56,21 @@ Harness 要回答更多问题:
 
 少了这些问题,Agent 看起来能跑,但一遇到真实环境就会失控。
 
+更准确地说,API wrapper 是“函数适配层”,Harness 是“运行时治理层”。前者让模型能调用函数,后者决定这个调用是否可以成为系统事件。
+
+![API Wrapper 到 Harness 的差异](../assets/part2-harness-engineering-wrapper-vs-harness.svg)
+
+一个成熟 Harness 至少跨过四条线:
+
+| 层次 | 只做 wrapper | 做到 Harness |
+| --- | --- | --- |
+| 结构 | 把 JSON 参数传给函数 | 参数校验、默认值、枚举、来源、业务规则 |
+| 权限 | 假设工具可用 | 用户、租户、资源、动作、风险联合授权 |
+| 执行 | 直接调用 API | sandbox、超时、幂等、预览、确认、回滚 |
+| 反馈 | 返回字符串 | 结构化 Observation、trace、artifact 引用、错误协议 |
+
+这也是为什么很多“工具调用 Demo”迁到生产会突然变脆。Demo 里工具只是模型能力的一部分;生产里工具是系统权限的一部分。一旦工具能读取客户数据、写数据库、发送邮件、创建工单或改代码,它就必须被 Harness 接管。
+
 ## Harness 的核心边界
 
 最重要的边界是这句:
@@ -325,6 +340,61 @@ Harness 不应该只检查 `order_id` 是字符串、`amount` 是数字。
 
 这对防止模型编造关键参数非常重要。
 
+更进一步,参数来源可以参与权限决策。比如同样是 `customer_id=C-18`,来源不同,风险不同:
+
+| 参数来源 | 风险判断 |
+| --- | --- |
+| 用户手动输入 | 需要确认用户是否有权访问该客户 |
+| `lookup_customer` 工具返回 | 可校验来源工具、租户和时间戳 |
+| 模型从聊天中推断 | 不能直接用于高风险动作 |
+| 长期记忆中读出 | 需要检查记忆新鲜度和用户绑定 |
+
+所以 Harness 不应只校验“形状正确”,还要校验“来路可靠”。这点在金融、客服、医疗、企业知识库和代码仓库场景尤其重要。模型填出一个合法字符串很容易,但这个字符串是否是当前用户可操作的真实资源,必须由 runtime 验证。
+
+## Policy Gate:把规则做成可执行判定
+
+很多团队会把安全规则写在 Prompt 里:
+
+```text
+不要访问未授权客户数据。发送邮件前必须确认。不要删除生产数据。
+```
+
+这些话应该保留,但它们只是行为提示。Harness 还需要可执行的 policy gate。
+
+一个 policy gate 通常同时看五类信息:
+
+- `subject`: 谁在请求动作,包括用户、角色、租户、会话授权。
+- `action`: 要做什么,包括工具、方法、副作用类型、风险等级。
+- `resource`: 作用于什么资源,包括文件路径、客户、订单、数据表、外部账号。
+- `context`: 当前任务状态,包括目标、阶段、预算、确认状态、来源证据。
+- `environment`: 运行环境,包括 dev/prod、sandbox、网络、密钥可见性。
+
+![Harness Policy Gate 判定模型](../assets/part2-harness-engineering-policy-gate.svg)
+
+一个简化判定可以写成:
+
+```python
+def allowed(subject, action, resource, context, env):
+    if action.tool not in context.available_tools:
+        return deny("unknown_tool")
+
+    if not acl.can(subject, action.verb, resource):
+        return deny("permission_denied")
+
+    if action.risk >= "L3" and not context.confirmed(action.id):
+        return require_confirmation("high_risk_action")
+
+    if env.name == "prod" and action.side_effect and not context.change_ticket:
+        return deny("missing_change_ticket")
+
+    if budget.exceeded(context.budget, action.estimated_cost):
+        return deny("budget_exceeded")
+
+    return allow()
+```
+
+这段代码的重点不是具体语法,而是判断权在 runtime。模型可以解释为什么需要动作,但不能自己宣布动作被授权。
+
 ## Sandbox 和执行环境
 
 只要工具能执行代码、命令、浏览器操作或文件写入,Harness 就应该考虑 sandbox。
@@ -388,6 +458,24 @@ preview -> confirm -> commit
 
 这种拆分比在 Prompt 里写“发送前请小心”可靠得多。
 
+## 写操作的恢复模型
+
+Harness 处理写操作时,不能只问“能不能执行”,还要问“执行错了怎么办”。不同写操作有不同恢复模型。
+
+![Harness 写操作恢复模型](../assets/part2-harness-engineering-recovery-model.svg)
+
+| 恢复模型 | 例子 | Harness 要求 |
+| --- | --- | --- |
+| 可忽略 | 生成临时草稿、写缓存 | 清理策略和过期时间 |
+| 可覆盖 | 更新本地草稿文件 | 保存上一版本或 diff |
+| 可回滚 | 数据库事务、PR 修改 | rollback token、事务边界、验证点 |
+| 可补偿 | 已发送邮件、已创建工单 | 补偿动作、通知、审计记录 |
+| 不可逆 | 外部转账、删除生产数据 | 强确认、双人审批、最小权限,通常不自动化 |
+
+一个容易犯的错误是把“有 API 可以调用”理解成“适合 Agent 自动调用”。如果动作不可逆,或补偿成本很高,它就不应该直接暴露为普通工具。更好的设计是暴露成 `prepare_*`、`preview_*`、`request_approval` 这类低风险动作,把最后一步 commit 留给明确授权路径。
+
+写操作还需要 artifact 级 trace。例如代码 Agent 不能只记录“修改成功”,而要记录 patch、文件哈希、测试结果、应用时间和回滚方式。业务 Agent 不能只记录“邮件已发送”,而要记录草稿版本、收件人、确认人、确认时间、发送结果和外部系统 ID。
+
 ## Trace:Harness 的黑匣子
 
 Harness 必须留下 trace。一个动作 trace 至少包括:
@@ -426,6 +514,20 @@ Trace 的价值不是“记录越多越好”,而是让系统可以回答:
 - 失败能否复现?
 
 没有 trace 的 Harness,几乎无法生产化。
+
+Trace 还承担一个常被忽略的职责:把模型输出和系统事实分开。模型说“我已经运行测试并通过”,这只是文本;Harness trace 里有 `run_tests` 的 action、exit code、stdout 摘要和 artifact 引用,这才是系统事实。
+
+所以 trace 最好分层记录:
+
+| Trace 层 | 记录什么 | 用途 |
+| --- | --- | --- |
+| intent | 模型提出的 action proposal | 调试模型决策 |
+| validation | schema、policy、budget、risk 判断 | 证明边界生效 |
+| execution | 工具输入摘要、环境、耗时、退出码 | 复现工具行为 |
+| observation | 结构化结果、错误、artifact ref | 约束下一轮状态 |
+| state_delta | State 如何变化 | 排查错误写回 |
+
+没有 `state_delta`,很多 trace 只能解释“发生了什么”,不能解释“系统为什么下一轮会那么做”。
 
 ## 错误协议
 
@@ -510,6 +612,25 @@ def handle_action(action, state, user, tool_registry):
 | 回滚成功率 | 写操作失败后能否恢复 |
 
 这些指标比“模型看起来听话”更重要。
+
+## Harness 的故障注入测试
+
+真正验证 Harness,不能只跑成功路径。要专门构造失败样本。
+
+| 注入样本 | 期望 Harness 行为 |
+| --- | --- |
+| 模型调用不存在的工具 | 拒绝,返回 `unknown_tool`,不给执行器 |
+| 参数类型正确但资源越权 | 拒绝,返回 `permission_denied` |
+| 参数来自模型猜测的订单号 | 要求先查询确认,不能直接退款 |
+| 高风险动作缺少确认 | 返回 `requires_confirmation`,生成 preview |
+| 相同幂等键重复调用 | 返回首次执行结果或拒绝重复副作用 |
+| 工具超时 | 结构化 `timeout`,标注 retryable 和重试预算 |
+| 工具返回包含未授权数据 | 截断或拒绝写入 Context,记录 policy 事件 |
+| 工具成功但业务校验失败 | 返回 `business_rule_failed`,不能写成成功 |
+
+这类测试越早写越好。它们不依赖模型变强,而是证明系统边界在模型犯错时仍然成立。
+
+一个很实用的 Harness 评估集是“恶意但格式正确的 action”。例如 JSON 完全符合 schema,但路径是 `../../secrets.env`;订单号存在但属于其他租户;邮件收件人合法但不是当前客户;SQL 查询只读但跨越权限边界。只测 JSON 格式会漏掉这些真正危险的问题。
 
 ## Harness 设计清单
 
