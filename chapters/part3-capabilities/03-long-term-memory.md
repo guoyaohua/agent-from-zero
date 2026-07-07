@@ -246,6 +246,8 @@ Instruction: Treat memory as a helpful prior. If current files contradict it, pr
 
 长期记忆不是写进去就结束。成熟系统会给每条记忆建立治理闭环:
 
+![长期记忆治理台](../assets/part3-long-term-memory-governance.svg)
+
 ```text
 写入 -> 使用 -> 观察效果 -> 冲突/过期检测 -> 更新、降权或删除
 ```
@@ -261,6 +263,8 @@ Instruction: Treat memory as a helpful prior. If current files contradict it, pr
 - 用户控制:用户能查看、修正、删除重要记忆。
 
 没有治理闭环的长期记忆会慢慢变成“未来上下文里的旧噪声”。
+
+治理闭环还有一个产品意义:用户应该能理解系统为什么记住某件事,并能纠正它。否则长期记忆会从便利功能变成不可见的行为偏置。
 
 ## 记忆冲突
 
@@ -381,6 +385,10 @@ flowchart LR
 ### 隐私边界
 
 A 用户的记忆是否不会影响 B 用户?
+
+### 负迁移
+
+项目 A 的约定是否不会错误影响项目 B?用户长期偏好是否不会覆盖当前明确指令?
 
 这些测试比“能不能检索出相似文本”更重要。
 

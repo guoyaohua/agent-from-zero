@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-labelledby="title desc">
+  <title id="title">记忆闸门与治理点</title>
+  <desc id="desc">展示事件进入记忆系统后,需要经过捕获门、写入门、检索门和使用门,每一层都能拒绝、降级、标记待验证或要求确认。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .down { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 5 5; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="600" />
+  <text class="title" x="48" y="52">记忆不能从事件直通上下文,中间必须有闸门</text>
+  <text class="sub" x="48" y="78">每道门都检查不同风险:噪声、稳定性、scope、权限、过期、冲突和当前任务优先级。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="362" rx="8" />
+  <rect class="blue" x="80" y="178" width="128" height="76" rx="8" />
+  <text class="label" x="124" y="207">事件</text>
+  <text class="small" x="106" y="230">对话/工具/反馈</text>
+  <path class="arrow" d="M208 216 H252" />
+
+  <rect class="green" x="252" y="178" width="138" height="76" rx="8" />
+  <text class="label" x="288" y="207">捕获门</text>
+  <text class="small" x="280" y="230">是否值得候选</text>
+  <path class="arrow" d="M390 216 H434" />
+
+  <rect class="orange" x="434" y="178" width="138" height="76" rx="8" />
+  <text class="label" x="470" y="207">写入门</text>
+  <text class="small" x="462" y="230">稳定/可信/隐私</text>
+  <path class="arrow" d="M572 216 H616" />
+
+  <rect class="green" x="616" y="178" width="138" height="76" rx="8" />
+  <text class="label" x="652" y="207">检索门</text>
+  <text class="small" x="646" y="230">scope/时间/权限</text>
+  <path class="arrow" d="M754 216 H798" />
+
+  <rect class="orange" x="798" y="178" width="138" height="76" rx="8" />
+  <text class="label" x="834" y="207">使用门</text>
+  <text class="small" x="826" y="230">优先级/冲突</text>
+  <path class="arrow" d="M936 216 H980" />
+
+  <rect class="blue" x="954" y="324" width="86" height="70" rx="8" />
+  <text class="label" x="974" y="354">上下文</text>
+  <text class="small" x="976" y="376">本轮可见</text>
+  <path class="arrow" d="M867 254 C900 308 946 324 982 324" />
+
+  <rect class="red" x="254" y="326" width="682" height="68" rx="8" />
+  <text class="label" x="286" y="356">任一闸门都可以拒绝、降级、待验证或请求用户确认</text>
+  <text class="small" x="286" y="378">被拒绝也要记录原因,否则无法解释系统为什么记住或忘记。</text>
+  <path class="down" d="M321 254 V326" />
+  <path class="down" d="M503 254 V326" />
+  <path class="down" d="M685 254 V326" />
+  <path class="down" d="M867 254 V326" />
+
+  <rect class="gray" x="72" y="506" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="532">读图方式: 记忆系统的价值不在于存更多,而在于每次写入和使用都有来源、范围、理由和退出机制。</text>
+</svg>
