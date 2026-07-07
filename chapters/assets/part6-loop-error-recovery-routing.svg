@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手错误恢复路由</title>
+  <desc id="desc">展示核心循环遇到 schema、检索、权限、引用、超时和无进展错误时,应该路由到不同恢复动作。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#435066}.err{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.act{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.stop{fill:#fff0e6;stroke:#b05c37;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">失败后不能原样重试,必须改变状态、参数或策略</text>
+  <text class="sub" x="56" y="82">错误恢复是 Loop Engineering 在项目里的落地。</text>
+  <g transform="translate(72 124)">
+    <rect class="err" x="0" y="0" width="170" height="50" rx="8"/><text class="head" x="38" y="30">schema_error</text><path class="arrow" d="M170 25 H246"/><rect class="act" x="246" y="0" width="210" height="50" rx="8"/><text class="text" x="274" y="30">只修参数,不调用工具</text>
+    <rect class="err" x="0" y="70" width="170" height="50" rx="8"/><text class="head" x="54" y="100">no_result</text><path class="arrow" d="M170 95 H246"/><rect class="act" x="246" y="70" width="210" height="50" rx="8"/><text class="text" x="274" y="100">改写 query / 放宽过滤</text>
+    <rect class="err" x="0" y="140" width="170" height="50" rx="8"/><text class="head" x="36" y="170">permission_denied</text><path class="arrow" d="M170 165 H246"/><rect class="stop" x="246" y="140" width="210" height="50" rx="8"/><text class="text" x="274" y="170">停止或请求授权</text>
+    <rect class="err" x="520" y="0" width="190" height="50" rx="8"/><text class="head" x="552" y="30">citation_unsupported</text><path class="arrow" d="M710 25 H786"/><rect class="act" x="786" y="0" width="210" height="50" rx="8"/><text class="text" x="814" y="30">回到证据包修正回答</text>
+    <rect class="err" x="520" y="70" width="190" height="50" rx="8"/><text class="head" x="584" y="100">timeout</text><path class="arrow" d="M710 95 H786"/><rect class="act" x="786" y="70" width="210" height="50" rx="8"/><text class="text" x="814" y="100">有限重试,再降级</text>
+    <rect class="err" x="520" y="140" width="190" height="50" rx="8"/><text class="head" x="574" y="170">no_progress</text><path class="arrow" d="M710 165 H786"/><rect class="stop" x="786" y="140" width="210" height="50" rx="8"/><text class="text" x="814" y="170">重规划或输出缺口</text>
+  </g>
+  <rect x="176" y="402" width="768" height="38" rx="8" fill="#172033"/><text x="250" y="426" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">每个恢复动作都要留下 state_diff,否则 trace 无法解释系统为什么继续或停止。</text>
+</svg>

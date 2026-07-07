@@ -393,6 +393,12 @@ v1 设置简单预算:
 
 这就是 Loop Engineering 在项目里的落地:失败后必须改变状态、参数或策略。
 
+![研究助手错误恢复路由](../assets/part6-loop-error-recovery-routing.svg)
+
+这张路由图的核心是:错误类型决定恢复策略。`schema_error` 不应该触发真实工具调用,只需要让模型修正结构化参数;`permission_denied` 不应该自动重试,因为权限不是随机失败;`citation_unsupported` 应该回到 evidence pack 和回答生成,而不是继续检索一堆无关资料;`no_progress` 则说明循环本身需要重规划或停止。
+
+每次恢复都要留下 `state_diff`。例如 `no_result` 后 query 从 A 改成 B,`citation_unsupported` 后删除了哪个 claim,`timeout` 后是否降级为只读摘要,这些都应该能在 trace 中看到。否则系统表面上“会重试”,实际调试时仍然不知道它为什么越跑越偏。
+
 ## Trace
 
 每步记录:

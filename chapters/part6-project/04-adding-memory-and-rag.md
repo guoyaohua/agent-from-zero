@@ -137,6 +137,12 @@ query rewrite -> permission/source filter -> recall -> rerank -> evidence build
 
 不要先召回所有资料再让模型判断哪些能看。权限和数据边界应该在检索系统里执行。
 
+![从检索到 Evidence Pack 的构建链路](../assets/part6-retrieval-evidence-builder.svg)
+
+检索链路的交付物不是 `top_k_chunks`,而是 evidence pack。`top_k` 只是候选集合,里面可能有重复、噪声、过期资料、权限不匹配内容和 hard negative。真正进入模型上下文的,应该是经过过滤、重排、相邻上下文读取和证据抽取后的结构化证据。
+
+这也是为什么 evidence pack 要保存 `quote`、`claim_supported`、`limits`、`trust` 和 `source_uri`。回答生成需要知道某段原文到底支持哪个结论,引用校验需要知道 claim 是否被 quote 支持,安全策略需要知道资料是否 untrusted。没有这个中间产物,RAG 很容易退化成“检索片段拼接 + 模型自由发挥”。
+
 ## Query rewriting
 
 研究问题常常比较长或省略。

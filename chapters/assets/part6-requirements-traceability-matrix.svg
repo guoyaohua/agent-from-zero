@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手需求到验收的可追踪矩阵</title>
+  <desc id="desc">展示用户故事如何映射到系统对象、trace 事件、评估样本和上线门禁,让 v1 需求可以被验收和回归。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.must{fill:#e7f1ee}.risk{fill:#fff0e6}.gate{fill:#ece7f3}.line{stroke:#8796aa;stroke-width:1.6}</style></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">需求不是列表,而是一条从用户故事到回归门禁的证据链</text>
+  <text class="sub" x="56" y="82">每个 v1 能力都要能在 state、trace、eval 和 gate 中找到对应位置。</text>
+  <text class="head" x="74" y="132">用户故事</text><text class="head" x="258" y="132">系统对象</text><text class="head" x="452" y="132">Trace 事件</text><text class="head" x="650" y="132">Eval 样本</text><text class="head" x="848" y="132">上线门禁</text>
+  <g transform="translate(56 154)">
+    <rect class="cell must" x="0" y="0" width="178" height="58"/><text class="text" x="18" y="24">技术概念解释</text><text class="text" x="18" y="44">带来源回答</text>
+    <rect class="cell" x="196" y="0" width="178" height="58"/><text class="text" x="214" y="24">ResearchTask</text><text class="text" x="214" y="44">Evidence Pack</text>
+    <rect class="cell" x="392" y="0" width="178" height="58"/><text class="text" x="410" y="24">search / read</text><text class="text" x="410" y="44">citation_check</text>
+    <rect class="cell" x="588" y="0" width="178" height="58"/><text class="text" x="606" y="24">concept + source</text><text class="text" x="606" y="44">citation accuracy</text>
+    <rect class="cell gate" x="784" y="0" width="224" height="58"/><text class="text" x="802" y="24">引用存在 100%</text><text class="text" x="802" y="44">关键结论有证据</text>
+    <rect class="cell risk" x="0" y="74" width="178" height="58"/><text class="text" x="18" y="98">方案比较</text><text class="text" x="18" y="118">取舍和限制</text>
+    <rect class="cell" x="196" y="74" width="178" height="58"/><text class="text" x="214" y="98">Comparison Frame</text><text class="text" x="214" y="118">Claims</text>
+    <rect class="cell" x="392" y="74" width="178" height="58"/><text class="text" x="410" y="98">plan / rerank</text><text class="text" x="410" y="118">conflict_found</text>
+    <rect class="cell" x="588" y="74" width="178" height="58"/><text class="text" x="606" y="98">compare tags</text><text class="text" x="606" y="118">hard negatives</text>
+    <rect class="cell gate" x="784" y="74" width="224" height="58"/><text class="text" x="802" y="98">关键维度不缺失</text><text class="text" x="802" y="118">冲突证据要说明</text>
+    <rect class="cell risk" x="0" y="148" width="178" height="58"/><text class="text" x="18" y="172">沉淀笔记</text><text class="text" x="18" y="192">用户确认写入</text>
+    <rect class="cell" x="196" y="148" width="178" height="58"/><text class="text" x="214" y="172">Note Draft</text><text class="text" x="214" y="192">Commit Policy</text>
+    <rect class="cell" x="392" y="148" width="178" height="58"/><text class="text" x="410" y="172">save_draft</text><text class="text" x="410" y="192">commit_note</text>
+    <rect class="cell" x="588" y="148" width="178" height="58"/><text class="text" x="606" y="172">note write</text><text class="text" x="606" y="192">memory pollution</text>
+    <rect class="cell gate" x="784" y="148" width="224" height="58"/><text class="text" x="802" y="172">未确认写入为 0</text><text class="text" x="802" y="192">来源缺失阻塞</text>
+  </g>
+  <rect x="162" y="436" width="796" height="40" rx="8" fill="#172033"/><text x="248" y="461" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">能被 trace 复盘、被 eval 重跑、被 gate 拦住的需求,才是真正落地的需求。</text>
+</svg>

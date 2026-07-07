@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">个人研究助手运行时序</title>
+  <desc id="desc">展示一次研究任务从用户输入到回答、引用校验和笔记确认的运行时序,并区分控制面和数据面。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#596579}.lane{fill:#fff;stroke:#d8e0eb;stroke-width:1}.ctrl{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.8}.data{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.model{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#435066}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">模型负责判断和生成,Runtime 负责边界和状态</text>
+  <text class="sub" x="56" y="82">LLM 不直接读写资料库和笔记,所有动作都经过 Orchestrator 与 Harness。</text>
+  <rect class="lane" x="64" y="120" width="992" height="260" rx="8"/>
+  <rect class="ctrl" x="92" y="172" width="138" height="76" rx="8"/><text class="head" x="132" y="202">User/API</text><text class="text" x="118" y="228">question</text>
+  <rect class="ctrl" x="268" y="144" width="150" height="132" rx="8"/><text class="head" x="302" y="176">Orchestrator</text><text class="text" x="298" y="204">state</text><text class="text" x="298" y="228">budget</text><text class="text" x="298" y="252">policy</text>
+  <rect class="ctrl" x="456" y="160" width="150" height="100" rx="8"/><text class="head" x="488" y="192">Context</text><text class="text" x="488" y="218">task + state</text><text class="text" x="488" y="242">evidence pack</text>
+  <rect class="model" x="644" y="160" width="140" height="100" rx="8"/><text class="head" x="692" y="192">LLM</text><text class="text" x="678" y="218">decision</text><text class="text" x="678" y="242">answer draft</text>
+  <rect class="data" x="822" y="132" width="190" height="84" rx="8"/><text class="head" x="868" y="164">Tools/RAG</text><text class="text" x="862" y="190">search / read</text>
+  <rect class="ctrl" x="822" y="250" width="190" height="84" rx="8"/><text class="head" x="862" y="282">Verifier/Notes</text><text class="text" x="856" y="308">citation / confirm</text>
+  <path class="arrow" d="M230 210 H268M418 210H456M606 210H644M784 196H822M784 236 C820 246 820 282 822 292"/>
+  <path class="arrow" d="M917 216 C900 356 436 356 344 276"/>
+  <path class="arrow" d="M917 334 C876 414 426 416 344 276"/>
+  <text class="head" x="98" y="416">控制面:</text><text class="text" x="168" y="416">状态、预算、权限、确认、引用校验、trace</text>
+  <text class="head" x="580" y="416">数据面:</text><text class="text" x="650" y="416">检索、读取、解析、证据构建、artifact</text>
+  <rect x="176" y="452" width="768" height="34" rx="8" fill="#172033"/><text x="254" y="474" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">这条时序能直接指导代码目录、接口和 trace span 的划分。</text>
+</svg>

@@ -335,6 +335,12 @@ Next actions:
 
 这让 eval 从“打分”变成“工程队列”。
 
+![评估记分卡到修复队列](../assets/part6-eval-scorecard-backlog.svg)
+
+研究助手的评估报告最好同时有两层输出。第一层是 scorecard:总体通过率、引用准确率、检索指标、成本延迟、安全门禁和分 tag 表现。第二层是 backlog:失败样本、失败层、trace、负责人和下一步动作。只有第一层,团队会知道系统哪里变差;有第二层,团队才知道该修哪个模块。
+
+例如 `conflict_003` 失败,如果 trace 显示旧来源被召回但没进入 evidence pack,归因是 Context/RAG;如果 evidence pack 里有旧来源但回答没提,归因是 Prompt/Generation;如果回答提了冲突但 Judge 没识别,归因是 Eval/Judge。相同表面症状可能对应完全不同的修复方向,所以评估必须连到 trace。
+
 ## 常见误解
 
 ### 误解一:项目小就不用 eval

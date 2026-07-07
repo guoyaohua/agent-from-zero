@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">研究助手评估记分卡到修复队列</title>
+  <desc id="desc">展示一次评估如何输出分层指标、失败样本、归因层和 next action,把评分转化成工程迭代队列。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#435066}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.pass{fill:#e7f1ee}.warn{fill:#fff0e6}.fail{fill:#f7d9df}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">评估报告的终点不是分数,而是可执行修复队列</text>
+  <text class="sub" x="56" y="82">每个失败样本都要有 failure_layer、trace_ref、owner 和 next_action。</text>
+  <g transform="translate(74 128)">
+    <text class="head" x="0" y="0">Scorecard</text>
+    <rect class="cell pass" x="0" y="22" width="230" height="44"/><text class="text" x="22" y="50">Citation: 88% -> 93%</text>
+    <rect class="cell warn" x="0" y="76" width="230" height="44"/><text class="text" x="22" y="104">Cost/task: +8%</text>
+    <rect class="cell fail" x="0" y="130" width="230" height="44"/><text class="text" x="22" y="158">Conflict tag: -1 sample</text>
+    <path class="arrow" d="M250 100 H322"/>
+    <text class="head" x="322" y="0">Failure Samples</text>
+    <rect class="cell" x="322" y="22" width="256" height="64"/><text class="text" x="344" y="48">conflict_003</text><text class="text" x="344" y="70">遗漏旧来源冲突</text>
+    <rect class="cell" x="322" y="100" width="256" height="64"/><text class="text" x="344" y="126">rag_012</text><text class="text" x="344" y="148">引用主题相关但不支持</text>
+    <path class="arrow" d="M598 100 H670"/>
+    <text class="head" x="670" y="0">Backlog</text>
+    <rect class="cell warn" x="670" y="22" width="330" height="64"/><text class="text" x="694" y="48">Context/RAG: 加 hard negative</text><text class="text" x="694" y="70">owner: retrieval</text>
+    <rect class="cell warn" x="670" y="100" width="330" height="64"/><text class="text" x="694" y="126">Harness: 强化 citation support</text><text class="text" x="694" y="148">owner: verifier</text>
+  </g>
+  <rect x="168" y="404" width="784" height="40" rx="8" fill="#172033"/><text x="246" y="429" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">没有归因和 next_action 的评估,只是仪表盘;有修复队列的评估才会推动系统变好。</text>
+</svg>

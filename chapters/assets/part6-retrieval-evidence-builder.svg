@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">从检索到 Evidence Pack 的构建链路</title>
+  <desc id="desc">展示研究助手如何从 query 改写、权限过滤、召回、重排、读取上下文到证据包,并保留来源、信任级别和限制条件。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.5}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.pack{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;fill:#435066}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">RAG 的交付物不是 top-k,而是可引用的 Evidence Pack</text>
+  <text class="sub" x="56" y="82">每一步都保留 source、trust、time、permission 和 claim 支持关系。</text>
+  <g transform="translate(70 148)">
+    <rect class="box" x="0" y="30" width="130" height="76" rx="8"/><text class="head" x="28" y="62">Query</text><text class="text" x="22" y="88">改写 + 拆解</text>
+    <path class="arrow" d="M130 68 H180"/>
+    <rect class="gate" x="180" y="30" width="150" height="76" rx="8"/><text class="head" x="218" y="62">Filter</text><text class="text" x="208" y="88">权限 / 来源</text>
+    <path class="arrow" d="M330 68 H380"/>
+    <rect class="box" x="380" y="0" width="150" height="62" rx="8"/><text class="head" x="414" y="34">Vector</text><text class="text" x="420" y="54">top 50</text>
+    <rect class="box" x="380" y="84" width="150" height="62" rx="8"/><text class="head" x="410" y="118">Keyword</text><text class="text" x="420" y="138">top 50</text>
+    <path class="arrow" d="M530 31 H582M530 115H582"/>
+    <rect class="box" x="582" y="30" width="142" height="76" rx="8"/><text class="head" x="618" y="62">Merge</text><text class="text" x="612" y="88">去重 + rerank</text>
+    <path class="arrow" d="M724 68 H774"/>
+    <rect class="box" x="774" y="30" width="142" height="76" rx="8"/><text class="head" x="810" y="62">Read</text><text class="text" x="802" y="88">相邻上下文</text>
+    <path class="arrow" d="M916 68 H966"/>
+    <rect class="pack" x="966" y="12" width="130" height="112" rx="8"/><text class="head" x="994" y="42">Evidence</text><text class="text" x="990" y="68">quote</text><text class="text" x="990" y="90">claim</text><text class="text" x="990" y="112">limits</text>
+  </g>
+  <rect x="154" y="394" width="812" height="42" rx="8" fill="#172033"/><text x="242" y="420" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">模型看到的是证据包,不是无来源的检索片段;引用校验也只信证据包。</text>
+</svg>

@@ -78,6 +78,12 @@ flowchart LR
 
 例如 `search_corpus` 属于数据面,它返回候选资料。`Orchestrator` 和 `Guardrails` 属于控制面,它们决定这些资料是否能进入 context、是否满足权限、是否需要继续检索。把二者混在一起,后续会很难解释一次失败到底是检索问题、权限问题还是模型生成问题。
 
+![个人研究助手运行时序](../assets/part6-runtime-sequence.svg)
+
+把架构画成时序图后,模块边界会更清楚。用户请求先进入 Orchestrator,它创建任务状态、检查预算和策略,再让 Context Builder 组装当前决策所需的工作视图。LLM 只返回 decision 或 answer draft,不直接读写 RAG、Memory 或 Notes。工具调用、引用校验、笔记提交都回到 Orchestrator,由 runtime 写 state diff 和 trace。
+
+这个时序能直接指导代码结构。控制面适合放在 `orchestrator/`、`harness/`、`guardrails/` 和 `trace/`;数据面适合放在 `tools/`、`rag/`、`ingestion/` 和 `artifacts/`;模型适配层单独封装。这样后续新增浏览器资料源、论文库或团队知识库时,不会把权限逻辑散落到每个 loader 里。
+
 ## Orchestrator
 
 Orchestrator 是任务控制器。
