@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">失败分层适配路线</title>
+  <desc id="desc">展示模型效果不好时,先按表达层、信息层、行为层、执行层、能力层和安全层给失败样本打标签,再选择 Prompt、RAG、SFT、工具或换模型。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.a{fill:#dfe8f5}.b{fill:#e7f1ee}.c{fill:#fff0e6}.d{fill:#ece7f3}.e{fill:#f7d9df}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">先给失败样本分层,再选择 Prompt、RAG、微调或工具</text>
+  <text class="sub" x="56" y="82">“效果不好”不是诊断;每一层失败对应不同成本和不同修法。</text>
+  <g transform="translate(74 128)">
+    <rect class="cell a" x="0" y="0" width="150" height="62"/><text class="head" x="28" y="26">表达层</text><text class="small" x="24" y="48">指令/格式不清</text>
+    <rect class="cell" x="172" y="0" width="150" height="62"/><text class="text" x="202" y="38">Prompt + schema</text>
+    <rect class="cell b" x="0" y="78" width="150" height="62"/><text class="head" x="28" y="104">信息层</text><text class="small" x="24" y="126">缺事实/证据</text>
+    <rect class="cell" x="172" y="78" width="150" height="62"/><text class="text" x="210" y="116">RAG / API</text>
+    <rect class="cell c" x="0" y="156" width="150" height="62"/><text class="head" x="28" y="182">行为层</text><text class="small" x="24" y="204">协议长期稳定</text>
+    <rect class="cell" x="172" y="156" width="150" height="62"/><text class="text" x="214" y="194">SFT / LoRA</text>
+    <rect class="cell d" x="0" y="234" width="150" height="62"/><text class="head" x="28" y="260">执行层</text><text class="small" x="24" y="282">外部动作/校验</text>
+    <rect class="cell" x="172" y="234" width="150" height="62"/><text class="text" x="204" y="272">Tool / Harness</text>
+  </g>
+  <g transform="translate(444 128)">
+    <rect class="cell e" x="0" y="0" width="150" height="62"/><text class="head" x="28" y="26">能力层</text><text class="small" x="24" y="48">推理/代码上限</text>
+    <rect class="cell" x="172" y="0" width="150" height="62"/><text class="text" x="204" y="38">换模型/路由</text>
+    <rect class="cell e" x="0" y="78" width="150" height="62"/><text class="head" x="28" y="104">安全层</text><text class="small" x="24" y="126">越权/泄露/注入</text>
+    <rect class="cell" x="172" y="78" width="150" height="62"/><text class="text" x="206" y="116">权限 + 护栏</text>
+    <rect class="cell" x="0" y="178" width="322" height="118" rx="8"/><text class="head" x="26" y="210">Playbook</text><text class="small" x="26" y="238">1. 收集真实失败样本</text><text class="small" x="26" y="262">2. 每条只标一个主因</text><text class="small" x="26" y="286">3. 先修占比最高且成本最低的层</text>
+  </g>
+  <g transform="translate(824 150)">
+    <rect class="cell" x="0" y="0" width="220" height="210" rx="8"/>
+    <text class="head" x="28" y="34">发布前必须回归</text>
+    <text class="small" x="28" y="70">目标集:失败是否减少</text>
+    <text class="small" x="28" y="102">泛化集:能力是否退化</text>
+    <text class="small" x="28" y="134">安全集:边界是否保持</text>
+    <text class="small" x="28" y="166">成本集:延迟是否可接受</text>
+  </g>
+  <path class="arrow" d="M396 280 H444"/>
+  <path class="arrow" d="M766 236 H824"/>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="288" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">微调是行为层修法;把信息层、执行层或安全层问题拿去微调,通常会越修越重。</text>
+</svg>

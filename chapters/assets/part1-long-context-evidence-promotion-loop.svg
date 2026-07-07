@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">长上下文证据提升循环</title>
+  <desc id="desc">展示长上下文 Agent 应先检索和编号证据,再把关键证据提升到当前决策区,并在回答后保留回源与评估闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.zone{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.6}.evi{fill:#fff0e6;stroke:#b05c37;stroke-width:1.6}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">长上下文不是堆材料,而是把关键证据提升到决策区</text>
+  <text class="sub" x="56" y="82">RAG 负责选材,长上下文负责整合,证据提升负责让模型在关键时刻用对材料。</text>
+  <g transform="translate(74 132)">
+    <rect class="box" x="0" y="42" width="150" height="82" rx="8"/><text class="head" x="40" y="74">Corpus</text><text class="small" x="28" y="100">文档/日志/代码</text>
+    <path class="arrow" d="M150 83 H198"/>
+    <rect class="box zone" x="198" y="42" width="160" height="82" rx="8"/><text class="head" x="246" y="74">RAG</text><text class="small" x="226" y="100">召回 + 重排</text>
+    <path class="arrow" d="M358 83 H406"/>
+    <rect class="box evi" x="406" y="0" width="178" height="166" rx="8"/><text class="head" x="448" y="34">Evidence index</text><text class="small" x="434" y="68">E1 来源/页码</text><text class="small" x="434" y="96">E2 坐标/行号</text><text class="small" x="434" y="124">E3 冲突/置信</text>
+    <path class="arrow" d="M584 83 H632"/>
+    <rect class="box zone" x="632" y="0" width="190" height="166" rx="8"/><text class="head" x="682" y="34">Context zones</text><text class="small" x="660" y="68">规则 / 目标</text><text class="small" x="660" y="96">状态 / 证据细节</text><text class="small" x="660" y="124">最新观察 / 输出契约</text>
+    <path class="arrow" d="M822 83 H870"/>
+    <rect class="box ok" x="870" y="42" width="160" height="82" rx="8"/><text class="head" x="908" y="74">Answer</text><text class="small" x="898" y="100">引用 + 回源</text>
+  </g>
+  <g transform="translate(188 334)">
+    <rect class="box evi" x="0" y="0" width="250" height="66" rx="8"/><text class="head" x="26" y="28">关键证据提升</text><text class="small" x="26" y="50">决策前抽出本轮最相关 E1/E2</text>
+    <path class="arrow" d="M250 33 H310"/>
+    <rect class="box ok" x="310" y="0" width="250" height="66" rx="8"/><text class="head" x="336" y="28">回答后校验</text><text class="small" x="336" y="50">引用是否存在,冲突是否处理</text>
+    <path class="arrow" d="M560 33 H620"/>
+    <rect class="box" x="620" y="0" width="250" height="66" rx="8"/><text class="head" x="646" y="28">失败回写</text><text class="small" x="646" y="50">缺证据、错引用、遗漏状态</text>
+  </g>
+  <rect class="bar" x="166" y="454" width="788" height="34" rx="8"/>
+  <text x="274" y="476" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">长上下文可靠性的关键是证据组织,不是把所有 token 都塞进同一个顺序列表。</text>
+</svg>

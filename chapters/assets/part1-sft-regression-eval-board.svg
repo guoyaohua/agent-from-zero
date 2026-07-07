@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">SFT 验收与回归评估板</title>
+  <desc id="desc">展示 SFT 训练不能只看训练损失,还要用领域验证、通用回归、工具回归和安全回归共同决定是否发布。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.pass{fill:#e7f1ee}.warn{fill:#fff0e6}.risk{fill:#f7d9df}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">SFT 发布看四块评估板,不是只看训练损失下降</text>
+  <text class="sub" x="56" y="82">目标行为提升的同时,通用能力、工具协议和安全边界不能退化。</text>
+  <g transform="translate(82 132)">
+    <rect class="cell pass" x="0" y="0" width="230" height="82" rx="8"/><text class="head" x="28" y="30">In-domain validation</text><text class="small" x="28" y="58">目标任务是否真正学会</text>
+    <path class="arrow" d="M230 41 H276"/>
+    <rect class="cell warn" x="276" y="0" width="230" height="82" rx="8"/><text class="head" x="304" y="30">OOD regression</text><text class="small" x="304" y="58">通用问答/代码是否退化</text>
+    <path class="arrow" d="M506 41 H552"/>
+    <rect class="cell warn" x="552" y="0" width="230" height="82" rx="8"/><text class="head" x="580" y="30">Tool regression</text><text class="small" x="580" y="58">参数、失败恢复是否稳定</text>
+    <path class="arrow" d="M782 41 H828"/>
+    <rect class="cell risk" x="828" y="0" width="206" height="82" rx="8"/><text class="head" x="856" y="30">Safety regression</text><text class="small" x="856" y="58">拒绝、确认、权限边界</text>
+  </g>
+  <g transform="translate(96 266)">
+    <text class="head" x="0" y="0">验收指标</text>
+    <rect class="cell" x="0" y="24" width="190" height="58" rx="8"/><text class="text" x="22" y="48">格式合法率</text><text class="small" x="22" y="68">结构化输出可解析</text>
+    <rect class="cell" x="216" y="24" width="190" height="58" rx="8"/><text class="text" x="238" y="48">任务成功率</text><text class="small" x="238" y="68">目标集真实提升</text>
+    <rect class="cell" x="432" y="24" width="190" height="58" rx="8"/><text class="text" x="454" y="48">边界处理</text><text class="small" x="454" y="68">不足、冲突、失败</text>
+    <rect class="cell" x="648" y="24" width="190" height="58" rx="8"/><text class="text" x="670" y="48">轨迹质量</text><text class="small" x="670" y="68">工具 observation 支撑</text>
+    <rect class="cell" x="864" y="24" width="150" height="58" rx="8"/><text class="text" x="886" y="48">回滚成本</text><text class="small" x="886" y="68">版本可替换</text>
+  </g>
+  <g transform="translate(176 390)">
+    <rect class="cell risk" x="0" y="0" width="768" height="42" rx="8"/>
+    <text class="head" x="36" y="27">发布规则: 目标任务提升 + 关键回归不退化 + 失败样本可解释,三者同时满足才上线。</text>
+  </g>
+  <rect class="bar" x="166" y="462" width="788" height="32" rx="8"/>
+  <text x="282" y="483" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">SFT 是行为塑形,因此验收标准必须覆盖行为边界,不能只看训练曲线。</text>
+</svg>

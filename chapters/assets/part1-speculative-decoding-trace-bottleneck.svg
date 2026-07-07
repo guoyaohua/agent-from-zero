@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">投机解码端到端瓶颈诊断</title>
+  <desc id="desc">展示引入投机解码前应从 trace 中确认 decode 是否为主要瓶颈,并结合输出长度、草稿成本和接受率判断收益。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.bar{fill:#172033}.b1{fill:#355c9a}.b2{fill:#b05c37}.b3{fill:#7c5aa6}.b4{fill:#2d7d80}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">投机解码先看 trace:只有 decode 真慢才值得加复杂度</text>
+  <text class="sub" x="56" y="82">端到端延迟可能来自 prefill、工具、网络或排队;投机解码只主要优化 decode。</text>
+  <g transform="translate(88 128)">
+    <text class="head" x="0" y="0">一次 Agent 调用耗时拆解</text>
+    <rect class="box" x="0" y="24" width="456" height="150" rx="8"/>
+    <rect class="b1" x="34" y="58" width="88" height="34" rx="4"/><text class="small" x="48" y="80" fill="#fff">prefill</text>
+    <rect class="b2" x="126" y="58" width="180" height="34" rx="4"/><text class="small" x="178" y="80" fill="#fff">decode</text>
+    <rect class="b3" x="310" y="58" width="82" height="34" rx="4"/><text class="small" x="328" y="80" fill="#fff">tool</text>
+    <rect class="b4" x="396" y="58" width="34" height="34" rx="4"/><text class="small" x="402" y="80" fill="#fff">net</text>
+    <text class="text" x="34" y="126">decode 占比高:进入投机解码评估</text>
+    <text class="small" x="34" y="150">prefill/tool 占比高:先做上下文压缩、缓存或工具并行</text>
+  </g>
+  <g transform="translate(596 128)">
+    <rect class="box warn" x="0" y="0" width="178" height="76" rx="8"/>
+    <text class="head" x="34" y="30">输出够长?</text><text class="small" x="28" y="56">短输出收益小</text>
+    <path class="arrow" d="M178 38 H222"/>
+    <rect class="box warn" x="222" y="0" width="178" height="76" rx="8"/>
+    <text class="head" x="258" y="30">草稿便宜?</text><text class="small" x="250" y="56">不能反向拖慢</text>
+    <path class="arrow" d="M88 76 V118"/>
+    <path class="arrow" d="M310 76 V118"/>
+    <rect class="box good" x="0" y="118" width="178" height="76" rx="8"/>
+    <text class="head" x="34" y="148">接受率高?</text><text class="small" x="28" y="174">按任务分布统计</text>
+    <rect class="box good" x="222" y="118" width="178" height="76" rx="8"/>
+    <text class="head" x="258" y="148">质量等价?</text><text class="small" x="250" y="174">验证拒绝规则</text>
+  </g>
+  <g transform="translate(112 354)">
+    <rect class="box good" x="0" y="0" width="250" height="66" rx="8"/><text class="head" x="28" y="28">适合</text><text class="small" x="28" y="50">长输出、固定格式、局部代码补全</text>
+    <rect class="box bad" x="286" y="0" width="250" height="66" rx="8"/><text class="head" x="314" y="28">不适合</text><text class="small" x="314" y="50">短回答、高温创作、工具等待</text>
+    <rect class="box warn" x="572" y="0" width="320" height="66" rx="8"/><text class="head" x="600" y="28">上线指标</text><text class="small" x="600" y="50">acceptance rate、TPOT、端到端 p95</text>
+  </g>
+  <rect class="bar" x="166" y="466" width="788" height="32" rx="8"/>
+  <text x="300" y="487" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">投机解码不是通用加速开关,它只在真实瓶颈对准 decode 时才划算。</text>
+</svg>

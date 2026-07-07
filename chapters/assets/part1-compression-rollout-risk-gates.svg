@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">压缩模型上线风险门</title>
+  <desc id="desc">展示蒸馏或量化模型从基线对比、离线评估、影子流量、灰度发布到回退路由的上线检查流程。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.base{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">压缩模型不能直接替换强模型,要经过上线风险门</text>
+  <text class="sub" x="56" y="82">蒸馏和量化改变模型行为,发布流程必须同时看质量、格式、工具、安全和成本。</text>
+  <g transform="translate(70 128)">
+    <rect class="box base" x="0" y="0" width="150" height="76" rx="8"/>
+    <text class="head" x="32" y="30">Baseline</text><text class="small" x="24" y="56">强模型 trace</text>
+    <path class="arrow" d="M150 38 H190"/>
+    <rect class="box warn" x="190" y="0" width="150" height="76" rx="8"/>
+    <text class="head" x="220" y="30">Candidate</text><text class="small" x="214" y="56">蒸馏 / 量化</text>
+    <path class="arrow" d="M340 38 H380"/>
+    <rect class="box" x="380" y="0" width="150" height="76" rx="8"/>
+    <text class="head" x="418" y="30">Offline eval</text><text class="small" x="406" y="56">目标任务回归</text>
+    <path class="arrow" d="M530 38 H570"/>
+    <rect class="box" x="570" y="0" width="150" height="76" rx="8"/>
+    <text class="head" x="612" y="30">Shadow</text><text class="small" x="600" y="56">不影响用户</text>
+    <path class="arrow" d="M720 38 H760"/>
+    <rect class="box ok" x="760" y="0" width="150" height="76" rx="8"/>
+    <text class="head" x="802" y="30">Canary</text><text class="small" x="790" y="56">小流量灰度</text>
+    <path class="arrow" d="M910 38 H950"/>
+    <rect class="box risk" x="950" y="0" width="96" height="76" rx="8"/>
+    <text class="head" x="972" y="30">Route</text><text class="small" x="968" y="56">回退</text>
+  </g>
+  <g transform="translate(92 250)">
+    <text class="head" x="0" y="0">上线门禁</text>
+    <rect class="box" x="0" y="24" width="190" height="58" rx="8"/><text class="text" x="22" y="48">质量差异</text><text class="small" x="22" y="68">目标集不超过阈值</text>
+    <rect class="box" x="216" y="24" width="190" height="58" rx="8"/><text class="text" x="238" y="48">格式合法率</text><text class="small" x="238" y="68">JSON / schema 稳定</text>
+    <rect class="box" x="432" y="24" width="190" height="58" rx="8"/><text class="text" x="454" y="48">工具成功率</text><text class="small" x="454" y="68">参数和权限正确</text>
+    <rect class="box" x="648" y="24" width="190" height="58" rx="8"/><text class="text" x="670" y="48">安全边界</text><text class="small" x="670" y="68">拒绝和确认不退化</text>
+    <rect class="box" x="864" y="24" width="150" height="58" rx="8"/><text class="text" x="886" y="48">净收益</text><text class="small" x="886" y="68">回退后仍省钱</text>
+  </g>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="268" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">压缩上线的核心不是模型更小,而是压缩后失败可发现、可路由、可回滚。</text>
+</svg>

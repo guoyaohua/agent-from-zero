@@ -199,6 +199,27 @@ Decode 每次处理一个新 token,更受内存带宽和 KV Cache 读取影响�
 
 所以服务端优化要结合产品形态。聊天产品、批量评估平台、代码 Agent 的最优调度并不一样。
 
+![推理服务指标取舍面板](../assets/part1-serving-latency-metrics-tradeoff.svg)
+
+上图把服务端优化拆成四个必须同时观察的指标。TTFT 主要受排队、prefill 和 prompt 长度影响,适合用 prompt caching、prefill 调度和上下文压缩优化;TPOT 主要受 decode batch、KV 读取和采样影响,更依赖连续批处理、PagedAttention 和 kernel;并发主要受 KV Cache 容量和碎片影响;成本则取决于 token、模型、回退率和缓存命中。
+
+这张图也解释了为什么“吞吐提高”不等于“用户体验提高”。聊天产品可能优先首 token 和流式稳定,离线批评估更关心总吞吐,代码 Agent 还要把模型等待和工具等待一起看。PagedAttention、连续批处理和 prompt caching 都是服务端能力,但是否能改善产品体验,必须回到 trace 中的瓶颈分布。
+
+## 服务容量规划的直觉
+
+容量规划不能只问“一张 GPU 每秒生成多少 token”。对在线 Agent 服务来说,更关键的是同时估计 prompt 长度、输出长度、并发数、KV Cache 占用和工具等待造成的请求生命周期。
+
+可以把请求粗略拆成三类:
+
+| 请求类型 | 主要压力 | 优先优化 |
+| --- | --- | --- |
+| 短问答 | 排队和 TTFT | 小模型路由、prompt caching |
+| 长 RAG | prefill 和 KV Cache | 上下文压缩、证据包、PagedAttention |
+| 长输出 | decode 和 TPOT | 连续批处理、投机解码、更快 kernel |
+| 多轮 Agent | 多次 prefill + 工具等待 | 状态压缩、工具并行、减少轮次 |
+
+如果一个 Agent 每轮都把完整历史重新发给模型,服务端会反复付 prefill 成本;如果工具等待很长,模型服务吞吐提高也未必改善端到端体验;如果长上下文请求过多,KV Cache 会压低并发。容量规划要把模型服务、上下文策略和 Loop 设计放在一起看。
+
 ## Throughput 和 latency
 
 服务端优化经常要权衡吞吐和延迟。

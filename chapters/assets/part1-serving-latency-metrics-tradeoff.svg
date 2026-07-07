@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">推理服务指标取舍面板</title>
+  <desc id="desc">展示 PagedAttention、连续批处理和 prompt caching 如何分别影响 TTFT、TPOT、吞吐、并发和成本,以及不同产品形态的取舍方向。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.good{fill:#e7f1ee}.warn{fill:#fff0e6}.info{fill:#dfe8f5}.risk{fill:#f7d9df}.bar{fill:#172033}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">PagedAttention 和连续批处理要用服务指标一起判断</text>
+  <text class="sub" x="56" y="82">吞吐高不代表体验好;TTFT、TPOT、并发、成本和失败率要拆开看。</text>
+  <g transform="translate(72 128)">
+    <text class="head" x="24" y="0">指标</text><text class="head" x="210" y="0">主要瓶颈</text><text class="head" x="454" y="0">优化手段</text><text class="head" x="756" y="0">注意事项</text>
+    <rect class="cell info" x="0" y="22" width="160" height="54"/><text class="text" x="24" y="54">TTFT</text><rect class="cell" x="180" y="22" width="220" height="54"/><text class="small" x="204" y="54">排队 + prefill + prompt 长度</text><rect class="cell" x="420" y="22" width="260" height="54"/><text class="small" x="444" y="54">prompt caching / 上下文压缩</text><rect class="cell warn" x="700" y="22" width="300" height="54"/><text class="small" x="724" y="54">首 token 快不等于长输出稳定</text>
+    <rect class="cell info" x="0" y="92" width="160" height="54"/><text class="text" x="24" y="124">TPOT</text><rect class="cell" x="180" y="92" width="220" height="54"/><text class="small" x="204" y="124">decode batch + KV 读取</text><rect class="cell" x="420" y="92" width="260" height="54"/><text class="small" x="444" y="124">连续批处理 / 更快 kernel</text><rect class="cell warn" x="700" y="92" width="300" height="54"/><text class="small" x="724" y="124">大 batch 可能牺牲交互延迟</text>
+    <rect class="cell info" x="0" y="162" width="160" height="54"/><text class="text" x="24" y="194">并发</text><rect class="cell" x="180" y="162" width="220" height="54"/><text class="small" x="204" y="194">KV Cache 容量和碎片</text><rect class="cell" x="420" y="162" width="260" height="54"/><text class="small" x="444" y="194">PagedAttention / KV 量化</text><rect class="cell warn" x="700" y="162" width="300" height="54"/><text class="small" x="724" y="194">长上下文请求会挤占容量</text>
+    <rect class="cell info" x="0" y="232" width="160" height="54"/><text class="text" x="24" y="264">成本</text><rect class="cell" x="180" y="232" width="220" height="54"/><text class="small" x="204" y="264">token、模型、回退率</text><rect class="cell" x="420" y="232" width="260" height="54"/><text class="small" x="444" y="264">路由 / 缓存 / 压缩</text><rect class="cell warn" x="700" y="232" width="300" height="54"/><text class="small" x="724" y="264">平均成本会掩盖长尾任务</text>
+  </g>
+  <g transform="translate(116 434)">
+    <rect class="cell good" x="0" y="0" width="260" height="42" rx="8"/><text class="small" x="28" y="27">聊天: 优先 TTFT 和流式稳定</text>
+    <rect class="cell warn" x="304" y="0" width="260" height="42" rx="8"/><text class="small" x="332" y="27">批处理: 优先吞吐和成本</text>
+    <rect class="cell risk" x="608" y="0" width="300" height="42" rx="8"/><text class="small" x="636" y="27">Agent: 同时优化模型调用和工具等待</text>
+  </g>
+  <rect class="bar" x="166" y="482" width="788" height="28" rx="8"/>
+  <text x="298" y="501" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">服务端优化要从 trace 出发,否则很容易把吞吐问题误当成模型问题。</text>
+</svg>
