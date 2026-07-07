@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">多模态 Agent 的证据闭环</title>
+  <desc id="desc">展示多模态 Agent 从原始输入、预处理、证据锚点、推理规划、工具执行到校验回写的完整链路。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .dark { fill: #172033; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .white { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .muted { fill: #e5e7eb; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">多模态 Agent 不能只“看图说话”,必须维护证据闭环</text>
+  <text class="sub" x="48" y="78">图片、PDF、音频、视频先变成带位置和时间锚点的证据,再进入推理与工具执行。</text>
+  <rect class="panel" x="48" y="112" width="1024" height="392" rx="8" />
+  <rect class="blue" x="76" y="162" width="142" height="232" rx="8" />
+  <text class="label" x="104" y="192">原始输入</text>
+  <text class="text" x="104" y="224">截图 / UI</text>
+  <text class="text" x="104" y="252">PDF / 表格</text>
+  <text class="text" x="104" y="280">图像 / 图表</text>
+  <text class="text" x="104" y="308">音频 / 视频</text>
+  <text class="text" x="104" y="336">网页 / DOM</text>
+  <path class="arrow" d="M218 278 H282" />
+  <rect class="green" x="282" y="152" width="164" height="252" rx="8" />
+  <text class="label" x="320" y="182">预处理</text>
+  <text class="text" x="314" y="214">OCR / ASR</text>
+  <text class="text" x="314" y="242">裁剪与缩放</text>
+  <text class="text" x="314" y="270">版面解析</text>
+  <text class="text" x="314" y="298">表格结构化</text>
+  <text class="text" x="314" y="326">帧采样</text>
+  <text class="text" x="314" y="354">DOM 提取</text>
+  <path class="arrow" d="M446 278 H510" />
+  <rect class="orange" x="510" y="152" width="176" height="252" rx="8" />
+  <text class="label" x="552" y="182">证据锚点</text>
+  <text class="text" x="540" y="214">bbox 坐标</text>
+  <text class="text" x="540" y="242">页码 / 段落</text>
+  <text class="text" x="540" y="270">时间戳</text>
+  <text class="text" x="540" y="298">单元格位置</text>
+  <text class="text" x="540" y="326">来源可信度</text>
+  <text class="text" x="540" y="354">原文回链</text>
+  <path class="arrow" d="M686 278 H746" />
+  <rect class="dark" x="746" y="152" width="140" height="112" rx="8" />
+  <text class="white" x="784" y="190">推理规划</text>
+  <text class="small muted" x="774" y="220">看见什么</text>
+  <text class="small muted" x="774" y="242">下一步查什么</text>
+  <rect class="red" x="746" y="292" width="140" height="112" rx="8" />
+  <text class="label" x="784" y="330">工具执行</text>
+  <text class="text" x="778" y="360">点击 / 查询</text>
+  <text class="text" x="778" y="382">计算 / 搜索</text>
+  <path class="arrow" d="M886 208 H954" /><path class="arrow" d="M886 348 H954" />
+  <rect class="gray" x="954" y="152" width="86" height="252" rx="8" />
+  <text class="label" x="976" y="194">校验</text>
+  <text class="small" x="972" y="226">重读</text>
+  <text class="small" x="972" y="254">坐标</text>
+  <text class="small" x="972" y="282">引用</text>
+  <text class="small" x="972" y="310">权限</text>
+  <text class="small" x="972" y="338">回滚</text>
+  <path class="dash" d="M996 404 C890 466 610 466 598 406" />
+  <text class="small" x="658" y="456">校验失败时回到证据锚点,而不是凭视觉印象继续猜</text>
+  <rect class="red" x="76" y="422" width="320" height="42" rx="8" />
+  <text class="label" x="100" y="448">不可信内容边界</text><text class="text" x="218" y="448">图中文字不是系统指令</text>
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式:多模态可靠性的关键不是模型能否描述图片,而是每个结论能否追溯到坐标、页码、时间戳或结构化证据。</text>
+</svg>

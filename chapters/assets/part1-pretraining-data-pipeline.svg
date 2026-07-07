@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">预训练数据流水线与规模配比</title>
+  <desc id="desc">展示预训练从原始数据到清洗、去重、质量评分、混合配比、tokenizer、训练和评估的工程流程,并强调数据、参数和计算的配比。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .warn { fill: none; stroke: #b13c52; stroke-width: 2; stroke-dasharray: 6 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">预训练不是“喂互联网”,而是一条数据与计算流水线</text>
+  <text class="sub" x="48" y="78">Scaling Law 给出规模趋势,但真正能转化成能力的是高质量数据、合理配比和严格评估。</text>
+  <rect class="panel" x="48" y="112" width="1024" height="276" rx="8" />
+  <rect class="blue" x="74" y="166" width="116" height="72" rx="8" /><text class="label" x="106" y="194">原始数据</text><text class="small" x="98" y="218">网页/书/代码</text>
+  <path class="arrow" d="M190 202 H236" />
+  <rect class="green" x="236" y="166" width="116" height="72" rx="8" /><text class="label" x="268" y="194">清洗</text><text class="small" x="260" y="218">语言/安全/格式</text>
+  <path class="arrow" d="M352 202 H398" />
+  <rect class="green" x="398" y="166" width="116" height="72" rx="8" /><text class="label" x="430" y="194">去重</text><text class="small" x="422" y="218">近重复/泄漏</text>
+  <path class="arrow" d="M514 202 H560" />
+  <rect class="orange" x="560" y="166" width="116" height="72" rx="8" /><text class="label" x="586" y="194">质量评分</text><text class="small" x="586" y="218">教材/代码/噪声</text>
+  <path class="arrow" d="M676 202 H722" />
+  <rect class="orange" x="722" y="166" width="116" height="72" rx="8" /><text class="label" x="748" y="194">混合配比</text><text class="small" x="746" y="218">领域与语言比例</text>
+  <path class="arrow" d="M838 202 H884" />
+  <rect class="red" x="884" y="166" width="132" height="72" rx="8" /><text class="label" x="922" y="194">训练</text><text class="small" x="912" y="218">tokenizer + FLOPs</text>
+  <rect class="gray" x="114" y="282" width="368" height="52" rx="8" />
+  <text class="label" x="140" y="313">评估污染检查</text><text class="text" x="256" y="313">benchmark 泄漏会让能力看起来虚高</text>
+  <rect class="gray" x="562" y="282" width="380" height="52" rx="8" />
+  <text class="label" x="588" y="313">失败样本回流</text><text class="text" x="704" y="313">把真实任务中的弱点变成下一轮信号</text>
+  <rect class="panel" x="48" y="420" width="1024" height="84" rx="8" />
+  <text class="label" x="84" y="452">计算最优配比</text>
+  <rect class="blue" x="220" y="440" width="140" height="40" rx="8" /><text class="label" x="258" y="466">参数量</text>
+  <rect class="green" x="430" y="440" width="140" height="40" rx="8" /><text class="label" x="468" y="466">训练 token</text>
+  <rect class="orange" x="640" y="440" width="140" height="40" rx="8" /><text class="label" x="678" y="466">计算预算</text>
+  <rect class="red" x="850" y="440" width="140" height="40" rx="8" /><text class="label" x="888" y="466">数据质量</text>
+  <path class="warn" d="M208 480 H1000" />
+  <text class="text" x="260" y="532">读图方式:模型很大但训练 token 不足会欠训练;数据很多但质量差会浪费计算并放大幻觉和偏见。</text>
+</svg>
