@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多 Agent 失败恢复路径</title>
+  <desc id="desc">展示 schema 失败、工具失败、超时、冲突和预算耗尽时,编排器如何重试、回退、复核、询问用户或停止。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.fail{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.rec{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.human{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">多 Agent 必须预先设计失败后去哪</text>
+  <text class="sub" x="56" y="82">恢复策略依赖结构化错误、trace 和权威状态,不能靠下游 Agent 猜。</text>
+  <rect class="fail" x="78" y="130" width="210" height="70" rx="8"/><text class="head" x="126" y="160">Schema 失败</text><text class="text" x="118" y="184">字段缺失/类型错</text>
+  <rect class="rec" x="382" y="130" width="210" height="70" rx="8"/><text class="head" x="440" y="160">修正重试</text><text class="text" x="424" y="184">返回具体字段错误</text>
+  <rect class="fail" x="78" y="224" width="210" height="70" rx="8"/><text class="head" x="132" y="254">工具失败</text><text class="text" x="118" y="278">权限/超时/不存在</text>
+  <rect class="rec" x="382" y="224" width="210" height="70" rx="8"/><text class="head" x="438" y="254">降级或回退</text><text class="text" x="424" y="278">换工具/回上一阶段</text>
+  <rect class="fail" x="78" y="318" width="210" height="70" rx="8"/><text class="head" x="132" y="348">结论冲突</text><text class="text" x="118" y="372">证据不一致</text>
+  <rect class="human" x="382" y="318" width="210" height="70" rx="8"/><text class="head" x="438" y="348">仲裁或复核</text><text class="text" x="424" y="372">Judge / 用户 / 人工</text>
+  <rect class="fail" x="702" y="176" width="210" height="70" rx="8"/><text class="head" x="758" y="206">预算耗尽</text><text class="text" x="742" y="230">轮数/成本/时间</text>
+  <rect class="human" x="702" y="292" width="210" height="70" rx="8"/><text class="head" x="750" y="322">停止报告</text><text class="text" x="738" y="346">已知事实和下一步</text>
+  <path class="arrow" d="M288 165 H382M288 259H382M288 353H382M592 259 C650 244 662 218 702 212M592 353 C650 348 662 326 702 326"/>
+  <rect x="156" y="442" width="808" height="36" rx="8" fill="#172033"/><text x="252" y="465" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">没有恢复路径的编排,遇到失败时只会重复、漂移或假装成功。</text>
+</svg>

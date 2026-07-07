@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多 Agent 的共享状态架构</title>
+  <desc id="desc">展示 Orchestrator 持有全局状态,各角色通过结构化消息读取和写回必要产物,避免私下传递全部上下文。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.orch{fill:#fff0e6;stroke:#b05c37;stroke-width:1.9}.state{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.9}.agent{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.critic{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.back{fill:none;stroke:#2d7d80;stroke-width:2;marker-end:url(#green)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker><marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">多 Agent 不应靠彼此“私聊”记住任务</text>
+  <text class="sub" x="56" y="82">全局事实、计划、观察和产物放在 runtime state,角色只拿当前所需上下文。</text>
+  <rect class="orch" x="418" y="118" width="284" height="92" rx="10"/><text class="head" x="506" y="152">Orchestrator</text><text class="text" x="468" y="182">调度、预算、权限、停止条件</text>
+  <rect class="state" x="398" y="282" width="324" height="126" rx="10"/><text class="head" x="506" y="316">Runtime State</text><text class="text" x="442" y="348">goal / plan / evidence / observations</text><text class="text" x="442" y="376">artifacts / decisions / risk gates</text>
+  <rect class="agent" x="80" y="136" width="180" height="70" rx="8"/><text class="head" x="128" y="166">Planner</text><text class="text" x="118" y="190">计划和依赖</text>
+  <rect class="agent" x="80" y="314" width="180" height="70" rx="8"/><text class="head" x="114" y="344">Researcher</text><text class="text" x="112" y="368">证据包</text>
+  <rect class="agent" x="860" y="136" width="180" height="70" rx="8"/><text class="head" x="912" y="166">Executor</text><text class="text" x="904" y="190">工具观察</text>
+  <rect class="critic" x="860" y="314" width="180" height="70" rx="8"/><text class="head" x="918" y="344">Critic</text><text class="text" x="900" y="368">问题和修正</text>
+  <path class="arrow" d="M260 170 H418M702 170 H860M260 350 H398M722 350 H860"/>
+  <path class="back" d="M418 196 C330 246 314 310 260 326"/>
+  <path class="back" d="M702 196 C790 246 806 310 860 326"/>
+  <path class="back" d="M560 210 V282"/>
+  <rect x="164" y="446" width="792" height="38" rx="8" fill="#172033"/>
+  <text x="232" y="470" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">角色之间传结构化产物和引用,不要复制完整上下文。</text>
+</svg>

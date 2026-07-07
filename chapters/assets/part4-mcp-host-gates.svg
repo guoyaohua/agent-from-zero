@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">MCP Host 的四道门</title>
+  <desc id="desc">展示 MCP Server 暴露能力后,Host 仍要经过发现、选择、权限和注入四道门,再把能力提供给模型。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.server{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.gate{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.model{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.deny{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">MCP Server 暴露能力,不等于模型立刻能用</text>
+  <text class="sub" x="56" y="82">Host 要按任务、权限、风险和 token 预算决定哪些能力进入本次上下文。</text>
+  <rect class="server" x="62" y="188" width="160" height="90" rx="8"/><text class="head" x="112" y="222">Server</text><text class="text" x="96" y="250">tools/resources</text>
+  <rect class="gate" x="286" y="150" width="150" height="70" rx="8"/><text class="head" x="336" y="180">发现门</text><text class="text" x="324" y="204">列出能力</text>
+  <rect class="gate" x="286" y="258" width="150" height="70" rx="8"/><text class="head" x="336" y="288">选择门</text><text class="text" x="318" y="312">任务相关性</text>
+  <rect class="gate" x="506" y="150" width="150" height="70" rx="8"/><text class="head" x="556" y="180">权限门</text><text class="text" x="544" y="204">用户/项目/风险</text>
+  <rect class="gate" x="506" y="258" width="150" height="70" rx="8"/><text class="head" x="556" y="288">注入门</text><text class="text" x="538" y="312">schema/片段/预算</text>
+  <rect class="model" x="766" y="188" width="160" height="90" rx="8"/><text class="head" x="822" y="222">Model</text><text class="text" x="810" y="250">看到能力子集</text>
+  <rect class="deny" x="944" y="188" width="120" height="90" rx="8"/><text class="head" x="980" y="222">Blocked</text><text class="text" x="978" y="250">未授权能力</text>
+  <path class="arrow" d="M222 234 C250 210 258 188 286 184M222 234 C250 258 258 292 286 294M436 184 H506M436 294H506M656 184 C704 196 720 222 766 226M656 294 C704 282 720 244 766 240"/>
+  <rect x="158" y="426" width="804" height="38" rx="8" fill="#172033"/>
+  <text x="248" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">MCP 提供发现和调用机制;是否暴露、是否允许、如何注入仍由 Host 决定。</text>
+</svg>

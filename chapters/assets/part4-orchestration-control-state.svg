@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多 Agent 编排的控制权和状态归属</title>
+  <desc id="desc">展示编排器如何基于事件、消息和当前状态决定下一步调用谁、更新什么状态、是否停止或恢复。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.state{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.9}.event{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.orch{fill:#fff0e6;stroke:#b05c37;stroke-width:1.9}.agent{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.7}.stop{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.back{fill:none;stroke:#2d7d80;stroke-width:2;marker-end:url(#green)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker><marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2d7d80"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">编排不是把提示词串起来,而是状态转移</text>
+  <text class="sub" x="56" y="82">每条消息、工具结果、用户输入或超时事件都应映射成可审计的 state update。</text>
+  <rect class="state" x="68" y="198" width="210" height="122" rx="8"/><text class="head" x="124" y="232">state_t</text><text class="text" x="104" y="262">计划 / 证据 / 预算</text><text class="text" x="104" y="290">权限 / 阻塞 / 产物</text>
+  <rect class="event" x="340" y="122" width="190" height="88" rx="8"/><text class="head" x="384" y="156">message_t</text><text class="text" x="382" y="184">Agent 输出</text>
+  <rect class="event" x="340" y="292" width="190" height="88" rx="8"/><text class="head" x="392" y="326">event_t</text><text class="text" x="378" y="354">工具/用户/超时</text>
+  <rect class="orch" x="602" y="178" width="230" height="154" rx="10"/><text class="head" x="668" y="212">Orchestrator</text><text class="text" x="646" y="246">路由下一角色</text><text class="text" x="646" y="274">更新权威状态</text><text class="text" x="646" y="302">停止/回退/重试</text>
+  <rect class="agent" x="912" y="132" width="150" height="70" rx="8"/><text class="head" x="954" y="164">Call Agent</text>
+  <rect class="state" x="912" y="232" width="150" height="70" rx="8"/><text class="head" x="958" y="264">state</text><text class="text" x="950" y="286">updated</text>
+  <rect class="stop" x="912" y="332" width="150" height="70" rx="8"/><text class="head" x="964" y="364">Stop</text><text class="text" x="948" y="386">done/blocked</text>
+  <path class="arrow" d="M278 258 H602M530 166 C560 178 572 202 602 218M530 336 C560 324 572 296 602 286"/>
+  <path class="arrow" d="M832 222 C862 192 878 170 912 166M832 258 H912M832 300 C862 330 878 364 912 366"/>
+  <path class="back" d="M986 302 C974 448 206 448 174 320"/>
+  <rect x="178" y="452" width="764" height="34" rx="8" fill="#172033"/><text x="256" y="474" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">可靠编排器能回答: 哪条消息改变了哪个状态字段?</text>
+</svg>

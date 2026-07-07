@@ -86,6 +86,12 @@ Artifact: 完整 stdout 保存在 tool-result://17。
 
 不要把完整 artifact 都塞进 message,也不要把 message 当成权威 state。消息是事件,state 是当前事实视图,artifact 是可回源材料。三者分开,系统才容易重试、压缩上下文和复盘错误。
 
+![Message、State、Artifact 三分法](../assets/part4-message-state-artifact.svg)
+
+这张图是多 Agent 通信里最重要的心智模型之一。Message 记录“发生了一次交互”,State 表示“系统当前采纳的事实和进度”,Artifact 保存“可回源的大对象”。如果三者混在一段自然语言里,下游 Agent 可能把一次临时消息当成权威状态,也可能因为长日志被压缩而丢掉关键证据。
+
+例如测试失败时,Executor 的消息可以说 `run_tests` 失败,State 可以更新为 `current_step=blocked` 和 `failure_summary=...`,完整 stdout 则保存到 artifact。下一轮模型只需要失败摘要和 artifact 引用,需要细节时再回源。这能同时降低 token 成本和审计风险。
+
 ## 常见消息类型
 
 多 Agent 系统可以定义几类消息。
@@ -286,6 +292,12 @@ Artifact: 完整 stdout 保存在 tool-result://17。
 这不能只靠模型遵守。runtime 应根据这些字段做过滤和拦截。
 
 多 Agent 中,数据可能通过消息跨越角色边界。没有数据流控制,低风险工具和高风险工具组合起来也会泄露信息。
+
+![多 Agent 消息中的权限和数据流](../assets/part4-message-permission-flow.svg)
+
+多 Agent 的权限问题不只发生在工具调用时,也发生在消息流动时。一个只读 Researcher 可能读到了内部敏感资料;如果它把完整内容发给拥有外发邮件工具的角色,数据就绕过了原本的工具权限边界。因此消息协议需要携带 `data_classification`、`allowed_recipients`、`forbidden_tools`、`ttl` 等字段。
+
+这些字段不是写给模型“自觉遵守”的,而是写给 runtime 执行过滤、脱敏、拦截和过期处理的。多 Agent 安全必须同时控制工具边界和消息边界,否则低权限角色和高权限工具组合起来仍可能造成高风险行为。
 
 ## 幂等和重试
 

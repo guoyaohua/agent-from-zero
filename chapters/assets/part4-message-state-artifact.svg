@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Message、State、Artifact 三分法</title>
+  <desc id="desc">展示多 Agent 通信中消息、权威状态和大对象产物应分开存储和传递,支持恢复、压缩和审计。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 17px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#667085}.msg{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.state{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.art{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">多 Agent 交接要分清: 事件、当前事实和可回源材料</text>
+  <text class="sub" x="56" y="82">把三者混在一段自然语言里,系统就难以校验、重试、压缩和复盘。</text>
+  <rect class="msg" x="76" y="150" width="270" height="190" rx="8"/>
+  <text class="head" x="150" y="184">Message</text>
+  <text class="text" x="118" y="222">一次交互事件</text>
+  <text class="text" x="118" y="250">请求、结果、错误、评审</text>
+  <text class="small" x="118" y="294">存在 message_id 和 schema_version</text>
+  <path class="arrow" d="M346 246 H426"/>
+  <rect class="state" x="426" y="128" width="270" height="234" rx="8"/>
+  <text class="head" x="512" y="162">State</text>
+  <text class="text" x="468" y="202">任务权威进度</text>
+  <text class="text" x="468" y="230">当前计划、阻塞、风险</text>
+  <text class="text" x="468" y="258">哪些事实被系统采纳</text>
+  <text class="small" x="468" y="316">由 Orchestrator 更新和读取</text>
+  <path class="arrow" d="M696 246 H776"/>
+  <rect class="art" x="776" y="150" width="270" height="190" rx="8"/>
+  <text class="head" x="858" y="184">Artifact</text>
+  <text class="text" x="818" y="222">大对象和原始材料</text>
+  <text class="text" x="818" y="250">日志、文件、网页、tool result</text>
+  <text class="small" x="818" y="294">用 URI 引用,按需回源</text>
+  <rect x="158" y="426" width="804" height="38" rx="8" fill="#172033"/>
+  <text x="244" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">消息记录发生了什么,state 表示现在相信什么,artifact 保存完整证据。</text>
+</svg>

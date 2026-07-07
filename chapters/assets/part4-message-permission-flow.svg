@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">多 Agent 消息中的权限和数据流</title>
+  <desc id="desc">展示消息携带数据分类、允许接收方、禁用工具和 TTL,由 runtime 在角色和工具边界处执行数据流控制。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.agent{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.msg{fill:#fff0e6;stroke:#b05c37;stroke-width:1.8}.gate{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.deny{fill:#f7d9df;stroke:#b13c52;stroke-width:1.8}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}.block{fill:none;stroke:#b13c52;stroke-width:2.4;stroke-linecap:round}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">消息协议也要承载数据流策略</text>
+  <text class="sub" x="56" y="82">低权限角色读到的敏感信息,不能通过消息绕到高风险工具里。</text>
+  <rect class="agent" x="78" y="178" width="170" height="82" rx="8"/><text class="head" x="116" y="212">Researcher</text><text class="text" x="112" y="238">只读证据</text>
+  <rect class="msg" x="330" y="126" width="300" height="188" rx="8"/>
+  <text class="head" x="438" y="160">Message</text>
+  <text class="text" x="374" y="196">data_classification: internal</text>
+  <text class="text" x="374" y="226">allowed_recipients: Critic</text>
+  <text class="text" x="374" y="256">forbidden_tools: send_email</text>
+  <text class="text" x="374" y="286">ttl: 30m</text>
+  <rect class="gate" x="712" y="164" width="170" height="110" rx="8"/><text class="head" x="754" y="198">Runtime</text><text class="text" x="746" y="226">过滤字段</text><text class="text" x="746" y="250">拦截越权</text>
+  <rect class="agent" x="950" y="118" width="130" height="70" rx="8"/><text class="head" x="986" y="150">Critic</text>
+  <rect class="deny" x="950" y="270" width="130" height="70" rx="8"/><text class="head" x="984" y="302">Email</text><text class="text" x="984" y="324">blocked</text>
+  <path class="arrow" d="M248 220 H330M630 220 H712M882 190 C912 166 924 152 950 150"/>
+  <path class="arrow" d="M882 250 C914 268 922 302 950 306"/>
+  <path class="block" d="M936 286 L964 330 M964 286 L936 330"/>
+  <rect x="158" y="426" width="804" height="38" rx="8" fill="#172033"/>
+  <text x="258" y="450" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">权限字段不是给模型自觉遵守,而是给 runtime 执行过滤和拦截。</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 角色契约字段</title>
+  <desc id="desc">展示一个多 Agent 角色契约应包含目标、输入、工具、输出 schema、禁止事项、停止条件和评估标准。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.role{fill:#fff0e6;stroke:#b05c37;stroke-width:1.9}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.good{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">角色名只是标签,角色契约才是工程边界</text>
+  <text class="sub" x="56" y="82">每个 Agent 都要知道自己负责什么、不能做什么、产物如何被下游消费。</text>
+  <rect class="role" x="430" y="150" width="260" height="110" rx="10"/><text class="head" x="494" y="188">Researcher</text><text class="text" x="476" y="220">找证据,不做最终业务决策</text>
+  <rect class="box" x="78" y="126" width="230" height="70" rx="8"/><text class="head" x="124" y="156">goal</text><text class="text" x="118" y="180">唯一核心结果</text>
+  <rect class="box" x="78" y="226" width="230" height="70" rx="8"/><text class="head" x="124" y="256">inputs</text><text class="text" x="118" y="280">最小必要上下文</text>
+  <rect class="box" x="78" y="326" width="230" height="70" rx="8"/><text class="head" x="124" y="356">tools</text><text class="text" x="118" y="380">允许工具和权限</text>
+  <rect class="good" x="812" y="126" width="230" height="70" rx="8"/><text class="head" x="858" y="156">output_schema</text><text class="text" x="852" y="180">下游可消费产物</text>
+  <rect class="bad" x="812" y="226" width="230" height="70" rx="8"/><text class="head" x="858" y="256">must_not</text><text class="text" x="852" y="280">禁止事项和风险边界</text>
+  <rect class="good" x="812" y="326" width="230" height="70" rx="8"/><text class="head" x="858" y="356">success_criteria</text><text class="text" x="852" y="380">可评估完成标准</text>
+  <path class="arrow" d="M308 160 H430M308 260H430M308 360H430M690 160H812M690 260H812M690 360H812"/>
+  <rect x="176" y="444" width="768" height="38" rx="8" fill="#172033"/>
+  <text x="250" y="468" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">如果两个角色的输入、工具、目标和产物都一样,它们可能不该拆开。</text>
+</svg>

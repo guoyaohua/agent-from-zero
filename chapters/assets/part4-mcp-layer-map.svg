@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">MCP 在 Agent 架构中的位置</title>
+  <desc id="desc">展示 MCP 位于模型应用和外部能力之间的接入协议层,不替代 Agent loop、上下文工程、RAG、ACI、安全和评估。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.host{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.8}.mcp{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.server{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.8}.eng{fill:#ece7f3;stroke:#7c5aa6;stroke-width:1.6}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker></defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">MCP 是能力接入层,不是完整 Agent 框架</text>
+  <text class="sub" x="56" y="82">它标准化 Host 如何发现和调用外部 tools/resources/prompts,可靠性仍来自完整工程体系。</text>
+  <rect class="host" x="82" y="154" width="250" height="194" rx="10"/><text class="head" x="174" y="188">Host</text><text class="text" x="126" y="224">模型会话</text><text class="text" x="126" y="252">上下文构建</text><text class="text" x="126" y="280">权限和确认</text><text class="text" x="126" y="308">用户体验</text>
+  <rect class="mcp" x="430" y="170" width="260" height="162" rx="10"/><text class="head" x="516" y="204">MCP Client</text><text class="text" x="474" y="240">发现能力</text><text class="text" x="474" y="268">读取 resource</text><text class="text" x="474" y="296">转发 tool 调用</text>
+  <rect class="server" x="788" y="116" width="250" height="88" rx="8"/><text class="head" x="872" y="150">Server A</text><text class="text" x="842" y="176">文件 / Git / IDE</text>
+  <rect class="server" x="788" y="232" width="250" height="88" rx="8"/><text class="head" x="872" y="266">Server B</text><text class="text" x="842" y="292">数据库 / 文档库</text>
+  <rect class="server" x="788" y="348" width="250" height="88" rx="8"/><text class="head" x="872" y="382">Server C</text><text class="text" x="842" y="408">业务 API / 平台</text>
+  <path class="arrow" d="M332 252 H430M690 224 C730 184 744 160 788 156M690 252 H788M690 280 C730 326 744 390 788 392"/>
+  <rect class="eng" x="106" y="404" width="580" height="50" rx="8"/><text class="head" x="164" y="434">Host/runtime 仍负责: loop、RAG、ACI、安全、评估和观测</text>
+</svg>
