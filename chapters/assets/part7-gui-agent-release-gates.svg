@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">GUI Agent 上线门禁</title>
+  <desc id="desc">展示 GUI Agent 从可重置沙箱、观察融合、动作策略、确认门禁、状态断言到人工接管的上线检查流程。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.warn{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.risk{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.info{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">GUI Agent 上线前,先证明它能安全失败</text>
+  <text class="sub" x="56" y="82">能点中按钮只是 demo,能识别异常、停止和交还控制才接近生产。</text>
+  <g transform="translate(74 126)">
+    <rect class="box info" x="0" y="0" width="150" height="76" rx="8"/><text class="head" x="34" y="30">Sandbox</text><text class="small" x="24" y="56">可重置账号和数据</text>
+    <path class="arrow" d="M150 38 H190"/>
+    <rect class="box warn" x="190" y="0" width="150" height="76" rx="8"/><text class="head" x="228" y="30">Observe</text><text class="small" x="214" y="56">截图 + DOM + 状态</text>
+    <path class="arrow" d="M340 38 H380"/>
+    <rect class="box warn" x="380" y="0" width="150" height="76" rx="8"/><text class="head" x="420" y="30">Policy</text><text class="small" x="404" y="56">动作白名单和风险</text>
+    <path class="arrow" d="M530 38 H570"/>
+    <rect class="box risk" x="570" y="0" width="150" height="76" rx="8"/><text class="head" x="612" y="30">Confirm</text><text class="small" x="600" y="56">提交前预览</text>
+    <path class="arrow" d="M720 38 H760"/>
+    <rect class="box ok" x="760" y="0" width="150" height="76" rx="8"/><text class="head" x="804" y="30">Assert</text><text class="small" x="790" y="56">页面和数据断言</text>
+    <path class="arrow" d="M910 38 H950"/>
+    <rect class="box risk" x="950" y="0" width="96" height="76" rx="8"/><text class="head" x="974" y="30">Handoff</text><text class="small" x="970" y="56">人工接管</text>
+  </g>
+  <g transform="translate(104 270)">
+    <text class="head" x="0" y="0">必须覆盖的负样本</text>
+    <rect class="box" x="0" y="24" width="180" height="58" rx="8"/><text class="text" x="22" y="48">按钮不存在</text><text class="small" x="22" y="68">停止而不是猜点</text>
+    <rect class="box" x="206" y="24" width="180" height="58" rx="8"/><text class="text" x="228" y="48">权限不足</text><text class="small" x="228" y="68">说明缺口</text>
+    <rect class="box" x="412" y="24" width="180" height="58" rx="8"/><text class="text" x="434" y="48">弹窗打断</text><text class="small" x="434" y="68">重新观察</text>
+    <rect class="box" x="618" y="24" width="180" height="58" rx="8"/><text class="text" x="640" y="48">表单校验失败</text><text class="small" x="640" y="68">回读错误</text>
+    <rect class="box" x="824" y="24" width="180" height="58" rx="8"/><text class="text" x="846" y="48">页面状态不变</text><text class="small" x="846" y="68">禁止盲重试</text>
+  </g>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="266" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">GUI Agent 的上线标准不是成功录屏,而是异常、误点和副作用都能被控制。</text>
+</svg>

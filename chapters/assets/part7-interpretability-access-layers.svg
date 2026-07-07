@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">解释报告访问分层</title>
+  <desc id="desc">展示 Agent 解释报告应按用户、工程师、审计和研究者角色裁剪不同深度,避免过度暴露敏感上下文。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.info{fill:#dfe8f5}.ok{fill:#e7f1ee}.warn{fill:#fff0e6}.risk{fill:#f7d9df}.bar{fill:#172033}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">解释不是一份统一长文本,而是按角色裁剪的证据包</text>
+  <text class="sub" x="56" y="82">解释越深,越可能包含敏感上下文、工具结果和策略细节。</text>
+  <g transform="translate(76 130)">
+    <text class="head" x="24" y="0">角色</text><text class="head" x="244" y="0">需要看到</text><text class="head" x="650" y="0">不应默认暴露</text>
+    <rect class="cell info" x="0" y="24" width="180" height="58"/><text class="text" x="24" y="58">用户</text><rect class="cell ok" x="204" y="24" width="380" height="58"/><text class="small" x="228" y="58">结论、引用、已执行动作、下一步风险</text><rect class="cell warn" x="608" y="24" width="430" height="58"/><text class="small" x="632" y="58">完整 prompt、隐藏策略、其他用户数据</text>
+    <rect class="cell info" x="0" y="104" width="180" height="58"/><text class="text" x="24" y="138">工程师</text><rect class="cell ok" x="204" y="104" width="380" height="58"/><text class="small" x="228" y="138">span、state diff、tool error、版本信息</text><rect class="cell warn" x="608" y="104" width="430" height="58"/><text class="small" x="632" y="138">无关敏感原文和长期记忆全文</text>
+    <rect class="cell info" x="0" y="184" width="180" height="58"/><text class="text" x="24" y="218">审计</text><rect class="cell ok" x="204" y="184" width="380" height="58"/><text class="small" x="228" y="218">身份、权限、确认、审计 id、责任边界</text><rect class="cell risk" x="608" y="184" width="430" height="58"/><text class="small" x="632" y="218">未脱敏个人内容和第三方秘密</text>
+    <rect class="cell info" x="0" y="264" width="180" height="58"/><text class="text" x="24" y="298">研究者</text><rect class="cell ok" x="204" y="264" width="380" height="58"/><text class="small" x="228" y="298">匿名样本、失败类型、机制假设</text><rect class="cell warn" x="608" y="264" width="430" height="58"/><text class="small" x="632" y="298">生产凭证、完整用户上下文</text>
+  </g>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="278" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">好的解释既能复盘失败,也不会把敏感上下文当作解释成本随意泄露。</text>
+</svg>

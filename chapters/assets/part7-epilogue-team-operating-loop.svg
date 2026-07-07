@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 团队实践闭环</title>
+  <desc id="desc">展示团队从失败样本、trace、评估集、修复实验、发布门禁、线上监控到事故复盘的 Agent 工程闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.box{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.a{fill:#dfe8f5;stroke:#355c9a;stroke-width:1.7}.b{fill:#fff0e6;stroke:#b05c37;stroke-width:1.7}.c{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.7}.d{fill:#f7d9df;stroke:#b13c52;stroke-width:1.7}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">从 0 到 1 之后,团队要把 Agent 做成可迭代系统</text>
+  <text class="sub" x="56" y="82">真正的能力来自固定节奏的失败复盘、评估、发布和监控。</text>
+  <g transform="translate(110 126)">
+    <rect class="box a" x="0" y="82" width="150" height="76" rx="8"/><text class="head" x="34" y="112">Trace</text><text class="small" x="24" y="138">失败可复现</text>
+    <path class="arrow" d="M150 120 H214"/>
+    <rect class="box b" x="214" y="82" width="150" height="76" rx="8"/><text class="head" x="252" y="112">Eval set</text><text class="small" x="238" y="138">样本和 rubric</text>
+    <path class="arrow" d="M364 120 H428"/>
+    <rect class="box c" x="428" y="82" width="150" height="76" rx="8"/><text class="head" x="470" y="112">Experiment</text><text class="small" x="452" y="138">修一层而非乱改</text>
+    <path class="arrow" d="M578 120 H642"/>
+    <rect class="box d" x="642" y="82" width="150" height="76" rx="8"/><text class="head" x="682" y="112">Gate</text><text class="small" x="668" y="138">回归和安全门</text>
+    <path class="arrow" d="M717 158 V218 H75 V162"/>
+    <rect class="box c" x="428" y="230" width="150" height="76" rx="8"/><text class="head" x="470" y="260">Monitor</text><text class="small" x="452" y="286">线上分布变化</text>
+    <rect class="box b" x="214" y="230" width="150" height="76" rx="8"/><text class="head" x="252" y="260">Incident</text><text class="small" x="238" y="286">事故复盘回流</text>
+    <path class="arrow" d="M642 120 C614 212 584 230 578 260"/>
+    <path class="arrow" d="M428 268 H364"/>
+    <path class="arrow" d="M214 268 C126 246 76 202 75 158"/>
+  </g>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="276" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">Agent 工程的复利来自闭环:每次失败都变成 trace、eval、门禁或运行时边界。</text>
+</svg>

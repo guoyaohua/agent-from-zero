@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 标准采用评分卡</title>
+  <desc id="desc">展示采用某个 Agent 标准前,应从复用价值、安全表达、错误协议、版本协商、生态成熟度和抽象泄漏风险进行评分。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.cell{fill:#fff;stroke:#d8e0eb;stroke-width:1}.pass{fill:#e7f1ee}.warn{fill:#fff0e6}.risk{fill:#f7d9df}.info{fill:#dfe8f5}.bar{fill:#172033}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">采用标准前,先判断它是在降集成成本还是制造抽象债</text>
+  <text class="sub" x="56" y="82">好标准让边界可发现、可验证、可审计;坏标准只统一字段名。</text>
+  <g transform="translate(74 130)">
+    <text class="head" x="24" y="0">维度</text><text class="head" x="236" y="0">高分表现</text><text class="head" x="650" y="0">低分风险</text>
+    <rect class="cell info" x="0" y="24" width="180" height="52"/><text class="text" x="24" y="56">复用价值</text><rect class="cell pass" x="202" y="24" width="380" height="52"/><text class="small" x="226" y="56">多个 Host、工具、团队能共享契约</text><rect class="cell warn" x="604" y="24" width="430" height="52"/><text class="small" x="628" y="56">只有单项目使用,内部接口更简单</text>
+    <rect class="cell info" x="0" y="92" width="180" height="52"/><text class="text" x="24" y="124">安全表达</text><rect class="cell pass" x="202" y="92" width="380" height="52"/><text class="small" x="226" y="124">身份、scope、风险、确认、审计可携带</text><rect class="cell risk" x="604" y="92" width="430" height="52"/><text class="small" x="628" y="124">只能调用,不能表达能否执行</text>
+    <rect class="cell info" x="0" y="160" width="180" height="52"/><text class="text" x="24" y="192">错误协议</text><rect class="cell pass" x="202" y="160" width="380" height="52"/><text class="small" x="226" y="192">错误类型稳定,Loop 能恢复</text><rect class="cell warn" x="604" y="160" width="430" height="52"/><text class="small" x="628" y="192">happy path 能跑,失败只能看日志</text>
+    <rect class="cell info" x="0" y="228" width="180" height="52"/><text class="text" x="24" y="260">版本协商</text><rect class="cell pass" x="202" y="228" width="380" height="52"/><text class="small" x="226" y="260">能力发现、降级、废弃策略清楚</text><rect class="cell warn" x="604" y="228" width="430" height="52"/><text class="small" x="628" y="260">升级会静默破坏旧客户端</text>
+    <rect class="cell info" x="0" y="296" width="180" height="52"/><text class="text" x="24" y="328">抽象泄漏</text><rect class="cell pass" x="202" y="296" width="380" height="52"/><text class="small" x="226" y="328">允许本地策略和扩展字段</text><rect class="cell risk" x="604" y="296" width="430" height="52"/><text class="small" x="628" y="328">把业务差异硬塞进通用协议</text>
+  </g>
+  <rect class="bar" x="166" y="462" width="788" height="32" rx="8"/>
+  <text x="308" y="483" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">标准化的目标是清楚边界,不是抹平所有业务差异。</text>
+</svg>

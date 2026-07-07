@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">前沿能力证据阶梯</title>
+  <desc id="desc">展示从单次 demo 到生产高风险自动化之间,需要逐级补齐复现、失败分析、评估集、灰度、审计、安全和事故响应证据。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 28px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.head{font:700 14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.text{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#435066}.small{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#596579}.step{fill:#fff;stroke:#d8e0eb;stroke-width:1.4}.s1{fill:#dfe8f5}.s2{fill:#e7f1ee}.s3{fill:#fff0e6}.s4{fill:#f7d9df}.bar{fill:#172033}.arrow{fill:none;stroke:#8796aa;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8796aa"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="54">前沿能力不要只问“能不能”,还要问“证据到了哪一级”</text>
+  <text class="sub" x="56" y="82">Demo、benchmark、pilot 和 production 对证据的要求完全不同。</text>
+  <g transform="translate(92 132)">
+    <rect class="step s1" x="0" y="180" width="180" height="82" rx="8"/><text class="head" x="46" y="212">Demo</text><text class="small" x="28" y="240">单例成功、录屏、人工挑选</text>
+    <path class="arrow" d="M180 220 H226"/>
+    <rect class="step s2" x="226" y="126" width="180" height="136" rx="8"/><text class="head" x="272" y="158">Eval</text><text class="small" x="254" y="188">固定样本</text><text class="small" x="254" y="212">失败分布</text><text class="small" x="254" y="236">回归对比</text>
+    <path class="arrow" d="M406 194 H452"/>
+    <rect class="step s3" x="452" y="72" width="180" height="190" rx="8"/><text class="head" x="500" y="104">Pilot</text><text class="small" x="480" y="134">低风险用户</text><text class="small" x="480" y="158">trace 和回滚</text><text class="small" x="480" y="182">成本和延迟</text><text class="small" x="480" y="206">人工接管</text>
+    <path class="arrow" d="M632 167 H678"/>
+    <rect class="step s4" x="678" y="18" width="220" height="244" rx="8"/><text class="head" x="740" y="50">Production</text><text class="small" x="708" y="82">权限和审计</text><text class="small" x="708" y="108">安全 eval</text><text class="small" x="708" y="134">SLO 和告警</text><text class="small" x="708" y="160">事故响应</text><text class="small" x="708" y="186">责任边界</text><text class="small" x="708" y="212">合规证据</text>
+  </g>
+  <rect class="bar" x="166" y="444" width="788" height="36" rx="8"/>
+  <text x="296" y="467" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#fff">前沿判断的关键,是把“演示成功”翻译成“可复现、可治理、可承担”。</text>
+</svg>
