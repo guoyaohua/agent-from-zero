@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 失败归因与可观测性闭环</title>
+  <desc id="desc">展示一次 Agent 失败如何通过 trace、span、artifact、state diff 和策略决策定位到具体层次,再回流到修复和评估样本。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .mono { font: 500 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">调试 Agent 不是改 Prompt,而是先定位失败层</text>
+  <text class="sub" x="48" y="78">Trace 的价值在于把一次错误拆成可复盘的时间线、数据快照和策略决策。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="390" rx="8" />
+  <rect class="red" x="76" y="166" width="150" height="64" rx="8" />
+  <text class="label" x="118" y="194">线上失败</text>
+  <text class="small" x="102" y="216">错误答案 / 错误动作</text>
+  <path class="arrow" d="M226 198 H286" />
+
+  <rect class="blue" x="286" y="144" width="188" height="108" rx="8" />
+  <text class="label" x="338" y="174">Trace 时间线</text>
+  <text class="mono" x="314" y="200">span + artifact</text>
+  <text class="mono" x="314" y="224">state diff + policy</text>
+  <path class="arrow" d="M474 198 H540" />
+
+  <rect class="green" x="540" y="136" width="438" height="124" rx="8" />
+  <text class="label" x="692" y="166">失败归因层</text>
+  <rect class="gray" x="566" y="188" width="82" height="38" rx="6" /><text class="small" x="588" y="212">目标</text>
+  <rect class="gray" x="658" y="188" width="82" height="38" rx="6" /><text class="small" x="680" y="212">上下文</text>
+  <rect class="gray" x="750" y="188" width="82" height="38" rx="6" /><text class="small" x="772" y="212">检索</text>
+  <rect class="gray" x="842" y="188" width="82" height="38" rx="6" /><text class="small" x="864" y="212">模型</text>
+  <rect class="gray" x="566" y="232" width="82" height="38" rx="6" /><text class="small" x="588" y="256">工具</text>
+  <rect class="gray" x="658" y="232" width="82" height="38" rx="6" /><text class="small" x="680" y="256">状态</text>
+  <rect class="gray" x="750" y="232" width="82" height="38" rx="6" /><text class="small" x="772" y="256">策略</text>
+  <rect class="gray" x="842" y="232" width="82" height="38" rx="6" /><text class="small" x="864" y="256">成本</text>
+
+  <rect class="panel" x="76" y="318" width="902" height="122" rx="8" />
+  <text class="label" x="108" y="350">每个 span 至少回答四个问题</text>
+  <rect class="blue" x="108" y="374" width="182" height="42" rx="8" /><text class="text" x="132" y="400">模型/工具看到了什么</text>
+  <rect class="green" x="314" y="374" width="182" height="42" rx="8" /><text class="text" x="338" y="400">为什么做这个动作</text>
+  <rect class="orange" x="520" y="374" width="182" height="42" rx="8" /><text class="text" x="544" y="400">动作结果和副作用</text>
+  <rect class="red" x="726" y="374" width="206" height="42" rx="8" /><text class="text" x="748" y="400">谁允许或阻止了动作</text>
+
+  <path class="dash" d="M760 260 C760 300 850 300 850 318" />
+  <rect class="orange" x="830" y="528" width="214" height="48" rx="8" />
+  <text class="label" x="882" y="558">回归评估样本</text>
+  <path class="dash" d="M882 440 C820 490 862 508 916 528" />
+  <rect class="gray" x="72" y="528" width="704" height="48" rx="8" />
+  <text class="text" x="98" y="558">读图方式:根因定位后再修改对应层,失败 trace 必须进入 eval set,否则同类问题会反复出现。</text>
+</svg>

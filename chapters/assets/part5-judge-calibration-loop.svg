@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">LLM Judge 校准与偏差控制闭环</title>
+  <desc id="desc">展示 LLM Judge 如何先经过确定性检查,再按 rubric 判分,并通过 gold set、disagreement set、人工抽检和漂移监控控制偏差。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .sub { font: 400 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #596579; }
+      .panel { fill: #ffffff; stroke: #d8e0eb; stroke-width: 1.2; }
+      .blue { fill: #dfe8f5; stroke: #355c9a; stroke-width: 2; }
+      .green { fill: #e7f1ee; stroke: #2d7d80; stroke-width: 2; }
+      .orange { fill: #fff0e6; stroke: #b05c37; stroke-width: 2; }
+      .red { fill: #f7d9df; stroke: #b13c52; stroke-width: 2; }
+      .gray { fill: #eef3f8; stroke: #cbd5e1; stroke-width: 1.3; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .text { font: 400 12.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .small { font: 400 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #435066; }
+      .arrow { fill: none; stroke: #8b98aa; stroke-width: 2.1; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #b13c52; stroke-width: 1.8; stroke-dasharray: 6 6; marker-end: url(#redArrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b98aa" /></marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b13c52" /></marker>
+  </defs>
+  <rect class="bg" width="1120" height="620" />
+  <text class="title" x="48" y="52">Judge 也需要被评估,否则评估器会变成新的黑盒</text>
+  <text class="sub" x="48" y="78">先让规则处理确定性问题,再让 Judge 处理语义问题,并用人工标签持续校准。</text>
+
+  <rect class="panel" x="48" y="112" width="1024" height="388" rx="8" />
+  <rect class="blue" x="78" y="170" width="142" height="70" rx="8" />
+  <text class="label" x="116" y="198">样本输入</text>
+  <text class="small" x="104" y="220">请求 / 输出 / 证据</text>
+  <path class="arrow" d="M220 205 H278" />
+
+  <rect class="green" x="278" y="150" width="156" height="110" rx="8" />
+  <text class="label" x="316" y="180">确定性检查</text>
+  <text class="small" x="310" y="210">schema / 引用 ID</text>
+  <text class="small" x="310" y="236">policy / cost / tests</text>
+  <path class="arrow" d="M434 205 H492" />
+
+  <rect class="orange" x="492" y="150" width="176" height="110" rx="8" />
+  <text class="label" x="548" y="180">Rubric Judge</text>
+  <text class="small" x="526" y="210">分项打分 + 理由</text>
+  <text class="small" x="526" y="236">证据引用 + 修复建议</text>
+  <path class="arrow" d="M668 205 H726" />
+
+  <rect class="red" x="726" y="150" width="198" height="110" rx="8" />
+  <text class="label" x="782" y="180">偏差风险</text>
+  <text class="small" x="762" y="210">长度 / 位置 / 格式偏见</text>
+  <text class="small" x="762" y="236">同源偏见 / 漂移</text>
+
+  <rect class="panel" x="112" y="322" width="850" height="112" rx="8" />
+  <text class="label" x="146" y="354">校准资产</text>
+  <rect class="blue" x="146" y="378" width="154" height="38" rx="8" /><text class="small" x="184" y="402">Gold set</text>
+  <rect class="green" x="330" y="378" width="184" height="38" rx="8" /><text class="small" x="364" y="402">Disagreement set</text>
+  <rect class="orange" x="544" y="378" width="154" height="38" rx="8" /><text class="small" x="582" y="402">人工抽检</text>
+  <rect class="red" x="728" y="378" width="174" height="38" rx="8" /><text class="small" x="758" y="402">漂移监控</text>
+  <path class="loop" d="M812 260 C772 308 654 316 580 322" />
+  <path class="loop" d="M420 378 C376 312 474 278 552 260" />
+  <text class="small" x="238" y="458">校准结果要反向修改 rubric、Judge prompt、分数锚点和抽检策略</text>
+
+  <rect class="gray" x="72" y="532" width="976" height="42" rx="8" />
+  <text class="text" x="98" y="558">读图方式:Judge 分数只有在通过确定性检查、人工校准和偏差监控后,才适合作为上线门禁信号。</text>
+</svg>
