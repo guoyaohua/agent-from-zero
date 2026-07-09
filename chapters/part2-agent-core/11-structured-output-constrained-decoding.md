@@ -8,6 +8,8 @@ Agent 不是只要“说得像对”就行。它经常需要输出 JSON、调用
 
 ![结构化输出与约束解码](../assets/part2-structured-output-constrained-decoding.svg)
 
+![约束解码状态机与运行时边界](../assets/part2-constrained-decoding-state-machine.svg)
+
 本章会区分几个容易混在一起的概念:JSON 提示、JSON mode、schema validation、function calling、grammar constrained decoding 和运行时修复。它们都能提高稳定性,但边界不同。
 
 ## 为什么结构化输出重要
@@ -99,6 +101,49 @@ schema/grammar -> parser state -> allowed tokens -> model logits mask -> next to
 
 这样可以显著减少括号不闭合、字段名错误、格式多余文本等问题。
 
+更准确地说,约束解码通常会把 schema 或 grammar 编译成某种可增量推进的约束结构。实现方式可能是有限状态机、下推自动机、CFG 解析状态,或针对 JSON Schema 的专门状态追踪。模型每生成一个 token,约束器都会更新当前状态,再计算下一步允许哪些 token。
+
+这带来一个很实际的工程事实:约束解码不是“生成完再检查”,而是在生成过程中持续改变可选 token 集合。它可以让模型无法生成语法上非法的右括号、字段名或枚举值,但它仍然不知道业务世界是否允许这个动作。
+
+## Grammar、JSON Schema 和状态机
+
+不同约束形式适合不同任务。
+
+| 约束形式 | 适合场景 | 优点 | 注意点 |
+| --- | --- | --- | --- |
+| JSON object schema | 工具参数、状态差分、证据包 | 易和运行时校验结合 | 复杂条件约束不一定完整支持 |
+| enum / literal | 动作选择、风险等级、状态码 | 输出稳定、易评估 | 枚举太多会增加 token 成本和混淆 |
+| CFG / grammar | SQL 子集、DSL、配置语言 | 能表达嵌套语法 | 语义和权限仍需外部校验 |
+| Regex / FSM | 短格式、ID、日期、标签 | 实现简单、速度快 | 不适合复杂嵌套结构 |
+
+如果你的目标只是得到合法 JSON,JSON mode 可能够用。如果下游要自动执行工具,就需要 schema validation、semantic validation 和 policy gate。如果你在生成 SQL、表达式、配置或领域 DSL,grammar constrained decoding 更合适,但必须限制可用语法子集,不要让模型自由生成高风险语句。
+
+## Tokenizer 边界会影响约束
+
+约束解码最终还是在 token 级别工作。字段名、枚举值和标点在不同 tokenizer 下可能被切成不同 token。一个枚举值看起来是 `approve_invoice`,在某个 tokenizer 里可能是一个 token,在另一个 tokenizer 里可能拆成多个片段。
+
+这会影响三件事。
+
+第一,约束器要能处理“部分匹配”。生成枚举值时,不能只判断完整字符串是否合法,还要允许合法前缀继续生成。
+
+第二,字段命名会影响稳定性。短而清晰的 snake_case 字段通常比很长的自然语言字段更稳,也更省 token。
+
+第三,多语言字段名和特殊符号可能增加 token 成本。生产 schema 应该优先稳定、清晰、少歧义,而不是追求像人类文档那样漂亮。
+
+## 结构化输出如何接入 Loop
+
+在 Agent Loop 中,结构化输出最好不要只用于最终答案。它还可以用于每一轮控制面。
+
+| Loop 位置 | 推荐结构化对象 | 作用 |
+| --- | --- | --- |
+| 决策前 | `route_decision` | 判断快路径、深度推理、工具链或人工确认 |
+| 工具调用 | `tool_call` | 让 Harness 校验参数、权限和风险 |
+| 状态更新 | `state_patch` | 让 reducer 决定哪些事实能写入状态 |
+| 证据整理 | `evidence_pack` | 把 claim、source、confidence 对齐 |
+| 停止判断 | `stop_decision` | 明确 done、blocked、needs_user、budget_exhausted |
+
+这样做的好处是,Loop 不再依赖一段自然语言来猜模型到底想做什么。模型提出结构化对象,runtime 根据对象执行校验、写状态、调用工具或停止。模型仍然负责语言理解和策略建议,但控制权在系统边界里。
+
 ## 它不能保证语义正确
 
 约束解码只能约束形式,不能保证事实和业务语义。
@@ -132,7 +177,7 @@ Function Calling 可以看作一种特殊结构化输出:模型不是直接输�
 - 失败后如何恢复。
 - 执行结果如何写入状态和 trace。
 
-所以 Part 2 之前讲过 Function Calling,后面又讲 Harness Engineering。二者是上下游关系。
+所以 Part 2 前面讲过 Function Calling,也讲过 Harness Engineering。二者是上下游关系:Function Calling 负责表达动作,Harness 决定动作能否进入真实世界。
 
 ## 输出契约要覆盖失败
 
@@ -195,6 +240,18 @@ model output -> parse -> schema validate -> semantic validate -> policy check ->
 - policy decision 一致性。
 
 这些指标能直接进入回归测试。
+
+还可以把错误归因做得更细:
+
+| 失败层 | 例子 | 应该修哪里 |
+| --- | --- | --- |
+| 语法失败 | JSON 不闭合、逗号错误 | JSON mode、grammar、重试修复 |
+| schema 失败 | 缺字段、类型错、enum 错 | schema 描述、示例、约束解码 |
+| 语义失败 | 参数来自猜测、证据不支持 | context、RAG、状态 reducer |
+| policy 失败 | 越权、危险副作用 | Harness、权限、确认流 |
+| loop 失败 | 连续修复仍不收敛 | 停止条件、错误路由、人工交接 |
+
+这张归因表很重要。不要把所有结构化输出失败都归咎于“模型格式不稳定”。如果 JSON 合法但参数来源错,问题不在 JSON;如果 schema 正确但动作越权,问题不在 schema;如果连续三次修复仍失败,问题可能在 Loop 的停止和降级策略。
 
 ## 设计模式
 
@@ -263,4 +320,4 @@ model output -> parse -> schema validate -> semantic validate -> policy check ->
 
 结构化输出把模型输出变成系统可消费的对象。JSON mode、schema validation、function calling 和 grammar constrained decoding 分别在不同层面提高可靠性。它们能减少格式错误,改善工具调用和评估,但不能替代证据、权限、安全和 Harness。可靠 Agent 应把结构化输出接入 parse、validate、policy、execute、repair 和 trace 的完整流水线。
 
-下一步进入 Part 3 时,你会看到类似思想如何用于 RAG 的 evidence pack、记忆写入和上下文工程。
+到这里,Part 2 已经覆盖 Agent 的核心机制:Agent Loop、ReAct、Function Calling、ACI、Planning、Workflow、Prompt/Context/Harness/Loop、Loop Engineering,以及结构化输出和约束解码。下一篇 Part 3 会进入能力构建:记忆、RAG、工具使用进阶、自我修正和上下文工程。你会看到类似的契约思想如何用于 evidence pack、记忆写入和知识治理。

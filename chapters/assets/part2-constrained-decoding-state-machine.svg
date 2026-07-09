@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="760" viewBox="0 0 1220 760" role="img" aria-labelledby="title desc">
+  <title id="title">约束解码状态机与运行时边界</title>
+  <desc id="desc">展示 schema 或 grammar 如何在 token 生成过程中维护 parser state、屏蔽非法 token,并把结构化对象交给运行时校验、策略门和修复路由。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#94a3b8;stroke-width:1.8;stroke-dasharray:6 6;marker-end:url(#arrow)}.token{fill:#172033}.tokentext{font:700 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#fff}.bad{fill:#f7d9df;stroke:#b13c52;stroke-width:1.6}.ok{fill:#e7f1ee;stroke:#2d7d80;stroke-width:1.6}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1220" height="760"/>
+  <text class="title" x="52" y="56">约束解码: 生成时就把非法 token 挡在门外</text>
+  <text class="sub" x="52" y="84">语法约束提升可解析性;语义、权限和副作用仍要交给 runtime 校验。</text>
+
+  <rect class="panel" x="48" y="116" width="1124" height="370" rx="10"/>
+  <rect class="blue" x="82" y="170" width="180" height="88" rx="8"/>
+  <text class="h" x="126" y="202">Schema / Grammar</text>
+  <text class="t" x="110" y="228">JSON Schema、CFG、FSM</text>
+  <text class="s" x="110" y="248">编译成可增量状态</text>
+
+  <rect class="orange" x="318" y="170" width="180" height="88" rx="8"/>
+  <text class="h" x="366" y="202">Parser State</text>
+  <text class="mono" x="346" y="228">{ "tool": ...</text>
+  <text class="s" x="346" y="248">当前允许字段/值</text>
+
+  <rect class="purple" x="554" y="170" width="180" height="88" rx="8"/>
+  <text class="h" x="604" y="202">Logits Mask</text>
+  <text class="t" x="582" y="228">屏蔽非法 token</text>
+  <text class="s" x="582" y="248">保留合法前缀</text>
+
+  <rect class="green" x="790" y="170" width="180" height="88" rx="8"/>
+  <text class="h" x="842" y="202">Next Token</text>
+  <text class="t" x="818" y="228">模型在合法集合采样</text>
+  <text class="s" x="818" y="248">再更新 parser state</text>
+
+  <rect class="red" x="1026" y="170" width="112" height="88" rx="8"/>
+  <text class="h" x="1052" y="202">Repair</text>
+  <text class="t" x="1044" y="228">失败路由</text>
+  <text class="s" x="1044" y="248">重试/停止</text>
+
+  <path class="line" d="M262 214H318"/>
+  <path class="line" d="M498 214H554"/>
+  <path class="line" d="M734 214H790"/>
+  <path class="line" d="M970 214H1026"/>
+  <path class="dash" d="M884 258C852 326 444 326 408 258"/>
+  <text class="s" x="548" y="332">每个 token 都会推进或拒绝当前状态</text>
+
+  <rect class="panel" x="82" y="366" width="1056" height="84" rx="8"/>
+  <text class="h" x="108" y="394">token 级允许集合示例</text>
+  <rect class="token" x="108" y="414" width="58" height="22" rx="5"/><text class="tokentext" x="123" y="429">"query"</text>
+  <rect class="token" x="178" y="414" width="70" height="22" rx="5"/><text class="tokentext" x="192" y="429">"top_k"</text>
+  <rect class="ok" x="260" y="414" width="86" height="22" rx="5"/><text class="s" x="276" y="429">legal prefix</text>
+  <rect class="bad" x="358" y="414" width="128" height="22" rx="5"/><text class="s" x="376" y="429">Markdown header</text>
+  <rect class="bad" x="498" y="414" width="118" height="22" rx="5"/><text class="s" x="518" y="429">unknown field</text>
+  <text class="t" x="652" y="429">约束器只知道语法和 schema,不知道业务事实是否正确。</text>
+
+  <rect class="panel" x="48" y="522" width="1124" height="168" rx="10"/>
+  <text class="h" x="78" y="554">运行时边界</text>
+  <rect class="blue" x="78" y="578" width="190" height="72" rx="8"/><text class="h" x="126" y="606">Parse</text><text class="s" x="104" y="630">语法是否可解析</text>
+  <rect class="green" x="306" y="578" width="190" height="72" rx="8"/><text class="h" x="356" y="606">Validate</text><text class="s" x="332" y="630">schema + 语义</text>
+  <rect class="orange" x="534" y="578" width="190" height="72" rx="8"/><text class="h" x="586" y="606">Policy</text><text class="s" x="560" y="630">权限、风险、确认</text>
+  <rect class="purple" x="762" y="578" width="190" height="72" rx="8"/><text class="h" x="812" y="606">Execute</text><text class="s" x="788" y="630">幂等、trace、回滚</text>
+  <rect class="red" x="990" y="578" width="130" height="72" rx="8"/><text class="h" x="1026" y="606">Stop</text><text class="s" x="1014" y="630">阻塞或交接</text>
+  <path class="line" d="M268 614H306"/>
+  <path class="line" d="M496 614H534"/>
+  <path class="line" d="M724 614H762"/>
+  <path class="line" d="M952 614H990"/>
+  <text class="t" x="78" y="674">格式正确只是第一关。真正能不能执行,取决于证据、权限、业务规则、预算和 Loop 停止条件。</text>
+</svg>
