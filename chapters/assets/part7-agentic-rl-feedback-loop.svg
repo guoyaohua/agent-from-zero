@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic RL 与真实环境反馈</title>
+  <desc id="desc">展示 Agentic RL 如何从环境任务、动作轨迹、可验证奖励、训练更新、离线评估和安全门控形成闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.head{font:700 16px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.text{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.a{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.b{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.c{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.d{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2.2;marker-end:url(#arrow)}.loop{fill:none;stroke:#b05c37;stroke-width:2.2;stroke-dasharray:7 6;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1120" height="640"/>
+  <text class="title" x="56" y="58">Agentic RL: 从可验证环境反馈中学习</text>
+  <text class="sub" x="56" y="86">真实环境反馈有价值,但必须经过沙箱、奖励设计、离线评估和安全门控,不能把线上用户当训练场。</text>
+
+  <rect class="panel" x="56" y="122" width="1008" height="410" rx="10"/>
+  <rect class="a" x="104" y="250" width="158" height="78" rx="8"/>
+  <text class="head" x="144" y="282">Task Env</text>
+  <text class="text" x="126" y="306">代码、GUI、网页、工具</text>
+
+  <rect class="a" x="336" y="250" width="158" height="78" rx="8"/>
+  <text class="head" x="376" y="282">Agent Run</text>
+  <text class="text" x="362" y="306">plan / act / observe</text>
+
+  <rect class="c" x="568" y="164" width="176" height="76" rx="8"/>
+  <text class="head" x="608" y="196">Verifier</text>
+  <text class="text" x="596" y="218">tests / judge / rules</text>
+
+  <rect class="b" x="568" y="340" width="176" height="76" rx="8"/>
+  <text class="head" x="604" y="372">Trajectory Store</text>
+  <text class="text" x="596" y="394">state, action, reward</text>
+
+  <rect class="c" x="818" y="250" width="170" height="78" rx="8"/>
+  <text class="head" x="858" y="282">Policy Update</text>
+  <text class="text" x="846" y="306">RL / distill / filter</text>
+
+  <rect class="d" x="818" y="420" width="170" height="62" rx="8"/>
+  <text class="head" x="856" y="447">Safety Gate</text>
+  <text class="text" x="844" y="468">offline eval + red team</text>
+
+  <path class="line" d="M262 289H336"/>
+  <path class="line" d="M494 289C536 270 548 228 568 202"/>
+  <path class="line" d="M494 304C538 330 548 360 568 378"/>
+  <path class="line" d="M744 378C790 356 806 322 818 289"/>
+  <path class="line" d="M903 328V420"/>
+  <path class="loop" d="M818 451C624 520 220 460 184 328"/>
+
+  <rect class="panel" x="104" y="558" width="884" height="48" rx="8"/>
+  <text class="head" x="132" y="588">边界</text>
+  <text class="text" x="198" y="588">奖励只奖励结果会诱发投机; 奖励还要覆盖副作用、约束遵守、证据质量、可恢复性和人工接管成本。</text>
+</svg>

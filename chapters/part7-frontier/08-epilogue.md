@@ -2,7 +2,7 @@
 
 如果你一路读到这里,你已经走过了 AI Agent 从 0 到 1 的主要路径。
 
-我们从 AI 和 LLM 的历史出发,打开 Transformer 的内部世界,理解 Agent 循环、工具、规划、Prompt/Context/Harness/Loop、记忆、RAG、多 Agent、工程评估、安全护栏和个人 Agent Gateway 等前沿形态,最后搭了一个个人研究助手。
+我们从 AI 和 LLM 的历史出发,打开 Transformer 的内部世界,理解测试时计算、Agent 循环、工具、规划、Prompt/Context/Harness/Loop、记忆、RAG、Agentic RAG、多 Agent、MCP/A2A 互操作、工程评估、安全护栏、个人 Agent Gateway 和 Agentic RL 等前沿形态,最后搭了一个个人研究助手。
 
 这不是终点。
 
