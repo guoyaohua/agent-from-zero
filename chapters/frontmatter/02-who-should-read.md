@@ -22,7 +22,7 @@
 
 ### 想深究原理的读者
 
-你可能不满足于“调 Prompt 就行”,想知道模型为什么能生成语言,Self-Attention 到底在做什么,位置编码为什么影响长上下文,RLHF 和 DPO 为什么影响模型行为,MoE 为什么能扩大总参数但只激活部分专家,KV Cache 为什么能加速推理,Flash Attention 和测试时计算为什么重要。
+你可能不满足于“调 Prompt 就行”,想知道文本如何先被 Tokenizer 变成 token,Self-Attention 到底在做什么,位置编码为什么影响长上下文,RLHF 和 DPO 为什么影响模型行为,MoE 为什么能扩大总参数但只激活部分专家,KV Cache 为什么能加速推理,Flash Attention 和测试时计算为什么重要。
 
 对你来说,Part 1 是重点。它会从数学直觉讲到 Transformer、主流模型家族、MoE、训练、对齐和推理优化。目标不是把你训练成大模型研究员,而是让你能用原理解释工程现象。
 
@@ -120,6 +120,7 @@ $$
 - 理解 SFT、RLHF、DPO、LoRA 等训练与对齐方法的用途。
 - 理解位置编码、MoE、KV Cache、Flash Attention、PagedAttention、投机解码、测试时计算等机制的意义。
 - 对 DeepSeek、Qwen、Llama 等主流模型家族的架构特点、部署取舍和企业内部应用方式形成基本判断。
+- 理解结构化输出、约束解码、知识入库和发布运行治理这些生产系统里的硬边界。
 - 在模型能力、工程约束和产品需求之间做更稳健的技术判断。
 
 ## 本章小结

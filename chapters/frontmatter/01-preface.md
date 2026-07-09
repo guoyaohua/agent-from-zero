@@ -50,7 +50,7 @@ AI Agent 的资料并不少,但很多资料会落在两个极端。
 
 模型为什么会胡编?为什么长上下文不等于无限记忆?为什么温度、采样、上下文顺序会影响输出?为什么推理延迟和成本会突然变高?为什么同一个 Prompt 在不同模型上表现不同?
 
-这些问题无法只靠“多试几个提示词”解决。你不需要成为训练大模型的研究员,但需要理解 Transformer、Self-Attention、位置编码、MoE、训练与对齐、KV Cache、Flash Attention、PagedAttention 和测试时计算这些基础机制。理解它们之后,你会更清楚哪些问题应该靠 Prompt,哪些应该靠检索,哪些应该靠工具,哪些应该靠评估与系统约束。
+这些问题无法只靠“多试几个提示词”解决。你不需要成为训练大模型的研究员,但需要理解 Tokenizer、Chat Template、Transformer、Self-Attention、位置编码、MoE、训练与对齐、KV Cache、Flash Attention、PagedAttention 和测试时计算这些基础机制。理解它们之后,你会更清楚哪些问题应该靠 Prompt,哪些应该靠检索,哪些应该靠工具,哪些应该靠评估与系统约束。
 
 ### 工程断层
 
@@ -64,7 +64,7 @@ Demo 到生产之间有一段很长的路。
 
 本书以 Markdown 撰写,概念为主、代码为辅。示例会尽量使用伪代码或最小片段,避免绑定某个具体框架。原因很简单:框架会变,API 会变,但判断问题的方式、拆解系统的方式、评估取舍的方式更耐用。
 
-这并不意味着本书停留在科普。相反,关键算法和核心机制会讲得比较深。比如 Self-Attention、位置编码、RLHF、MoE、KV Cache、Flash Attention、测试时计算、RAG、Function Calling、ReAct、Harness Engineering 和 Loop Engineering 等章节,都会尽量解释“它为什么这样设计”“它解决了什么问题”“它引入了什么代价”“工程上应该如何使用”。
+这并不意味着本书停留在科普。相反,关键算法和核心机制会讲得比较深。比如 Tokenizer、Self-Attention、位置编码、RLHF、MoE、KV Cache、Flash Attention、测试时计算、RAG、Function Calling、结构化输出、ReAct、Harness Engineering、Loop Engineering 和发布运行治理等章节,都会尽量解释“它为什么这样设计”“它解决了什么问题”“它引入了什么代价”“工程上应该如何使用”。
 
 本书的目标不是让你背概念,而是让你形成可迁移的判断力。
 

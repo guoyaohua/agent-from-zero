@@ -18,7 +18,7 @@
 
 ## 如何阅读
 
-- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07/08/09/10)→ `part3`(01/02/04/09)→ `part4`(01/05)→ `part5`(01/02/04/06/07)→ `part6` 全部 → `part7`(08)。读完即可动手做出可用 Agent。
+- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07/08/09/10/11)→ `part3`(01/02/04/09/11)→ `part4`(01/05)→ `part5`(01/02/04/06/07/08)→ `part6` 全部 → `part7`(08)。读完即可动手做出可用 Agent。
 - **原理深潜支线**:完整精读 `part1`(算法篇)的全部 `[进阶]` 与 `★`,吃透 LLM 内部世界。
 - **应用进阶支线**:`part2`–`part5` 的 `[进阶]` 项 + `part2` 的 Harness/Loop 深入章节 + `part7` 趋势、互操作、Agentic RL、OpenClaw 与可解释性。
 
@@ -47,6 +47,7 @@
 > 把 LLM 从黑盒打开:数学直觉 → 神经网络 → Transformer → 演进史 → 模型全景 → 训练 → 推理优化。核心算法点(★)大篇幅讲透。
 
 **数学与算法直觉**
+- [Tokenizer、词表与 Chat Template](chapters/part1-algorithms/00-tokenizer-vocabulary-chat-template.md) `[主线]` ★
 - [向量、矩阵与概率直觉](chapters/part1-algorithms/01-vectors-and-probability.md) `[主线]`
 - [Softmax 与交叉熵损失](chapters/part1-algorithms/02-softmax-and-loss.md) `[进阶]`
 - [梯度下降与泛化](chapters/part1-algorithms/03-gradient-and-generalization.md) `[进阶]`
@@ -103,6 +104,7 @@
 - [Prompt、Context、Harness、Loop:四层如何区分](chapters/part2-agent-core/08-prompt-context-harness-loop.md) `[主线]` ★
 - [Harness Engineering:给 Agent 装上运行时外骨架](chapters/part2-agent-core/09-harness-engineering.md) `[主线]` ★
 - [Loop Engineering:让 Agent 多轮任务真正收敛](chapters/part2-agent-core/10-loop-engineering.md) `[主线]` ★
+- [结构化输出与约束解码](chapters/part2-agent-core/11-structured-output-constrained-decoding.md) `[主线]` ★
 
 ### Part 3 能力构建篇 · `chapters/part3-capabilities/`
 > 给 Agent 装上记忆、知识检索、自我修正与上下文管理,从"能跑"到"好用"。
@@ -116,6 +118,7 @@
 - [反思与自我修正](chapters/part3-capabilities/08-reflection-self-correction.md) `[进阶]`
 - [上下文工程](chapters/part3-capabilities/09-context-engineering.md) `[主线]`
 - [Agentic RAG 与知识图谱](chapters/part3-capabilities/10-agentic-rag-and-knowledge-graph.md) `[进阶]` ★
+- [知识入库、数据治理与 RAG 生命周期](chapters/part3-capabilities/11-knowledge-ingestion-governance.md) `[进阶]` ★
 
 ### Part 4 架构进阶篇 · `chapters/part4-architecture/`
 > 从单 Agent 到多 Agent 系统:角色、编排、通信与标准协议。
@@ -135,6 +138,7 @@
 - [安全与对齐](chapters/part5-engineering/05-safety-and-alignment.md) `[进阶]`
 - [护栏 Guardrails](chapters/part5-engineering/06-guardrails.md) `[主线]`
 - [Prompt Injection 与防御](chapters/part5-engineering/07-prompt-injection.md) `[主线]` ★
+- [发布、运行治理与变更管理](chapters/part5-engineering/08-release-ops-governance.md) `[主线]` ★
 
 ### Part 6 实战篇:个人研究助手项目 · `chapters/part6-project/`
 > 用前六篇全部知识,从 0 搭一个"个人研究助手",按步骤递进。
@@ -166,7 +170,7 @@
 
 ## 写作进度
 
-本书大纲已定并完成正文写作,共 **10 个部分、91 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
+本书大纲已定并完成正文写作,共 **10 个部分、95 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
 
 > 大纲参考了李宏毅《生成式 AI 导论》与吴恩达 DeepLearning.AI《Generative AI with LLMs》课程做查漏补缺,正文会继续通过复审、评估和读者反馈迭代完善。
 
