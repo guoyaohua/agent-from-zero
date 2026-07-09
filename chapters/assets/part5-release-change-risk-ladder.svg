@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="760" viewBox="0 0 1220 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 变更风险分级与发布动作</title>
+  <desc id="desc">展示 Agent 变更从低风险文案调整到极高风险写工具和长期记忆策略的发布门禁、灰度、回滚和 kill switch 要求。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.barbg{fill:#e5e7eb}.bar1{fill:#2d7d80}.bar2{fill:#355c9a}.bar3{fill:#b05c37}.bar4{fill:#b13c52}.tag{fill:#172033}.tagtext{font:700 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1220" height="760"/>
+  <text class="title" x="52" y="56">Agent 变更要按能力边界分级发布</text>
+  <text class="sub" x="52" y="84">变更越接近工具、副作用、数据出域和长期状态,门禁越硬、灰度越慢、开关越细。</text>
+
+  <rect class="panel" x="48" y="116" width="1124" height="370" rx="10"/>
+  <rect class="green" x="82" y="350" width="210" height="76" rx="8"/>
+  <text class="h" x="134" y="380">低风险</text><text class="t" x="110" y="404">文案、日志、非关键 UI</text>
+  <rect class="blue" x="338" y="286" width="210" height="90" rx="8"/>
+  <text class="h" x="390" y="316">中风险</text><text class="t" x="366" y="340">Prompt、模型小版本</text><text class="s" x="366" y="360">小流量灰度</text>
+  <rect class="orange" x="594" y="214" width="210" height="104" rx="8"/>
+  <text class="h" x="646" y="244">高风险</text><text class="t" x="622" y="268">工具 schema / RAG 大改</text><text class="s" x="622" y="288">硬门禁 + 回滚演练</text>
+  <rect class="red" x="850" y="136" width="230" height="118" rx="8"/>
+  <text class="h" x="902" y="166">极高风险</text><text class="t" x="878" y="190">新增写工具 / 外部发送</text><text class="t" x="878" y="212">长期记忆写入策略</text><text class="s" x="878" y="234">审批 + kill switch</text>
+  <path class="line" d="M292 388C318 366 324 344 338 331"/>
+  <path class="line" d="M548 331C574 306 580 284 594 266"/>
+  <path class="line" d="M804 266C832 238 836 210 850 195"/>
+
+  <rect class="panel" x="82" y="158" width="420" height="76" rx="8"/>
+  <text class="h" x="108" y="188">核心判断</text>
+  <text class="t" x="108" y="214">是否改变模型能看见什么、能调用什么、能写入什么、能把数据发到哪里?</text>
+
+  <rect class="panel" x="48" y="522" width="1124" height="168" rx="10"/>
+  <text class="h" x="78" y="554">运行时开关</text>
+  <rect class="tag" x="78" y="580" width="116" height="24" rx="6"/><text class="tagtext" x="106" y="596">tools</text><text class="t" x="210" y="596">禁用工具组,或将写工具降级为 preview only</text>
+  <rect class="tag" x="78" y="616" width="116" height="24" rx="6"/><text class="tagtext" x="102" y="632">memory</text><text class="t" x="210" y="632">关闭长期记忆写入,或只允许人工确认写入</text>
+  <rect class="tag" x="620" y="580" width="116" height="24" rx="6"/><text class="tagtext" x="652" y="596">rag</text><text class="t" x="752" y="596">禁用外部网页检索,或回滚索引版本</text>
+  <rect class="tag" x="620" y="616" width="116" height="24" rx="6"/><text class="tagtext" x="648" y="632">model</text><text class="t" x="752" y="632">模型路由切回旧版本,高风险任务强制人工确认</text>
+  <text class="s" x="78" y="666">Kill switch 的目标是先止血,再用 trace 定位模型、Prompt、工具、索引、策略或上下文哪一层变了。</text>
+</svg>
