@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic RAG 与知识图谱</title>
+  <desc id="desc">展示 Agentic RAG 如何把问题分解、检索策略选择、证据图谱、充分性检查、权限过滤、证据账本和失败回退组合成可评估闭环。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 11.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.gray{fill:#eef3f8;stroke:#cbd5e1;stroke-width:1.2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#b05c37;stroke-width:1.9;stroke-dasharray:7 6;marker-end:url(#arrow)}.thin{fill:none;stroke:#94a3b8;stroke-width:1.5}.support{stroke:#2d7d80}.conflict{stroke:#b13c52;stroke-dasharray:5 4}.missing{stroke:#b05c37;stroke-dasharray:3 4}.chip{fill:#172033}.chiptext{font:700 10.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}.colhead{font:700 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1180" height="760"/>
+  <text class="title" x="52" y="56">Agentic RAG: 检索不是多跑几轮,而是关闭证据缺口</text>
+  <text class="sub" x="52" y="84">向量、关键词、GraphRAG、SQL/API 和长上下文可以组合; 关键是每轮都有 purpose、证据、剩余缺口和停止条件。</text>
+
+  <rect class="panel" x="48" y="116" width="1084" height="494" rx="10"/>
+
+  <rect class="blue" x="76" y="186" width="142" height="112" rx="8"/>
+  <text class="h" x="114" y="218">Question</text>
+  <text class="t" x="98" y="244">目标 / 实体 / 时间</text>
+  <text class="t" x="98" y="266">权限 / 版本 / 风险</text>
+  <text class="s" x="98" y="286">先确定能不能查</text>
+
+  <rect class="orange" x="258" y="168" width="158" height="150" rx="8"/>
+  <text class="h" x="302" y="198">Plan</text>
+  <text class="t" x="282" y="224">拆子问题</text>
+  <text class="t" x="282" y="246">列 evidence gap</text>
+  <text class="t" x="282" y="268">选择 search budget</text>
+  <rect class="chip" x="282" y="284" width="48" height="22" rx="5"/><text class="chiptext" x="293" y="299">who</text>
+  <rect class="chip" x="336" y="284" width="50" height="22" rx="5"/><text class="chiptext" x="346" y="299">when</text>
+
+  <rect class="panel" x="456" y="142" width="214" height="250" rx="8"/>
+  <text class="h" x="516" y="172">Retrieval Mix</text>
+  <rect class="green" x="486" y="194" width="154" height="34" rx="7"/><text class="t" x="520" y="216">Hybrid: BM25 + vector</text>
+  <rect class="green" x="486" y="238" width="154" height="34" rx="7"/><text class="t" x="526" y="260">Rerank / filter</text>
+  <rect class="green" x="486" y="282" width="154" height="34" rx="7"/><text class="t" x="524" y="304">Graph walk</text>
+  <rect class="green" x="486" y="326" width="154" height="34" rx="7"/><text class="t" x="530" y="348">SQL / API</text>
+  <text class="s" x="486" y="378">按缺口选方法,不是按名词选架构</text>
+
+  <rect class="purple" x="714" y="142" width="202" height="250" rx="8"/>
+  <text class="h" x="770" y="172">Evidence Graph</text>
+  <circle class="gray" cx="768" cy="226" r="23"/><text class="mono" x="760" y="231">S1</text>
+  <circle class="gray" cx="848" cy="210" r="23"/><text class="mono" x="840" y="215">E</text>
+  <circle class="gray" cx="856" cy="284" r="23"/><text class="mono" x="848" y="289">S2</text>
+  <circle class="gray" cx="778" cy="318" r="23"/><text class="mono" x="770" y="323">G1</text>
+  <path class="thin support" d="M790 221L826 214"/>
+  <path class="thin support" d="M846 233L852 261"/>
+  <path class="thin conflict" d="M790 312L834 292"/>
+  <path class="thin missing" d="M770 249C746 272 746 296 762 306"/>
+  <text class="s" x="744" y="362">support / conflict / missing / provenance</text>
+
+  <rect class="red" x="960" y="164" width="140" height="132" rx="8"/>
+  <text class="h" x="994" y="196">Sufficiency</text>
+  <text class="t" x="984" y="222">证据足够?</text>
+  <text class="t" x="984" y="244">引用可支撑?</text>
+  <text class="t" x="984" y="266">冲突可解释?</text>
+
+  <rect class="blue" x="958" y="348" width="144" height="88" rx="8"/>
+  <text class="h" x="994" y="380">Answer</text>
+  <text class="t" x="980" y="406">claim + citation</text>
+  <text class="t" x="980" y="426">gap / caveat</text>
+
+  <path class="line" d="M218 242H258"/>
+  <path class="line" d="M416 242H456"/>
+  <path class="line" d="M670 250H714"/>
+  <path class="line" d="M916 230H960"/>
+  <path class="line" d="M1030 296V348"/>
+  <path class="dash" d="M960 260C846 442 390 424 336 318"/>
+  <text class="s" x="590" y="434">not enough / conflict / stale source -> next focused query</text>
+
+  <rect class="panel" x="76" y="446" width="484" height="132" rx="8"/>
+  <text class="h" x="98" y="474">Evidence Gap Ledger</text>
+  <text class="colhead" x="100" y="504">gap</text><text class="colhead" x="220" y="504">strategy</text><text class="colhead" x="344" y="504">evidence</text><text class="colhead" x="454" y="504">state</text>
+  <rect class="gray" x="98" y="516" width="430" height="26" rx="4"/><text class="t" x="108" y="534">定义是否一致</text><text class="t" x="220" y="534">hybrid+rerank</text><text class="t" x="344" y="534">S1,S2</text><text class="t" x="454" y="534">ok</text>
+  <rect class="orange" x="98" y="546" width="430" height="26" rx="4"/><text class="t" x="108" y="564">时间版本冲突</text><text class="t" x="220" y="564">source diff</text><text class="t" x="344" y="564">S3?</text><text class="t" x="454" y="564">open</text>
+
+  <rect class="panel" x="602" y="446" width="498" height="132" rx="8"/>
+  <text class="h" x="624" y="474">Production Gates</text>
+  <rect class="gray" x="624" y="494" width="132" height="64" rx="7"/><text class="h" x="650" y="520">Access</text><text class="s" x="642" y="542">tenant / ACL / trust</text>
+  <rect class="gray" x="774" y="494" width="132" height="64" rx="7"/><text class="h" x="812" y="520">Trace</text><text class="s" x="792" y="542">query / rank / cite</text>
+  <rect class="gray" x="924" y="494" width="132" height="64" rx="7"/><text class="h" x="960" y="520">Stop</text><text class="s" x="942" y="542">budget / no progress</text>
+
+  <rect class="panel" x="48" y="636" width="1084" height="76" rx="10"/>
+  <text class="h" x="78" y="664">选型顺序</text>
+  <text class="t" x="78" y="690">先做 Hybrid RAG + reranker 基线; 多跳关系再引入 GraphRAG; 一次检索常证据不足时,再加 Agentic RAG 缺口循环。</text>
+</svg>
