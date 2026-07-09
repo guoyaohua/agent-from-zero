@@ -23,6 +23,8 @@
 - GPT 系列论文:理解 decoder-only 和 scaling。
 - InstructGPT/RLHF 相关论文:理解指令对齐。
 - DPO 论文:理解偏好优化的另一条路线。
+- MoE、Switch Transformer、GShard、Mixtral、DeepSeekMoE、Qwen-MoE、Llama MoE 相关论文和技术报告:重点看 router、expert capacity、load balancing 和 serving 复杂度。
+- DeepSeek-V3/R1、Qwen3、Llama 3/4 等官方 model card、技术报告和部署文档:重点看模型家族形态、上下文长度、许可证、工具调用、推理模式和部署框架支持。
 
 ## 推理优化
 
@@ -30,6 +32,9 @@
 - FlashAttention 论文和工程解释。
 - PagedAttention/vLLM 资料。
 - Speculative Decoding 论文和实践。
+- Test-time compute、self-consistency、verifier、process reward model 和推理型模型相关论文与工程文章。
+- 可验证任务强化学习资料,例如数学、代码和工具环境中的 next-state feedback。
+- MoE serving、expert parallelism、FP8、continuous batching、KV Cache 管理和 All-to-All 通信优化资料。
 
 ## Agent 框架和模式
 
@@ -48,6 +53,8 @@
 - ColBERT 和多向量检索。
 - BM25、hybrid search、reranker 相关资料。
 - 向量数据库官方文档。
+- GraphRAG、knowledge graph RAG、entity linking、community summary 和 evidence graph 相关资料。
+- Agentic RAG、多轮检索、query planning、evidence sufficiency 和 citation verification 相关工程文章。
 
 ## 评估
 
@@ -62,11 +69,13 @@
 - 数据泄露、权限和 DLP 相关安全实践。
 - AI 红队测试资料。
 
-## MCP 和工具协议
+## MCP、A2A 和工具协议
 
 - MCP 官方文档。
+- A2A 官方规范和 SDK 示例:重点看 Agent Card、任务生命周期、streaming、push notification 和认证边界。
 - Function Calling / Tool Calling 官方文档。
 - JSON Schema 和 API 设计最佳实践。
+- Agent 互操作资料:比较工具协议、资源协议、消息协议和跨 Agent 任务协议的边界。
 
 ## 可解释性
 
@@ -88,6 +97,7 @@
 - Terminal、GUI、SWE、tool-call Agent 的环境反馈与 next-state signal 相关资料。
 - Process reward model、trajectory evaluation、online/offline RLHF 的基础资料。
 - 从 trace、state-action-observation 和失败轨迹构建评估集的工程文章。
+- 可重置任务环境、沙箱、reward hacking、防止测试投机和轨迹隐私治理相关资料。
 
 ## 学习建议
 
