@@ -1,17 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="280" viewBox="0 0 1120 280" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="620" viewBox="0 0 1220 620" role="img" aria-labelledby="title desc">
   <title id="title">全书路线图</title>
-  <desc id="desc">展示本书从入门、原理、Agent 核心、能力构建、架构、工程、项目到前沿的路线。</desc>
-  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui;fill:#172033}.sub{font:400 15px system-ui;fill:#596579}.head{font:700 15px system-ui;fill:#172033}.text{font:400 12px system-ui;fill:#435066}.n{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.n2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.n3{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.n4{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.arrow{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="280"/><text class="title" x="56" y="58">从 0 到 1 的学习路线</text><text class="sub" x="56" y="86">先建立直觉,再理解模型,随后构建 Agent,最后走向生产和前沿。</text>
-  <g transform="translate(0,-119)">
-  <rect class="n" x="84" y="260" width="112" height="62" rx="8"/><text class="head" x="116" y="286">Part 0</text><text class="text" x="110" y="306">入门直觉</text>
-  <rect class="n2" x="230" y="260" width="112" height="62" rx="8"/><text class="head" x="262" y="286">Part 1</text><text class="text" x="256" y="306">模型原理</text>
-  <rect class="n3" x="376" y="260" width="112" height="62" rx="8"/><text class="head" x="408" y="286">Part 2</text><text class="text" x="402" y="306">核心循环</text>
-  <rect class="n4" x="522" y="260" width="112" height="62" rx="8"/><text class="head" x="554" y="286">Part 3</text><text class="text" x="548" y="306">能力构建</text>
-  <rect class="n" x="668" y="260" width="112" height="62" rx="8"/><text class="head" x="700" y="286">Part 4</text><text class="text" x="694" y="306">架构进阶</text>
-  <rect class="n2" x="814" y="260" width="112" height="62" rx="8"/><text class="head" x="846" y="286">Part 5</text><text class="text" x="840" y="306">工程实践</text>
-  <rect class="n3" x="960" y="260" width="92" height="62" rx="8"/><text class="head" x="984" y="286">Part 6+</text><text class="text" x="982" y="306">项目前沿</text>
-  <path class="arrow" d="M196 291 H230"/><path class="arrow" d="M342 291 H376"/><path class="arrow" d="M488 291 H522"/><path class="arrow" d="M634 291 H668"/><path class="arrow" d="M780 291 H814"/><path class="arrow" d="M926 291 H960"/>
-  </g>
+  <desc id="desc">展示本书从入门、模型原理、Agent 核心、RAG 与记忆、多 Agent 架构、工程生产、项目和前沿方向的路线,并标出每一阶段的关键产物。</desc>
+  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.n{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.n2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.n3{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.n4{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.n5{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.line{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#94a3b8;stroke-width:1.7;stroke-dasharray:6 6;marker-end:url(#arrow)}.dot{fill:#172033}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1220" height="620"/>
+  <text class="title" x="56" y="58">从 0 到 1: 不是线性读完,而是逐层补齐能力</text>
+  <text class="sub" x="56" y="86">每个 Part 都回答一个工程问题,最终形成可运行、可评估、可扩展的 Agent 系统。</text>
+  <rect class="panel" x="52" y="120" width="1116" height="282" rx="10"/>
+  <rect class="n" x="82" y="170" width="122" height="76" rx="8"/><text class="h" x="120" y="198">Part 0</text><text class="t" x="108" y="220">Agent 直觉</text><text class="s" x="108" y="238">LLM/API/Context</text>
+  <rect class="n2" x="232" y="170" width="140" height="76" rx="8"/><text class="h" x="278" y="198">Part 1</text><text class="t" x="260" y="220">模型原理</text><text class="s" x="252" y="238">Attention / MoE / KV</text>
+  <rect class="n3" x="400" y="170" width="140" height="76" rx="8"/><text class="h" x="446" y="198">Part 2</text><text class="t" x="426" y="220">Agent Loop</text><text class="s" x="420" y="238">Tool / Harness / Loop</text>
+  <rect class="n4" x="568" y="170" width="140" height="76" rx="8"/><text class="h" x="614" y="198">Part 3</text><text class="t" x="602" y="220">知识能力</text><text class="s" x="586" y="238">RAG / Memory / Context</text>
+  <rect class="n" x="736" y="170" width="140" height="76" rx="8"/><text class="h" x="782" y="198">Part 4</text><text class="t" x="768" y="220">架构协作</text><text class="s" x="762" y="238">Multi-Agent / MCP</text>
+  <rect class="n2" x="904" y="170" width="140" height="76" rx="8"/><text class="h" x="950" y="198">Part 5</text><text class="t" x="936" y="220">生产工程</text><text class="s" x="932" y="238">Eval / Safety / Cost</text>
+  <rect class="n3" x="1068" y="170" width="70" height="76" rx="8"/><text class="h" x="1086" y="198">P6+</text><text class="t" x="1086" y="220">项目</text><text class="s" x="1080" y="238">前沿</text>
+  <path class="line" d="M204 208H232"/><path class="line" d="M372 208H400"/><path class="line" d="M540 208H568"/><path class="line" d="M708 208H736"/><path class="line" d="M876 208H904"/><path class="line" d="M1044 208H1068"/>
+  <rect class="panel" x="82" y="286" width="236" height="74" rx="8"/><text class="h" x="106" y="312">原理线</text><text class="t" x="106" y="336">QKV、位置编码、MoE、KV Cache、Flash Attention、TTC</text>
+  <rect class="panel" x="350" y="286" width="236" height="74" rx="8"/><text class="h" x="374" y="312">Agent 线</text><text class="t" x="374" y="336">ReAct、Function Calling、Harness Engineering、Loop Engineering</text>
+  <rect class="panel" x="618" y="286" width="236" height="74" rx="8"/><text class="h" x="642" y="312">知识线</text><text class="t" x="642" y="336">BM25、向量、Hybrid、Rerank、GraphRAG、Agentic RAG</text>
+  <rect class="panel" x="886" y="286" width="236" height="74" rx="8"/><text class="h" x="910" y="312">生产线</text><text class="t" x="910" y="336">Trace、Eval、Guardrails、Prompt Injection、A2A、Agentic RL</text>
+  <path class="dash" d="M198 286C260 258 276 248 302 246"/><path class="dash" d="M468 286C468 266 468 250 470 246"/><path class="dash" d="M736 286C710 258 682 248 638 246"/><path class="dash" d="M1004 286C1000 260 994 250 974 246"/>
+  <rect class="panel" x="52" y="438" width="1116" height="112" rx="10"/>
+  <text class="h" x="82" y="470">读完后的产物</text>
+  <circle class="dot" cx="90" cy="502" r="4"/><text class="t" x="106" y="506">能解释模型能力边界:为什么长上下文贵、为什么 KV Cache 省计算、为什么 MoE 部署复杂。</text>
+  <circle class="dot" cx="90" cy="530" r="4"/><text class="t" x="106" y="534">能设计 Agent 运行时:Prompt、Context、Harness、Loop 各有边界,工具和权限不靠口头约束。</text>
+  <circle class="dot" cx="90" cy="558" r="4"/><text class="t" x="106" y="562">能把系统推向生产:评估、trace、成本、RAG 证据链、安全门和失败回流形成闭环。</text>
 </svg>
-

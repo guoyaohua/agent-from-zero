@@ -38,7 +38,7 @@ AI Agent 的资料并不少,但很多资料会落在两个极端。
 
 ### 概念断层
 
-在 Agent 语境里,常见概念非常密集:Prompt、Token、上下文窗口、Function Calling、RAG、Memory、Planning、Workflow、Multi-Agent、MCP、Evaluation、Guardrails。每个词单独看似乎都能理解,但真正难的是知道它们之间的关系。
+在 Agent 语境里,常见概念非常密集:Prompt、Token、上下文窗口、Function Calling、RAG、Memory、Planning、Workflow、Multi-Agent、MCP、Evaluation、Guardrails、Harness、Loop。每个词单独看似乎都能理解,但真正难的是知道它们之间的关系。
 
 比如,RAG 不是“给模型接一个向量数据库”这么简单。它牵涉文档切块、召回、重排、上下文压缩、引用溯源、答案评估和失败回退。再比如,工具调用也不是“让模型输出一个函数名”这么简单。工具描述、参数 schema、错误消息、权限边界、重试策略都会影响 Agent 的可靠性。
 
@@ -50,7 +50,7 @@ AI Agent 的资料并不少,但很多资料会落在两个极端。
 
 模型为什么会胡编?为什么长上下文不等于无限记忆?为什么温度、采样、上下文顺序会影响输出?为什么推理延迟和成本会突然变高?为什么同一个 Prompt 在不同模型上表现不同?
 
-这些问题无法只靠“多试几个提示词”解决。你不需要成为训练大模型的研究员,但需要理解 Transformer、Self-Attention、训练与对齐、KV Cache、推理优化这些基础机制。理解它们之后,你会更清楚哪些问题应该靠 Prompt,哪些应该靠检索,哪些应该靠工具,哪些应该靠评估与系统约束。
+这些问题无法只靠“多试几个提示词”解决。你不需要成为训练大模型的研究员,但需要理解 Transformer、Self-Attention、位置编码、MoE、训练与对齐、KV Cache、Flash Attention、PagedAttention 和测试时计算这些基础机制。理解它们之后,你会更清楚哪些问题应该靠 Prompt,哪些应该靠检索,哪些应该靠工具,哪些应该靠评估与系统约束。
 
 ### 工程断层
 
@@ -64,7 +64,7 @@ Demo 到生产之间有一段很长的路。
 
 本书以 Markdown 撰写,概念为主、代码为辅。示例会尽量使用伪代码或最小片段,避免绑定某个具体框架。原因很简单:框架会变,API 会变,但判断问题的方式、拆解系统的方式、评估取舍的方式更耐用。
 
-这并不意味着本书停留在科普。相反,关键算法和核心机制会讲得比较深。比如 Self-Attention、RLHF、KV Cache、Flash Attention、RAG、Function Calling、ReAct 等章节,都会尽量解释“它为什么这样设计”“它解决了什么问题”“它引入了什么代价”“工程上应该如何使用”。
+这并不意味着本书停留在科普。相反,关键算法和核心机制会讲得比较深。比如 Self-Attention、位置编码、RLHF、MoE、KV Cache、Flash Attention、测试时计算、RAG、Function Calling、ReAct、Harness Engineering 和 Loop Engineering 等章节,都会尽量解释“它为什么这样设计”“它解决了什么问题”“它引入了什么代价”“工程上应该如何使用”。
 
 本书的目标不是让你背概念,而是让你形成可迁移的判断力。
 

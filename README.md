@@ -2,7 +2,7 @@
 
 > 《从 0 到 1 的 AI Agent 教程》—— 一本面向中文读者的、从零基础到进阶生产实践的 AI Agent 学习指南。
 
-本书以 Markdown 撰写,**概念为主、代码为辅**(示例用伪代码或最小片段,不绑定特定框架/语言),但内容力求**深入而非停留科普层**;对关键算法(如 Self-Attention、RLHF、KV Cache、Flash Attention 等)会大篇幅讲透。全书既有"打开 LLM 黑盒"的原理线,也有"从 0 搭一个 Agent"的应用线,两线并行、循序渐进。
+本书以 Markdown 撰写,**概念为主、代码为辅**(示例用伪代码或最小片段,不绑定特定框架/语言),但内容力求**深入而非停留科普层**;对关键算法(如 Self-Attention、RLHF、KV Cache、Flash Attention、MoE、测试时计算等)会大篇幅讲透。全书既有"打开 LLM 黑盒"的原理线,也有"从 0 搭一个 Agent"的应用线,两线并行、循序渐进。
 
 ---
 
@@ -18,9 +18,9 @@
 
 ## 如何阅读
 
-- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07/08/09/10)→ `part3`(01/02/04/09)→ `part4`(01/05)→ `part5`(01/02/04/06/07)→ `part6` 全部 → `part7`(07)。读完即可动手做出可用 Agent。
+- **零基础主线**:`frontmatter` → `part0` → `part1` 仅读主线 → `part2`(01/02/03/07/08/09/10)→ `part3`(01/02/04/09)→ `part4`(01/05)→ `part5`(01/02/04/06/07)→ `part6` 全部 → `part7`(08)。读完即可动手做出可用 Agent。
 - **原理深潜支线**:完整精读 `part1`(算法篇)的全部 `[进阶]` 与 `★`,吃透 LLM 内部世界。
-- **应用进阶支线**:`part2`–`part5` 的 `[进阶]` 项 + `part2` 的 Harness/Loop 深入章节 + `part7` 趋势、OpenClaw 与可解释性。
+- **应用进阶支线**:`part2`–`part5` 的 `[进阶]` 项 + `part2` 的 Harness/Loop 深入章节 + `part7` 趋势、互操作、Agentic RL、OpenClaw 与可解释性。
 
 > 怕数学的读者可先跳过 `part1` 直接进 `part2`,日后再回看;想深究原理者按序精读 `part1` 再进应用线。
 
@@ -72,7 +72,7 @@
 - [长上下文技术](chapters/part1-algorithms/17-long-context.md) `[进阶]` ★
 
 **主流大模型全景**
-- [主流大模型全景:闭源与开源](chapters/part1-algorithms/18-model-landscape.md) `[参考]`
+- [主流大模型全景:模型家族、闭源与开源](chapters/part1-algorithms/18-model-landscape.md) `[参考]`
 - [多模态与推理型模型](chapters/part1-algorithms/19-multimodal-and-reasoning.md) `[进阶]`
 
 **训练流程**
@@ -88,6 +88,8 @@
 - [Flash Attention](chapters/part1-algorithms/27-flash-attention.md) `[进阶]` ★
 - [PagedAttention 与连续批处理](chapters/part1-algorithms/28-paged-attention-batching.md) `[进阶]` ★
 - [投机解码](chapters/part1-algorithms/29-speculative-decoding.md) `[进阶]` ★
+- [测试时计算与推理型模型](chapters/part1-algorithms/30-test-time-compute-reasoning.md) `[进阶]` ★
+- [MoE 与稀疏专家模型](chapters/part1-algorithms/31-moe-and-sparse-experts.md) `[进阶]` ★
 
 ### Part 2 Agent 核心原理篇 · `chapters/part2-agent-core/`
 > Agent 之所以为 Agent 的核心机制——循环、推理-行动、工具、规划、工作流编排,以及 Prompt/Context/Harness/Loop 四层工程边界。
@@ -113,6 +115,7 @@
 - [工具使用进阶](chapters/part3-capabilities/07-advanced-tool-use.md) `[进阶]`
 - [反思与自我修正](chapters/part3-capabilities/08-reflection-self-correction.md) `[进阶]`
 - [上下文工程](chapters/part3-capabilities/09-context-engineering.md) `[主线]`
+- [Agentic RAG 与知识图谱](chapters/part3-capabilities/10-agentic-rag-and-knowledge-graph.md) `[进阶]` ★
 
 ### Part 4 架构进阶篇 · `chapters/part4-architecture/`
 > 从单 Agent 到多 Agent 系统:角色、编排、通信与标准协议。
@@ -121,6 +124,7 @@
 - [编排模式](chapters/part4-architecture/03-orchestration-patterns.md) `[进阶]`
 - [通信协议与消息传递](chapters/part4-architecture/04-communication-protocols.md) `[进阶]`
 - [MCP 模型上下文协议](chapters/part4-architecture/05-mcp.md) `[主线]` ★
+- [Agent 互操作与 A2A](chapters/part4-architecture/06-agent-interoperability-a2a.md) `[进阶]` ★
 
 ### Part 5 工程实践篇 · `chapters/part5-engineering/`
 > 把 Agent 送上生产线——可观测、可评估、可控成本、可保安全。
@@ -149,7 +153,8 @@
 - [开放问题与局限](chapters/part7-frontier/04-open-problems.md) `[进阶]`
 - [大模型可解释性](chapters/part7-frontier/05-interpretability.md) `[进阶]`
 - [OpenClaw:小龙虾与个人 Agent Gateway](chapters/part7-frontier/06-openclaw.md) `[进阶]` ★
-- [结语:从 0 到 1 之后](chapters/part7-frontier/07-epilogue.md) `[主线]`
+- [Agentic RL 与真实环境反馈](chapters/part7-frontier/07-agentic-rl.md) `[进阶]` ★
+- [结语:从 0 到 1 之后](chapters/part7-frontier/08-epilogue.md) `[主线]`
 
 ### 附录 · `chapters/appendix/`
 > 速查与延伸资源。
@@ -161,7 +166,7 @@
 
 ## 写作进度
 
-本书大纲已定并完成正文写作,共 **9 个部分、86 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
+本书大纲已定并完成正文写作,共 **10 个部分、91 篇文章**。目前 **前言与导读**、**Part 0 入门篇**、**Part 1 模型与算法原理篇**、**Part 2 Agent 核心原理篇**、**Part 3 能力构建篇**、**Part 4 架构进阶篇**、**Part 5 工程实践篇**、**Part 6 实战项目篇**、**Part 7 前沿展望篇** 与 **附录** 均已完成。
 
 > 大纲参考了李宏毅《生成式 AI 导论》与吴恩达 DeepLearning.AI《Generative AI with LLMs》课程做查漏补缺,正文会继续通过复审、评估和读者反馈迭代完善。
 

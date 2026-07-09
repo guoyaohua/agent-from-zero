@@ -1,14 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="480" viewBox="0 0 1120 480" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="640" viewBox="0 0 1180 640" role="img" aria-labelledby="title desc">
   <title id="title">读者路径</title>
-  <desc id="desc">展示从零主线、工程落地和原理深潜三条阅读路径如何穿过本书内容。</desc>
-  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui;fill:#172033}.sub{font:400 15px system-ui;fill:#596579}.head{font:700 18px system-ui;fill:#172033}.text{font:400 13px system-ui;fill:#435066}.a{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.b{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.c{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.3}.arrow{fill:none;stroke:#94a3b8;stroke-width:2.1;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1120" height="480"/><text class="title" x="56" y="58">三条阅读路径</text><text class="sub" x="56" y="86">不同背景的读者可以用不同顺序穿过同一张 Agent 知识地图。</text>
-  <g transform="translate(0,-49)">
-  <rect class="a" x="98" y="178" width="260" height="96" rx="8"/><text class="head" x="174" y="216">从零主线</text><text class="text" x="132" y="244">概念直觉 -> 最小项目</text>
-  <rect class="b" x="430" y="178" width="260" height="96" rx="8"/><text class="head" x="506" y="216">工程落地</text><text class="text" x="464" y="244">工具/RAG -> 评估/安全</text>
-  <rect class="c" x="762" y="178" width="260" height="96" rx="8"/><text class="head" x="838" y="216">原理深潜</text><text class="text" x="796" y="244">Transformer -> 推理优化</text>
-  <rect class="panel" x="156" y="390" width="808" height="96" rx="8"/><text class="head" x="480" y="426">共同终点</text><text class="text" x="248" y="456">能判断、能设计、能实现一个可观测、可评估、可控风险的 Agent 系统。</text>
-  <path class="arrow" d="M228 274 V390"/><path class="arrow" d="M560 274 V390"/><path class="arrow" d="M892 274 V390"/>
-  </g>
-</svg>
+  <desc id="desc">展示从零主线、工程落地和原理深潜三条阅读路径如何穿过章节,并标出 MoE、RAG、Harness、Loop、主流模型和生产能力等关键停靠点。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.gray{fill:#eef3f8;stroke:#cbd5e1;stroke-width:1.2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.path0{fill:none;stroke:#355c9a;stroke-width:4;stroke-linecap:round}.path1{fill:none;stroke:#2d7d80;stroke-width:4;stroke-linecap:round}.path2{fill:none;stroke:#b05c37;stroke-width:4;stroke-linecap:round}.dot0{fill:#355c9a}.dot1{fill:#2d7d80}.dot2{fill:#b05c37}.chip{fill:#172033}.chiptext{font:700 10.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1180" height="640"/>
+  <text class="title" x="52" y="56">三条阅读路径: 先成体系,再按目标深挖</text>
+  <text class="sub" x="52" y="84">同一本书可以按不同顺序阅读; 每条路径都要回到可观察、可评估、可控风险的 Agent 系统。</text>
 
+  <rect class="panel" x="50" y="118" width="1080" height="378" rx="10"/>
+  <rect class="gray" x="86" y="154" width="118" height="72" rx="8"/><text class="h" x="116" y="184">Part 0</text><text class="s" x="110" y="206">AI / LLM / Agent</text>
+  <rect class="gray" x="246" y="154" width="118" height="72" rx="8"/><text class="h" x="276" y="184">Part 1</text><text class="s" x="266" y="206">模型原理</text>
+  <rect class="gray" x="406" y="154" width="118" height="72" rx="8"/><text class="h" x="436" y="184">Part 2</text><text class="s" x="428" y="206">Agent 核心</text>
+  <rect class="gray" x="566" y="154" width="118" height="72" rx="8"/><text class="h" x="596" y="184">Part 3</text><text class="s" x="590" y="206">记忆 / RAG</text>
+  <rect class="gray" x="726" y="154" width="118" height="72" rx="8"/><text class="h" x="756" y="184">Part 4</text><text class="s" x="750" y="206">多 Agent</text>
+  <rect class="gray" x="886" y="154" width="118" height="72" rx="8"/><text class="h" x="916" y="184">Part 5</text><text class="s" x="904" y="206">生产实践</text>
+
+  <path class="path0" d="M144 270C226 294 334 300 464 286C596 270 722 284 940 272"/>
+  <path class="path1" d="M464 332C566 316 660 312 784 330C852 340 908 330 946 314"/>
+  <path class="path2" d="M302 414C276 342 286 274 306 226M306 226C326 270 358 326 466 380C548 420 728 420 946 386"/>
+
+  <circle class="dot0" cx="144" cy="270" r="8"/><circle class="dot0" cx="464" cy="286" r="8"/><circle class="dot0" cx="626" cy="274" r="8"/><circle class="dot0" cx="940" cy="272" r="8"/>
+  <circle class="dot1" cx="464" cy="332" r="8"/><circle class="dot1" cx="626" cy="318" r="8"/><circle class="dot1" cx="784" cy="330" r="8"/><circle class="dot1" cx="946" cy="314" r="8"/>
+  <circle class="dot2" cx="302" cy="414" r="8"/><circle class="dot2" cx="306" cy="226" r="8"/><circle class="dot2" cx="466" cy="380" r="8"/><circle class="dot2" cx="946" cy="386" r="8"/>
+
+  <rect class="blue" x="86" y="252" width="174" height="54" rx="8"/><text class="h" x="112" y="276">从零主线</text><text class="s" x="112" y="294">概念直觉 -> 项目闭环</text>
+  <rect class="green" x="306" y="314" width="190" height="54" rx="8"/><text class="h" x="330" y="338">工程落地</text><text class="s" x="330" y="356">工具/RAG -> 评估/安全</text>
+  <rect class="orange" x="206" y="396" width="190" height="54" rx="8"/><text class="h" x="230" y="420">原理深潜</text><text class="s" x="230" y="438">Transformer -> 推理系统</text>
+
+  <rect class="panel" x="528" y="252" width="538" height="194" rx="8"/>
+  <text class="h" x="552" y="280">重点停靠点</text>
+  <rect class="chip" x="552" y="300" width="78" height="24" rx="5"/><text class="chiptext" x="568" y="316">MoE</text>
+  <rect class="chip" x="642" y="300" width="108" height="24" rx="5"/><text class="chiptext" x="654" y="316">KV / Flash</text>
+  <rect class="chip" x="762" y="300" width="104" height="24" rx="5"/><text class="chiptext" x="774" y="316">DeepSeek</text>
+  <rect class="chip" x="878" y="300" width="92" height="24" rx="5"/><text class="chiptext" x="894" y="316">Qwen</text>
+  <rect class="chip" x="982" y="300" width="66" height="24" rx="5"/><text class="chiptext" x="996" y="316">Llama</text>
+  <text class="t" x="552" y="352">工程线要重点补: Harness、Loop、RAG 形态对比、Agentic RAG、评估与安全。</text>
+  <text class="t" x="552" y="378">原理线要重点补: 位置编码、MoE、KV Cache、Flash Attention、测试时计算。</text>
+  <text class="t" x="552" y="404">产品/架构线要重点补: 模型网关、内部知识治理、成本延迟、权限审计。</text>
+
+  <rect class="panel" x="50" y="524" width="1080" height="74" rx="10"/>
+  <text class="h" x="78" y="552">共同终点</text>
+  <text class="t" x="78" y="578">能判断任务该用哪个模型、哪种 RAG、多少自主性、哪些工具边界,并用 trace、eval、guardrails 和成本账本持续改进。</text>
+</svg>
