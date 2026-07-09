@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="760" viewBox="0 0 1220 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic RL 轨迹治理与安全门</title>
+  <desc id="desc">展示 Agent 任务轨迹如何经过脱敏、分类、奖励审计、离线回放、安全门禁和发布治理后,才能用于训练、蒸馏或评估。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#94a3b8;stroke-width:1.8;stroke-dasharray:6 6;marker-end:url(#arrow)}.tag{fill:#172033}.tagtext{font:700 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}.barbg{fill:#e5e7eb}.bar1{fill:#2d7d80}.bar2{fill:#355c9a}.bar3{fill:#b05c37}.bar4{fill:#b13c52}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1220" height="760"/>
+  <text class="title" x="52" y="56">Agentic RL 的第一资产不是奖励,而是可治理轨迹</text>
+  <text class="sub" x="52" y="84">线上 trace 只有经过分类、脱敏、回放和安全门禁,才适合进入训练或蒸馏。</text>
+
+  <rect class="panel" x="48" y="116" width="1124" height="386" rx="10"/>
+  <rect class="blue" x="78" y="178" width="166" height="88" rx="8"/>
+  <text class="h" x="118" y="210">Trajectory</text><text class="t" x="104" y="236">state/action/obs</text><text class="s" x="104" y="256">artifact + reward</text>
+  <rect class="orange" x="300" y="178" width="166" height="88" rx="8"/>
+  <text class="h" x="344" y="210">Sanitize</text><text class="t" x="326" y="236">脱敏 / 权限</text><text class="s" x="326" y="256">保留 provenance</text>
+  <rect class="purple" x="522" y="178" width="166" height="88" rx="8"/>
+  <text class="h" x="566" y="210">Classify</text><text class="t" x="548" y="236">成功/失败/安全</text><text class="s" x="548" y="256">不要成功即正例</text>
+  <rect class="green" x="744" y="178" width="166" height="88" rx="8"/>
+  <text class="h" x="790" y="210">Replay</text><text class="t" x="770" y="236">固定环境版本</text><text class="s" x="770" y="256">验证 reward</text>
+  <rect class="red" x="966" y="178" width="166" height="88" rx="8"/>
+  <text class="h" x="1010" y="210">Gate</text><text class="t" x="992" y="236">eval + red team</text><text class="s" x="992" y="256">发布前阻塞</text>
+  <path class="line" d="M244 222H300"/><path class="line" d="M466 222H522"/><path class="line" d="M688 222H744"/><path class="line" d="M910 222H966"/>
+
+  <rect class="panel" x="78" y="318" width="1038" height="126" rx="8"/>
+  <text class="h" x="104" y="348">轨迹分类</text>
+  <rect class="tag" x="104" y="372" width="132" height="24" rx="6"/><text class="tagtext" x="122" y="388">verified_success</text><text class="t" x="252" y="388">可进入示范集</text>
+  <rect class="tag" x="424" y="372" width="112" height="24" rx="6"/><text class="tagtext" x="448" y="388">failure</text><text class="t" x="552" y="388">进入 eval 和错误分析</text>
+  <rect class="tag" x="704" y="372" width="126" height="24" rx="6"/><text class="tagtext" x="724" y="388">unsafe_blocked</text><text class="t" x="846" y="388">进入安全红队集</text>
+  <text class="s" x="104" y="424">奖励黑客、隐私敏感、越权过程和过期环境轨迹不能直接作为正例。</text>
+
+  <rect class="panel" x="48" y="540" width="1124" height="132" rx="10"/>
+  <text class="h" x="78" y="572">发布包必须记录</text>
+  <text class="mono" x="78" y="600">trace_dataset_version | env_version | reward_version | filter_policy | eval_diff | red_team | rollback_model</text>
+  <text class="s" x="78" y="628">Agentic RL、轨迹蒸馏和偏好优化都会改变策略,必须像普通 Agent release 一样可灰度、可回滚、可复盘。</text>
+  <rect class="barbg" x="78" y="646" width="250" height="12" rx="4"/><rect class="bar1" x="78" y="646" width="190" height="12" rx="4"/>
+  <rect class="barbg" x="380" y="646" width="250" height="12" rx="4"/><rect class="bar2" x="380" y="646" width="154" height="12" rx="4"/>
+  <rect class="barbg" x="682" y="646" width="250" height="12" rx="4"/><rect class="bar3" x="682" y="646" width="118" height="12" rx="4"/>
+  <rect class="barbg" x="984" y="646" width="118" height="12" rx="4"/><rect class="bar4" x="984" y="646" width="92" height="12" rx="4"/>
+</svg>

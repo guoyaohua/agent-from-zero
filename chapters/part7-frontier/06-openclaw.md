@@ -345,4 +345,4 @@ OpenClaw 的公开 README 把它定位为运行在自己设备上的 personal AI
 
 OpenClaw“小龙虾”代表的是一种正在变得重要的 Agent 产品形态:本地优先、自托管、多渠道、长期在线的个人 Agent Gateway。它不是训练论文式的概念框架,也不只是聊天机器人。它的核心在于 Gateway:把消息渠道、session routing、agent runtime、workspace、skills、tools、nodes、Control UI 和安全策略组织起来。用本书的四层框架看,OpenClaw 把 Prompt、Context、Harness 和 Loop 都放进了真实运行时。它提醒我们:未来 Agent 的关键竞争力不只是模型会不会回答,还包括谁能触发、能看见什么、能执行什么、如何审计、如何恢复,以及用户是否真正掌握自己的数据和边界。
 
-下一章回到全书结语。理解这些前沿系统之后,更重要的是把基础打牢:从一个小而可靠的闭环开始,逐步扩展入口、工具和自主性。
+下一章会讲 Agentic RL 与真实环境反馈。OpenClaw 这类长期在线 Gateway 会产生大量真实任务轨迹,而这些轨迹如果被正确治理、脱敏、评估和回放,就可能成为未来改进 Agent 行动策略的重要数据资产。
