@@ -64,6 +64,14 @@ Approximate Nearest Neighbor,近似最近邻搜索。向量数据库常用它提
 
 RAG 中的检索单元。通常由文档切分而来,应保留语义完整性、来源和元数据。
 
+### Chat Template
+
+把 system、user、assistant、tool 等多轮消息转换成模型实际输入序列的模板。不同模型和推理框架的 Chat Template 可能不同,会影响角色边界、工具调用和输出格式。
+
+### Constrained Decoding
+
+约束解码。在模型逐 token 生成时,根据 grammar、JSON Schema 或状态机屏蔽当前不合法的 token。它能提升语法和格式稳定性,但不能保证事实、权限或业务语义正确。
+
 ### Context Engineering
 
 上下文工程。选择、压缩、排序、标注和注入模型调用所需信息的工程能力。
@@ -101,6 +109,10 @@ MoE 模型中的专家子网络,通常是 FFN 形态。每个 token 只会被 ro
 ### Function Calling
 
 模型以结构化方式表达工具调用的能力或接口形式。
+
+### Flash Attention
+
+标准 Attention 的 IO-aware 高效实现。通过分块计算和在线 Softmax 减少显存读写,不改变 Attention 数学结果,常用于长序列训练和 prefill 优化。
 
 ### Fine-tuning
 
@@ -142,9 +154,17 @@ Agent Harness,模型和真实工具/环境之间的运行时外骨架。负责�
 
 ## K
 
+### Knowledge Ingestion
+
+知识入库。把文档、代码、网页、工单等资料解析、清洗、切块、加元数据、继承权限、生成索引并进入 RAG 生命周期的过程。重点是来源、版本、权限、更新和删除传播。
+
 ### KV Cache
 
 自回归推理中缓存历史 token 的 Key/Value,避免重复计算注意力。
+
+### Kill Switch
+
+运行时紧急开关。用于快速禁用某个模型路由、工具组、写能力、外部检索、长期记忆写入或高风险自动化能力,先缩小事故半径再排查根因。
 
 ## L
 
@@ -186,6 +206,14 @@ Mixture of Experts,混合专家模型。通过 router 为 token 选择少数 exp
 
 Parameter-Efficient Fine-Tuning,参数高效微调方法集合。
 
+### PagedAttention
+
+面向 LLM serving 的 KV Cache 分页管理机制。它把连续缓存管理变成类似页表的块管理,提高多请求并发下的显存利用率和调度灵活性。
+
+### Positional Encoding
+
+位置编码。向模型注入 token 顺序或相对距离信息的机制,包括绝对位置、正弦位置、RoPE、ALiBi 等。它影响长上下文、代码顺序和跨段引用能力。
+
 ### Prompt / Context / Harness / Loop
 
 Agent 工程的四层边界:Prompt 管任务表达,Context 管信息供应,Harness 管运行时边界,Loop 管多轮收敛。
@@ -208,6 +236,10 @@ Reasoning + Acting,让模型交替进行推理和行动的 Agent 模式。
 
 重排器。对初召回候选进行更精细排序的模型或算法。
 
+### Release Bundle
+
+Agent 发布单元。记录一次发布涉及的模型版本、Prompt 版本、工具 schema、RAG 索引、策略、评估集、回滚点和 owner,用于灰度、观测、回滚和事故复盘。
+
 ### RLHF
 
 Reinforcement Learning from Human Feedback,基于人类反馈的强化学习对齐方法。
@@ -226,7 +258,19 @@ Supervised Fine-Tuning,监督微调。使用输入输出样本训练模型遵循
 
 短期记忆。当前任务内的目标、计划、观察、约束和状态。
 
+### Speculative Decoding
+
+投机解码。用较小草稿模型先生成候选 token,再由大目标模型批量验证,以减少自回归 decode 的等待时间。收益取决于草稿速度、接受率和实现开销。
+
+### Structured Output
+
+结构化输出。让模型输出 JSON、工具调用参数、状态差分、证据包等可解析对象。它需要 schema、校验、修复和策略门配合,不能单独替代 Harness。
+
 ## T
+
+### Tokenizer
+
+把文本转换为 token ID 的组件。Tokenizer、词表和特殊 token 会影响上下文成本、多语言表现、RAG 切块、结构化输出和 Chat Template 兼容性。
 
 ### Tool Call
 
@@ -246,6 +290,7 @@ Supervised Fine-Tuning,监督微调。使用输入输出样本训练模型遵循
 | --- | --- | --- |
 | Prompt | Context | Prompt 是任务表达;Context 是模型实际可见的全部工作材料 |
 | Function Calling | Harness | Function Calling 让模型结构化表达动作;Harness 决定动作能否执行以及如何执行 |
+| JSON Mode | Constrained Decoding | JSON Mode 通常保证输出更像 JSON;约束解码在生成阶段用 grammar/schema 屏蔽非法 token |
 | Memory | RAG | Memory 保存用户/任务经验;RAG 检索外部知识证据 |
 | RAG | Agentic RAG | RAG 可以是一轮检索生成;Agentic RAG 管理多轮证据缺口和停止条件 |
 | MoE Router | Model Router | MoE Router 在模型内部选择 expert;Model Router 在系统层选择模型、工具或链路 |

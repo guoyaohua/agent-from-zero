@@ -19,6 +19,7 @@
 
 ## 大模型基础
 
+- Tokenizer、BPE、SentencePiece、tiktoken、Chat Template 和 tool-use message formatting 相关文档:重点看不同模型如何把消息转换成 token 序列。
 - Transformer 原论文:理解 self-attention 的起点。
 - GPT 系列论文:理解 decoder-only 和 scaling。
 - InstructGPT/RLHF 相关论文:理解指令对齐。
@@ -41,6 +42,7 @@
 - ReAct 论文。
 - Toolformer 相关工作。
 - Reflexion 相关工作。
+- Structured Outputs、JSON Schema、grammar constrained decoding、function/tool calling 和 schema validation 相关官方文档:重点看“格式合法”和“业务可执行”的边界。
 - 工作流模式与 evaluator-optimizer 模式的工程文章。
 - Agent Harness、tool runtime、sandbox、trace 和 state machine 相关工程文章。
 - Harness Engineering 相关公开讨论:重点看“模型之外的运行时边界”如何设计,不要只记热词。
@@ -68,6 +70,12 @@
 - OWASP Top 10 for LLM Applications。
 - 数据泄露、权限和 DLP 相关安全实践。
 - AI 红队测试资料。
+
+## 发布与运行治理
+
+- LLMOps、ModelOps、prompt/version registry、eval gates、canary release、feature flag、kill switch 和 incident review 相关实践。
+- RAG index release、embedding/reranker 迁移、删除传播和知识库版本治理资料。
+- 人在回路确认、审批卡片、审计日志、回滚 runbook 和变更冻结窗口相关工程文章。
 
 ## MCP、A2A 和工具协议
 

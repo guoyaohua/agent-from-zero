@@ -68,6 +68,26 @@ Evidence:
 {evidence_pack}
 ```
 
+## 结构化输出修复
+
+```text
+你只负责修复结构化输出,不要改变业务含义。
+
+目标 schema:
+{json_schema}
+
+原始输出:
+{raw_output}
+
+解析或校验错误:
+{parser_or_validation_error}
+
+规则:
+- 只输出符合 schema 的 JSON。
+- 不要补猜业务关键字段;如果缺少必要证据,使用 schema 中的 blocked/needs_more_evidence 状态。
+- 不要加入解释性自然语言。
+```
+
 ## 工具调用决策
 
 ```text
@@ -189,6 +209,28 @@ State:
 
 Risk analysis:
 {risk}
+```
+
+## 发布变更说明
+
+```text
+请为本次 Agent 变更生成 release note。
+要求包含:
+- change_summary
+- affected_surfaces: model|prompt|tool_schema|rag_index|policy|memory|eval|ui
+- eval_diff
+- safety_result
+- cost_latency_change
+- rollout_plan
+- rollback_plan
+- owner
+- known_gaps
+
+Release bundle:
+{release_bundle}
+
+Eval result:
+{eval_result}
 ```
 
 ## 多渠道消息安全分流
