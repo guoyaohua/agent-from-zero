@@ -1,17 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360" viewBox="0 0 860 360" role="img" aria-labelledby="title desc">
-  <title id="title">Prefill Decode 与 KV Cache 增长</title>
-  <desc id="desc">展示 LLM 推理中 prefill 阶段建立 KV Cache,decode 阶段逐 token 读取并追加缓存。</desc>
-  <rect width="860" height="360" fill="#fffdf8"/>
-  <text x="30" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#273449">首 token 慢和后续 token 慢,瓶颈不同</text>
-  <g font-family="Arial, sans-serif" font-size="13" fill="#273449">
-    <rect x="46" y="80" width="260" height="96" rx="10" fill="#dbeafe" stroke="#2563eb"/>
-    <text x="78" y="112" font-weight="700">Prefill</text><text x="78" y="138">处理完整 prompt</text><text x="78" y="160">建立初始 KV Cache</text>
-    <rect x="356" y="80" width="448" height="96" rx="10" fill="#dcfce7" stroke="#16a34a"/>
-    <text x="386" y="112" font-weight="700">Decode</text><text x="386" y="138">每步生成 1 token</text><text x="386" y="160">读取历史 KV,追加新 K/V</text>
-    <path d="M306 128 H356" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-    <rect x="90" y="230" width="110" height="34" fill="#bfdbfe"/><rect x="200" y="230" width="110" height="34" fill="#bfdbfe"/><rect x="310" y="230" width="110" height="34" fill="#bbf7d0"/><rect x="420" y="230" width="110" height="34" fill="#bbf7d0"/><rect x="530" y="230" width="110" height="34" fill="#bbf7d0"/>
-    <text x="118" y="253">prompt KV</text><text x="338" y="253">+ token</text><text x="448" y="253">+ token</text><text x="558" y="253">+ token</text>
-    <text x="110" y="318" fill="#64748b">TTFT 主要看 prefill 和排队; TPOT 主要看 decode、KV 读取和批处理</text>
-  </g>
-  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#64748b"/></marker></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="660" viewBox="0 0 1180 660" role="img" aria-labelledby="title desc">
+  <title id="title">Prefill、Decode 与 KV Cache 增长</title>
+  <desc id="desc">展示 LLM 推理中 prefill 阶段建立 KV Cache,decode 阶段逐 token 读取并追加缓存,并标出 TTFT、TPOT、显存公式、批处理和常见瓶颈。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.gray{fill:#eef3f8;stroke:#cbd5e1;stroke-width:1.2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.thin{fill:none;stroke:#94a3b8;stroke-width:1.5}.cache{fill:#bbf7d0;stroke:#2d7d80;stroke-width:1}.prompt{fill:#bfdbfe;stroke:#355c9a;stroke-width:1}.out{fill:#fed7aa;stroke:#b05c37;stroke-width:1}.barbg{fill:#e5e7eb}.bar1{fill:#355c9a}.bar2{fill:#2d7d80}.bar3{fill:#b05c37}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1180" height="660"/>
+  <text class="title" x="52" y="56">KV Cache: 首 token 慢和后续 token 慢,瓶颈不同</text>
+  <text class="sub" x="52" y="84">Prefill 并行处理 prompt 建立缓存; Decode 每步读取历史 K/V 并追加新 token,速度受显存、带宽、批处理和调度影响。</text>
+
+  <rect class="panel" x="48" y="116" width="1084" height="346" rx="10"/>
+  <rect class="blue" x="82" y="164" width="208" height="118" rx="8"/>
+  <text class="h" x="152" y="194">Prefill</text>
+  <text class="t" x="112" y="222">输入完整 prompt</text>
+  <text class="t" x="112" y="244">并行算所有层 attention</text>
+  <text class="t" x="112" y="266">写入初始 K/V</text>
+  <text class="s" x="112" y="300">主要影响 TTFT</text>
+
+  <rect class="green" x="356" y="164" width="252" height="118" rx="8"/>
+  <text class="h" x="456" y="194">KV Cache</text>
+  <text class="mono" x="386" y="222">K,V per layer per token</text>
+  <text class="t" x="386" y="246">避免重复计算历史 token</text>
+  <text class="t" x="386" y="268">上下文越长,缓存越大</text>
+  <text class="s" x="386" y="300">显存容量和带宽成为核心约束</text>
+
+  <rect class="orange" x="674" y="164" width="226" height="118" rx="8"/>
+  <text class="h" x="760" y="194">Decode</text>
+  <text class="t" x="704" y="222">每步生成 1 token</text>
+  <text class="t" x="704" y="244">读取全部历史 K/V</text>
+  <text class="t" x="704" y="266">追加当前 token 的 K/V</text>
+  <text class="s" x="704" y="300">主要影响 TPOT / tokens/s</text>
+
+  <rect class="red" x="958" y="164" width="134" height="118" rx="8"/>
+  <text class="h" x="994" y="194">Output</text>
+  <text class="t" x="980" y="222">流式返回</text>
+  <text class="t" x="980" y="244">停止条件</text>
+  <text class="t" x="980" y="266">采样策略</text>
+  <path class="line" d="M290 224H356"/><path class="line" d="M608 224H674"/><path class="line" d="M900 224H958"/>
+
+  <rect class="panel" x="82" y="328" width="1010" height="88" rx="8"/>
+  <text class="h" x="106" y="356">缓存增长示意</text>
+  <rect class="prompt" x="238" y="340" width="86" height="28" rx="4"/><text class="s" x="254" y="359">prompt</text>
+  <rect class="prompt" x="326" y="340" width="86" height="28" rx="4"/>
+  <rect class="prompt" x="414" y="340" width="86" height="28" rx="4"/>
+  <rect class="cache" x="502" y="340" width="86" height="28" rx="4"/><text class="s" x="522" y="359">+t1</text>
+  <rect class="cache" x="590" y="340" width="86" height="28" rx="4"/><text class="s" x="610" y="359">+t2</text>
+  <rect class="cache" x="678" y="340" width="86" height="28" rx="4"/><text class="s" x="698" y="359">+t3</text>
+  <path class="thin" d="M238 388H764"/>
+  <text class="s" x="238" y="402">每个新 token 都让每层 K/V 多一格; 长上下文会把显存压力推给整个批次。</text>
+
+  <rect class="panel" x="48" y="492" width="330" height="114" rx="8"/>
+  <text class="h" x="76" y="520">容量近似</text>
+  <text class="mono" x="76" y="548">cache ~= L * T * Hkv * Dh * 2 * bytes</text>
+  <text class="s" x="76" y="574">L 层数, T token 数, 2 表示 K 和 V。</text>
+  <text class="s" x="76" y="592">MQA/GQA 会减少 Hkv,显著省缓存。</text>
+
+  <rect class="panel" x="424" y="492" width="330" height="114" rx="8"/>
+  <text class="h" x="452" y="520">延迟账本</text>
+  <text class="s" x="452" y="548">TTFT</text><rect class="barbg" x="502" y="538" width="160" height="14" rx="4"/><rect class="bar1" x="502" y="538" width="118" height="14" rx="4"/>
+  <text class="s" x="452" y="574">TPOT</text><rect class="barbg" x="502" y="564" width="160" height="14" rx="4"/><rect class="bar2" x="502" y="564" width="92" height="14" rx="4"/>
+  <text class="s" x="452" y="596">Queue</text><rect class="barbg" x="502" y="586" width="160" height="14" rx="4"/><rect class="bar3" x="502" y="586" width="68" height="14" rx="4"/>
+
+  <rect class="panel" x="800" y="492" width="332" height="114" rx="8"/>
+  <text class="h" x="828" y="520">优化方向</text>
+  <text class="t" x="828" y="548">Prefill: chunked prefill / prompt cache</text>
+  <text class="t" x="828" y="572">Decode: continuous batching / paged cache</text>
+  <text class="t" x="828" y="596">架构: MQA/GQA、量化、并行和调度</text>
 </svg>
