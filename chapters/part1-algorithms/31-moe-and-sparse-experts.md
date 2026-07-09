@@ -10,6 +10,8 @@ MoE,Mixture of Experts,混合专家模型,是近几年大模型扩展中非常�
 
 ![MoE 与稀疏专家模型](../assets/part1-moe-sparse-experts.svg)
 
+![MoE 服务与观测账本](../assets/part1-moe-serving-ledger.svg)
+
 理解 MoE 很重要,因为很多主流开源权重和前沿模型都开始采用稀疏专家结构。工程选型时,如果只看“总参数量”,很容易误判推理成本、显存需求、通信瓶颈和部署复杂度。
 
 ## Dense 模型和 MoE 模型的区别
@@ -106,6 +108,8 @@ $$
 - router 正则化:避免路由过早塌缩。
 - auxiliary-loss-free balancing:减少负载均衡目标对主任务性能的副作用。
 
+现代 MoE 还会加入一些更工程化的设计。例如 shared expert 让每个 token 都经过一小部分共享容量,避免所有知识都被迫稀疏路由;fine-grained expert 把专家切得更细,让 router 有更多组合空间;expert bias 或无辅助损失的负载均衡方法,则尝试在不明显伤害主任务 loss 的情况下改善负载分布。不同模型论文里的名字会变,但目标基本一致:既让 token 找到合适专家,又别让 serving 被热点专家拖垮。
+
 这里的取舍很微妙。路由太自由,会过载和塌缩;路由太均匀,又可能把 token 分给不合适的 expert,损害模型质量。
 
 ## Expert capacity 和 token dropping
@@ -135,6 +139,16 @@ Dense 模型的张量并行已经需要通信,但 MoE 会额外引入 token disp
 这就是为什么 MoE 不只是模型结构创新,也是系统工程问题。网络带宽、拓扑、并行策略、batching、kernel 优化、FP8/INT8 精度和调度器都会影响最终成本。
 
 一个 MoE 模型在论文里“每 token 激活参数少”,不代表你能在普通单卡上轻松跑起来。完整权重、expert 切分和通信路径同样重要。
+
+从服务视角看,MoE 至少有三张账要同时算:
+
+| 账本 | 关注什么 | 常见指标 |
+| --- | --- | --- |
+| 权重账 | 完整 expert 权重如何放入 GPU/节点 | total params、显存、并行切分 |
+| 计算账 | 每个 token 实际激活多少计算 | activated params、top-k、decode TPOT |
+| 通信账 | token dispatch 和结果回传是否拖慢尾延迟 | All-to-All 时间、expert utilization、p95/p99 |
+
+Dense 模型主要把压力集中在矩阵计算和 KV Cache 上;MoE 额外把一部分压力转移到路由与通信。对线上系统来说,平均 tokens/s 不够,还要看长尾请求是否被某些 expert 热点、跨节点 dispatch 或动态 batch 形状拖慢。
 
 ## 为什么 MoE 对 Agent 有意义
 
@@ -168,6 +182,8 @@ MoE 的直觉很适合这种多样性:不同 token、不同任务可能激活不
 - Llama 4 系列也引入 Scout、Maverick 等 MoE 形态,并把长上下文、开放生态和部署工具链一起推向开发者。
 
 这些例子说明 MoE 已经不是孤立论文概念,而是影响模型选型、部署预算和内部 AI 平台设计的基础技术。
+
+这里还要避免一个混淆:MoE、MLA/GQA、KV Cache 和 Flash Attention 解决的是不同层的问题。MoE 决定 FFN 参数如何稀疏激活;MLA/GQA 这类机制更多影响注意力和 KV Cache 成本;Flash Attention 优化注意力计算的显存 IO;PagedAttention 优化服务端 KV Cache 管理。一个前沿模型往往同时使用多种优化,但评估时要能拆开看:到底是模型容量带来的质量收益,还是推理系统优化带来的成本收益。
 
 ## 企业内部部署时看什么
 
@@ -221,3 +237,5 @@ MoE 的直觉很适合这种多样性:不同 token、不同任务可能激活不
 ## 本章小结
 
 MoE 通过 router 为每个 token 选择少数 expert,让模型拥有更大的总参数容量,同时控制每 token 激活计算。它的核心收益是参数效率和容量扩展,核心代价是路由、负载均衡、expert capacity、token dispatch、All-to-All 通信和 serving 复杂度。对 Agent 工程来说,MoE 是理解主流模型家族和部署成本的重要概念,但它不能替代 RAG、工具、评估、安全和系统级模型路由。
+
+到这里,Part 1 已经完整覆盖了从 Tokenizer、数学直觉、神经网络、Transformer、架构演进、模型生态、训练流程到推理优化的主线。接下来进入 Agent 核心原理篇,把模型能力放进目标、状态、工具和反馈组成的任务循环中。

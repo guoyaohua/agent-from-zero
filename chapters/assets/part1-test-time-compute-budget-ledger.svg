@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img" aria-labelledby="title desc">
+  <title id="title">测试时计算预算账本</title>
+  <desc id="desc">展示 Agent 如何把测试时计算拆成路由、搜索、验证和治理四层,并记录预算、证据缺口、停止条件和风险。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#94a3b8;stroke-width:1.8;stroke-dasharray:6 6;marker-end:url(#arrow)}.barbg{fill:#e5e7eb}.barA{fill:#355c9a}.barB{fill:#b05c37}.barC{fill:#2d7d80}.tag{fill:#172033}.tagtext{font:700 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1180" height="760"/>
+  <text class="title" x="52" y="56">测试时计算: 从“多想”变成可审计预算</text>
+  <text class="sub" x="52" y="84">深度推理只有在搜索、验证和修正能减少不确定性时才值得花钱。</text>
+
+  <rect class="panel" x="48" y="116" width="1084" height="456" rx="10"/>
+
+  <rect class="orange" x="78" y="164" width="180" height="94" rx="8"/>
+  <text class="h" x="118" y="196">1. Route</text>
+  <text class="t" x="104" y="222">难度、风险、证据缺口</text>
+  <text class="s" x="104" y="244">simple / normal / deep</text>
+
+  <rect class="blue" x="316" y="138" width="190" height="84" rx="8"/>
+  <text class="h" x="364" y="170">Fast Answer</text>
+  <text class="t" x="344" y="196">抽取、改写、分类</text>
+
+  <rect class="purple" x="316" y="288" width="190" height="112" rx="8"/>
+  <text class="h" x="364" y="320">2. Search</text>
+  <text class="t" x="342" y="346">best-of-N / plan tree</text>
+  <text class="t" x="342" y="368">候选答案、补丁、SQL</text>
+
+  <rect class="green" x="574" y="178" width="198" height="120" rx="8"/>
+  <text class="h" x="630" y="210">3. Verify</text>
+  <text class="t" x="602" y="236">测试、规则、引用、工具</text>
+  <text class="t" x="602" y="258">Judge 只做辅助证据</text>
+  <rect class="tag" x="602" y="272" width="72" height="22" rx="5"/><text class="tagtext" x="616" y="287">pass</text>
+  <rect class="tag" x="684" y="272" width="66" height="22" rx="5"/><text class="tagtext" x="696" y="287">revise</text>
+
+  <rect class="red" x="840" y="164" width="230" height="94" rx="8"/>
+  <text class="h" x="898" y="196">Risk Gate</text>
+  <text class="t" x="866" y="222">副作用、权限、合规、人工确认</text>
+  <text class="s" x="866" y="244">不能验证就不要自动执行</text>
+
+  <rect class="blue" x="840" y="316" width="230" height="84" rx="8"/>
+  <text class="h" x="904" y="348">Final Output</text>
+  <text class="t" x="866" y="374">结论 + 证据 + 限制条件</text>
+
+  <path class="line" d="M258 208H316"/>
+  <path class="line" d="M258 218C294 288 294 344 316 344"/>
+  <path class="line" d="M506 344C548 326 552 258 574 238"/>
+  <path class="line" d="M772 238H840"/>
+  <path class="line" d="M955 258V316"/>
+  <path class="dash" d="M840 358C790 438 604 430 506 372"/>
+  <path class="dash" d="M672 298C674 438 450 456 411 400"/>
+
+  <rect class="panel" x="78" y="454" width="992" height="84" rx="8"/>
+  <text class="h" x="104" y="482">4. Budget Ledger</text>
+  <text class="mono" x="104" y="508">route_reason | max_steps | max_tokens | evidence_gap | verifier | stop_rule | risk_level</text>
+  <text class="s" x="104" y="530">每一轮必须带来新证据或状态变化; 连续无新增信息、权限不足、预算耗尽或风险越界时停止。</text>
+
+  <rect class="panel" x="48" y="606" width="1084" height="96" rx="10"/>
+  <text class="h" x="78" y="638">预算分配示例</text>
+  <text class="s" x="78" y="666">简单抽取</text><rect class="barbg" x="162" y="655" width="180" height="14" rx="4"/><rect class="barA" x="162" y="655" width="42" height="14" rx="4"/>
+  <text class="s" x="378" y="666">RAG 问答</text><rect class="barbg" x="462" y="655" width="180" height="14" rx="4"/><rect class="barB" x="462" y="655" width="104" height="14" rx="4"/>
+  <text class="s" x="678" y="666">代码修复</text><rect class="barbg" x="762" y="655" width="180" height="14" rx="4"/><rect class="barC" x="762" y="655" width="158" height="14" rx="4"/>
+  <text class="t" x="78" y="690">预算越高,越需要外部验证和停止规则; 没有验证信号的长推理只是昂贵的猜测。</text>
+</svg>

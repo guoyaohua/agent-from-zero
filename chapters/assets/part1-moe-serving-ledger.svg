@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img" aria-labelledby="title desc">
+  <title id="title">MoE 服务与观测账本</title>
+  <desc id="desc">展示 MoE 部署时需要同时观察权重账、计算账、通信账、缓存账和质量账。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.thin{fill:none;stroke:#94a3b8;stroke-width:1.4}.barbg{fill:#e5e7eb}.barA{fill:#355c9a}.barB{fill:#2d7d80}.barC{fill:#b05c37}.barD{fill:#b13c52}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1180" height="760"/>
+  <text class="title" x="52" y="56">MoE serving: 不能只看激活参数</text>
+  <text class="sub" x="52" y="84">MoE 把 dense 计算的一部分压力换成路由、容量、跨卡通信和观测问题。</text>
+
+  <rect class="panel" x="48" y="116" width="1084" height="292" rx="10"/>
+  <rect class="blue" x="82" y="164" width="156" height="92" rx="8"/>
+  <text class="h" x="124" y="196">权重账</text>
+  <text class="t" x="108" y="222">total params</text>
+  <text class="s" x="108" y="244">完整专家池要放在哪</text>
+
+  <rect class="green" x="294" y="164" width="156" height="92" rx="8"/>
+  <text class="h" x="336" y="196">计算账</text>
+  <text class="t" x="320" y="222">activated params</text>
+  <text class="s" x="320" y="244">top-k 与 token 路径</text>
+
+  <rect class="orange" x="506" y="164" width="156" height="92" rx="8"/>
+  <text class="h" x="548" y="196">通信账</text>
+  <text class="t" x="532" y="222">All-to-All</text>
+  <text class="s" x="532" y="244">dispatch 与尾延迟</text>
+
+  <rect class="purple" x="718" y="164" width="156" height="92" rx="8"/>
+  <text class="h" x="760" y="196">缓存账</text>
+  <text class="t" x="744" y="222">KV Cache</text>
+  <text class="s" x="744" y="244">长上下文仍然昂贵</text>
+
+  <rect class="red" x="930" y="164" width="156" height="92" rx="8"/>
+  <text class="h" x="972" y="196">质量账</text>
+  <text class="t" x="956" y="222">eval by task</text>
+  <text class="s" x="956" y="244">不要只看榜单</text>
+
+  <path class="line" d="M238 210H294"/>
+  <path class="line" d="M450 210H506"/>
+  <path class="line" d="M662 210H718"/>
+  <path class="line" d="M874 210H930"/>
+
+  <rect class="panel" x="82" y="300" width="1004" height="70" rx="8"/>
+  <text class="h" x="108" y="328">核心观测字段</text>
+  <text class="mono" x="108" y="354">expert_utilization | overflow_rate | all_to_all_ms | p95_decode | kv_bytes | route_entropy | task_eval_delta</text>
+
+  <rect class="panel" x="48" y="438" width="520" height="248" rx="10"/>
+  <text class="h" x="78" y="470">热点 expert 例子</text>
+  <text class="s" x="78" y="500">E1</text><rect class="barbg" x="110" y="489" width="340" height="16" rx="4"/><rect class="barA" x="110" y="489" width="286" height="16" rx="4"/>
+  <text class="s" x="78" y="536">E2</text><rect class="barbg" x="110" y="525" width="340" height="16" rx="4"/><rect class="barB" x="110" y="525" width="166" height="16" rx="4"/>
+  <text class="s" x="78" y="572">E3</text><rect class="barbg" x="110" y="561" width="340" height="16" rx="4"/><rect class="barC" x="110" y="561" width="92" height="16" rx="4"/>
+  <text class="s" x="78" y="608">E4</text><rect class="barbg" x="110" y="597" width="340" height="16" rx="4"/><rect class="barD" x="110" y="597" width="318" height="16" rx="4"/>
+  <text class="t" x="78" y="648">平均吞吐看起来正常,但热点 expert 会拖高 p95/p99。</text>
+
+  <rect class="panel" x="612" y="438" width="520" height="248" rx="10"/>
+  <text class="h" x="642" y="470">部署决策</text>
+  <rect class="blue" x="642" y="496" width="150" height="62" rx="8"/><text class="h" x="682" y="522">API 试验</text><text class="s" x="670" y="544">先看任务收益</text>
+  <rect class="green" x="844" y="496" width="150" height="62" rx="8"/><text class="h" x="884" y="522">私有部署</text><text class="s" x="872" y="544">再算 GPU 与合规</text>
+  <rect class="orange" x="642" y="594" width="150" height="62" rx="8"/><text class="h" x="682" y="620">模型路由</text><text class="s" x="670" y="642">简单任务别过载</text>
+  <rect class="purple" x="844" y="594" width="150" height="62" rx="8"/><text class="h" x="884" y="620">回归评估</text><text class="s" x="872" y="642">量化/升级都要测</text>
+  <path class="line" d="M792 527H844"/>
+  <path class="line" d="M919 558V594"/>
+  <path class="line" d="M844 625H792"/>
+  <path class="thin" d="M716 594V558"/>
+
+  <text class="t" x="52" y="724">MoE 内部 router 不是业务权限路由。RAG、工具、评估、安全和发布治理仍然需要在系统层单独设计。</text>
+</svg>
