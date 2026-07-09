@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="760" viewBox="0 0 1220 760" role="img" aria-labelledby="title desc">
+  <title id="title">A2A 任务生命周期与本地信任边界</title>
+  <desc id="desc">展示本地 Host 通过 Agent Card 发现远程 Agent,提交任务,接收状态、artifact 和输入请求,再执行本地契约、证据和策略验收。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.mono{font:600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#172033}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#b05c37;stroke-width:1.8;stroke-dasharray:6 6;marker-end:url(#arrow)}.trust{fill:none;stroke:#b13c52;stroke-width:2.2;stroke-dasharray:9 7}.tag{fill:#172033}.tagtext{font:700 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#7a8aa0"/></marker>
+  </defs>
+  <rect class="bg" width="1220" height="760"/>
+  <text class="title" x="52" y="56">A2A: 远程 Agent 是协作者,不是本地策略替代品</text>
+  <text class="sub" x="52" y="84">协议负责发现、委托和状态表达;本地 Host 仍负责权限、采纳、审计和最终责任。</text>
+
+  <rect class="panel" x="48" y="116" width="1124" height="408" rx="10"/>
+  <path class="trust" d="M578 138V502"/>
+  <text class="s" x="502" y="152">本地信任边界</text>
+
+  <rect class="blue" x="82" y="178" width="180" height="90" rx="8"/>
+  <text class="h" x="126" y="210">Local Host</text>
+  <text class="t" x="108" y="236">用户、策略、预算</text>
+  <text class="s" x="108" y="256">最终责任在本地</text>
+
+  <rect class="green" x="330" y="148" width="180" height="70" rx="8"/>
+  <text class="h" x="378" y="178">Agent Card</text>
+  <text class="s" x="356" y="198">能力、限制、认证</text>
+
+  <rect class="orange" x="330" y="252" width="180" height="90" rx="8"/>
+  <text class="h" x="378" y="284">Task Request</text>
+  <text class="t" x="356" y="310">goal + constraints</text>
+  <text class="s" x="356" y="330">deadline / output schema</text>
+
+  <rect class="purple" x="650" y="158" width="190" height="86" rx="8"/>
+  <text class="h" x="704" y="190">Remote Agent</text>
+  <text class="t" x="678" y="216">opaque runtime</text>
+  <text class="s" x="678" y="236">内部 prompt 不外泄</text>
+
+  <rect class="orange" x="900" y="144" width="190" height="60" rx="8"/>
+  <text class="h" x="948" y="170">working</text><text class="s" x="930" y="190">status_update</text>
+  <rect class="green" x="900" y="226" width="190" height="60" rx="8"/>
+  <text class="h" x="944" y="252">artifact</text><text class="s" x="930" y="272">report / file / evidence</text>
+  <rect class="red" x="900" y="308" width="190" height="60" rx="8"/>
+  <text class="h" x="932" y="334">input_required</text><text class="s" x="930" y="354">澄清 / 确认 / 凭证</text>
+  <rect class="blue" x="900" y="390" width="190" height="60" rx="8"/>
+  <text class="h" x="948" y="416">terminal</text><text class="s" x="930" y="436">completed / failed</text>
+
+  <path class="line" d="M262 224C296 190 304 184 330 183"/>
+  <path class="line" d="M510 183C572 164 604 190 650 201"/>
+  <path class="line" d="M262 242C306 282 306 298 330 298"/>
+  <path class="line" d="M510 298C566 284 604 224 650 210"/>
+  <path class="line" d="M840 202H900"/>
+  <path class="line" d="M840 216C874 230 874 252 900 256"/>
+  <path class="line" d="M840 226C872 264 874 334 900 338"/>
+  <path class="line" d="M840 238C872 294 876 414 900 420"/>
+
+  <rect class="panel" x="82" y="386" width="428" height="92" rx="8"/>
+  <text class="h" x="108" y="416">任务请求契约</text>
+  <text class="mono" x="108" y="442">goal | constraints | context_refs | expected_output | deadline</text>
+  <text class="s" x="108" y="464">少发上下文、清楚定义完成标准、限制是否允许再委托。</text>
+
+  <rect class="panel" x="48" y="560" width="1124" height="128" rx="10"/>
+  <text class="h" x="78" y="592">本地验收三道门</text>
+  <rect class="tag" x="78" y="618" width="126" height="24" rx="6"/><text class="tagtext" x="100" y="634">contract</text><text class="t" x="220" y="634">schema、状态码、artifact 类型是否符合约定</text>
+  <rect class="tag" x="478" y="618" width="126" height="24" rx="6"/><text class="tagtext" x="506" y="634">evidence</text><text class="t" x="620" y="634">引用是否可访问,claim 是否被支持</text>
+  <rect class="tag" x="842" y="618" width="126" height="24" rx="6"/><text class="tagtext" x="878" y="634">policy</text><text class="t" x="984" y="634">权限、数据分类、副作用、用户确认</text>
+  <text class="s" x="78" y="666">远程 Agent 可以保持内部实现不透明,但外部边界必须可验证、可取消、可审计、可回滚。</text>
+</svg>

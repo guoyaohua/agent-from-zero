@@ -578,4 +578,4 @@ MCP 解决接入标准化问题,但还有很多事情要你自己设计:
 
 MCP 的价值在于标准化模型应用和外部能力之间的连接。Host 管用户体验、模型会话和安全边界,Client 管协议连接,Server 暴露 Tools、Resources 和 Prompts。MCP 可以和 Function Calling、RAG、上下文工程、多 Agent 编排配合,但不替代它们。设计 MCP Server 时,关键是窄工具、严 schema、结构化输出、清晰错误、最小权限、可追溯资源和副作用控制。MCP 让能力接入更统一,可靠性仍来自完整的 Agent 工程体系。
 
-到这里,Part 4 完成了架构进阶主线:为什么需要多 Agent、如何设计角色、如何编排、如何通信,以及如何用 MCP 标准化接入外部能力。下一篇 Part 5 会进入工程实践:可观测、评估、成本、延迟、安全、护栏和 Prompt Injection 防御。
+下一章会讲 Agent 互操作与 A2A。MCP 解决 Host 如何连接工具和资源,A2A 这类协议则进一步处理 Agent 与 Agent 如何跨系统发现、委托、协作和交付结果。
