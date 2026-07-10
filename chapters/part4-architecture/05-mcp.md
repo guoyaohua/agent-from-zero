@@ -6,6 +6,8 @@ Agent 要真正有用,就必须连接外部世界。
 
 MCP,Model Context Protocol,模型上下文协议,就是为了解决这个接入层问题而出现的一类标准化协议思路。
 
+> **规范快照**:本章按 **MCP `2025-11-25`** 规范复核。MCP 使用 JSON-RPC 2.0 消息;除了 Server 侧的 Prompts、Resources、Tools,还包含 Client 侧的 Roots、Sampling、Elicitation 等能力。实现时应以双方协商的协议版本和官方 schema 为准,不要把本章示意对象当作完整线协议。
+
 它的核心不是“让模型更聪明”,而是:
 
 **用统一协议把外部工具、资源和提示能力暴露给模型应用,让 Host 能发现、调用和管理这些能力。**
@@ -70,6 +72,12 @@ Server 管某个外部系统的能力暴露。
 ```
 
 一个 Host 可以连接多个 Server。每个 Server 可以封装一个数据源、一组工具或一个领域系统。
+
+## 协议能力是双向的
+
+初学者最容易只看到 Server 暴露的 Prompts、Resources 和 Tools。但完整协议并非单向“Server 给模型工具”。Client 还可能向 Server 提供 Roots、Sampling 和 Elicitation:Roots 声明工作区边界;Sampling 允许 Server 请求 Host 代表它进行模型采样;Elicitation 允许 Server 请求 Host 向用户收集信息或确认。
+
+这些能力会反转调用方向,因此要单独授权。Sampling 可能引入额外成本和数据流,Elicitation 不能绕过 Host 的敏感字段策略,Roots 也不是操作系统级沙箱。能力协商表示“双方支持什么”,本地策略仍决定“本次允许什么”。
 
 ## 从能力发现到上下文注入的四道门
 
@@ -465,6 +473,8 @@ output: string
 
 MCP 可以运行在不同传输方式和部署形态上,具体取决于实现和生态。
 
+传输只解决消息如何到达,不代表信任级别。`stdio` 常用于本地进程,Streamable HTTP 常用于远程连接;无论哪种传输,都要验证对端身份、协议版本、能力集合、消息大小、超时和取消语义。不要因为进程在本机就默认可信,也不要把网络 TLS 误当成工具授权。
+
 常见思路包括:
 
 - 本地进程:Host 启动本地 Server,适合 IDE、文件系统、命令行工具。
@@ -577,5 +587,7 @@ MCP 解决接入标准化问题,但还有很多事情要你自己设计:
 ## 本章小结
 
 MCP 的价值在于标准化模型应用和外部能力之间的连接。Host 管用户体验、模型会话和安全边界,Client 管协议连接,Server 暴露 Tools、Resources 和 Prompts。MCP 可以和 Function Calling、RAG、上下文工程、多 Agent 编排配合,但不替代它们。设计 MCP Server 时,关键是窄工具、严 schema、结构化输出、清晰错误、最小权限、可追溯资源和副作用控制。MCP 让能力接入更统一,可靠性仍来自完整的 Agent 工程体系。
+
+规范会继续演进。生产接入还应固定协议版本与 schema 哈希,记录能力协商结果,对新增能力默认拒绝,并在升级前重跑工具、资源、授权和提示注入回归集。
 
 下一章会讲 Agent 互操作与 A2A。MCP 解决 Host 如何连接工具和资源,A2A 这类协议则进一步处理 Agent 与 Agent 如何跨系统发现、委托、协作和交付结果。

@@ -84,7 +84,8 @@
 ## MCP、A2A 和工具协议
 
 - MCP 官方文档。
-- A2A 官方规范和 SDK 示例:重点看 Agent Card、任务生命周期、streaming、push notification 和认证边界。
+- MCP `2025-11-25` 规范及后续版本:重点看版本协商、JSON-RPC、Roots、Sampling、Elicitation、授权与传输安全。
+- A2A `v1.0.1` 官方规范和 SDK 示例:重点看 Agent Card、任务生命周期、Message/Artifact、streaming、push notification、多协议绑定和认证边界。
 - Function Calling / Tool Calling 官方文档。
 - JSON Schema 和 API 设计最佳实践。
 - Agent 互操作资料:比较工具协议、资源协议、消息协议和跨 Agent 任务协议的边界。
