@@ -12,7 +12,7 @@
   <rect class="n4" x="568" y="170" width="140" height="76" rx="8"/><text class="h" x="614" y="198">Part 3</text><text class="t" x="602" y="220">知识能力</text><text class="s" x="586" y="238">RAG / Memory / Context</text>
   <rect class="n" x="736" y="170" width="140" height="76" rx="8"/><text class="h" x="782" y="198">Part 4</text><text class="t" x="768" y="220">架构协作</text><text class="s" x="762" y="238">Multi-Agent / MCP</text>
   <rect class="n2" x="904" y="170" width="140" height="76" rx="8"/><text class="h" x="950" y="198">Part 5</text><text class="t" x="936" y="220">生产工程</text><text class="s" x="932" y="238">Eval / Safety / Cost</text>
-  <rect class="n3" x="1068" y="170" width="70" height="76" rx="8"/><text class="h" x="1086" y="198">P6+</text><text class="t" x="1086" y="220">项目</text><text class="s" x="1080" y="238">前沿</text>
+  <rect class="n3" x="1068" y="170" width="70" height="76" rx="8"/><text class="h" x="1080" y="198">P6–7</text><text class="t" x="1086" y="220">项目</text><text class="s" x="1080" y="238">与前沿</text>
   <path class="line" d="M204 208H232"/><path class="line" d="M372 208H400"/><path class="line" d="M540 208H568"/><path class="line" d="M708 208H736"/><path class="line" d="M876 208H904"/><path class="line" d="M1044 208H1068"/>
   <rect class="panel" x="82" y="286" width="236" height="74" rx="8"/><text class="h" x="106" y="312">原理线</text><text class="t" x="106" y="336">QKV、位置编码、MoE、KV Cache、Flash Attention、TTC</text>
   <rect class="panel" x="350" y="286" width="236" height="74" rx="8"/><text class="h" x="374" y="312">Agent 线</text><text class="t" x="374" y="336">ReAct、Function Calling、Harness Engineering、Loop Engineering</text>

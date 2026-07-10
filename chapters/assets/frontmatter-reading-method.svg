@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1180" height="520" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
   <title id="title">阅读方法</title>
-  <desc id="desc">展示阅读每章时如何从问题、机制、失败、评估四个问题进入,并把算法、工程和生产章节转化为可复用判断。</desc>
+  <desc id="desc">展示阅读每章时如何从问题、机制、失败、评估与时效性五个问题进入,并把算法、工程和生产章节转化为可复用判断。</desc>
   <defs>
     <style>
       .bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11.5px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.blue{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.green{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.orange{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.red{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.purple{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.gray{fill:#eef3f8;stroke:#cbd5e1;stroke-width:1.2}.line{fill:none;stroke:#7a8aa0;stroke-width:2;marker-end:url(#arrow)}.loop{fill:none;stroke:#b05c37;stroke-width:2;stroke-dasharray:7 6;marker-end:url(#arrow)}.num{font:700 18px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff}.badge{fill:#172033}
@@ -9,18 +9,20 @@
   </defs>
   <rect class="bg" width="1180" height="520"/>
   <text class="title" x="52" y="56">每章读完,把名词变成工程判断</text>
-  <text class="sub" x="52" y="84">不要只记定义。用四个问题把算法、Agent 工程和生产实践都落到可观察、可评估、可修正的决策上。</text>
+  <text class="sub" x="52" y="84">不要只记定义。用五个问题把稳定原理与时效性事实转化为可观察、可评估、可修正的决策。</text>
 
   <rect class="panel" x="50" y="118" width="1080" height="220" rx="10"/>
-  <rect class="blue" x="86" y="168" width="190" height="104" rx="8"/>
+  <rect class="blue" x="72" y="168" width="170" height="104" rx="8"/>
   <circle class="badge" cx="112" cy="194" r="15"/><text class="num" x="107" y="200">1</text><text class="h" x="138" y="198">问题</text><text class="t" x="112" y="226">它解决什么?</text><text class="s" x="112" y="250">例: RAG 补事实证据</text>
-  <rect class="green" x="340" y="168" width="190" height="104" rx="8"/>
+  <rect class="green" x="286" y="168" width="170" height="104" rx="8"/>
   <circle class="badge" cx="366" cy="194" r="15"/><text class="num" x="361" y="200">2</text><text class="h" x="392" y="198">机制</text><text class="t" x="366" y="226">它依赖什么?</text><text class="s" x="366" y="250">例: chunk、rank、context</text>
-  <rect class="orange" x="594" y="168" width="190" height="104" rx="8"/>
+  <rect class="orange" x="500" y="168" width="170" height="104" rx="8"/>
   <circle class="badge" cx="620" cy="194" r="15"/><text class="num" x="615" y="200">3</text><text class="h" x="646" y="198">失败</text><text class="t" x="620" y="226">会怎样坏?</text><text class="s" x="620" y="250">例: 漏召回、错引用</text>
-  <rect class="red" x="848" y="168" width="190" height="104" rx="8"/>
-  <circle class="badge" cx="874" cy="194" r="15"/><text class="num" x="869" y="200">4</text><text class="h" x="900" y="198">评估</text><text class="t" x="874" y="226">如何观测修正?</text><text class="s" x="874" y="250">例: trace、eval、回归集</text>
-  <path class="line" d="M276 220H340"/><path class="line" d="M530 220H594"/><path class="line" d="M784 220H848"/>
+  <rect class="red" x="714" y="168" width="170" height="104" rx="8"/>
+  <circle class="badge" cx="740" cy="194" r="15"/><text class="num" x="735" y="200">4</text><text class="h" x="766" y="198">评估</text><text class="t" x="740" y="226">如何观测修正?</text><text class="s" x="740" y="250">trace / eval / 回归集</text>
+  <rect class="purple" x="928" y="168" width="170" height="104" rx="8"/>
+  <circle class="badge" cx="954" cy="194" r="15"/><text class="num" x="949" y="200">5</text><text class="h" x="980" y="198">时效</text><text class="t" x="954" y="226">结论会过时吗?</text><text class="s" x="954" y="250">来源 / 版本 / 日期</text>
+  <path class="line" d="M242 220H286"/><path class="line" d="M456 220H500"/><path class="line" d="M670 220H714"/><path class="line" d="M884 220H928"/>
 
   <rect class="panel" x="50" y="366" width="334" height="104" rx="8"/>
   <text class="h" x="78" y="394">算法章怎么读</text>
