@@ -158,7 +158,8 @@
 - [大模型可解释性](chapters/part7-frontier/05-interpretability.md) `[进阶]`
 - [OpenClaw:小龙虾与个人 Agent Gateway](chapters/part7-frontier/06-openclaw.md) `[进阶]` ★
 - [Agentic RL 与真实环境反馈](chapters/part7-frontier/07-agentic-rl.md) `[进阶]` ★
-- [结语:从 0 到 1 之后](chapters/part7-frontier/08-epilogue.md) `[主线]`
+- [前沿 Agent 系统:研究、编码与实时多模态](chapters/part7-frontier/08-frontier-agent-systems.md) `[进阶]` ★
+- [结语:从 0 到 1 之后](chapters/part7-frontier/09-epilogue.md) `[主线]`
 
 ### 附录 · `chapters/appendix/`
 > 速查与延伸资源。
@@ -170,7 +171,7 @@
 
 ## 完成度与维护原则
 
-本书现有 **10 个部分、95 篇文章**。全部章节均已有正文,但“已有正文”不等于“停止更新”:模型能力、协议、安全实践和评估方法仍在快速演进。本书采用滚动维护方式,优先依据一手论文、官方规范和可复现实验修订时效性内容;新增概念只有在能讲清机制、边界、失败模式和工程意义时才进入主目录。
+本书现有 **10 个部分、96 篇文章**。全部章节均已有正文,但“已有正文”不等于“停止更新”:模型能力、协议、安全实践和评估方法仍在快速演进。本书采用滚动维护方式,优先依据一手论文、官方规范和可复现实验修订时效性内容;新增概念只有在能讲清机制、边界、失败模式和工程意义时才进入主目录。
 
 > 大纲参考了李宏毅《生成式 AI 导论》与吴恩达 DeepLearning.AI《Generative AI with LLMs》课程做查漏补缺,正文会继续通过复审、评估和读者反馈迭代完善。
 

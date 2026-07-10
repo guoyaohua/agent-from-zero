@@ -80,7 +80,15 @@ RAG 中的检索单元。通常由文档切分而来,应保留语义完整性、
 
 评审角色或评审节点,根据 rubric 检查输出、计划或工具行为。
 
+### Coding Agent
+
+编码 Agent。能在代码仓库、终端和测试环境中调查问题、修改文件并验证结果的工具型 Agent。可靠闭环应包含复现、定位、最小修改、测试和 diff 审查。
+
 ## D
+
+### Deep Research Agent
+
+深度研究 Agent。围绕开放问题规划检索、评估来源、建立主张—证据关系并生成可回源报告的 Agent。搜索次数多不等于研究深入,关键是来源质量、覆盖、冲突处理和引用绑定。
 
 ### DPO
 
@@ -231,6 +239,10 @@ Retrieval-Augmented Generation,检索增强生成。通过检索外部证据增�
 ### ReAct
 
 Reasoning + Acting,让模型交替进行推理和行动的 Agent 模式。
+
+### Realtime Multimodal Agent
+
+实时多模态 Agent。持续处理语音、图像、视频、屏幕或设备事件,支持流式输出、插话、取消和工具调用的事件驱动 Agent。通常需要交互快环与任务慢环分离。
 
 ### Reranker
 

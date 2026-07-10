@@ -47,6 +47,8 @@
 - Agent Harness、tool runtime、sandbox、trace 和 state machine 相关工程文章。
 - Harness Engineering 相关公开讨论:重点看“模型之外的运行时边界”如何设计,不要只记热词。
 - Loop Engineering 相关公开讨论:重点看循环如何提示、调度、验证和停止 Agent,不要把它简化成 while 循环。
+- 深度研究与编码 Agent 的工程文章:重点比较任务契约、Artifact Store、环境反馈、验证器与停止条件,不要只比较最终报告或补丁。
+- 实时语音和多模态 API 官方文档:重点看事件模型、端点检测、插话、取消、会话恢复、临时凭证和工具确认。
 
 ## RAG 与检索
 
@@ -63,6 +65,8 @@
 - LLM-as-a-Judge 相关论文。
 - RAGAS、TruLens、DeepEval 等评估工具文档。
 - OpenAI、Anthropic、Google 等公开评估实践文章。
+- SWE-bench、SWE-Lancer、BrowseComp 与长任务 time horizon 研究:重点核对任务分布、Harness、预算、评分器、污染风险和外部有效性。
+- 对前沿能力声明使用证据阶梯:精选演示、静态基准、内部可重放任务、受控生产试点。
 
 ## 安全
 
