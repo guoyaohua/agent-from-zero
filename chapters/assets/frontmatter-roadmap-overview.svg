@@ -1,27 +1,147 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="620" viewBox="0 0 1220 620" role="img" aria-labelledby="title desc">
-  <title id="title">全书路线图</title>
-  <desc id="desc">展示本书从入门、模型原理、Agent 核心、RAG 与记忆、多 Agent 架构、工程生产、项目和前沿方向的路线,并标出每一阶段的关键产物。</desc>
-  <defs><style>.bg{fill:#f7f8fb}.title{font:700 30px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.sub{font:400 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#596579}.h{font:700 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033}.t{font:400 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#435066}.s{font:400 11px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#64748b}.panel{fill:#fff;stroke:#d8e0eb;stroke-width:1.2}.n{fill:#dfe8f5;stroke:#355c9a;stroke-width:2}.n2{fill:#e7f1ee;stroke:#2d7d80;stroke-width:2}.n3{fill:#fff0e6;stroke:#b05c37;stroke-width:2}.n4{fill:#ece7f3;stroke:#7c5aa6;stroke-width:2}.n5{fill:#f7d9df;stroke:#b13c52;stroke-width:2}.line{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#94a3b8;stroke-width:1.7;stroke-dasharray:6 6;marker-end:url(#arrow)}.dot{fill:#172033}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
-  <rect class="bg" width="1220" height="620"/>
-  <text class="title" x="56" y="58">从 0 到 1: 不是线性读完,而是逐层补齐能力</text>
-  <text class="sub" x="56" y="86">每个 Part 都回答一个工程问题,最终形成可运行、可评估、可扩展的 Agent 系统。</text>
-  <rect class="panel" x="52" y="120" width="1116" height="282" rx="10"/>
-  <rect class="n" x="82" y="170" width="122" height="76" rx="8"/><text class="h" x="120" y="198">Part 0</text><text class="t" x="108" y="220">Agent 直觉</text><text class="s" x="108" y="238">LLM/API/Context</text>
-  <rect class="n2" x="232" y="170" width="140" height="76" rx="8"/><text class="h" x="278" y="198">Part 1</text><text class="t" x="260" y="220">模型原理</text><text class="s" x="252" y="238">Attention / MoE / KV</text>
-  <rect class="n3" x="400" y="170" width="140" height="76" rx="8"/><text class="h" x="446" y="198">Part 2</text><text class="t" x="426" y="220">Agent Loop</text><text class="s" x="420" y="238">Tool / Harness / Loop</text>
-  <rect class="n4" x="568" y="170" width="140" height="76" rx="8"/><text class="h" x="614" y="198">Part 3</text><text class="t" x="602" y="220">知识能力</text><text class="s" x="586" y="238">RAG / Memory / Context</text>
-  <rect class="n" x="736" y="170" width="140" height="76" rx="8"/><text class="h" x="782" y="198">Part 4</text><text class="t" x="768" y="220">架构协作</text><text class="s" x="762" y="238">Multi-Agent / MCP</text>
-  <rect class="n2" x="904" y="170" width="140" height="76" rx="8"/><text class="h" x="950" y="198">Part 5</text><text class="t" x="936" y="220">生产工程</text><text class="s" x="932" y="238">Eval / Safety / Cost</text>
-  <rect class="n3" x="1068" y="170" width="70" height="76" rx="8"/><text class="h" x="1080" y="198">P6–7</text><text class="t" x="1086" y="220">项目</text><text class="s" x="1080" y="238">与前沿</text>
-  <path class="line" d="M204 208H232"/><path class="line" d="M372 208H400"/><path class="line" d="M540 208H568"/><path class="line" d="M708 208H736"/><path class="line" d="M876 208H904"/><path class="line" d="M1044 208H1068"/>
-  <rect class="panel" x="82" y="286" width="236" height="74" rx="8"/><text class="h" x="106" y="312">原理线</text><text class="t" x="106" y="336">QKV、位置编码、MoE、KV Cache、Flash Attention、TTC</text>
-  <rect class="panel" x="350" y="286" width="236" height="74" rx="8"/><text class="h" x="374" y="312">Agent 线</text><text class="t" x="374" y="336">ReAct、Function Calling、Harness Engineering、Loop Engineering</text>
-  <rect class="panel" x="618" y="286" width="236" height="74" rx="8"/><text class="h" x="642" y="312">知识线</text><text class="t" x="642" y="336">BM25、向量、Hybrid、Rerank、GraphRAG、Agentic RAG</text>
-  <rect class="panel" x="886" y="286" width="236" height="74" rx="8"/><text class="h" x="910" y="312">生产线</text><text class="t" x="910" y="336">Trace、Eval、Guardrails、Prompt Injection、A2A、Agentic RL</text>
-  <path class="dash" d="M198 286C260 258 276 248 302 246"/><path class="dash" d="M468 286C468 266 468 250 470 246"/><path class="dash" d="M736 286C710 258 682 248 638 246"/><path class="dash" d="M1004 286C1000 260 994 250 974 246"/>
-  <rect class="panel" x="52" y="438" width="1116" height="112" rx="10"/>
-  <text class="h" x="82" y="470">读完后的产物</text>
-  <circle class="dot" cx="90" cy="502" r="4"/><text class="t" x="106" y="506">能解释模型能力边界:为什么长上下文贵、为什么 KV Cache 省计算、为什么 MoE 部署复杂。</text>
-  <circle class="dot" cx="90" cy="530" r="4"/><text class="t" x="106" y="534">能设计 Agent 运行时:Prompt、Context、Harness、Loop 各有边界,工具和权限不靠口头约束。</text>
-  <circle class="dot" cx="90" cy="558" r="4"/><text class="t" x="106" y="562">能把系统推向生产:评估、trace、成本、RAG 证据链、安全门和失败回流形成闭环。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">从会调用模型，到能治理 Agent 系统</title>
+  <desc id="desc">一条由左下向右上延伸的学习路线，共八个检查站：建立直觉、理解模型、构造受控循环、建立证据链、设计协作边界、形成生产闭环、完成实战项目、判断前沿趋势。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f4ec"/>
+      <stop offset="1" stop-color="#eef4ef"/>
+    </linearGradient>
+    <linearGradient id="trail" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#dc6b48"/>
+      <stop offset="0.55" stop-color="#d8953f"/>
+      <stop offset="1" stop-color="#2f7d78"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#17323b" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .display{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#18313a}
+      .eyebrow{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;letter-spacing:2.2px;fill:#b85a3e}
+      .headline{font:750 34px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#18313a}
+      .subtitle{font:400 16px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#52656a}
+      .part{font:750 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;letter-spacing:1.1px;fill:#b85a3e}
+      .stationTitle{font:750 19px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#18313a}
+      .stationText{font:400 13px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#52656a}
+      .outcome{font:650 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#245f5c}
+      .number{font:800 15px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:middle}
+      .compassTitle{font:750 14px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#18313a}
+      .compassText{font:500 12px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#52656a}
+      .leader{fill:none;stroke:#91a39f;stroke-width:1.5}
+      .contour{fill:none;stroke:#7d9c93;stroke-width:1.2;stroke-opacity:.25}
+    </style>
+  </defs>
+
+  <rect width="1440" height="900" fill="url(#sky)"/>
+  <circle cx="1270" cy="120" r="72" fill="#f3c975" opacity=".24"/>
+  <circle cx="1270" cy="120" r="48" fill="#f3c975" opacity=".20"/>
+
+  <text class="eyebrow" x="70" y="62">LEARNING MAP · 全书路线</text>
+  <text class="headline" x="70" y="108">从会调用模型，到能治理 Agent 系统</text>
+  <text class="subtitle" x="70" y="140">每一站都留下一件可验证的工程产物；遇到失败，再沿路线回到对应能力层。</text>
+
+  <!-- layered terrain turns the table-of-contents into a journey rather than a row of cards -->
+  <path d="M0 565 C190 500 315 620 480 552 C650 482 760 585 916 500 C1090 405 1220 395 1440 278 V900 H0Z" fill="#dce9df"/>
+  <path d="M0 662 C180 590 330 715 516 622 C690 536 830 678 1010 570 C1170 474 1310 512 1440 430 V900 H0Z" fill="#cbded2"/>
+  <path d="M0 758 C210 670 350 790 552 706 C735 630 880 750 1058 650 C1212 564 1325 590 1440 530 V900 H0Z" fill="#b9d0c4"/>
+  <path class="contour" d="M-20 705 C180 620 335 750 530 657 C690 580 850 705 1030 602 C1180 516 1320 550 1460 470"/>
+  <path class="contour" d="M-20 795 C185 710 350 825 565 742 C740 674 900 790 1080 690 C1230 608 1340 625 1460 562"/>
+  <path class="contour" d="M40 845 C230 770 390 862 610 792 C795 733 940 835 1120 755 C1240 700 1355 700 1445 655"/>
+
+  <!-- learning trail -->
+  <path d="M105 765 C186 742 216 681 302 650 C390 618 446 704 522 645 C600 584 632 505 722 532 C812 558 824 496 884 451 C955 398 1010 470 1078 424 C1144 379 1152 303 1212 272 C1262 246 1284 211 1322 184" fill="none" stroke="#fff" stroke-opacity=".72" stroke-width="15" stroke-linecap="round"/>
+  <path d="M105 765 C186 742 216 681 302 650 C390 618 446 704 522 645 C600 584 632 505 722 532 C812 558 824 496 884 451 C955 398 1010 470 1078 424 C1144 379 1152 303 1212 272 C1262 246 1284 211 1322 184" fill="none" stroke="url(#trail)" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 14"/>
+
+  <!-- start marker -->
+  <path d="M90 772 l-16 23 h32Z" fill="#dc6b48"/>
+  <text class="part" x="56" y="825">从一个 API 调用出发</text>
+
+  <!-- station 0 -->
+  <path class="leader" d="M157 721 L157 650 L174 633"/>
+  <circle cx="157" cy="721" r="20" fill="#d96546" filter="url(#softShadow)"/><text class="number" x="157" y="721">0</text>
+  <g transform="translate(82 558)">
+    <text class="part" x="0" y="0">PART 0 · 建立直觉</text>
+    <text class="stationTitle" x="0" y="28">先说清边界，再谈自主</text>
+    <text class="stationText" x="0" y="53">LLM、Agent、Prompt 与 Context</text>
+    <text class="outcome" x="0" y="78">产物：一张系统边界草图</text>
+  </g>
+
+  <!-- station 1 -->
+  <path class="leader" d="M302 650 L302 586 L318 570"/>
+  <circle cx="302" cy="650" r="20" fill="#d97845" filter="url(#softShadow)"/><text class="number" x="302" y="650">1</text>
+  <g transform="translate(244 492)">
+    <text class="part" x="0" y="0">PART 1 · 理解模型</text>
+    <text class="stationTitle" x="0" y="28">打开黑盒，但不迷失在公式里</text>
+    <text class="stationText" x="0" y="53">Attention、训练、推理与成本来源</text>
+    <text class="outcome" x="0" y="78">产物：模型瓶颈诊断表</text>
+  </g>
+
+  <!-- station 2 -->
+  <path class="leader" d="M522 645 L522 710 L506 726"/>
+  <circle cx="522" cy="645" r="20" fill="#d88942" filter="url(#softShadow)"/><text class="number" x="522" y="645">2</text>
+  <g transform="translate(410 753)">
+    <text class="part" x="0" y="0">PART 2 · 构造循环</text>
+    <text class="stationTitle" x="0" y="28">把“会回答”变成“能执行”</text>
+    <text class="stationText" x="0" y="53">状态、工具、权限、停止与恢复</text>
+    <text class="outcome" x="0" y="78">产物：一个受控 Agent Loop</text>
+  </g>
+
+  <!-- station 3 -->
+  <path class="leader" d="M722 532 L722 456 L706 440"/>
+  <circle cx="722" cy="532" r="20" fill="#c79a3f" filter="url(#softShadow)"/><text class="number" x="722" y="532">3</text>
+  <g transform="translate(574 360)">
+    <text class="part" x="0" y="0">PART 3 · 建立证据链</text>
+    <text class="stationTitle" x="0" y="28">让答案能追溯，让记忆可治理</text>
+    <text class="stationText" x="0" y="53">RAG、Memory、Context 与数据生命周期</text>
+    <text class="outcome" x="0" y="78">产物：可评估的 Context Pack</text>
+  </g>
+
+  <!-- station 4 -->
+  <path class="leader" d="M884 451 L884 520 L868 536"/>
+  <circle cx="884" cy="451" r="20" fill="#9b9b47" filter="url(#softShadow)"/><text class="number" x="884" y="451">4</text>
+  <g transform="translate(806 562)">
+    <text class="part" x="0" y="0">PART 4 · 设计协作</text>
+    <text class="stationTitle" x="0" y="28">只在职责确实不同的时候拆分</text>
+    <text class="stationText" x="0" y="53">角色、消息、编排、MCP 与 A2A</text>
+    <text class="outcome" x="0" y="78">产物：责任与消息契约</text>
+  </g>
+
+  <!-- station 5 -->
+  <path class="leader" d="M1078 424 L1078 348 L1062 332"/>
+  <circle cx="1078" cy="424" r="20" fill="#6b914f" filter="url(#softShadow)"/><text class="number" x="1078" y="424">5</text>
+  <g transform="translate(927 251)">
+    <text class="part" x="0" y="0">PART 5 · 形成生产闭环</text>
+    <text class="stationTitle" x="0" y="28">没有观测，就没有可靠改进</text>
+    <text class="stationText" x="0" y="53">Trace、Eval、安全、成本与发布治理</text>
+    <text class="outcome" x="0" y="78">产物：可回归的发布门</text>
+  </g>
+
+  <!-- station 6 -->
+  <path class="leader" d="M1212 272 L1212 351 L1196 367"/>
+  <circle cx="1212" cy="272" r="20" fill="#3f8570" filter="url(#softShadow)"/><text class="number" x="1212" y="272">6</text>
+  <g transform="translate(1124 393)">
+    <text class="part" x="0" y="0">PART 6 · 实战验证</text>
+    <text class="stationTitle" x="0" y="28">把所有取舍放进同一个项目</text>
+    <text class="stationText" x="0" y="53">研究助手：检索、引用、工具与评估</text>
+    <text class="outcome" x="0" y="78">产物：可演示、可复盘的原型</text>
+  </g>
+
+  <!-- station 7 and summit flag -->
+  <path d="M1322 184 V118" stroke="#245f5c" stroke-width="3"/>
+  <path d="M1323 118 L1381 133 L1323 151Z" fill="#2f7d78"/>
+  <circle cx="1322" cy="184" r="23" fill="#2f7d78" filter="url(#softShadow)"/><text class="number" x="1322" y="184">7</text>
+  <g transform="translate(1058 74)">
+    <text class="part" x="0" y="0">PART 7 · 判断前沿</text>
+    <text class="stationTitle" x="0" y="28">不追发布会，追可验证的能力变化</text>
+    <text class="stationText" x="0" y="53">Computer Use、长时程、Agentic RL</text>
+  </g>
+
+  <!-- compass: the four questions used at every station -->
+  <g transform="translate(1020 724)">
+    <path d="M0 0 H346 Q366 0 366 20 V104 Q366 124 346 124 H0 Q-20 124-20 104 V20 Q-20 0 0 0Z" fill="#f9fbf7" fill-opacity=".88" stroke="#91aaa0" stroke-width="1.2"/>
+    <text class="compassTitle" x="8" y="28">每到一站，都用同一枚工程罗盘</text>
+    <circle cx="10" cy="55" r="5" fill="#d96546"/><text class="compassText" x="23" y="59">能力：它能做什么？</text>
+    <circle cx="190" cy="55" r="5" fill="#d79a41"/><text class="compassText" x="203" y="59">证据：凭什么相信？</text>
+    <circle cx="10" cy="85" r="5" fill="#678f50"/><text class="compassText" x="23" y="89">控制：谁允许它做？</text>
+    <circle cx="190" cy="85" r="5" fill="#2f7d78"/><text class="compassText" x="203" y="89">改进：如何证明变好？</text>
+  </g>
 </svg>
